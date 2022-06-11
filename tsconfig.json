@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "Node",
+    "paths": {},
+    "removeComments": true,
+    "outDir": "dist"
+  },
+  "include": ["src/", "template"]
+}
