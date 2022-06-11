@@ -1,7 +1,7 @@
 {
   "name": "@eyelly/i18n",
-  "version": "1.0.0",
-  "description": "国际化工具",
+  "version": "1.1.0",
+  "description": "International tool",
   "files": [
     "dist",
     "template"
@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "dev": "npx tsc --watch",
     "test-init": "node ./dist/bin/index.js init",
-    "test-T": "node ./dist/bin/index.js -T",
+    "test-t": "node ./dist/bin/index.js -T",
     "test-translate": "node ./dist/bin/index.js translate",
     "publish": "npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",

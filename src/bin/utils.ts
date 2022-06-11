@@ -57,3 +57,22 @@ export function writeFilesSync(props: {
     logError(error)
   }
 }
+
+/**
+ * 从命令行行参数中获取指定语言
+ * @param args 命令行参数
+ * @returns
+ */
+export function getLocale(args: string[]) {
+  let locale = 'zh'
+  args.some((arg, index) => {
+    if (
+      (arg === '-l' || arg === '--locale') &&
+      ['zh', 'en'].includes(args[index + 1])
+    ) {
+      locale = args[index + 1]
+      return true
+    }
+  })
+  return locale
+}

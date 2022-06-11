@@ -36,10 +36,6 @@ async function translateTextsToLangImpl(props: {
   const { texts, from, to } = props
   const { appid, key } = config
 
-  console.log({
-    config,
-  })
-
   const translateText = texts.join(SPERATOR_STR)
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}

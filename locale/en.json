@@ -1,0 +1,13 @@
+{
+  "当前版本：{0}": "Current version: {0}",
+  "命令": "command",
+  "参数": "parameter",
+  "用法": "usage",
+  "初始化配置文件": "Initialize profile",
+  "提取翻译文本并生成语言包": "Extract translated text and generate language packs",
+  "显示版本信息": "display version information",
+  "显示帮助信息": "display help information",
+  "指定命令行显示语言，可选语言有中文(zh)/ 英文(en), 默认为中文(zh)": "Specify the command line display language. The optional languages are Chinese (zh) / English (EN). The default is Chinese (zh)",
+  "输入命令有误:": "Error in input command:",
+  "可输入{0}查看帮助信息": "You can enter {0} to view help information"
+}

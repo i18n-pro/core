@@ -1,12 +1,17 @@
 #! /usr/bin/env node
 import extraFile from './extra-file'
-import { writeFilesSync } from './utils'
+import { getLocale, writeFilesSync } from './utils'
 import { LOG_DIR_NAME } from './constants'
 import extraTrTexts from './extra-text'
+import { i18n } from '../lib/index'
 import { setTranslateConfig, translateTextsToLangsImpl } from './tranlate'
 import { initConfig, readConfig } from './config'
+import { setI18N } from '../lib/index'
 
+import chalk = require('chalk')
 const path = require('path')
+const langs = require('../../locale/.log/langs.json')
+const packageInfo = require('../../package.json')
 
 async function tranlateControner() {
   const {
@@ -48,7 +53,7 @@ async function tranlateControner() {
   const tranlateRes = await translateTextsToLangsImpl({
     texts: trTextRes.success,
     from: 'zh',
-    tos: ['en', 'jp'],
+    tos: ['en'],
   })
 
   const { success, error, langs } = tranlateRes
@@ -81,15 +86,66 @@ async function tranlateControner() {
 }
 
 const [command, ...args] = process.argv.slice(2)
+const locale = getLocale(args)
+setI18N({
+  locale,
+  langs,
+})
 
 switch (command) {
   case 'init':
     initConfig()
     break
   case 'translate':
+  case 't':
   case '-T':
     tranlateControner()
     break
+  case 'locale':
+  case 'l':
+  case '-L':
+    break
+  case 'v':
+  case '-v':
+  case 'version':
+  case '--version':
+    console.log(
+      '\n',
+      i18n('当前版本：{0}', chalk.greenBright(packageInfo.version)),
+      '\n',
+    )
+    break
+  case '-h':
+  case 'h':
+  case 'help':
+  case '--help':
+    console.log(`
+i18n <${i18n('命令')}> [${i18n('参数')}]
+
+${i18n('用法')}:
+
+i18n  ${chalk.greenBright('init')}                                   ${i18n(
+      '初始化配置文件',
+    )}
+i18n  ${chalk.greenBright('t | -t | -T | translate')}                ${i18n(
+      '提取翻译文本并生成语言包',
+    )}
+i18n  ${chalk.greenBright('v | -v | version | --version')}           ${i18n(
+      '显示版本信息',
+    )}
+i18n  ${chalk.greenBright('h | -h | help | --help')}                 ${i18n(
+      '显示帮助信息',
+    )}
+
+${i18n('参数')}:
+      ${chalk.greenBright('-l | -L | --locale')}    zh | en          ${i18n(
+      '指定命令行显示语言，可选语言有中文(zh)/ 英文(en), 默认为中文(zh)',
+    )}
+        `)
+    break
   default:
-    console.log(`请输入正确的命令：`)
+    console.log(`
+${chalk.redBright(i18n('输入命令有误:'))}
+${i18n('可输入{0}查看帮助信息', chalk.greenBright(' i18n -h '))}
+    `)
 }

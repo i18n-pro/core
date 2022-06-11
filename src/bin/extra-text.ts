@@ -5,12 +5,22 @@ import { logSuccess } from './utils'
 /**
  * 基于文本解析出tr函数包裹的内容
  * @param fileCotent
+ * @param funcName 获取国际化文本的函数名
  */
-export function extraTrText(fileCotent: string): {
+export function extraTrText(
+  fileCotent: string,
+  funcName,
+): {
   success: string[] // 正确的列表
   error: string[] // 错误的列表
 } {
-  const regexp = /\Wtr\(((['"`])(.+?)\2),?\W/g
+  const regexp = new RegExp(
+    /\WfuncName\(\n*[ ]*((['"`])(.+?)\2),?\W/.source.replace(
+      'funcName',
+      funcName,
+    ),
+    'g',
+  )
   const success: string[] = []
   const error: string[] = []
   let temp: string[] | null
@@ -38,9 +48,13 @@ export function extraTrText(fileCotent: string): {
 /**
  * 根据文件路径提取tr函数包裹的文本内容
  * @param filepaths 文件路径
+ * @param funcName 获取国际化文本的函数名
  * @returns
  */
-export default function extraTrTexts(filepaths: string[]): {
+export default function extraTrTexts(
+  filepaths: string[],
+  funcName = 'i18n',
+): {
   success: string[] // 正确的列表
   error: string[] // 错误的列表
 } {
@@ -50,7 +64,7 @@ export default function extraTrTexts(filepaths: string[]): {
     const filecontent = fs.readFileSync(filepath, {
       encoding: 'utf-8',
     })
-    const trTextRes = extraTrText(filecontent)
+    const trTextRes = extraTrText(filecontent, funcName)
     success.push(...trTextRes.success)
     error.push(...trTextRes.error)
   })
