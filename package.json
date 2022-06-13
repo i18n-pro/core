@@ -1,10 +1,11 @@
 {
   "name": "@eyelly/i18n",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "International tool",
   "files": [
     "dist",
-    "template"
+    "template",
+    "locale/.log/langs.json"
   ],
   "main": "dist/lib/index.js",
   "bin": {
@@ -21,7 +22,10 @@
     "lint-msg": "npx commitlint --edit"
   },
   "keywords": [
-    "i18n"
+    "i18n",
+    "internationalization",
+    "国际化",
+    "多语言"
   ],
   "author": "Eyelly Wu",
   "license": "MIT",
