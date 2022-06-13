@@ -1,6 +1,8 @@
+import { i18n } from '../lib'
+import { logSuccess } from './utils'
+
 const fs = require('fs')
 const chalk = require('chalk')
-import { logSuccess } from './utils'
 
 /**
  * 基于文本解析出tr函数包裹的内容
@@ -38,7 +40,7 @@ export function extraTrText(
       success.push(content)
     }
   }
-  // console.log({ res, fileCotent })
+
   return {
     success,
     error,
@@ -72,8 +74,14 @@ export default function extraTrTexts(
   success = Array.from(new Set(success))
   error = Array.from(new Set(error))
 
-  logSuccess(chalk.greenBright('解析符合要求的国际化文本数:'), success.length)
-  logSuccess(chalk.greenBright('解析不符合要求的国际化文本数:'), error.length)
+  logSuccess(
+    chalk.greenBright(i18n('解析符合要求的国际化文本数:')),
+    success.length,
+  )
+  logSuccess(
+    chalk.greenBright(i18n('解析不符合要求的国际化文本数:')),
+    error.length,
+  )
 
   return {
     success,

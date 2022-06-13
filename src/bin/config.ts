@@ -1,8 +1,11 @@
+import path = require('path')
+import { isEmpty } from 'lodash'
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
-import path = require('path')
-import fs = require('fs')
-import { isEmpty } from 'lodash'
+import { i18n } from '../lib'
+import chalk = require('chalk')
+
+const fs = require('fs')
 
 const configPath = path.join(process.env.PWD, 'i18nrc.js')
 
@@ -14,7 +17,7 @@ export function initConfig() {
 
   try {
     fs.copyFileSync(sourcePath, configPath)
-    logSuccess(`已将配置文件写入到 ${configPath} 中`)
+    logSuccess(i18n(`初始化配置完成，已将配置文件写入到 {0} 中`, configPath))
   } catch (error) {
     logError(error)
   }
@@ -25,12 +28,12 @@ export function initConfig() {
  */
 export function readConfig(): Config {
   try {
-    console.log(`读取配置文件 ${configPath}`)
+    console.log(chalk.greenBright(i18n('读取配置文件')), configPath)
     const res = require(configPath)
     if (isEmpty(res)) {
-      throw new Error('配置文件为空' + JSON.stringify(res))
+      throw new Error(i18n('配置文件为空', JSON.stringify(res)))
     } else if (typeof res !== 'object') {
-      throw new Error('配置文件不是有效配置')
+      throw new Error(i18n('配置文件不是有效配置'))
     }
     return res
   } catch (error) {

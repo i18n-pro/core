@@ -6,7 +6,9 @@ import {
 import { set } from 'lodash'
 import { logError, logSuccess } from './utils'
 import { Config } from '../type'
-import chalk = require('chalk')
+import { i18n } from '../lib'
+
+const chalk = require('chalk')
 const md5 = require('md5-node')
 const got = require('got')
 
@@ -61,12 +63,13 @@ async function translateTextsToLangImpl(props: {
       .json()
 
     if (res.error_code) {
-      throw `${chalk.red('翻译接口返回错误')}：
-      错误码：${res.error_code}
-      错误信息：${res.error_msg}
-      可根据错误码在 ${chalk.blueBright.underline(
-        'http://api.fanyi.baidu.com/doc/21',
-      )} 该文档中查看错误具体原因`
+      throw `${chalk.red(i18n('翻译接口返回错误'))}：
+      ${i18n('错误码')}：${res.error_code}
+      ${i18n('错误信息')}：${res.error_msg}
+      ${i18n(
+        '可根据错误码在 {0} 该文档中查看错误具体原因',
+        chalk.blueBright.underline('http://api.fanyi.baidu.com/doc/21'),
+      )}`
     }
 
     const resMap = res?.trans_result?.reduce?.((res, item) => {
@@ -81,11 +84,15 @@ async function translateTextsToLangImpl(props: {
       if (typeof dst !== 'undefined') {
         success[text] = dst
         logSuccess(
-          `成功将 ${chalk.greenBright(text)} 从语言${chalk.redBright.italic(
-            from,
-          )} 翻译到语言${chalk.redBright.italic(
-            to,
-          )} 的内容为：${chalk.greenBright(dst)}`,
+          i18n(
+            '翻译成功({0}{1}{2})：{3}{4}{5}',
+            chalk.redBright.italic(from),
+            chalk.greenBright(' → '),
+            chalk.redBright.italic(to),
+            chalk.greenBright(text),
+            chalk.redBright(' → '),
+            chalk.greenBright(dst),
+          ),
         )
       } else {
         error[text] = TRANSLATE_ERROR_TEXT

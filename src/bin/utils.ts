@@ -1,5 +1,7 @@
-const fs = require('fs')
 import chalk = require('chalk')
+import { i18n } from '../lib'
+
+const fs = require('fs')
 
 /**
  *  公共的操作成功的日志输出方法
@@ -36,7 +38,10 @@ export function writeFilesSync(props: {
           recursive: true,
         })
         logSuccess(
-          `检测到指定目录 ${chalk.greenBright(dirpath)} 不存在，已创建该目录`,
+          i18n(
+            `检测到指定目录 {0} 不存在，已创建该目录`,
+            chalk.greenBright(dirpath),
+          ),
         )
       } catch (error) {
         logError(error)
@@ -49,9 +54,11 @@ export function writeFilesSync(props: {
   try {
     fs.writeFileSync(filepath, JSON.stringify(filecontent, null, 2))
     logSuccess(
-      `已将 ${showName} 写入到 ${chalk.blueBright.underline.italic(
-        filepath,
-      )} 中`,
+      i18n(
+        `已将 {0} 写入到 {1} 中`,
+        showName,
+        chalk.blueBright.underline.italic(filepath),
+      ),
     )
   } catch (error) {
     logError(error)
@@ -67,7 +74,7 @@ export function getLocale(args: string[]) {
   let locale = 'zh'
   args.some((arg, index) => {
     if (
-      (arg === '-l' || arg === '--locale') &&
+      (arg === '-L' || arg === '--locale') &&
       ['zh', 'en'].includes(args[index + 1])
     ) {
       locale = args[index + 1]

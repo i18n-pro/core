@@ -1,3 +1,5 @@
+import { i18n } from '../lib'
+
 // 日志文件的生成目录
 export const LOG_DIR_NAME = '.log'
 
@@ -14,4 +16,4 @@ export const SPERATOR_LENTH = 1
 export const SPERATOR_STR = SPERATOR.repeat(SPERATOR_LENTH)
 
 // 翻译失败的文本内容显示
-export const TRANSLATE_ERROR_TEXT = '翻译失败'
+export const TRANSLATE_ERROR_TEXT = i18n('翻译失败')
