@@ -14,6 +14,7 @@ const packageInfo = require('../../package.json')
 
 async function tranlateControner() {
   const {
+    funcName,
     entry,
     filterFile,
     output: { path: outputPath },
@@ -33,7 +34,7 @@ async function tranlateControner() {
     return
   }
 
-  const trTextRes = extraTrTexts(filespaths)
+  const trTextRes = extraTrTexts(filespaths, funcName)
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'keywords.json'),

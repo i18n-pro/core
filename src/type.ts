@@ -4,6 +4,7 @@ import { WalkStats } from 'walk'
  * 模板配置文件
  */
 export type Config = {
+  funcName: string // 自定义函数名，默认为 i18n
   entry: string // 入口文件
   filterFile: (stats: WalkStats) => boolean // 过滤文件的回调函数
   /**
