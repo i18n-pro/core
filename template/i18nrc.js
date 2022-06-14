@@ -15,5 +15,10 @@ module.exports = {
   baiduConfig: {
     appid: '2015063000000001',
     key: '12345678',
+    from: 'zh',
+    to: ['en', 'jp'],
+    codeLocaleMap: {
+      jp: 'jp_JP',
+    },
   },
 }

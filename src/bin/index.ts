@@ -50,11 +50,7 @@ async function tranlateControner() {
     })
   }
 
-  const tranlateRes = await translateTextsToLangsImpl({
-    texts: trTextRes.success,
-    from: 'zh',
-    tos: ['en'],
-  })
+  const tranlateRes = await translateTextsToLangsImpl(trTextRes.success)
 
   const { success, error, langs } = tranlateRes
 

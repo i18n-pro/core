@@ -15,7 +15,7 @@
     "prepare": "husky install",
     "dev": "npx tsc --watch",
     "test-init": "node ./dist/bin/index.js init",
-    "test-t": "node ./dist/bin/index.js -T",
+    "test-t": "node ./dist/bin/index.js t",
     "test-translate": "node ./dist/bin/index.js translate",
     "publish": "npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",

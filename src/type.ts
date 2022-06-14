@@ -19,6 +19,9 @@ export type Config = {
   baiduConfig: {
     appid: string // 百度翻译的APPID
     key: string // 百度翻译的密钥
+    from: string // 当前语言代码
+    to: string[] // 翻译的目标语言代码
+    codeLocaleMap?: Record<string, string> // 语言代码与locale的映射关系，key为语言代码，value为locale
   }
   /**
    * 日志输出的配置

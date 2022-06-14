@@ -12,9 +12,11 @@ const chalk = require('chalk')
 const md5 = require('md5-node')
 const got = require('got')
 
-const config = {
+const config: Config['baiduConfig'] = {
   appid: '',
   key: '',
+  from: '',
+  to: [],
 }
 
 /**
@@ -170,19 +172,19 @@ async function translateTextsToLang(props: {
 
 /**
  * 翻译多个文本到多个语言
+ * @param texts 需要翻译的文本内容
+ * @returns
  */
-export async function translateTextsToLangsImpl(props: {
-  texts: string[] // 需要翻译的文本内容
-  from: string // 被翻译内容的默认语言
-  tos: string[] // 需要翻译到其他语言
-}) {
-  const { texts, from, tos } = props
+export async function translateTextsToLangsImpl(texts: string[]) {
+  const { from, to: tos, codeLocaleMap = {} } = config
 
   const success = {}
   const error = {}
   const langs = {}
   try {
     for (const to of tos) {
+      const locale = codeLocaleMap[to] || to
+
       const res = await translateTextsToLang({
         texts,
         from,
@@ -191,13 +193,13 @@ export async function translateTextsToLangsImpl(props: {
 
       const { success: _success, error: _error } = res
       Object.entries(_success).forEach(([text, target]) => {
-        set(success, `${text}.${to}`, target)
+        set(success, `${text}.${locale}`, target)
       })
       Object.entries(_error).forEach(([text, target]) => {
-        set(error, `${text}.${to}`, target)
+        set(error, `${text}.${locale}`, target)
       })
 
-      langs[to] = _success
+      langs[locale] = _success
     }
   } catch (error) {
     logError(error)
