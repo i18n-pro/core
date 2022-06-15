@@ -7,10 +7,11 @@ import { set } from 'lodash'
 import { logError, logSuccess } from './utils'
 import { Config } from '../type'
 import { i18n } from '../lib'
+import fetch from './fetch'
 
 const chalk = require('chalk')
 const md5 = require('md5-node')
-const got = require('got')
+const url = require('url')
 
 const config: Config['baiduConfig'] = {
   appid: '',
@@ -57,21 +58,35 @@ async function translateTextsToLangImpl(props: {
     sign,
   }
 
+  let res
+
   try {
-    const res = await got
-      .post('http://api.fanyi.baidu.com/api/trans/vip/translate', {
-        form: body,
-      })
-      .json()
+    res = await fetch('http://api.fanyi.baidu.com/api/trans/vip/translate', {
+      method: 'POST',
+      data: new url.URLSearchParams(body).toString(),
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+    })
 
     if (res.error_code) {
-      throw `${chalk.red(i18n('翻译接口返回错误'))}：
+      const errorTextMap = {
+        52003: i18n('appid 配置不正确'),
+        54001: i18n('key 配置不正确'),
+      }
+      let errorText = errorTextMap[res.error_code]
+      errorText = errorText
+        ? i18n('可能原因是: {0}', chalk.redBright(errorText))
+        : ''
+      throw `${chalk.redBright(i18n('百度翻译接口返回错误'))}：
       ${i18n('错误码')}：${res.error_code}
       ${i18n('错误信息')}：${res.error_msg}
       ${i18n(
         '可根据错误码在 {0} 该文档中查看错误具体原因',
         chalk.blueBright.underline('http://api.fanyi.baidu.com/doc/21'),
-      )}`
+      )}
+      ${errorText}
+      `
     }
 
     const resMap = res?.trans_result?.reduce?.((res, item) => {
@@ -102,6 +117,11 @@ async function translateTextsToLangImpl(props: {
     })
   } catch (e) {
     logError(e)
+
+    if (res?.error_code && ['52003', '54001'].includes(res.error_code)) {
+      process.exit(1)
+    }
+
     texts.forEach((text) => {
       error[text] = TRANSLATE_ERROR_TEXT
     })

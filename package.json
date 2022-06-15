@@ -52,8 +52,6 @@
   },
   "dependencies": {
     "chalk": "4",
-    "g": "^2.0.1",
-    "got": "11",
     "lodash": "^4.17.21"
   },
   "lint-staged": {
