@@ -6,7 +6,7 @@ import extraTrTexts from './extra-text'
 import { setTranslateConfig, translateTextsToLangsImpl } from './tranlate'
 import { i18n, setI18N } from '../lib/index'
 import { initConfig, readConfig } from './config'
-import chalk = require('chalk')
+import chalk from './chalk'
 
 const path = require('path')
 const langs = require('../../locale/.log/langs.json')

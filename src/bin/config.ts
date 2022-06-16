@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash'
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import { i18n } from '../lib'
-import chalk = require('chalk')
+import chalk from './chalk'
 
 const fs = require('fs')
 
