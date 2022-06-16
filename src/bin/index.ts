@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import extraFile from './extra-file'
+import extraFileSync from './extra-file'
 import { getLocale, writeFilesSync } from './utils'
 import { LOG_DIR_NAME } from './constants'
 import extraTrTexts from './extra-text'
@@ -16,7 +16,7 @@ async function tranlateControner() {
   const {
     funcName,
     entry,
-    filterFile,
+    fileRegExp,
     output: { path: outputPath },
     baiduConfig,
     logConfig: { dirname: logDirname } = { dirname: LOG_DIR_NAME },
@@ -24,10 +24,7 @@ async function tranlateControner() {
 
   setTranslateConfig(baiduConfig)
 
-  const filespaths = await extraFile({
-    dirpath: entry,
-    filterFile,
-  })
+  const filespaths = extraFileSync(entry, fileRegExp)
 
   if (filespaths.length === 0) {
     console.log(i18n('未解析到需要翻译的文件，本次操作已结束'))
@@ -141,6 +138,6 @@ ${i18n('参数')}:
   default:
     console.log(`
 ${chalk.redBright(i18n('输入命令有误:'))}
-${i18n('可输入{0}查看帮助信息', chalk.greenBright(' i18n -h '))}
+${i18n('可输入{0}查看帮助信息', chalk.greenBright(' i18n h '))}
     `)
 }

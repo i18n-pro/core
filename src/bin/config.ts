@@ -17,7 +17,11 @@ export function initConfig() {
 
   try {
     fs.copyFileSync(sourcePath, configPath)
-    logSuccess(i18n(`初始化配置完成，已将配置文件写入到 {0} 中`, configPath))
+    console.log('\n')
+    logSuccess(
+      i18n(`初始化配置完成，已将配置文件写入到 {0} 中`, configPath),
+      '\n',
+    )
   } catch (error) {
     logError(error)
   }

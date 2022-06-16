@@ -3,12 +3,7 @@ const path = require('path')
 module.exports = {
   funcName: 'i18n',
   entry: path.join(__dirname, './src/'),
-  filterFile: (stat) => {
-    if (stat.name.match(/.*\.[jt]?sx?$/g)) {
-      return true
-    }
-    return false
-  },
+  fileRegExp: /.*\.[jt]s$/,
   output: {
     path: path.join(__dirname, './locale/'),
   },
