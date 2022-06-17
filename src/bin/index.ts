@@ -123,7 +123,7 @@ i18n  ${chalk.greenBright('t | translate')}                  ${i18n(
 i18n  ${chalk.greenBright('v | version')}                    ${i18n(
       '显示版本信息',
     )}
-i18n  ${chalk.greenBright('h| help')}                        ${i18n(
+i18n  ${chalk.greenBright('h | help')}                       ${i18n(
       '显示帮助信息',
     )}
 

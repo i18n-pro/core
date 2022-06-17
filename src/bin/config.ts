@@ -1,5 +1,4 @@
 import path = require('path')
-import { isEmpty } from 'lodash'
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import { i18n } from '../lib'
@@ -34,10 +33,10 @@ export function readConfig(): Config {
   try {
     console.log(chalk.greenBright(i18n('读取配置文件')), configPath)
     const res = require(configPath)
-    if (isEmpty(res)) {
-      throw new Error(i18n('配置文件为空', JSON.stringify(res)))
-    } else if (typeof res !== 'object') {
+    if (typeof res !== 'object') {
       throw new Error(i18n('配置文件不是有效配置'))
+    } else if (Object.keys(res).length === 0) {
+      throw new Error(i18n('配置文件为空', JSON.stringify(res)))
     }
     return res
   } catch (error) {

@@ -3,7 +3,6 @@ import {
   SPERATOR_STR,
   TRANSLATE_ERROR_TEXT,
 } from './constants'
-import { set } from 'lodash'
 import { logError, logSuccess } from './utils'
 import { Config } from '../type'
 import { i18n } from '../lib'
@@ -191,6 +190,26 @@ async function translateTextsToLang(props: {
 }
 
 /**
+ * 合并翻译的结果用于日志输出
+ * @param langCode 语言编码
+ * @param textResMap 文本翻译结果
+ * @param logTarget 日志输出对象
+ */
+function mergeTranslateLog(
+  langCode: string,
+  textResMap: Record<string, string>,
+  logTarget: Record<string, Record<string, string>>,
+) {
+  Object.entries(textResMap).forEach(([text, target]) => {
+    // NOTE 这里弃用lodash的set方法，因为字符中可能存在“.”，会导致结果异常
+    logTarget[text] = {
+      ...(logTarget[text] || {}),
+      [langCode]: target,
+    }
+  })
+}
+
+/**
  * 翻译多个文本到多个语言
  * @param texts 需要翻译的文本内容
  * @returns
@@ -201,6 +220,7 @@ export async function translateTextsToLangsImpl(texts: string[]) {
   const success = {}
   const error = {}
   const langs = {}
+
   try {
     for (const to of tos) {
       const locale = codeLocaleMap[to] || to
@@ -212,12 +232,12 @@ export async function translateTextsToLangsImpl(texts: string[]) {
       })
 
       const { success: _success, error: _error } = res
-      Object.entries(_success).forEach(([text, target]) => {
-        set(success, `${text}.${locale}`, target)
-      })
-      Object.entries(_error).forEach(([text, target]) => {
-        set(error, `${text}.${locale}`, target)
-      })
+
+      // 记录翻译成功的信息
+      mergeTranslateLog(locale, _success, success)
+
+      // 记录翻译失败的信息
+      mergeTranslateLog(locale, _error, error)
 
       langs[locale] = _success
     }
