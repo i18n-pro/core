@@ -3,44 +3,84 @@ type Style = {
   style: string // 样式编码
 }
 
-const styles: Style[] = [
-  {
-    operateType: 'red',
-    style: '\u001b[31m',
-  },
-  {
-    operateType: 'green',
-    style: '\u001b[32m',
-  },
-  {
-    operateType: 'yellow',
-    style: '\u001b[33m',
-  },
-  {
-    operateType: 'redBright',
-    style: '\u001b[31;1m',
-  },
-  {
-    operateType: 'greenBright',
-    style: '\u001b[32;1m',
-  },
-  {
-    operateType: 'yellowBright',
-    style: '\u001b[33;1m',
-  },
-]
+const basic8Color = [
+  'black',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'magenta', // 品红|洋红
+  'cyan', // 蓝绿|青色
+  'white',
+] as const
 
-type OperateType = typeof styles[number]['operateType']
+const modifier = {
+  bold: '\u001b[1m',
+  italic: '\u001b[3m',
+  underline: '\u001b[4m',
+}
+
+// 泛型工具
+type UnionType<T extends string, R extends typeof modifier> =
+  | T
+  | `${T}Bright`
+  // 的亏这里支持字符类型的拼接，及 Capitalize 泛型工具的支持
+  // 不然操作类型得写很多多余的东西
+  | `bg${Capitalize<T>}`
+  | `bg${Capitalize<T>}Bright`
+  | keyof R
+
+// 操作类型
+type OperateType = UnionType<typeof basic8Color[number], typeof modifier>
+
+const baseci8ColorWithBgAndBright = basic8Color.reduce((res, color, index) => {
+  const preffix = '\u001b[3' + index
+  const bgPreffix = '\u001b[4' + index
+  const suffix = 'm'
+  const brightKey = ';1'
+  const baseBg =
+    'bg' + color.replace(/^(\w)(.+)/, (str, p, s) => p.toUpperCase() + s)
+
+  res.push(
+    {
+      operateType: color,
+      style: `${preffix}${suffix}`,
+    },
+    {
+      operateType: color + 'Bright',
+      style: `${preffix}${brightKey}${suffix}`,
+    },
+    {
+      operateType: baseBg,
+      style: `${bgPreffix}${suffix}`,
+    },
+    {
+      operateType: baseBg + 'Bright',
+      style: `${bgPreffix}${brightKey}${suffix}`,
+    },
+  )
+  return res
+}, [])
+
+const modifierStyle = Object.entries(modifier).reduce((res, [key, value]) => {
+  res.push({
+    operateType: key,
+    style: value,
+  })
+  return res
+}, [])
+
+const styles: Style[] = [...baseci8ColorWithBgAndBright, ...modifierStyle]
 
 // 定义chalk函数的类型
 interface Chalk extends Record<OperateType, Chalk> {
-  (...res: string[]): string
+  (...res: Array<string | number>): string
 }
 
 /**
  * 基础的chalk函数实现
  */
-const chalk = function (...res: string[]) {
+const chalk = function (...res: Array<string | number>) {
   return res.join(' ')
 } as Chalk
 

@@ -1,8 +1,8 @@
 import { i18n } from '../lib'
 import { logSuccess } from './utils'
+import chalk from './chalk'
 
 const fs = require('fs')
-const chalk = require('chalk')
 
 /**
  * 基于文本解析出tr函数包裹的内容

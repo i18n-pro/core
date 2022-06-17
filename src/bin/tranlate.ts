@@ -8,8 +8,8 @@ import { logError, logSuccess } from './utils'
 import { Config } from '../type'
 import { i18n } from '../lib'
 import fetch from './fetch'
+import chalk from './chalk'
 
-const chalk = require('chalk')
 const md5 = require('md5-node')
 const url = require('url')
 

@@ -1,5 +1,3 @@
-import { WalkStats } from 'walk'
-
 /**
  * 模板配置文件
  */

@@ -48,7 +48,6 @@
     "typescript": "4"
   },
   "dependencies": {
-    "chalk": "4",
     "lodash": "^4.17.21"
   },
   "lint-staged": {

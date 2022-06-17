@@ -7,7 +7,7 @@ const fs = require('fs')
  *  公共的操作成功的日志输出方法
  * @param rest
  */
-export function logSuccess(...rest: string[] | number[]) {
+export function logSuccess(...rest: Array<string | number>) {
   console.log('✅', ...rest)
 }
 
@@ -15,7 +15,7 @@ export function logSuccess(...rest: string[] | number[]) {
  * 公共的操作失败的日志输出方法
  * @param rest
  */
-export function logError(...rest: string[] | number[]) {
+export function logError(...rest: Array<string | number>) {
   console.log('❌', ...rest)
 }
 

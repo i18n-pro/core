@@ -1,9 +1,9 @@
 import { logSuccess } from './utils'
 import { i18n } from '../lib'
+import chalk from './chalk'
 
 const path = require('path')
 const fs = require('fs')
-const chalk = require('chalk')
 
 /**
  * 提取文件路径入口
