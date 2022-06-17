@@ -9,7 +9,7 @@ import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 
 const path = require('path')
-const langs = require('../../locale/.log/langs.json')
+const langs = require('../../i18n/.log/langs.json')
 const packageInfo = require('../../package.json')
 
 async function tranlateControner() {

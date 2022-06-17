@@ -5,7 +5,7 @@
   "files": [
     "dist",
     "template",
-    "locale/.log/langs.json"
+    "i18n/.log/langs.json"
   ],
   "main": "dist/lib/index.js",
   "bin": {
