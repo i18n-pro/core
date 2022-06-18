@@ -10,6 +10,30 @@ export type Config = {
    */
   output: {
     path: string // 输出目录
+    /**
+     * 输出言语包的方式
+     *
+     * 假设有两个翻译的目标语言，分别为 en 和 jp
+     *
+     * single 只会生成一个聚合的语言包文件
+     * 对应一个文件：langs.json, 格式如下：
+     * {
+     *   "en":{
+     *     "xxx":"xxx"
+     *   },
+     *   "jp":{
+     *     "xxx":"xxx"
+     *   }
+     * }
+     *
+     * multiple 每个语言都会生成对应的语言包文件
+     * 对应两个文件：en.json, jp.json
+     * en.json 格式如下，jp.json 也是如此
+     * {
+     *   "xxx":"xxx"
+     * }
+     */
+    langType: 'single' | 'multiple'
   }
   /**
    * 百度翻译的配置
@@ -20,12 +44,6 @@ export type Config = {
     from: string // 当前语言代码
     to: string[] // 翻译的目标语言代码
     codeLocaleMap?: Record<string, string> // 语言代码与locale的映射关系，key为语言代码，value为locale
-  }
-  /**
-   * 日志输出的配置
-   */
-  logConfig: {
-    dirname?: string // 日志输出目录名称 默认为[.log]，位置会在 output 配置的目录下
   }
 }
 

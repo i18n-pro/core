@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 import extraFileSync from './extra-file'
-import { getLocale, writeFilesSync } from './utils'
-import { LOG_DIR_NAME } from './constants'
+import { getLocale, logWarning, writeFilesSync } from './utils'
+import { LOG_DIR_NAME as logDirname } from './constants'
 import extraTrTexts from './extra-text'
 import { setTranslateConfig, translateTextsToLangsImpl } from './tranlate'
 import { i18n, setI18N } from '../lib/index'
@@ -9,7 +9,18 @@ import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 
 const path = require('path')
-const langs = require('../../i18n/.log/langs.json')
+const langs = (() => {
+  let langs = {}
+  try {
+    langs = require('../../i18n/langs.json')
+  } catch (error) {
+    logWarning(
+      chalk.yellowBright('读取多语言聚合语言包失败，采用默认 zh 的语言包'),
+      '\n',
+    )
+  }
+  return langs
+})()
 const packageInfo = require('../../package.json')
 
 async function tranlateControner() {
@@ -17,9 +28,8 @@ async function tranlateControner() {
     funcName,
     entry,
     fileRegExp,
-    output: { path: outputPath },
+    output: { path: outputPath, langType = 'multiple' },
     baiduConfig,
-    logConfig: { dirname: logDirname } = { dirname: LOG_DIR_NAME },
   } = readConfig()
 
   setTranslateConfig(baiduConfig)
@@ -64,14 +74,22 @@ async function tranlateControner() {
   })
 
   writeFilesSync({
-    filepath: path.join(outputPath, logDirname, 'langs.json'),
+    filepath: path.join(
+      outputPath,
+      langType === 'multiple' ? logDirname : '',
+      'langs.json',
+    ),
     filecontent: langs,
     showName: i18n('多语言聚合文件'),
   })
 
   Object.entries(langs).forEach(([lang, content]) => {
     writeFilesSync({
-      filepath: path.join(outputPath, lang + '.json'),
+      filepath: path.join(
+        outputPath,
+        langType === 'multiple' ? '' : logDirname,
+        lang + '.json',
+      ),
       filecontent: content as object,
       showName: i18n('语言包 {0} 文件', lang),
     })

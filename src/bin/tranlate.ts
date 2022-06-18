@@ -101,13 +101,14 @@ async function translateTextsToLangImpl(props: {
         success[text] = dst
         logSuccess(
           i18n(
-            '翻译成功({0}{1}{2})：{3}{4}{5}',
+            '{0}({1}{2}{3})：{4}{5}{6}',
+            chalk.greenBright('翻译成功'),
             chalk.redBright.italic(from),
-            chalk.greenBright(' → '),
+            chalk.bold.greenBright(' → '),
             chalk.redBright.italic(to),
-            chalk.greenBright(text),
-            chalk.redBright(' → '),
-            chalk.greenBright(dst),
+            text,
+            chalk.bold.greenBright(' → '),
+            dst,
           ),
         )
       } else {

@@ -4,20 +4,22 @@ import { i18n } from '../lib'
 const fs = require('fs')
 
 /**
- *  公共的操作成功的日志输出方法
+ * 日志输出函数的默认实现
  * @param rest
+ * @returns
  */
-export function logSuccess(...rest: Array<string | number>) {
-  console.log('✅', ...rest)
+function log(...rest: Array<string | number>) {
+  return console.log(...rest)
 }
 
-/**
- * 公共的操作失败的日志输出方法
- * @param rest
- */
-export function logError(...rest: Array<string | number>) {
-  console.log('❌', ...rest)
-}
+// 公共的操作成功的日志输出方法
+export const logSuccess = log.bind(null, '✅')
+
+// 公共的操作失败的日志输出方法
+export const logError = log.bind(null, '❌')
+
+// 公共的操作警告的日志输出方法
+export const logWarning = log.bind(null, '⚠️')
 
 // 同步写入文本内容到指定文件
 export function writeFilesSync(props: {

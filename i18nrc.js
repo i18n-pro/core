@@ -6,14 +6,12 @@ module.exports = {
   fileRegExp: /.*\.[jt]s$/,
   output: {
     path: path.join(__dirname, './i18n/'),
+    langType: 'single',
   },
   baiduConfig: {
     appid: '20220530001234107',
     key: '4DsAkNxFeKPg5wMLrrVG',
     from: 'zh',
-    to: ['en', 'jp'],
-    codeLocaleMap: {
-      jp: 'jp_JP',
-    },
+    to: ['en'],
   },
 }
