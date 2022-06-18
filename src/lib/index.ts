@@ -15,14 +15,14 @@ export function setI18N(stateProp: I18NState<Langs>) {
  * @param text 原文本
  * @param args 动态参数
  */
-export function i18n(text, ...args: Array<string | number>): string {
+export function i18n(text: string, ...args: Array<string | number>): string {
   const { locale, langs } = state
   const lang = langs?.[locale]
   if (lang && lang[text]) {
     text = lang[text]
   }
   args.forEach((arg, index) => {
-    text = text.replace(`{${index}}`, arg)
+    text = text.replace(`{${index}}`, `${arg}`)
   })
 
   return text
