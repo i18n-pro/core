@@ -11,7 +11,7 @@ export type Config = {
   output: {
     path: string // 输出目录
     /**
-     * 输出言语包的方式
+     * 输出语言包的方式
      *
      * 假设有两个翻译的目标语言，分别为 en 和 jp
      *
