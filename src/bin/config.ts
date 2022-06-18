@@ -1,7 +1,6 @@
 import path = require('path')
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
-import { i18n } from '../lib'
 import chalk from './chalk'
 
 const fs = require('fs')

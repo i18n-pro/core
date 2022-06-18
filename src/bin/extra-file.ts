@@ -1,5 +1,4 @@
 import { logSuccess } from './utils'
-import { i18n } from '../lib'
 import chalk from './chalk'
 
 const path = require('path')

@@ -1,5 +1,8 @@
 import { i18n } from '../lib'
 
+// 设置为全局属性
+global.i18n = i18n
+
 // 日志文件的生成目录
 export const LOG_DIR_NAME = '.log'
 

@@ -1,5 +1,4 @@
 import chalk from './chalk'
-import { i18n } from '../lib'
 
 const fs = require('fs')
 

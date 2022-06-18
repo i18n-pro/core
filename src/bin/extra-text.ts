@@ -1,4 +1,3 @@
-import { i18n } from '../lib'
 import { logSuccess } from './utils'
 import chalk from './chalk'
 
