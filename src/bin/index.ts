@@ -25,9 +25,9 @@ const packageInfo = require('../../package.json')
 
 async function tranlateControner() {
   const {
-    funcName,
+    funcName = 'i18n',
     entry,
-    fileRegExp,
+    fileRegExp = /\.[jt]s$/,
     output: { path: outputPath, langType = 'multiple' },
     baiduConfig,
   } = readConfig()
