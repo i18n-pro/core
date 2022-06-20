@@ -136,7 +136,7 @@ i18n  ${chalk.greenBright('init')}                           ${i18n(
       '初始化配置文件',
     )}
 i18n  ${chalk.greenBright('t | translate')}                  ${i18n(
-      '提取翻译文本并生成语言包',
+      '提取翻译文本，自动翻译并生成语言包',
     )}
 i18n  ${chalk.greenBright('v | version')}                    ${i18n(
       '显示版本信息',
@@ -149,7 +149,8 @@ i18n  ${chalk.greenBright('h | help')}                       ${i18n(
 ${i18n('参数')}:
 
       ${chalk.yellowBright('-L | --locale')}    zh | en       ${i18n(
-      '指定命令行显示语言，可选语言有中文(zh)/ 英文(en), 默认为中文(zh)',
+      '可选语言有中文（zh）/ 英文（{0}）， 默认为中文（zh）',
+      'en',
     )}
         `)
     break
