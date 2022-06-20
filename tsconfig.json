@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "CommonJS",
+    "module": "UMD",
     "target": "ESNext",
     "lib": ["ESNext"],
     "moduleResolution": "Node",
     "paths": {},
     "removeComments": true,
     "outDir": "dist",
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "declaration": true
   },
   "include": ["src/", "template", "global.d.ts"]
