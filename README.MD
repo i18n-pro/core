@@ -5,11 +5,11 @@
 
 该库主要由两部分构成
 * 命令行工具
-* 函数 API
+* 函数API
 
-**命令行工具**：根据指定规则解析出需要翻译的文本片段，并通过翻译平台将文本片段翻译到指定目标语言，最后生成语言包文件
+**命令行工具**：根据指定规则解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件
 
-解析文本片段的匹配规则如下
+解析文本的匹配规则如下
 ```js
 // 普通字符串
 i18n('xxx')
@@ -19,12 +19,12 @@ i18n(`xxx`)
 i18n('xxx{0}xxx', param1)
 i18n('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
 ```
-**函数 API**：将国际化语言包接入到项目中，由 `i18n` 和 `setI18N` 构成
+**函数API**：将国际化语言包接入到项目中，由 `i18n` 和 `setI18N` 构成
 
 * **i18n**：用于包裹被翻译文本实现国际化，也作为命令行匹配翻译文本规则的标识
 * **setI18N**：设置语言和语言包
 
-所以 `命令行工具` 和 `函数 API` 这两者搭配使用效果更佳，也正是由于这样的结构设计，使得 `i181n-pro` 库可以很方便集成到任何的 `JavaScript` 项目中
+所以 `命令行工具` 和 `函数API` 这两者搭配使用效果更佳，也正是由于这样的结构设计，使得 `i18n-pro` 库可以很方便集成到任何的 `JavaScript` 项目中
 
 # 用法
 ## 1. 安装
@@ -35,9 +35,9 @@ yarn add i18n-pro
 # 或者
 pnpm i i18n-pro
 ```
-## 2. 接入函数 API
+## 2. 接入函数API
 📢📢📢：这一步主要是用 `i18n` 函数包裹需要被翻译的文本
-> `函数 API` 是以 `UMD` 形式来构建的，通过 `import` 或者 `require` 的方式都能引入，本文档中主要以 `import` 来举例说明
+> `函数API` 是以 `UMD` 形式来构建的，通过 `import` 或者 `require` 的方式都能引入，本文档中主要以 `import` 来举例说明
 ### 挂载全局对象的形式
 #### 引用函数
 ```js
@@ -158,7 +158,7 @@ function App(){
 |      key      |        string         |    是    |   -    | 密钥，要求同上                                                                                                                                                                                                                                               |
 |     from      |        string         |    是    |   -    | 被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`），[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索**语种列表**                                                                                                                   |
 |      to       |       string[]        |    是    |   -    | 翻译的目标语言代码，格式同上<br/><br/>📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名（`output.langType=='multiple'`时）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用 |
-| codeLocaleMap | Record<string,string> |    否    |   {}   | 设置语言的代码与 `locale` 的映射关系<br/><br/>例如目标语言为 `['en']`，想设置 `locale` 的组值为 `'en_US'`，那么需要配置 `codeLocaleMap` 为 `{ 'en' : 'en_US' }`，最终生成的文件名（`output.langType=='multiple'`时）也会变成 `en_US.json`                    |
+| codeLocaleMap | Record<string,string> |    否    |   {}   | 设置语言代码与 `locale` 的映射关系<br/><br/>例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'`，那么需要配置 `codeLocaleMap` 为 `{ 'en' : 'en_US' }`，最终生成的文件名（`output.langType=='multiple'`时）也会变成 `en_US.json`                        |
 ## 2. 命令
 ### 命令列表
 |   命令    | 简写  | 用法                                    | 说明                               |
