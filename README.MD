@@ -221,3 +221,23 @@ xxx
 ```js
 i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', '22', '火星', '码农')
 ```
+
+# 更新日志
+## [1.1.0] - 2022-06-xx
+### Added
+- 新增 `README` 说明文档
+- 新增 `output.langType` 配置项支持生成不同格式的语言包
+- 新增 `from`、`to`、`codeLocaleMap` 百度翻译的配置项
+- 新增 `funcName` 配置项支持自定义匹配函数名
+### Changed
+- 配置项 `filterFile` 已废弃，由 `fileRegExp` 代替
+### Removed
+- 移除了 `got`，`walk`，`chalk`，`lodash` 等依赖库
+### Fixed
+- 修复日志文件（translate-success.json）在文本包含 `.` 的情况下格式错误
+
+## [1.0.0] - 2022-06-13
+### Added
+- 新增语言切换命令行参数
+- 新增 `i18n` 和 `setI18N` 函数API
+- 新增 `命令行工具` 的基本实现
