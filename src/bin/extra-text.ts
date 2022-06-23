@@ -16,7 +16,7 @@ export function extraTrText(
   error: string[] // 错误的列表
 } {
   const regexp = new RegExp(
-    /\WfuncName\(\n*[ ]*((['"`])(.+?)\2),?\W/.source.replace(
+    /\WfuncName\(\n*[ ]*((['"`])(.+?)\2)(,\W|\))/.source.replace(
       'funcName',
       funcName,
     ),
@@ -31,8 +31,9 @@ export function extraTrText(
     if (
       (label.match(/^`.*`$/) && label.includes('${')) ||
       content.startsWith(' ') ||
-      content.startsWith('\t') ||
-      content.includes('\n')
+      content.endsWith(' ') ||
+      content.includes('\n') ||
+      content.includes('\\n')
     ) {
       error.push(content)
     } else {
