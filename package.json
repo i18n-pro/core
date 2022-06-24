@@ -5,7 +5,8 @@
   "files": [
     "dist",
     "template",
-    "i18n/langs.json"
+    "i18n/langs.json",
+    "static"
   ],
   "types": "./dist/lib/index.d.ts",
   "main": "dist/lib/index.js",

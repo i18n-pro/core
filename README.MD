@@ -1,3 +1,7 @@
+<div align="center" style="background:transparent;">
+  <img src="./static/img/logo.png">
+</div>
+
 # 愿景
 为了让接入国际化成为轻松且愉快的事😄💪🏻
 
