@@ -1,7 +1,7 @@
 {
   "name": "i18n-pro",
-  "version": "1.0.0",
-  "description": "International tool",
+  "version": "1.1.0",
+  "description": "轻量、简单、灵活的自动翻译工具",
   "files": [
     "dist",
     "template",
@@ -24,10 +24,17 @@
     "lint-msg": "npx commitlint --edit"
   },
   "keywords": [
+    "intl",
     "i18n",
     "internationalization",
+    "locale",
+    "l10n",
+    "localization",
+    "translate",
+    "translation",
     "国际化",
-    "多语言"
+    "多语言",
+    "自动翻译"
   ],
   "author": "Eyelly Wu",
   "license": "MIT",
@@ -50,5 +57,13 @@
   },
   "lint-staged": {
     "*.{json,ts}": "eslint --fix -f table"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eyelly-wu/i18n-pro.git"
+  },
+  "homepage": "https://github.com/eyelly-wu/i18n-pro#readme",
+  "bugs": {
+    "url": "https://github.com/eyelly-wu/i18n-pro/issues"
   }
 }
