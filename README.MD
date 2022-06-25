@@ -1,5 +1,7 @@
 <div align="center" style="background:transparent;">
-  <img src="./static/img/logo.png">
+
+  [![logo][logo-image]][github-url]
+
   <p>轻量、简单、灵活的自动翻译工具</p>
 
   [![NPM version][npm-image]][npm-url]
@@ -12,6 +14,10 @@
   [![][github-issues-image]][github-issues-url]
 </div>
 
+<!--这里使用的是https://www.imgurl.org/作为图床-->
+[demo-image]: https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif
+[logo-image]: https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png
+[github-url]: https://github.com/eyelly-wu/i18n-pro
 [npm-image]: https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/i18n-pro
 [download-image]: https://img.shields.io/npm/dm/i18n-pro
@@ -162,7 +168,7 @@ function App(){
 ## 8. DEMO
 哈哈哈，怎么能没有示例呢，当前库 `命令行工具` 的控制台输出就接入了国际化<br/>
 通过命令 `npx i18n h -L en` 就能看英文版了<br/>
-![图片](./static/img/demo.gif)<br/>
+![图片][demo-image]<br/>
 感兴趣的同学，可以看看源码
 # 命令行
 ## 1. `i18nrc.js` 配置
@@ -253,7 +259,11 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', '22', '
 ```
 
 # 更新日志
-## [1.1.0] - 2022-06-xx
+
+## [1.1.1] - 2022-06-25
+### Fixed
+- 修复文档中图片不显示的问题
+## [1.1.0] - 2022-06-25
 ### Added
 - 新增 `README` 说明文档
 - 新增 `output.langType` 配置项支持生成不同格式的语言包
