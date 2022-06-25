@@ -1,6 +1,32 @@
 <div align="center" style="background:transparent;">
   <img src="./static/img/logo.png">
+  <p>轻量、简单、灵活的自动翻译工具</p>
+
+  [![NPM version][npm-image]][npm-url]
+  [![NPM downloads][download-image]][npm-url]
+  [![][quality-score-image]][npm-url]
+  [![][bundlesize-js-image]][unpkg-js-url]
+  [![][dependenices-image]][dependenices-url]
+  [![][github-starts-image]][github-starts-url]
+  [![][last-commit-image]][last-commit-url]
+  [![][github-issues-image]][github-issues-url]
 </div>
+
+[npm-image]: https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/i18n-pro
+[download-image]: https://img.shields.io/npm/dm/i18n-pro
+[quality-score-image]: https://img.shields.io/npms-io/quality-score/i18n-pro
+[bundlesize-js-image]: https://img.badgesize.io/https:/unpkg.com/i18n-pro/dist/lib/index.js?label=index.js&compression=gzip&style=flat-square
+[unpkg-js-url]: https://unpkg.com/browse/i18n-pro/dist/lib/index.js
+[dependenices-image]: https://img.shields.io/librariesio/release/npm/i18n-pro
+[dependenices-url]: https://www.npmjs.com/package/i18n-pro?activeTab=dependencies
+[github-starts-image]: https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social
+[github-starts-url]: https://github.com/eyelly-wu/i18n-pro/stargazers
+[last-commit-image]: https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro
+[last-commit-url]: https://github.com/eyelly-wu/i18n-pro/commits/main
+[github-issues-image]: https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro
+[github-issues-url]: https://github.com/eyelly-wu/i18n-pro/issues
+
 
 # 愿景
 为了让接入国际化成为轻松且愉快的事😄💪🏻
@@ -245,3 +271,8 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', '22', '
 - 新增语言切换命令行参数
 - 新增 `i18n` 和 `setI18N` 函数API
 - 新增 `命令行工具` 的基本实现
+
+# License
+[MIT](./LICENSE)
+
+Copyright (c) 2022-present Eyelly Wu
