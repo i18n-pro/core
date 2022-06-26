@@ -33,7 +33,9 @@ export function extraTrText(
       content.startsWith(' ') ||
       content.endsWith(' ') ||
       content.includes('\n') ||
-      content.includes('\\n')
+      content.includes('\\n') ||
+      content.includes('\t') ||
+      content.includes('\\t')
     ) {
       error.push(content)
     } else {

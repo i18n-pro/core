@@ -7,7 +7,7 @@ global.i18n = i18n
 export const LOG_DIR_NAME = '.log'
 
 // 百度每次翻译的最大字符数
-export const BAI_DU_MAX_LEGNTH = 2000
+export const BAI_DU_MAX_LEGNTH = 3000
 
 // 多文本翻译时字符间的分割符
 export const SPERATOR = '\n'
