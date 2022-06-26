@@ -195,6 +195,7 @@ function App(){
 |     from      |        string         |    是    |   -    | 被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`），[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索**语种列表**                                                                                                                   |
 |      to       |       string[]        |    是    |   -    | 翻译的目标语言代码，格式同上<br/><br/>📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名（`output.langType=='multiple'`时）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用 |
 | codeLocaleMap | Record<string,string> |    否    |   {}   | 设置语言代码与 `locale` 的映射关系<br/><br/>例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'`，那么需要配置 `codeLocaleMap` 为 `{ 'en' : 'en_US' }`，最终生成的文件名（`output.langType=='multiple'`时）也会变成 `en_US.json`                        |
+|     delay     |        number         |    否    |   0    | 接口调用延迟时长（单位:秒）<br/><br/>百度翻译平台根据不同API服务类型，对每秒请求数有限制，如果当前APPID只有1个用户使用，那么普通版可以设置为1，高级版和尊享版可不用设置；如果当前APPID多个用户同时在使用，`delay` 值越大越不容易出错                         |
 ## 2. 命令
 ### 命令列表
 |   命令    | 简写  | 用法                                    | 说明                               |

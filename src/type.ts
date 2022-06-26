@@ -44,6 +44,7 @@ export type Config = {
     from: string // 当前语言代码
     to: string[] // 翻译的目标语言代码
     codeLocaleMap?: Record<string, string> // 语言代码与locale的映射关系，key为语言代码，value为locale
+    delay?: number // 接口调用延迟时长（单位:秒）
   }
 }
 

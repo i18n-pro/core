@@ -16,6 +16,7 @@ const config: Config['baiduConfig'] = {
   key: '',
   from: '',
   to: [],
+  delay: 0,
 }
 
 /**
@@ -71,6 +72,9 @@ async function translateTextsToLangImpl(props: {
       const errorTextMap = {
         52003: i18n('appid 配置不正确'),
         54001: i18n('key 配置不正确'),
+        54003: i18n(
+          '多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项baiduConfig.delay(具体可参考配置项文档说明)',
+        ),
       }
       let errorText = errorTextMap[res.error_code]
       errorText = errorText
@@ -141,6 +145,7 @@ async function translateTextsToLang(props: {
   to: string // 需要翻译到其他语言
 }) {
   const { texts, from, to } = props
+  const { delay } = config
 
   let success = {}
   let error = {}
@@ -159,6 +164,22 @@ async function translateTextsToLang(props: {
         (texts.length - 1 > i &&
           count + SPERATOR_STR.length + texts[i + 1].length > BAI_DU_MAX_LEGNTH)
       ) {
+        // 非第一次请求，才开始延迟
+        if (count != 0 && typeof delay === 'number' && delay > 0) {
+          const now = Date.now()
+          let last = 0
+          const prefix = '\u001b[100D'
+          while ((last = Date.now() - now) < delay * 1000) {
+            process.stdout.write(
+              i18n(
+                '{0}{1}秒后将进行下一波翻译',
+                prefix,
+                chalk.redBright(Math.ceil((delay * 1000 - last) / 1000)),
+              ),
+            )
+          }
+          process.stdout.write(prefix)
+        }
         const res = await translateTextsToLangImpl({
           texts: fromTexts,
           from,
