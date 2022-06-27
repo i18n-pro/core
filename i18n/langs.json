@@ -29,12 +29,15 @@
     "可输入{0}查看帮助信息": "You can enter {0} to view help information",
     "appid 配置不正确": "Appid configuration is incorrect",
     "key 配置不正确": "Incorrect key configuration",
+    "多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项{0}(具体可参考配置项文档说明)": "Multiple people use the same appid to perform translation at the same time. It is recommended to register a personal account to use or adjust the configuration item {0} (refer to the configuration item documentation for details)",
     "可能原因是: {0}": "Possible cause: {0}",
     "百度翻译接口返回错误": "Baidu translation interface returned an error",
     "错误码": "Error code",
     "错误信息": "error message",
     "可根据错误码在 {0} 该文档中查看错误具体原因": "The specific cause of the error can be viewed in {0} this document according to the error code",
     "{0}({1}{2}{3})：{4}{5}{6}": "{0}({1}{2}{3})：{4}{5}{6}",
+    "当前文本【{0}】未被翻译": "The current text [{0}] has not been translated",
+    "{0}秒后将进行下一波翻译": "The next wave of translation will take place in {0} seconds",
     "检测到指定目录 {0} 不存在，已创建该目录": "Detected that the specified directory {0} does not exist, it has been created",
     "已将 {0} 写入到 {1} 中": "Written {0} to {1}"
   }

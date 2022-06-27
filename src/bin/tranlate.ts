@@ -6,7 +6,7 @@ import {
 import { logError, logSuccess } from './utils'
 import { Config } from '../type'
 import fetch from './fetch'
-import chalk from './chalk'
+import chalk, { STYLE_EOF } from './chalk'
 
 const md5 = require('md5-node')
 const url = require('url')
@@ -73,7 +73,8 @@ async function translateTextsToLangImpl(props: {
         52003: i18n('appid 配置不正确'),
         54001: i18n('key 配置不正确'),
         54003: i18n(
-          '多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项baiduConfig.delay(具体可参考配置项文档说明)',
+          '多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项{0}(具体可参考配置项文档说明)',
+          'baiduConfig.delay',
         ),
       }
       let errorText = errorTextMap[res.error_code]
@@ -115,7 +116,7 @@ async function translateTextsToLangImpl(props: {
           ),
         )
       } else {
-        error[text] = TRANSLATE_ERROR_TEXT
+        error[text] = i18n('当前文本【{0}】未被翻译', text)
       }
     })
   } catch (e) {
@@ -125,8 +126,18 @@ async function translateTextsToLangImpl(props: {
       process.exit(1)
     }
 
+    let currentErrorText = e || TRANSLATE_ERROR_TEXT
+
+    if (res.error_code) {
+      currentErrorText = e
+        ?.replaceAll('\n', '')
+        ?.replaceAll(STYLE_EOF, '')
+        ?.replaceAll(chalk.redBright().replace(STYLE_EOF, ''), '')
+        ?.replaceAll(chalk.blueBright.underline().replace(STYLE_EOF, ''), '')
+    }
+
     texts.forEach((text) => {
-      error[text] = TRANSLATE_ERROR_TEXT
+      error[text] = currentErrorText
     })
   }
 
@@ -172,10 +183,9 @@ async function translateTextsToLang(props: {
           while ((last = Date.now() - now) < delay * 1000) {
             process.stdout.write(
               i18n(
-                '{0}{1}秒后将进行下一波翻译',
-                prefix,
+                '{0}秒后将进行下一波翻译',
                 chalk.redBright(Math.ceil((delay * 1000 - last) / 1000)),
-              ),
+              ) + prefix,
             )
           }
           process.stdout.write(prefix)

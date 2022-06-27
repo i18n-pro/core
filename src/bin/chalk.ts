@@ -3,6 +3,8 @@ type Style = {
   style: string // 样式编码
 }
 
+export const STYLE_EOF = '\u001b[0m'
+
 const basic8Color = [
   'black',
   'red',
@@ -110,7 +112,7 @@ function definedProperties(func: typeof chalk, styleProp = '') {
  */
 function createNewChalk(style: string) {
   const func = (...res: string[]): string => {
-    return `${style}${res.join(' ')}\u001b[0m`
+    return `${style}${res.join(' ')}${STYLE_EOF}`
   }
 
   definedProperties(func as Chalk, style)
