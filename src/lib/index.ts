@@ -7,7 +7,10 @@ let state = {} as I18NState<Langs>
  * @param state 国际化状态
  */
 export function setI18N(stateProp: I18NState<Langs>) {
-  state = stateProp
+  state = {
+    ...state,
+    ...(stateProp || {}),
+  }
 }
 
 /**
