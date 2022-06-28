@@ -28,7 +28,7 @@ async function tranlateControner() {
     funcName = 'i18n',
     entry,
     fileRegExp = /\.[jt]s$/,
-    output: { path: outputPath, langType = 'multiple' },
+    output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     baiduConfig,
   } = readConfig()
 
@@ -47,6 +47,7 @@ async function tranlateControner() {
     filepath: path.join(outputPath, logDirname, 'keywords.json'),
     filecontent: trTextRes.success,
     showName: i18n('提取的国际化文本'),
+    indentSize,
   })
 
   if (trTextRes.error.length) {
@@ -54,6 +55,7 @@ async function tranlateControner() {
       filepath: path.join(outputPath, logDirname, 'keywords-error.json'),
       filecontent: trTextRes.error,
       showName: i18n('提取的编写不规范的国际化文本'),
+      indentSize,
     })
   }
 
@@ -65,12 +67,14 @@ async function tranlateControner() {
     filepath: path.join(outputPath, logDirname, 'translate-success.json'),
     filecontent: success,
     showName: i18n('翻译成功'),
+    indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-error.json'),
     filecontent: error,
     showName: i18n('翻译失败'),
+    indentSize,
   })
 
   writeFilesSync({
@@ -81,6 +85,7 @@ async function tranlateControner() {
     ),
     filecontent: langs,
     showName: i18n('多语言聚合文件'),
+    indentSize,
   })
 
   Object.entries(langs).forEach(([lang, content]) => {
@@ -92,6 +97,7 @@ async function tranlateControner() {
       ),
       filecontent: content as object,
       showName: i18n('语言包 {0} 文件', lang),
+      indentSize,
     })
   })
 }

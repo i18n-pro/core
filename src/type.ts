@@ -34,6 +34,7 @@ export type Config = {
      * }
      */
     langType: 'single' | 'multiple'
+    indentSize: number // 输出文件的缩进大小，默认为 2
   }
   /**
    * 百度翻译的配置
