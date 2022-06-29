@@ -58,6 +58,7 @@ export type Langs = Partial<Record<string, Record<string, string>>>
  * 国际化内部保存状态
  */
 export type I18NState<T extends Langs> = {
-  locale: keyof T | string // 当前语言
-  langs: T // 语言包
+  locale?: keyof T | string // 当前语言
+  langs?: T // 语言包
+  beginIndex?: number // 动态参数的起始位置，默认从0开始
 }

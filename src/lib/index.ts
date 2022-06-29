@@ -7,6 +7,11 @@ let state = {} as I18NState<Langs>
  * @param state 国际化状态
  */
 export function setI18N(stateProp: I18NState<Langs>) {
+  if (stateProp?.beginIndex && typeof stateProp.beginIndex !== 'number') {
+    console.error('beginIndex must be a number')
+    delete stateProp.beginIndex
+  }
+
   state = {
     ...state,
     ...(stateProp || {}),
@@ -19,13 +24,13 @@ export function setI18N(stateProp: I18NState<Langs>) {
  * @param args 动态参数
  */
 export function i18n(text: string, ...args: Array<string | number>): string {
-  const { locale, langs } = state
+  const { locale, langs, beginIndex = 0 } = state
   const lang = langs?.[locale]
   if (lang && lang[text]) {
     text = lang[text]
   }
   args.forEach((arg, index) => {
-    text = text.replace(`{${index}}`, `${arg}`)
+    text = text.replace(`{${index + beginIndex}}`, `${arg}`)
   })
 
   return text
