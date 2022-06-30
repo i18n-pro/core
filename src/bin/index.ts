@@ -114,7 +114,7 @@ async function tranlateControner() {
 }
 
 const [command, ...args] = process.argv.slice(2)
-const locale = getLocale(args)
+const locale = getLocale([command, ...args])
 setI18N({
   locale,
   langs,
@@ -127,9 +127,6 @@ switch (command) {
   case 'translate':
   case 't':
     tranlateControner()
-    break
-  case '--locale':
-  case '-L':
     break
   case 'v':
   case 'version':
