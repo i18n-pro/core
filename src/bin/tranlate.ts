@@ -4,7 +4,7 @@ import {
   TRANSLATE_ERROR_TEXT,
 } from './constants'
 import { logError, logSuccess } from './utils'
-import { Config } from '../type'
+import { Config, Langs } from '../type'
 import fetch from './fetch'
 import chalk, { STYLE_EOF } from './chalk'
 
@@ -243,9 +243,13 @@ function mergeTranslateLog(
 /**
  * 翻译多个文本到多个语言
  * @param texts 需要翻译的文本内容
+ * @param langsProp 已翻译的语言包
  * @returns
  */
-export async function translateTextsToLangsImpl(texts: string[]) {
+export async function translateTextsToLangsImpl(
+  texts: string[],
+  langsProp: Langs,
+) {
   const { from, to: tos, codeLocaleMap = {} } = config
 
   const success = {}
@@ -255,9 +259,12 @@ export async function translateTextsToLangsImpl(texts: string[]) {
   try {
     for (const to of tos) {
       const locale = codeLocaleMap[to] || to
+      const lang = langsProp[to] || {}
+      // 过滤已翻译的字段
+      const filterTexts = texts.filter((text) => !lang[text])
 
       const res = await translateTextsToLang({
-        texts,
+        texts: filterTexts,
         from,
         to,
       })
@@ -270,7 +277,11 @@ export async function translateTextsToLangsImpl(texts: string[]) {
       // 记录翻译失败的信息
       mergeTranslateLog(locale, _error, error)
 
-      langs[locale] = _success
+      // 合并翻译成功的和原有已翻译的
+      langs[locale] = {
+        ...lang,
+        ..._success,
+      }
     }
   } catch (error) {
     logError(error)

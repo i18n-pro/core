@@ -7,6 +7,7 @@ import { setTranslateConfig, translateTextsToLangsImpl } from './tranlate'
 import { i18n, setI18N } from '../lib/index'
 import { initConfig, readConfig } from './config'
 import chalk from './chalk'
+import extraLangs from './extra-langs'
 
 const path = require('path')
 const langs = (() => {
@@ -59,7 +60,17 @@ async function tranlateControner() {
     })
   }
 
-  const tranlateRes = await translateTextsToLangsImpl(trTextRes.success)
+  const sourceLangs = extraLangs({
+    path: outputPath,
+    langType,
+    to: baiduConfig.to,
+    codeLocaleMap: baiduConfig.codeLocaleMap,
+  })
+
+  const tranlateRes = await translateTextsToLangsImpl(
+    trTextRes.success,
+    sourceLangs,
+  )
 
   const { success, error, langs } = tranlateRes
 
