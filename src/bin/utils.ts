@@ -23,11 +23,11 @@ export const logWarning = log.bind(null, '⚠️')
 // 同步写入文本内容到指定文件
 export function writeFilesSync(props: {
   filepath: string // 文件路径
-  filecontent: string[] | object // 文件内容
+  fileContent: string[] | object // 文件内容
   showName: string // 文本名称
   indentSize: number // 缩进大小
 }) {
-  const { filepath, filecontent, showName, indentSize } = props
+  const { filepath, fileContent, showName, indentSize } = props
 
   const dirpath = filepath.slice(0, filepath.lastIndexOf('/'))
   try {
@@ -54,7 +54,7 @@ export function writeFilesSync(props: {
   }
 
   try {
-    fs.writeFileSync(filepath, JSON.stringify(filecontent, null, indentSize))
+    fs.writeFileSync(filepath, JSON.stringify(fileContent, null, indentSize))
     logSuccess(
       i18n(
         `已将 {0} 写入到 {1} 中`,

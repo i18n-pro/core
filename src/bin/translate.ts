@@ -1,6 +1,6 @@
 import {
-  BAI_DU_MAX_LEGNTH,
-  SPERATOR_STR,
+  BAI_DU_MAX_LENGTH,
+  SEPARATOR_STR,
   TRANSLATE_ERROR_TEXT,
 } from './constants'
 import { logError, logSuccess } from './utils'
@@ -40,7 +40,7 @@ async function translateTextsToLangImpl(props: {
   const { texts, from, to } = props
   const { appid, key } = config
 
-  const translateText = texts.join(SPERATOR_STR)
+  const translateText = texts.join(SEPARATOR_STR)
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
 
@@ -167,13 +167,14 @@ async function translateTextsToLang(props: {
     for (let i = 0; i < texts.length; i++) {
       const t = texts[i]
       fromTexts.push(t)
-      count += (count === 0 ? 0 : SPERATOR_STR.length) + t.length
+      count += (count === 0 ? 0 : SEPARATOR_STR.length) + t.length
 
       if (
         i === texts.length - 1 || // 最后一个
         // 加上后面一个字符会超过最大字符
         (texts.length - 1 > i &&
-          count + SPERATOR_STR.length + texts[i + 1].length > BAI_DU_MAX_LEGNTH)
+          count + SEPARATOR_STR.length + texts[i + 1].length >
+            BAI_DU_MAX_LENGTH)
       ) {
         // 非第一次请求，才开始延迟
         if (count != 0 && typeof delay === 'number' && delay > 0) {

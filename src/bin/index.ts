@@ -3,7 +3,7 @@ import extraFileSync from './extra-file'
 import { getLocale, logWarning, writeFilesSync } from './utils'
 import { LOG_DIR_NAME as logDirname, NON_INCREMENTAL } from './constants'
 import extraTrTexts from './extra-text'
-import { setTranslateConfig, translateTextsToLangsImpl } from './tranlate'
+import { setTranslateConfig, translateTextsToLangsImpl } from './translate'
 import { i18n, setI18N } from '../lib/index'
 import { initConfig, readConfig } from './config'
 import chalk from './chalk'
@@ -24,7 +24,7 @@ const langs = (() => {
 })()
 const packageInfo = require('../../package.json')
 
-async function tranlateControner(props: {
+async function translateController(props: {
   incrementalMode: boolean // 是否是增量翻译模式
 }) {
   const { incrementalMode = true } = props
@@ -38,18 +38,18 @@ async function tranlateControner(props: {
 
   setTranslateConfig(baiduConfig)
 
-  const filespaths = extraFileSync(entry, fileRegExp)
+  const filepaths = extraFileSync(entry, fileRegExp)
 
-  if (filespaths.length === 0) {
+  if (filepaths.length === 0) {
     console.log(i18n('未解析到需要翻译的文件，本次操作已结束'))
     return
   }
 
-  const trTextRes = extraTrTexts(filespaths, funcName)
+  const trTextRes = extraTrTexts(filepaths, funcName)
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'keywords.json'),
-    filecontent: trTextRes.success,
+    fileContent: trTextRes.success,
     showName: i18n('提取的国际化文本'),
     indentSize,
   })
@@ -57,7 +57,7 @@ async function tranlateControner(props: {
   if (trTextRes.error.length) {
     writeFilesSync({
       filepath: path.join(outputPath, logDirname, 'keywords-error.json'),
-      filecontent: trTextRes.error,
+      fileContent: trTextRes.error,
       showName: i18n('提取的编写不规范的国际化文本'),
       indentSize,
     })
@@ -70,24 +70,24 @@ async function tranlateControner(props: {
     codeLocaleMap: baiduConfig.codeLocaleMap,
   })
 
-  const tranlateRes = await translateTextsToLangsImpl(
+  const translateRes = await translateTextsToLangsImpl(
     trTextRes.success,
     sourceLangs,
     incrementalMode,
   )
 
-  const { success, error, langs } = tranlateRes
+  const { success, error, langs } = translateRes
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-success.json'),
-    filecontent: success,
+    fileContent: success,
     showName: i18n('翻译成功'),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-error.json'),
-    filecontent: error,
+    fileContent: error,
     showName: i18n('翻译失败'),
     indentSize,
   })
@@ -98,7 +98,7 @@ async function tranlateControner(props: {
       langType === 'multiple' ? logDirname : '',
       'langs.json',
     ),
-    filecontent: langs,
+    fileContent: langs,
     showName: i18n('多语言聚合文件'),
     indentSize,
   })
@@ -110,7 +110,7 @@ async function tranlateControner(props: {
         langType === 'multiple' ? '' : logDirname,
         lang + '.json',
       ),
-      filecontent: content as object,
+      fileContent: content as object,
       showName: i18n('语言包 {0} 文件', lang),
       indentSize,
     })
@@ -130,7 +130,7 @@ switch (command) {
     break
   case 'translate':
   case 't':
-    tranlateControner({
+    translateController({
       incrementalMode: !args.includes(NON_INCREMENTAL),
     })
     break

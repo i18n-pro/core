@@ -9,7 +9,7 @@ const path = require('path')
  * @param filename
  * @returns
  */
-function requreJsonFile<T extends object>(
+function requireJsonFile<T extends object>(
   dirpath: string, // 目录路径
   filename: string, // 文件名
 ): T {
@@ -29,20 +29,20 @@ function requreJsonFile<T extends object>(
 
 /**
  * 提取已翻译的语言包
- * @param porps
+ * @param props
  */
 export default function extraLangs(
-  porps: Pick<Config['output'], 'langType' | 'path'> &
+  props: Pick<Config['output'], 'langType' | 'path'> &
     Pick<Config['baiduConfig'], 'to' | 'codeLocaleMap'>,
 ) {
   let langs: Langs = {}
-  const { langType, path: dirpath, to, codeLocaleMap = {} } = porps
+  const { langType, path: dirpath, to, codeLocaleMap = {} } = props
 
   if (langType === 'single') {
-    langs = requreJsonFile<Langs>(dirpath, 'langs')
+    langs = requireJsonFile<Langs>(dirpath, 'langs')
   } else {
     to.forEach((langCode) => {
-      const lang = requreJsonFile<Record<string, string>>(
+      const lang = requireJsonFile<Record<string, string>>(
         dirpath,
         codeLocaleMap[langCode] || langCode,
       )

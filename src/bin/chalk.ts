@@ -35,9 +35,9 @@ type UnionType<T extends string, R extends typeof modifier> =
 // 操作类型
 type OperateType = UnionType<typeof basic8Color[number], typeof modifier>
 
-const baseci8ColorWithBgAndBright = basic8Color.reduce((res, color, index) => {
-  const preffix = '\u001b[3' + index
-  const bgPreffix = '\u001b[4' + index
+const basic8ColorWithBgAndBright = basic8Color.reduce((res, color, index) => {
+  const prefix = '\u001b[3' + index
+  const bgPrefix = '\u001b[4' + index
   const suffix = 'm'
   const brightKey = ';1'
   const baseBg =
@@ -46,19 +46,19 @@ const baseci8ColorWithBgAndBright = basic8Color.reduce((res, color, index) => {
   res.push(
     {
       operateType: color,
-      style: `${preffix}${suffix}`,
+      style: `${prefix}${suffix}`,
     },
     {
       operateType: color + 'Bright',
-      style: `${preffix}${brightKey}${suffix}`,
+      style: `${prefix}${brightKey}${suffix}`,
     },
     {
       operateType: baseBg,
-      style: `${bgPreffix}${suffix}`,
+      style: `${bgPrefix}${suffix}`,
     },
     {
       operateType: baseBg + 'Bright',
-      style: `${bgPreffix}${brightKey}${suffix}`,
+      style: `${bgPrefix}${brightKey}${suffix}`,
     },
   )
   return res
@@ -72,7 +72,7 @@ const modifierStyle = Object.entries(modifier).reduce((res, [key, value]) => {
   return res
 }, [])
 
-const styles: Style[] = [...baseci8ColorWithBgAndBright, ...modifierStyle]
+const styles: Style[] = [...basic8ColorWithBgAndBright, ...modifierStyle]
 
 // 定义chalk函数的类型
 interface Chalk extends Record<OperateType, Chalk> {

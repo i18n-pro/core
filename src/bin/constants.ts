@@ -7,16 +7,16 @@ global.i18n = i18n
 export const LOG_DIR_NAME = '.log'
 
 // 百度每次翻译的最大字符数
-export const BAI_DU_MAX_LEGNTH = 3000
+export const BAI_DU_MAX_LENGTH = 3000
 
 // 多文本翻译时字符间的分割符
-export const SPERATOR = '\n'
+export const SEPARATOR = '\n'
 
 // 分隔符的个数
-export const SPERATOR_LENTH = 1
+export const SEPARATOR_LENGTH = 1
 
 // 实际的分割符
-export const SPERATOR_STR = SPERATOR.repeat(SPERATOR_LENTH)
+export const SEPARATOR_STR = SEPARATOR.repeat(SEPARATOR_LENGTH)
 
 // 翻译失败的文本内容显示
 export const TRANSLATE_ERROR_TEXT = i18n('翻译失败')

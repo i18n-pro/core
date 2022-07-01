@@ -5,11 +5,11 @@ const fs = require('fs')
 
 /**
  * 基于文本解析出tr函数包裹的内容
- * @param fileCotent
+ * @param fileContent
  * @param funcName 获取国际化文本的函数名
  */
 export function extraTrText(
-  fileCotent: string,
+  fileContent: string,
   funcName,
 ): {
   success: string[] // 正确的列表
@@ -25,7 +25,7 @@ export function extraTrText(
   const success: string[] = []
   const error: string[] = []
   let temp: string[] | null
-  while ((temp = regexp.exec(fileCotent))) {
+  while ((temp = regexp.exec(fileContent))) {
     const label = temp[1]
     const content = temp[3]
     if (
@@ -65,10 +65,10 @@ export default function extraTrTexts(
   let success: string[] = []
   let error: string[] = []
   filepaths.forEach((filepath) => {
-    const filecontent = fs.readFileSync(filepath, {
+    const fileContent = fs.readFileSync(filepath, {
       encoding: 'utf-8',
     })
-    const trTextRes = extraTrText(filecontent, funcName)
+    const trTextRes = extraTrText(fileContent, funcName)
     success.push(...trTextRes.success)
     error.push(...trTextRes.error)
   })
