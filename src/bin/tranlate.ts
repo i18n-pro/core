@@ -255,6 +255,10 @@ export async function translateTextsToLangsImpl(
   const success = {}
   const error = {}
   const langs = {}
+  const textsMap = texts.reduce((res, item) => {
+    res[item] = true
+    return res
+  }, {})
 
   try {
     for (const to of tos) {
@@ -262,6 +266,13 @@ export async function translateTextsToLangsImpl(
       const lang = langsProp[to] || {}
       // 过滤已翻译的字段
       const filterTexts = texts.filter((text) => !lang[text])
+      // 根据最新的文本，过滤已翻译中被移除的字段
+      const filterLang = Object.entries(lang).reduce((res, [text, target]) => {
+        if (textsMap[text]) {
+          res[text] = target
+        }
+        return res
+      }, {})
 
       const res = await translateTextsToLang({
         texts: filterTexts,
@@ -279,7 +290,7 @@ export async function translateTextsToLangsImpl(
 
       // 合并翻译成功的和原有已翻译的
       langs[locale] = {
-        ...lang,
+        ...filterLang,
         ..._success,
       }
     }
