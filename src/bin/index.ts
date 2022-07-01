@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 import extraFileSync from './extra-file'
 import { getLocale, logWarning, writeFilesSync } from './utils'
-import { LOG_DIR_NAME as logDirname } from './constants'
+import { LOG_DIR_NAME as logDirname, NON_INCREMENTAL } from './constants'
 import extraTrTexts from './extra-text'
 import { setTranslateConfig, translateTextsToLangsImpl } from './tranlate'
 import { i18n, setI18N } from '../lib/index'
@@ -24,7 +24,10 @@ const langs = (() => {
 })()
 const packageInfo = require('../../package.json')
 
-async function tranlateControner() {
+async function tranlateControner(props: {
+  incrementalMode: boolean // 是否是增量翻译模式
+}) {
+  const { incrementalMode = true } = props
   const {
     funcName = 'i18n',
     entry,
@@ -70,6 +73,7 @@ async function tranlateControner() {
   const tranlateRes = await translateTextsToLangsImpl(
     trTextRes.success,
     sourceLangs,
+    incrementalMode,
   )
 
   const { success, error, langs } = tranlateRes
@@ -126,7 +130,9 @@ switch (command) {
     break
   case 'translate':
   case 't':
-    tranlateControner()
+    tranlateControner({
+      incrementalMode: !args.includes(NON_INCREMENTAL),
+    })
     break
   case 'v':
   case 'version':
@@ -165,6 +171,9 @@ ${i18n('参数')}:
       ${chalk.yellowBright('-L | --locale')}    zh | en       ${i18n(
       '可选语言有中文（zh）/ 英文（{0}）， 默认为中文（zh）',
       'en',
+    )}
+      ${chalk.yellowBright(NON_INCREMENTAL)}              ${i18n(
+      '非增量翻译模式进行翻译，已翻译的文本会完全被覆盖',
     )}
         `)
     break

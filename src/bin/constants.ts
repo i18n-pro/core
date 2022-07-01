@@ -20,3 +20,6 @@ export const SPERATOR_STR = SPERATOR.repeat(SPERATOR_LENTH)
 
 // 翻译失败的文本内容显示
 export const TRANSLATE_ERROR_TEXT = i18n('翻译失败')
+
+// 非增量翻译模式
+export const NON_INCREMENTAL = '--non-incremental'

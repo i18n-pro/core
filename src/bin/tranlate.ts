@@ -244,35 +244,43 @@ function mergeTranslateLog(
  * 翻译多个文本到多个语言
  * @param texts 需要翻译的文本内容
  * @param langsProp 已翻译的语言包
+ * @param incrementalMode 是否增量模式
  * @returns
  */
 export async function translateTextsToLangsImpl(
   texts: string[],
   langsProp: Langs,
+  incrementalMode: boolean,
 ) {
   const { from, to: tos, codeLocaleMap = {} } = config
 
   const success = {}
   const error = {}
   const langs = {}
-  const textsMap = texts.reduce((res, item) => {
-    res[item] = true
-    return res
-  }, {})
+  const textsMap = incrementalMode
+    ? texts.reduce((res, item) => {
+        res[item] = true
+        return res
+      }, {})
+    : {}
 
   try {
     for (const to of tos) {
       const locale = codeLocaleMap[to] || to
       const lang = langsProp[to] || {}
       // 过滤已翻译的字段
-      const filterTexts = texts.filter((text) => !lang[text])
+      const filterTexts = incrementalMode
+        ? texts.filter((text) => !lang[text])
+        : texts
       // 根据最新的文本，过滤已翻译中被移除的字段
-      const filterLang = Object.entries(lang).reduce((res, [text, target]) => {
-        if (textsMap[text]) {
-          res[text] = target
-        }
-        return res
-      }, {})
+      const filterLang = incrementalMode
+        ? Object.entries(lang).reduce((res, [text, target]) => {
+            if (textsMap[text]) {
+              res[text] = target
+            }
+            return res
+          }, {})
+        : {}
 
       const res = await translateTextsToLang({
         texts: filterTexts,
