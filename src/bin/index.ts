@@ -48,7 +48,7 @@ async function translateController(props: {
   const trTextRes = extraTrTexts(filepaths, funcName)
 
   writeFilesSync({
-    filepath: path.join(outputPath, logDirname, 'keywords.json'),
+    filepath: path.join(outputPath, logDirname, 'texts.json'),
     fileContent: trTextRes.success,
     showName: i18n('提取的国际化文本'),
     indentSize,
@@ -56,7 +56,7 @@ async function translateController(props: {
 
   if (trTextRes.error.length) {
     writeFilesSync({
-      filepath: path.join(outputPath, logDirname, 'keywords-error.json'),
+      filepath: path.join(outputPath, logDirname, 'texts-error.json'),
       fileContent: trTextRes.error,
       showName: i18n('提取的编写不规范的国际化文本'),
       indentSize,
