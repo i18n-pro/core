@@ -135,9 +135,15 @@ switch (command) {
     break
   case 'translate':
   case 't':
-    translateController({
-      incrementalMode: !args.includes(NON_INCREMENTAL),
-    })
+    {
+      const label = chalk.yellowBright(i18n('共耗时'))
+      console.time(label)
+      translateController({
+        incrementalMode: !args.includes(NON_INCREMENTAL),
+      }).then(() => {
+        console.timeLog(label)
+      })
+    }
     break
   case 'v':
   case 'version':
