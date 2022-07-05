@@ -47,22 +47,6 @@ async function translateController(props: {
 
   const trTextRes = extraTrTexts(filepaths, funcName)
 
-  writeFilesSync({
-    filepath: path.join(outputPath, logDirname, 'texts.json'),
-    fileContent: trTextRes.success,
-    showName: i18n('提取的国际化文本'),
-    indentSize,
-  })
-
-  if (trTextRes.error.length) {
-    writeFilesSync({
-      filepath: path.join(outputPath, logDirname, 'texts-error.json'),
-      fileContent: trTextRes.error,
-      showName: i18n('提取的编写不规范的国际化文本'),
-      indentSize,
-    })
-  }
-
   const sourceLangs = extraLangs({
     path: outputPath,
     langType,
@@ -77,6 +61,27 @@ async function translateController(props: {
   )
 
   const { success, error, langs } = translateRes
+
+  writeFilesSync({
+    filepath: path.join(outputPath, logDirname, 'filepaths.json'),
+    fileContent: filepaths,
+    showName: i18n('匹配到的文件路径列表'),
+    indentSize,
+  })
+
+  writeFilesSync({
+    filepath: path.join(outputPath, logDirname, 'texts.json'),
+    fileContent: trTextRes.success,
+    showName: i18n('提取的国际化文本'),
+    indentSize,
+  })
+
+  writeFilesSync({
+    filepath: path.join(outputPath, logDirname, 'texts-error.json'),
+    fileContent: trTextRes.error,
+    showName: i18n('提取的编写不规范的国际化文本'),
+    indentSize,
+  })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-success.json'),

@@ -11,6 +11,7 @@
     "解析符合要求的国际化文本数:": "Number of internationalized texts that meet the requirements:",
     "解析不符合要求的国际化文本数:": "Number of internationalized text parsed that does not meet the requirements:",
     "未解析到需要翻译的文件，本次操作已结束": "The file that needs to be translated is not parsed. This operation has ended",
+    "匹配到的文件路径列表": "List of matched file paths",
     "提取的国际化文本": "Extracted international text",
     "提取的编写不规范的国际化文本": "Extracted international text with nonstandard compilation",
     "翻译成功": "Translation successful",
