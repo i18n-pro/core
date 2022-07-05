@@ -176,8 +176,13 @@ async function translateTextsToLang(props: {
           count + SEPARATOR_STR.length + texts[i + 1].length >
             BAI_DU_MAX_LENGTH)
       ) {
-        // 非第一次请求，才开始延迟
-        if (count != 0 && typeof delay === 'number' && delay > 0) {
+        if (
+          // 非第一次请求，才开始延迟
+          (Object.keys(success).length != 0 ||
+            Object.keys(error).length != 0) &&
+          typeof delay === 'number' &&
+          delay > 0
+        ) {
           const now = Date.now()
           let last = 0
           const prefix = '\u001b[100D'
