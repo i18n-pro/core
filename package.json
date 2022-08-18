@@ -20,7 +20,10 @@
     "test-translate": "node ./dist/bin/index.js translate",
     "publish": "npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",
-    "lint-msg": "npx commitlint --edit"
+    "lint-msg": "npx commitlint --edit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [
     "intl",
@@ -44,6 +47,8 @@
     "@types/node": "^17.0.41",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
+    "@vitest/coverage-istanbul": "^0.22.0",
+    "@vitest/ui": "^0.22.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-formatter-table": "^7.32.1",
@@ -51,7 +56,8 @@
     "husky": "8",
     "lint-staged": "^13.0.1",
     "prettier": "^2.6.2",
-    "typescript": "4"
+    "typescript": "4",
+    "vitest": "^0.22.0"
   },
   "lint-staged": {
     "*.{json,ts}": "eslint --fix -f table"
