@@ -18,11 +18,12 @@
     "test-init": "node ./dist/bin/index.js init",
     "test-t": "node ./dist/bin/index.js t",
     "test-translate": "node ./dist/bin/index.js translate",
+    "build": "npx tsc",
     "publish": "npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",
     "lint-msg": "npx commitlint --edit",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
+    "test": "vitest --ui",
+    "test:pkg": "cross-env NODE_ENV=pkg vitest run",
     "coverage": "vitest run --coverage"
   },
   "keywords": [
@@ -49,6 +50,7 @@
     "@typescript-eslint/parser": "^5.27.1",
     "@vitest/coverage-istanbul": "^0.22.0",
     "@vitest/ui": "^0.22.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-formatter-table": "^7.32.1",

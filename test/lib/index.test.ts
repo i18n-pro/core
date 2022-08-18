@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { i18n, setI18N } from '../../src/lib/index'
+import { getCurrentLib } from '../utils'
+
+const { setI18N, i18n } = getCurrentLib()
 
 describe('基础功能验证', () => {
   const basicLangs = {

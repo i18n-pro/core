@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 测试
+        uses: ./.github/actions/test
+        with:
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}

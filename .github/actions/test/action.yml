@@ -1,0 +1,32 @@
+name: 测试
+description: 会依次进行依赖安装、构建发布包、发布包测试、源码测试、上传源码测试报告
+
+inputs:
+  codecov_token:
+    description: 上传测试报告到 codecov 的 token
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 安装依赖
+      run: pnpm i
+      shell: sh
+
+    - name: 构建
+      run: npm run build
+      shell: sh
+
+    - name: 测试构建包
+      run: npm run test:pkg
+      shell: sh
+
+    - name: 测试源码并生成覆盖率
+      run: npm run coverage
+      shell: sh
+
+    - name: 上传测试报告
+      run:
+        bash <(curl -s https://codecov.io/bash) -t ${{ inputs.codecov_token }}
+        -Z -F unittests
+      shell: bash

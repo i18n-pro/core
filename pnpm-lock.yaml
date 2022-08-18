@@ -9,6 +9,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.27.1
   '@vitest/coverage-istanbul': ^0.22.0
   '@vitest/ui': ^0.22.0
+  cross-env: ^7.0.3
   eslint: ^8.17.0
   eslint-config-prettier: ^8.5.0
   eslint-formatter-table: ^7.32.1
@@ -32,6 +33,7 @@ devDependencies:
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.27.1_ud6rd4xtew5bv4yhvkvu24pzm4
   '@vitest/coverage-istanbul': registry.npmmirror.com/@vitest/coverage-istanbul/0.22.0_@vitest+ui@0.22.0
   '@vitest/ui': registry.npmmirror.com/@vitest/ui/0.22.0
+  cross-env: registry.npmmirror.com/cross-env/7.0.3
   eslint: registry.npmmirror.com/eslint/8.17.0
   eslint-config-prettier: registry.npmmirror.com/eslint-config-prettier/8.5.0_eslint@8.17.0
   eslint-formatter-table: registry.npmmirror.com/eslint-formatter-table/7.32.1
@@ -1377,6 +1379,16 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/create-require/-/create-require-1.1.1.tgz}
     name: create-require
     version: 1.1.1
+    dev: true
+
+  registry.npmmirror.com/cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cross-env/-/cross-env-7.0.3.tgz}
+    name: cross-env
+    version: 7.0.3
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: registry.npmmirror.com/cross-spawn/7.0.3
     dev: true
 
   registry.npmmirror.com/cross-spawn/7.0.3:
