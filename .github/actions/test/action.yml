@@ -9,6 +9,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: 安装 pnpm
+      run: npm i -g pnpm
+      shell: sh
+
     - name: 安装依赖
       run: pnpm i
       shell: sh
