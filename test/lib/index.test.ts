@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest'
 import { getCurrentLib } from '../utils'
 
 const { setI18N, i18n } = getCurrentLib()

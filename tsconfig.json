@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "module": "UMD",
     "target": "ESNext",
     "lib": ["ESNext"],
@@ -9,7 +9,8 @@
     "removeComments": true,
     "outDir": "dist",
     "resolveJsonModule": false,
-    "declaration": true
+    "declaration": true,
+    "types": ["vitest/globals"]
   },
   "include": ["src/", "template", "global.d.ts"]
 }
