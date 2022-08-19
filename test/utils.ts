@@ -1,19 +1,42 @@
-import * as i18nLibSource from '../src/lib'
-import * as i18nLibPkg from '../dist/lib'
+import * as Lib from '../src/lib'
+import * as BinIndex from '../src/bin'
+import * as BinConfig from '../src/bin/config'
 
 /**
- * 获取当前lib的导出内容
- * 可用于分别测试源码及打包后的lib
+ * 获取当前指定路径模块的导出内容
+ * 可用于分别测试源码及打包后的模块
  * @returns
  */
-export function getCurrentLib() {
-  let pkg = i18nLibSource
+async function getCurrentModule<T>(path: string): Promise<T> {
+  let pkg = await import(path)
 
   const type = process.env.NODE_ENV
   switch (type) {
     case 'pkg':
-      pkg = i18nLibPkg
+      pkg = require(path.replace('src', 'dist'))
+      break
   }
 
   return pkg
 }
+
+/**
+ * 改变 process.argv 参数
+ * @param args 参数列表
+ */
+export function changeProcessArgv(...args: string[]) {
+  process.argv.splice(0, 1, '', '', ...args)
+}
+
+// 获取当前 lib 的导出内容
+export const lib = await getCurrentModule<typeof Lib>('../src/lib/index')
+
+// 获取当前 bin/index 的导出内容
+export const binIndex = await getCurrentModule<typeof BinIndex>(
+  '../src/bin/index',
+)
+
+// 获取当前 bin-config 的导出内容
+export const binConfig = await getCurrentModule<typeof BinConfig>(
+  '../src/bin/config',
+)

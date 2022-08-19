@@ -122,75 +122,80 @@ async function translateController(props: {
   })
 }
 
-const [command, ...args] = process.argv.slice(2)
-const locale = getLocale([command, ...args])
-setI18N({
-  locale,
-  langs,
-})
+export function execCommand() {
+  const [command, ...args] = process.argv.slice(2)
+  const locale = getLocale([command, ...args])
 
-switch (command) {
-  case 'init':
-    initConfig()
-    break
-  case 'translate':
-  case 't':
-    {
-      const label = chalk.yellowBright(i18n('共耗时'))
-      console.time(label)
-      translateController({
-        incrementalMode: !args.includes(NON_INCREMENTAL),
-      }).then(() => {
-        console.timeLog(label)
-      })
-    }
-    break
-  case 'v':
-  case 'version':
-    console.log(
-      '\n',
-      i18n('当前版本：{0}', chalk.greenBright(packageInfo.version)),
-      '\n',
-    )
-    break
-  case 'h':
-  case 'help':
-    console.log(`
-${chalk.redBright('i18n')} <${chalk.greenBright(
-      i18n('命令'),
-    )}> [${chalk.yellowBright(i18n('参数'))}]
+  setI18N({
+    locale,
+    langs,
+  })
 
-
-${i18n('用法')}:
-
-i18n  ${chalk.greenBright('init')}                           ${i18n(
-      '初始化配置文件',
-    )}
-i18n  ${chalk.greenBright('t | translate')}                  ${i18n(
-      '提取翻译文本，自动翻译并生成语言包',
-    )}
-i18n  ${chalk.greenBright('v | version')}                    ${i18n(
-      '显示版本信息',
-    )}
-i18n  ${chalk.greenBright('h | help')}                       ${i18n(
-      '显示帮助信息',
-    )}
+  switch (command) {
+    case 'init':
+      initConfig()
+      break
+    case 'translate':
+    case 't':
+      {
+        const label = chalk.yellowBright(i18n('共耗时'))
+        console.time(label)
+        translateController({
+          incrementalMode: !args.includes(NON_INCREMENTAL),
+        }).then(() => {
+          console.timeLog(label)
+        })
+      }
+      break
+    case 'v':
+    case 'version':
+      console.log(
+        '\n',
+        i18n('当前版本：{0}', chalk.greenBright(packageInfo.version)),
+        '\n',
+      )
+      break
+    case 'h':
+    case 'help':
+      console.log(`
+  ${chalk.redBright('i18n')} <${chalk.greenBright(
+        i18n('命令'),
+      )}> [${chalk.yellowBright(i18n('参数'))}]
 
 
-${i18n('参数')}:
+  ${i18n('用法')}:
 
-      ${chalk.yellowBright('-L | --locale')}    zh | en       ${i18n(
-      '可选语言有中文（zh）/ 英文（{0}）， 默认为中文（zh）',
-      'en',
-    )}
-      ${chalk.yellowBright(NON_INCREMENTAL)}              ${i18n(
-      '非增量翻译模式进行翻译，已翻译的文本会完全被覆盖',
-    )}
-        `)
-    break
-  default:
-    console.log(`
-${chalk.redBright(i18n('输入命令有误:'))}
-${i18n('可输入{0}查看帮助信息', chalk.greenBright(' i18n h '))}
-    `)
+  i18n  ${chalk.greenBright('init')}                           ${i18n(
+        '初始化配置文件',
+      )}
+  i18n  ${chalk.greenBright('t | translate')}                  ${i18n(
+        '提取翻译文本，自动翻译并生成语言包',
+      )}
+  i18n  ${chalk.greenBright('v | version')}                    ${i18n(
+        '显示版本信息',
+      )}
+  i18n  ${chalk.greenBright('h | help')}                       ${i18n(
+        '显示帮助信息',
+      )}
+
+
+  ${i18n('参数')}:
+
+        ${chalk.yellowBright('-L | --locale')}    zh | en       ${i18n(
+        '可选语言有中文（zh）/ 英文（{0}）， 默认为中文（zh）',
+        'en',
+      )}
+        ${chalk.yellowBright(NON_INCREMENTAL)}              ${i18n(
+        '非增量翻译模式进行翻译，已翻译的文本会完全被覆盖',
+      )}
+          `)
+      break
+    default:
+      console.log(`
+  ${chalk.redBright(i18n('输入命令有误:'))}
+  ${i18n('可输入{0}查看帮助信息', chalk.greenBright(' i18n h '))}
+      `)
+  }
 }
+
+execCommand()

@@ -1,6 +1,6 @@
-import { getCurrentLib } from '../utils'
+import { lib } from '../utils'
 
-const { setI18N, i18n } = getCurrentLib()
+const { setI18N, i18n } = lib
 
 describe('基础功能验证', () => {
   const basicLangs = {
