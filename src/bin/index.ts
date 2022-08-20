@@ -122,7 +122,7 @@ async function translateController(props: {
   })
 }
 
-export function execCommand() {
+export async function execCommand() {
   const [command, ...args] = process.argv.slice(2)
   const locale = getLocale([command, ...args])
 
@@ -140,11 +140,10 @@ export function execCommand() {
       {
         const label = chalk.yellowBright(i18n('共耗时'))
         console.time(label)
-        translateController({
+        await translateController({
           incrementalMode: !args.includes(NON_INCREMENTAL),
-        }).then(() => {
-          console.timeLog(label)
         })
+        console.timeLog(label)
       }
       break
     case 'v':
@@ -198,4 +197,6 @@ export function execCommand() {
   }
 }
 
-execCommand()
+if (!process.env.NODE_ENV) {
+  execCommand()
+}

@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import { binIndex, binConfig, changeProcessArgv, lib } from '../utils'
 import langs from '../../i18n/langs.json'
 
@@ -12,6 +10,7 @@ describe('验证命令行响应命令', () => {
       changeProcessArgv('init')
       const spy = vi.spyOn(binConfig, 'initConfig')
       expect(spy.getMockName()).toBe('initConfig')
+      spy.mockImplementation(() => undefined)
       execCommand()
       // 正确匹配命令
       expect(spy).toHaveBeenCalledTimes(1)
@@ -23,6 +22,7 @@ describe('验证命令行响应命令', () => {
 
       const spyConfig = vi.spyOn(binConfig, 'initConfig')
       expect(spyConfig.getMockName()).toBe('initConfig')
+      spyConfig.mockImplementation(() => undefined)
 
       const spyLib = vi.spyOn(lib, 'setI18N')
       expect(spyLib.getMockName()).toBe('setI18N')
@@ -36,28 +36,6 @@ describe('验证命令行响应命令', () => {
         locale: 'en',
         langs,
       })
-    })
-
-    it('生成的配置文件是否OK', () => {
-      // 修改命令行参数
-      changeProcessArgv('init')
-
-      const spyConfig = vi.spyOn(binConfig, 'initConfig')
-      expect(spyConfig.getMockName()).toBe('initConfig')
-
-      execCommand()
-      // 正确匹配命令
-      expect(spyConfig).toHaveBeenCalledTimes(1)
-
-      // 模板内容
-      const templateContent = readFileSync(
-        join(__dirname, '../../template/i18nrc.js'),
-        'utf-8',
-      )
-      // 生成的配置文件内容
-      const config = readFileSync(join(process.cwd(), 'i18nrc.js'), 'utf-8')
-
-      expect(config).toBe(templateContent)
     })
   })
 
@@ -156,5 +134,43 @@ describe('验证命令行响应命令', () => {
       // 简单验证是否正常输出
       expect(spy).toHaveBeenLastCalledWith(expect.stringContaining(tip))
     })
+  })
+
+  describe('翻译', () => {
+    type Item = [
+      string, // 用例描述
+      string, // 命令
+      'zh' | 'en',
+      '共耗时' | 'Total time',
+    ]
+
+    const matrix: Item[] = [
+      ['translate', 'translate', 'zh', '共耗时'],
+      ['t', 't', 'zh', '共耗时'],
+      ['translate -L en', 'translate', 'en', 'Total time'],
+      ['t -L en', 't', 'en', 'Total time'],
+    ]
+
+    it.each(matrix)(
+      '是否能正确响应 %s',
+      async (dscrption, command, locale, timeTip) => {
+        // 修改命令行参数
+        changeProcessArgv(command, '', '', '-L', locale)
+        const spyTime = vi.spyOn(console, 'time')
+        expect(spyTime.getMockName()).toBe('time')
+        const spyTimeLog = vi.spyOn(console, 'timeLog')
+        expect(spyTimeLog.getMockName()).toBe('timeLog')
+        await execCommand()
+        // 正确匹配命令
+        // NOTE 这里本来尝试监听 translateController 函数被调用
+        // 经过测试 spy.on 监听不到同一个模块中的函数互相调用
+        expect(spyTime).toHaveBeenLastCalledWith(
+          expect.stringContaining(timeTip),
+        )
+        expect(spyTimeLog).toHaveBeenLastCalledWith(
+          expect.stringContaining(timeTip),
+        )
+      },
+    )
   })
 })
