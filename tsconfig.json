@@ -10,7 +10,8 @@
     "outDir": "dist",
     "resolveJsonModule": false,
     "declaration": true,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "esModuleInterop": true
   },
   "include": ["src/", "template", "global.d.ts"]
 }

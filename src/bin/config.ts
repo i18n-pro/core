@@ -1,9 +1,8 @@
-import path = require('path')
+import path from 'path'
+import fs from 'fs'
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import chalk from './chalk'
-
-const fs = require('fs')
 
 const configPath = path.join(process.env.PWD, 'i18nrc.js')
 
