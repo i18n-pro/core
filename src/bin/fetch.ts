@@ -1,6 +1,5 @@
+import http from 'http'
 import type { IncomingMessage, RequestOptions } from 'node:http'
-
-const http = require('http')
 
 /**
  * 基于内置 http封装请求方法
@@ -11,7 +10,7 @@ const http = require('http')
 export default function fetch(
   url: string,
   options: {
-    data: Record<string, unknown> // 请求数据
+    data: Record<string, unknown> | unknown // 请求数据
   } & RequestOptions,
 ): Promise<unknown> {
   const { data, ...restOptions } = options
