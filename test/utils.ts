@@ -1,6 +1,7 @@
 import * as Lib from '../src/lib'
 import * as BinIndex from '../src/bin'
 import * as BinConfig from '../src/bin/config'
+import * as BinChalk from '../src/bin/chalk'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -39,4 +40,9 @@ export const binIndex = await getCurrentModule<typeof BinIndex>(
 // 获取当前 bin-config 的导出内容
 export const binConfig = await getCurrentModule<typeof BinConfig>(
   '../src/bin/config',
+)
+
+// 获取当前 bin-chalk 的导出内容
+export const binChalk = await getCurrentModule<typeof BinChalk>(
+  '../src/bin/chalk',
 )
