@@ -2,7 +2,7 @@
 import extraFileSync from './extra-file'
 import { getLocale, logWarning, writeFilesSync } from './utils'
 import { LOG_DIR_NAME as logDirname, NON_INCREMENTAL } from './constants'
-import extraTrTexts from './extra-text'
+import extraTexts from './extra-text'
 import { setTranslateConfig, translateTextsToLangsImpl } from './translate'
 import { i18n, setI18N } from '../lib/index'
 import { initConfig, readConfig } from './config'
@@ -45,7 +45,7 @@ async function translateController(props: {
     return
   }
 
-  const trTextRes = extraTrTexts(filepaths, funcName)
+  const trTextRes = extraTexts(filepaths, funcName)
 
   const sourceLangs = extraLangs({
     path: outputPath,

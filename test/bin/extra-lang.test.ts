@@ -1,7 +1,7 @@
 import path from 'path'
 import { binExtraLangs } from '../utils'
 
-describe.only('验证提取语言包', () => {
+describe('验证提取语言包', () => {
   it("当 langType='single' 时", () => {
     const langs = binExtraLangs.default({
       langType: 'single',

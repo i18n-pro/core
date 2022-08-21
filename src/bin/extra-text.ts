@@ -8,7 +8,7 @@ const fs = require('fs')
  * @param fileContent
  * @param funcName 获取国际化文本的函数名
  */
-export function extraTrText(
+export function extraText(
   fileContent: string,
   funcName,
 ): {
@@ -55,7 +55,7 @@ export function extraTrText(
  * @param funcName 获取国际化文本的函数名
  * @returns
  */
-export default function extraTrTexts(
+export default function extraTexts(
   filepaths: string[],
   funcName = 'i18n',
 ): {
@@ -68,7 +68,7 @@ export default function extraTrTexts(
     const fileContent = fs.readFileSync(filepath, {
       encoding: 'utf-8',
     })
-    const trTextRes = extraTrText(fileContent, funcName)
+    const trTextRes = extraText(fileContent, funcName)
     success.push(...trTextRes.success)
     error.push(...trTextRes.error)
   })

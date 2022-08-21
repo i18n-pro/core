@@ -3,6 +3,7 @@ import * as BinIndex from '../src/bin'
 import * as BinConfig from '../src/bin/config'
 import * as BinChalk from '../src/bin/chalk'
 import * as BinExtraLangs from '../src/bin/extra-langs'
+import * as BinExtraText from '../src/bin/extra-text'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -51,4 +52,9 @@ export const binChalk = await getCurrentModule<typeof BinChalk>(
 // 获取当前 bin-extra-langs 的导出内容
 export const binExtraLangs = await getCurrentModule<typeof BinExtraLangs>(
   '../src/bin/extra-langs',
+)
+
+// 获取当前 bin-extra-text 的导出内容
+export const binExtraText = await getCurrentModule<typeof BinExtraText>(
+  '../src/bin/extra-text',
 )
