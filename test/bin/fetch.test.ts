@@ -3,6 +3,36 @@ import { binfetch } from '../utils'
 
 describe('验证 fetch', () => {
   it('模拟正常请求', async () => {
+    const mockData = {
+      data: {
+        state: 'success',
+        message: 'Hello World',
+      },
+    }
+    const spyRequest = vi.spyOn(http, 'request')
+    spyRequest.mockImplementation((_url, _option, callback) => {
+      const mockReq: any = {
+        on: (type, callback) => {
+          const str = JSON.stringify(mockData)
+          switch (type) {
+            case 'data':
+              // eslint-disable-next-line no-case-declarations
+              const arr = str.split(/(,)/)
+              arr.forEach((str) => callback(str))
+              break
+            case 'end':
+              callback()
+              break
+          }
+        },
+      }
+      callback?.(mockReq)
+      return {
+        on: () => undefined,
+        write: () => undefined,
+        end: () => undefined,
+      } as any
+    })
     const res = await binfetch.default(
       'http://fanyi-api.baidu.com/api/trans/vip/translate',
       {
@@ -11,10 +41,7 @@ describe('验证 fetch', () => {
     )
 
     // 请求成功，但是没有权限
-    expect(res).toMatchObject({
-      error_code: '52003',
-      error_msg: 'UNAUTHORIZED USER',
-    })
+    expect(res).toMatchObject(mockData)
   })
 
   describe('模拟异常请求', () => {
@@ -66,6 +93,7 @@ describe('验证 fetch', () => {
           end: () => undefined,
         } as any
       })
+
       try {
         await binfetch.default('xxx', {
           data: JSON.stringify({}),
