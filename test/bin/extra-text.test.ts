@@ -27,12 +27,12 @@ describe('验证翻译文本提取功能', () => {
   describe('验证规范文本提取', () => {
     it('默认提取', () => {
       const texts = extraText(content, 'i18n')
-      expect(texts.success).toMatchObject(successTexts)
+      expect(texts.success).toEqual(successTexts)
     })
 
     it('自定义函数名（i18n -> t）', () => {
       const texts = extraText(content.replaceAll('i18n', 't'), 't')
-      expect(texts.success).toMatchObject(successTexts)
+      expect(texts.success).toEqual(successTexts)
     })
   })
 
@@ -44,7 +44,7 @@ describe('验证翻译文本提取功能', () => {
 
     it('未知匹配函数名t', () => {
       const texts = extraText(content, 't')
-      expect(texts.success).toMatchObject([])
+      expect(texts.success).toEqual([])
     })
   })
 })

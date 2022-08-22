@@ -41,7 +41,7 @@ describe('验证 fetch', () => {
     )
 
     // 请求成功，但是没有权限
-    expect(res).toMatchObject(mockData)
+    expect(res).toEqual(mockData)
   })
 
   describe('模拟异常请求', () => {

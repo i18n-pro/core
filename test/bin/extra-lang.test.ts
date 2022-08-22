@@ -11,7 +11,7 @@ describe('验证提取语言包', () => {
 
     const realLangs = require('../../i18n/langs.json')
 
-    expect(langs).toMatchObject(realLangs)
+    expect(langs).toEqual(realLangs)
   })
 
   it('当 langType="multiple" 时，获取到的是空对象', () => {
@@ -21,7 +21,7 @@ describe('验证提取语言包', () => {
       to: ['en'],
     })
 
-    expect(langs).toMatchObject({})
+    expect(langs).toEqual({})
   })
 
   describe('当 langType="multiple" 时，临时指定文件返回', () => {
@@ -44,7 +44,7 @@ describe('验证提取语言包', () => {
         to: to,
       })
 
-      expect(langs).toMatchObject(
+      expect(langs).toEqual(
         Object.entries(map).reduce((res, [key, path]) => {
           res[key] = require(path)
           return res
