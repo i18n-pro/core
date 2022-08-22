@@ -85,7 +85,7 @@ export function mockRequest(props: {
 }) {
   const { data, errorType, errorMsg = '错误信息' } = props
 
-  return (_url, _option, callback) => {
+  return (_url, _option, outCallback) => {
     const mockReq: any = {
       on: (type, callback) => {
         const str = JSON.stringify(data)
@@ -104,10 +104,13 @@ export function mockRequest(props: {
         }
       },
     }
-    callback?.(mockReq)
+
     return {
       on: (type: string, callback: (arg0: string) => void) => {
         if (type === 'error' && errorType === 'onError') callback(errorMsg)
+
+        // 这样可以方便模拟整个请求失败
+        outCallback(mockReq)
       },
       write: () => undefined,
       end: () => undefined,

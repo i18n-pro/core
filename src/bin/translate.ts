@@ -128,7 +128,7 @@ async function translateTextsToLangImpl(props: {
 
     let currentErrorText = e || TRANSLATE_ERROR_TEXT
 
-    if (res.error_code) {
+    if (res?.error_code) {
       currentErrorText = e
         ?.replaceAll('\n', '')
         ?.replaceAll(STYLE_EOF, '')
