@@ -5,6 +5,7 @@ import * as BinChalk from '../src/bin/chalk'
 import * as BinExtraLangs from '../src/bin/extra-langs'
 import * as BinExtraText from '../src/bin/extra-text'
 import * as Binfetch from '../src/bin/fetch'
+import * as BinTranslate from '../src/bin/translate'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -64,3 +65,52 @@ export const binExtraText = await getCurrentModule<typeof BinExtraText>(
 export const binfetch = await getCurrentModule<typeof Binfetch>(
   '../src/bin/fetch',
 )
+
+// 获取当前 bin-translate 的导出内容
+export const binTranslate = await getCurrentModule<typeof BinTranslate>(
+  '../src/bin/translate',
+)
+
+/**
+ * 简易获取模拟 http.request 的方法
+ * @param props
+ * @returns
+ */
+export function mockRequest(props: {
+  data: any // 响应数据
+  errorType?:
+    | 'onError' // 模拟整个请求错误
+    | 'resolveError' // 模拟解析数据错误
+  errorMsg?: string // 如果需要模拟请求错误，可以设置错误信息
+}) {
+  const { data, errorType, errorMsg = '错误信息' } = props
+
+  return (_url, _option, callback) => {
+    const mockReq: any = {
+      on: (type, callback) => {
+        const str = JSON.stringify(data)
+        switch (type) {
+          case 'data':
+            if (errorType === 'resolveError') {
+              callback('')
+            } else {
+              const arr = str.split(/(,)/)
+              arr.forEach((str) => callback(str))
+            }
+            break
+          case 'end':
+            callback()
+            break
+        }
+      },
+    }
+    callback?.(mockReq)
+    return {
+      on: (type: string, callback: (arg0: string) => void) => {
+        if (type === 'error' && errorType === 'onError') callback(errorMsg)
+      },
+      write: () => undefined,
+      end: () => undefined,
+    } as any
+  }
+}
