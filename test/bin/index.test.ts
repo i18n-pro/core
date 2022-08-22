@@ -1,3 +1,4 @@
+import fs from 'fs'
 import { binIndex, binConfig, changeProcessArgv, lib } from '../utils'
 import langs from '../../i18n/langs.json'
 
@@ -160,6 +161,12 @@ describe('验证命令行响应命令', () => {
         expect(spyTime.getMockName()).toBe('time')
         const spyTimeLog = vi.spyOn(console, 'timeLog')
         expect(spyTimeLog.getMockName()).toBe('timeLog')
+        const spyWriteFileSync = vi.spyOn(fs, 'writeFileSync')
+        expect(spyWriteFileSync.getMockName()).toBe('writeFileSync')
+        // 这里模拟写入文件
+        // 不然会导致整个测试进入无限循环
+        spyWriteFileSync.mockImplementation(() => undefined)
+
         await execCommand()
         // 正确匹配命令
         // NOTE 这里本来尝试监听 translateController 函数被调用

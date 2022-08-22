@@ -1,6 +1,5 @@
+import fs from 'fs'
 import chalk from './chalk'
-
-const fs = require('fs')
 
 /**
  * 日志输出函数的默认实现
@@ -32,7 +31,7 @@ export function writeFilesSync(props: {
   const dirpath = filepath.slice(0, filepath.lastIndexOf('/'))
   try {
     // 先检查当前文件夹是否存在
-    const fileStat = fs.statSync(dirpath)
+    fs.statSync(dirpath)
   } catch (error) {
     if (error?.message?.includes?.('no such file or directory')) {
       try {
