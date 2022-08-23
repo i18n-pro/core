@@ -27,7 +27,7 @@ const packageInfo = require('../../package.json')
 async function translateController(props: {
   incrementalMode: boolean // 是否是增量翻译模式
 }) {
-  const { incrementalMode = true } = props
+  const { incrementalMode } = props
   const {
     funcName = 'i18n',
     entry,

@@ -1,6 +1,14 @@
 import fs from 'fs'
-import { binIndex, binConfig, changeProcessArgv, lib } from '../utils'
+import {
+  binIndex,
+  binConfig,
+  changeProcessArgv,
+  lib,
+  binExtraFile,
+  binConstants,
+} from '../utils'
 import langs from '../../i18n/langs.json'
+import path from 'path'
 
 const { execCommand } = binIndex
 
@@ -179,5 +187,33 @@ describe('验证命令行响应命令', () => {
         )
       },
     )
+
+    it('模拟未提取到任何文件的场景', async () => {
+      const spyReadConfig = vi.spyOn(binConfig, 'readConfig')
+      const spyExtraText = vi.spyOn(binExtraFile, 'default')
+
+      // 修改命令行参数
+      changeProcessArgv('t', binConstants.NON_INCREMENTAL)
+
+      // 模拟读取配置，下面少了几个参数，用于模拟缺省值的场景
+      spyReadConfig.mockReturnValue({
+        entry: path.join(__dirname, '../../i18n'),
+        output: {
+          path: '',
+          indentSize: 5,
+        },
+        baiduConfig: {
+          appid: '',
+          key: '',
+          from: 'en',
+          to: ['jp'],
+        },
+      } as any)
+
+      await execCommand()
+
+      // 没有提取到任何文件路径
+      expect(spyExtraText).toHaveReturnedWith([])
+    })
   })
 })

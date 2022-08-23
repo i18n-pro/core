@@ -9,6 +9,7 @@ import * as Binfetch from '../src/bin/fetch'
 import * as BinTranslate from '../src/bin/translate'
 import * as BinConstants from '../src/bin/constants'
 import * as BinUtils from '../src/bin/utils'
+import * as BinExtraFile from '../src/bin/extra-file'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -82,6 +83,11 @@ export const binConstants = await getCurrentModule<typeof BinConstants>(
 // 获取当前 bin-utils 的导出内容
 export const binUtils = await getCurrentModule<typeof BinUtils>(
   '../src/bin/utils',
+)
+
+// 获取当前 bin-extra-file 的导出内容
+export const binExtraFile = await getCurrentModule<typeof BinExtraFile>(
+  '../src/bin/extra-file',
 )
 
 /**
