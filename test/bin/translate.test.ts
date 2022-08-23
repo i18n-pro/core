@@ -1,9 +1,9 @@
 import http from 'http'
-import { binTranslate, mockRequest } from '../utils'
+import { binTranslate, mockRequest, binConstants } from '../utils'
 import { Langs } from '../../src/type'
-import { TRANSLATE_ERROR_TEXT } from '../../src/bin/constants'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
+const { SEPARATOR_LENGTH } = binConstants
 
 describe('验证翻译实现', () => {
   describe('没有内容需要翻译', () => {
@@ -219,7 +219,7 @@ describe('验证翻译实现', () => {
       })
 
       // 执行翻译
-      const res = await translateTextsToLangsImpl(texts, langs, false)
+      const res = await translateTextsToLangsImpl(texts, {}, false)
 
       // 正常发起一次接口请求
       expect(spyRequest).toHaveBeenCalledTimes(1)
@@ -387,11 +387,93 @@ describe('验证翻译实现', () => {
         Object.entries(langs.en).reduce((res, [from]) => {
           res[from] = {
             // 默认的错误信息
-            en: TRANSLATE_ERROR_TEXT,
+            en: binConstants.TRANSLATE_ERROR_TEXT,
           }
           return res
         }, {}),
       )
+    })
+  })
+
+  describe('模拟字符数过多分批次进行翻译', () => {
+    type Item = [
+      number, // 每次请求的最大字符数
+    ]
+
+    const matrix: Item[] = [[100], [200], [500], [1000], [3000], [10000]]
+
+    it.each(matrix)('本次请求最大字符数：%d', async (maxStringLength) => {
+      const langs = require('../../i18n/langs.json')
+      const texts = Object.keys(langs['en'])
+      const spyRequest = vi.spyOn(http, 'request')
+      // 计算出需要翻译调用翻译接口的次数
+      let count = 0
+      let strCount = 0
+      for (let i = 0; i < texts.length; i++) {
+        strCount += (i == 0 ? 0 : SEPARATOR_LENGTH) + texts[i].length
+        if (
+          i == texts.length - 1 ||
+          (texts.length - 1 > i &&
+            strCount + SEPARATOR_LENGTH + texts[i + 1].length > maxStringLength)
+        ) {
+          count++
+          strCount = 0
+        }
+      }
+
+      // 这里需要模拟 request 实现
+      spyRequest.mockImplementation(
+        mockRequest({
+          data: {},
+          getResData: (requestData) => {
+            const { q } = requestData
+            const currentTexts = q.split(binConstants.SEPARATOR_STR)
+            const res = currentTexts.reduce((res, item) => {
+              res.push({
+                src: item,
+                dst: langs.en[item],
+              })
+              return res
+            }, [])
+            return {
+              trans_result: res,
+            }
+          },
+        }),
+      )
+
+      // 设置翻译配置
+      setTranslateConfig(
+        {
+          appid: '',
+          key: '',
+          from: 'zh',
+          to: ['en'],
+          delay: 1,
+        },
+        {
+          maxStringLength,
+        },
+      )
+
+      // 执行翻译
+      const res = await translateTextsToLangsImpl(texts, langs, false)
+
+      // 正常发起一次接口请求，这里可能不止一次
+      expect(spyRequest).toHaveBeenCalledTimes(count)
+      // 语言包
+      expect(res.langs).toEqual(langs)
+      // 翻译成功
+      expect(res.success).toEqual(
+        Object.entries(langs.en).reduce((res, [from, to]) => {
+          res[from] = {
+            en: to,
+          }
+          return res
+        }, {}),
+      )
+      // 翻译失败
+      expect(res.error).toEqual({})
     })
   })
 })

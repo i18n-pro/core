@@ -19,13 +19,26 @@ const config: Config['baiduConfig'] = {
   delay: 0,
 }
 
+// 内部实验性的属性配置
+const innerConfig = {
+  maxStringLength: BAI_DU_MAX_LENGTH,
+}
+
 /**
  * 设置翻译配置
  * @param configProp
  */
-export function setTranslateConfig(configProp: Config['baiduConfig']) {
+export function setTranslateConfig(
+  configProp: Config['baiduConfig'],
+  innerConfigProp = {
+    maxStringLength: BAI_DU_MAX_LENGTH,
+  },
+) {
   Object.entries(configProp).forEach(([key, value]) => {
     config[key] = value
+  })
+  Object.entries(innerConfigProp).forEach(([key, value]) => {
+    innerConfig[key] = value
   })
 }
 
@@ -157,6 +170,7 @@ async function translateTextsToLang(props: {
 }) {
   const { texts, from, to } = props
   const { delay } = config
+  const { maxStringLength } = innerConfig
 
   let success = {}
   let error = {}
@@ -173,8 +187,7 @@ async function translateTextsToLang(props: {
         i === texts.length - 1 || // 最后一个
         // 加上后面一个字符会超过最大字符
         (texts.length - 1 > i &&
-          count + SEPARATOR_STR.length + texts[i + 1].length >
-            BAI_DU_MAX_LENGTH)
+          count + SEPARATOR_STR.length + texts[i + 1].length > maxStringLength)
       ) {
         if (
           // 非第一次请求，才开始延迟

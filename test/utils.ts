@@ -6,6 +6,8 @@ import * as BinExtraLangs from '../src/bin/extra-langs'
 import * as BinExtraText from '../src/bin/extra-text'
 import * as Binfetch from '../src/bin/fetch'
 import * as BinTranslate from '../src/bin/translate'
+import * as BinConstants from '../src/bin/constants'
+import { URLSearchParams } from 'url'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -71,6 +73,11 @@ export const binTranslate = await getCurrentModule<typeof BinTranslate>(
   '../src/bin/translate',
 )
 
+// 获取当前 bin-constants 的导出内容
+export const binConstants = await getCurrentModule<typeof BinConstants>(
+  '../src/bin/constants',
+)
+
 /**
  * 简易获取模拟 http.request 的方法
  * @param props
@@ -82,20 +89,28 @@ export function mockRequest(props: {
     | 'onError' // 模拟整个请求错误
     | 'resolveError' // 模拟解析数据错误
   errorMsg?: string // 如果需要模拟请求错误，可以设置错误信息
+  getResData?: (requestData: any) => any // 根据请求参数动态返回响应数据，配置了该属性 data 将失效
 }) {
-  const { data, errorType, errorMsg = '错误信息' } = props
+  const { data, errorType, errorMsg = '错误信息', getResData } = props
 
   return (_url, _option, outCallback) => {
+    // 记录请求的参数
+    let requestData: any
+
     const mockReq: any = {
       on: (type, callback) => {
-        const str = JSON.stringify(data)
         switch (type) {
           case 'data':
-            if (errorType === 'resolveError') {
-              callback('')
-            } else {
-              const arr = str.split(/(,)/)
-              arr.forEach((str) => callback(str))
+            {
+              const str = JSON.stringify(
+                getResData ? getResData(requestData) : data,
+              )
+              if (errorType === 'resolveError') {
+                callback('')
+              } else {
+                const arr = str.split(/(,)/)
+                arr.forEach((str) => callback(str))
+              }
             }
             break
           case 'end':
@@ -108,12 +123,18 @@ export function mockRequest(props: {
     return {
       on: (type: string, callback: (arg0: string) => void) => {
         if (type === 'error' && errorType === 'onError') callback(errorMsg)
-
+      },
+      write: (data) => {
+        const temp = {}
+        new URLSearchParams(data).forEach((value, name) => {
+          temp[name] = value
+        })
+        requestData = temp
+      },
+      end: () => {
         // 这样可以方便模拟整个请求失败
         outCallback(mockReq)
       },
-      write: () => undefined,
-      end: () => undefined,
     } as any
   }
 }
