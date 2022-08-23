@@ -27,10 +27,10 @@ export function initConfig() {
 /**
  * 解析配置文件
  */
-export function readConfig(): Config {
+export function readConfig(currentConfigPath = configPath): Config {
   try {
-    console.log(chalk.greenBright(i18n('读取配置文件')), configPath)
-    const res = require(configPath)
+    console.log(chalk.greenBright(i18n('读取配置文件')), currentConfigPath)
+    const res = require(currentConfigPath)
     if (typeof res !== 'object') {
       throw new Error(i18n('配置文件不是有效配置'))
     } else if (Object.keys(res).length === 0) {
@@ -38,7 +38,7 @@ export function readConfig(): Config {
     }
     return res
   } catch (error) {
-    logError(error)
+    logError(error?.message || error)
     process.exit(0)
   }
 }
