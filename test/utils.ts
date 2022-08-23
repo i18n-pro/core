@@ -1,3 +1,4 @@
+import { URLSearchParams } from 'url'
 import * as Lib from '../src/lib'
 import * as BinIndex from '../src/bin'
 import * as BinConfig from '../src/bin/config'
@@ -7,7 +8,7 @@ import * as BinExtraText from '../src/bin/extra-text'
 import * as Binfetch from '../src/bin/fetch'
 import * as BinTranslate from '../src/bin/translate'
 import * as BinConstants from '../src/bin/constants'
-import { URLSearchParams } from 'url'
+import * as BinUtils from '../src/bin/utils'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -76,6 +77,11 @@ export const binTranslate = await getCurrentModule<typeof BinTranslate>(
 // 获取当前 bin-constants 的导出内容
 export const binConstants = await getCurrentModule<typeof BinConstants>(
   '../src/bin/constants',
+)
+
+// 获取当前 bin-utils 的导出内容
+export const binUtils = await getCurrentModule<typeof BinUtils>(
+  '../src/bin/utils',
 )
 
 /**

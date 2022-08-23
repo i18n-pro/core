@@ -46,9 +46,13 @@ export function writeFilesSync(props: {
         )
       } catch (error) {
         logError(error)
+        // 创建文件夹出错，直接结束
+        return
       }
     } else {
       logError(error)
+      // 如果是未知异常，这里就应该直接结束了
+      return
     }
   }
 
