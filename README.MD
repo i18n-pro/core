@@ -12,6 +12,9 @@
   [![][github-starts-image]][github-starts-url]
   [![][last-commit-image]][last-commit-url]
   [![][github-issues-image]][github-issues-url]
+  [![codecov][codecov-image]][codecov-url]
+  [![Total alerts][lgtm-alerts-image]][lgtm-alerts-url]
+  [![Language grade: JavaScript][lgtm-quality-image]][lgtm-quality-url]
 </div>
 
 <!--这里使用的是https://www.imgurl.org/作为图床-->
@@ -33,6 +36,12 @@
 [github-issues-image]: https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro
 [github-issues-url]: https://github.com/eyelly-wu/i18n-pro/issues
 [baidu-api-type-url]: https://fanyiapp.cdn.bcebos.com/api/doc/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E9%80%9A%E7%94%A8%E7%BF%BB%E8%AF%91API%E6%9C%8D%E5%8A%A1%E5%8D%87%E7%BA%A7%E8%AF%B4%E6%98%8E.pdf
+[codecov-image]: https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7
+[codecov-url]: https://codecov.io/gh/eyelly-wu/i18n-pro
+[lgtm-alerts-image]: https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18
+[lgtm-alerts-url]: https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/
+[lgtm-quality-image]: https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18
+[lgtm-quality-url]: https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript
 
 
 # 愿景
