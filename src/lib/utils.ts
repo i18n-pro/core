@@ -1,4 +1,9 @@
-import { tagFormatterNameMap } from './contants'
+import {
+  pluralFormatterRegex,
+  commonFormatterRegex,
+  invalidPluralFormatterRegex,
+  tagFormatterNameMap,
+} from './contants'
 import { Langs, I18NState } from '../type'
 
 /**
@@ -73,6 +78,74 @@ export function getTextFromFormatter(props: {
       error,
     )
   }
+
+  return text
+}
+
+/**
+ * i18n 函数API的具体实现
+ * @param i18nState 当前i18n所有状态
+ * @param text 原文本
+ * @param args 动态参数
+ * @returns
+ */
+export function i18nImpl(
+  i18nState: I18NState<Langs>,
+  text,
+  ...args: Array<string | number | unknown>
+) {
+  const { locale, langs, beginIndex = 0 } = i18nState
+  const lang = langs?.[locale]
+  let originText = text
+
+  if (lang && lang[text]) {
+    text = lang[text]
+    originText = text
+  }
+
+  args.forEach((arg, index) => {
+    const currentIndex = beginIndex + index
+    const currentInvalidPluralFormatterRegex = getTargetRegExp(
+      invalidPluralFormatterRegex,
+      currentIndex,
+    )
+    const invalidPluralMatchTagRes = text.match(
+      currentInvalidPluralFormatterRegex,
+    )
+
+    if (invalidPluralMatchTagRes) {
+      console.warn(
+        `在翻译文本 ${originText} 中复数形式动态参数 ${invalidPluralMatchTagRes[1]} 未包含其需要复数处理的文案，例如：i18n('I have {p0 apple}')`,
+      )
+      return
+    }
+
+    const currentCommonFormatterRegex = getTargetRegExp(
+      commonFormatterRegex,
+      currentIndex,
+    )
+    const currentPluralFormatterRegex = getTargetRegExp(
+      pluralFormatterRegex,
+      currentIndex,
+    )
+    const commonMatchTagRes = text.match(currentCommonFormatterRegex)
+    const pluralMatchTagRes = text.match(currentPluralFormatterRegex)
+
+    if (!commonMatchTagRes && !pluralMatchTagRes) {
+      text = text.replace(`{${currentIndex}}`, `${arg}`)
+      return
+    }
+
+    text = getTextFromFormatter({
+      type: pluralMatchTagRes ? 'plural' : 'normal',
+      originText,
+      matchTagRes: pluralMatchTagRes || commonMatchTagRes,
+      index: currentIndex,
+      arg,
+      text,
+      state: i18nState,
+    })
+  })
 
   return text
 }

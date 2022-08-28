@@ -1,3 +1,5 @@
+import { checkPrime } from 'crypto'
+import { withI18N } from '../../src/lib'
 import { lib } from '../utils'
 
 const { setI18N, i18n } = lib
@@ -965,4 +967,52 @@ describe('格式化复数', () => {
       getInvalidPluralWarn(langs.en[text2], 'P0'),
     )
   })
+})
+
+it('模拟服务端，验证 withI18N', () => {
+  const text = '服务器隐藏，请稍后再试'
+
+  const langs = {
+    en: {
+      [text]: 'The server is hidden. Please try again later',
+    },
+  }
+
+  // NOTE 语言设置要在 withI18N逻辑执行之前
+  setI18N({
+    langs,
+  })
+
+  const serverResponse = vi.fn((locale: string, reqLocale: string) => {
+    const { i18n: _i18n } = withI18N({
+      locale: reqLocale,
+    })
+
+    // 主程序
+    expect(i18n(text)).toBe(langs[locale]?.[text] || text)
+    // 接口
+    expect(_i18n(text)).toBe(langs[reqLocale]?.[text] || text)
+  })
+
+  function check(locale: string, reqLocale: string) {
+    // 设置主程序语言
+    setI18N({
+      locale,
+    })
+
+    // 接口语言
+    serverResponse(locale, reqLocale)
+  }
+
+  // 当前主程序语言为zh，接口为en
+  check('zh', 'en')
+
+  // 当前主程序语言为zh，接口为zh
+  check('zh', 'zh')
+
+  // 当前主程序语言为en，接口为zh
+  check('en', 'zh')
+
+  // 当前主程序语言为en，接口为en
+  check('en', 'en')
 })

@@ -1,9 +1,4 @@
-import {
-  commonFormatterRegex,
-  invalidPluralFormatterRegex,
-  pluralFormatterRegex,
-} from './contants'
-import { getTargetRegExp, getTextFromFormatter } from './utils'
+import { i18nImpl } from './utils'
 import { Langs, I18NState } from '../type'
 
 let state = {} as I18NState<Langs>
@@ -33,58 +28,26 @@ export function i18n(
   text: string,
   ...args: Array<string | number | unknown>
 ): string {
-  const { locale, langs, beginIndex = 0 } = state
-  const lang = langs?.[locale]
-  let originText = text
+  return i18nImpl(state, text, ...args)
+}
 
-  if (lang && lang[text]) {
-    text = lang[text]
-    originText = text
+/**
+ * 获取独立于主程序的i18n函数
+ *
+ * 适用于服务端，每个接口响应需要做国际化的处理
+ *
+ * @param props
+ * @returns
+ */
+export function withI18N(props: {
+  locale: string // 独立于主程序的语言
+}) {
+  const { locale } = props
+
+  return {
+    i18n: i18nImpl.bind(null, {
+      ...state,
+      locale,
+    }),
   }
-
-  args.forEach((arg, index) => {
-    const currentIndex = beginIndex + index
-    const currentInvalidPluralFormatterRegex = getTargetRegExp(
-      invalidPluralFormatterRegex,
-      currentIndex,
-    )
-    const invalidPluralMatchTagRes = text.match(
-      currentInvalidPluralFormatterRegex,
-    )
-
-    if (invalidPluralMatchTagRes) {
-      console.warn(
-        `在翻译文本 ${originText} 中复数形式动态参数 ${invalidPluralMatchTagRes[1]} 未包含其需要复数处理的文案，例如：i18n('I have {p0 apple}')`,
-      )
-      return
-    }
-
-    const currentCommonFormatterRegex = getTargetRegExp(
-      commonFormatterRegex,
-      currentIndex,
-    )
-    const currentPluralFormatterRegex = getTargetRegExp(
-      pluralFormatterRegex,
-      currentIndex,
-    )
-    const commonMatchTagRes = text.match(currentCommonFormatterRegex)
-    const pluralMatchTagRes = text.match(currentPluralFormatterRegex)
-
-    if (!commonMatchTagRes && !pluralMatchTagRes) {
-      text = text.replace(`{${currentIndex}}`, `${arg}`)
-      return
-    }
-
-    text = getTextFromFormatter({
-      type: pluralMatchTagRes ? 'plural' : 'normal',
-      originText,
-      matchTagRes: pluralMatchTagRes || commonMatchTagRes,
-      index: currentIndex,
-      arg,
-      text,
-      state,
-    })
-  })
-
-  return text
 }
