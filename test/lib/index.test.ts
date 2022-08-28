@@ -2,6 +2,60 @@ import { lib } from '../utils'
 
 const { setI18N, i18n } = lib
 
+/**
+ * 获取未配置 formatter 的警告提示信息
+ * @param text 翻译文本
+ * @param template 动态参数模板
+ * @param formatterName 格式化回调函数名
+ * @returns
+ */
+function getNoFormatterWarn(
+  text: string,
+  template: string,
+  formatterName: string,
+) {
+  return `在翻译文本 ${text} 中动态参数 {${template}} 未配置对应的格式化回调 ${formatterName}`
+}
+
+/**
+ * 获取配置了 formatter，但未配置 locale 的警告提示信息
+ * @param formatterName
+ * @returns
+ */
+function getNoLocaleFormatterWran(formatterName: string) {
+  return `当前未配置 locale，可能会影响格式化回调 ${formatterName} 中的逻辑`
+}
+
+/**
+ * 获取单格式化回调执行出错时的错误信息
+ * @param text 翻译文本
+ * @param template 动态参数模板
+ * @param formatterName 格式化回调函数名
+ * @param errorMsg 模拟错误信息
+ * @returns
+ */
+function getFormatterRunError(
+  text: string,
+  template: string,
+  formatterName: string,
+  errorMsg: string | Error,
+) {
+  return [
+    `在翻译文本 ${text} 中动态参数 {${template}} 调用对应的格式化回调 ${formatterName} 出错，需检查回调逻辑，错误信息如下：`,
+    errorMsg,
+  ]
+}
+
+/**
+ * 获取未正确配置复数动态参数配置的警告
+ * @param text 翻译文本
+ * @param template 动态参数模板
+ * @returns
+ */
+function getInvalidPluralWarn(text: string, template: string) {
+  return `在翻译文本 ${text} 中复数形式动态参数 {${template}} 未包含其需要复数处理的文案，例如：i18n('I have {p0 apple}')`
+}
+
 describe('基础功能验证', () => {
   const basicLangs = {
     en: {
@@ -195,10 +249,12 @@ describe('格式化数字', () => {
     vi.clearAllMocks()
   })
 
+  const formatterName = 'formatNumber'
+  const text1 = '我有{n0}个苹果，{N1}个香蕉和{n2}个梨'
+  const trText1 = '我有5个苹果，4个香蕉和3个梨'
+
   it('未配置 formatNumber，并尝试大小写验证', () => {
-    const text1 = '我有{n0}个苹果，{N1}个香蕉和{n2}个梨'
-    const trText1 = '我有5个苹果，4个香蕉和3个梨'
-    const lastWranMsg = `在翻译文本 ${text1} 中动态参数 {n2} 未配置对应的格式化回调 formatNumber`
+    const lastWranMsg = getNoFormatterWarn(text1, 'n2', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
@@ -221,8 +277,6 @@ describe('格式化数字', () => {
       formatNumber,
       locale: undefined,
     })
-    const text1 = '我有{n0}个苹果，{n1}个香蕉和{n2}个梨'
-    const trText1 = '我有5个苹果，4个香蕉和3个梨'
     const trText2 = '我有15个苹果，14个香蕉和13个梨'
     const spyWarn = vi.spyOn(console, 'warn')
 
@@ -231,7 +285,7 @@ describe('格式化数字', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      '当前未配置 locale，可能会影响格式化回调 formatNumber 中的逻辑',
+      getNoLocaleFormatterWran(formatterName),
     )
 
     // 未配置locale有3次警告输出
@@ -285,8 +339,7 @@ describe('格式化数字', () => {
 
     // 正确输出错误信息
     expect(spyError).toHaveBeenLastCalledWith(
-      expect.stringContaining(text1),
-      errMsg,
+      ...getFormatterRunError(text1, 'n12', formatterName, errMsg),
     )
   })
 })
@@ -299,10 +352,12 @@ describe('格式化货币', () => {
     vi.clearAllMocks()
   })
 
+  const formatterName = 'formatCurrency'
+  const text1 = '他买房花了{c0}'
+  const trText1 = '他买房花了200'
+
   it('未配置 formatCurrency', () => {
-    const text1 = '他买房花了{c0}'
-    const trText1 = '他买房花了200'
-    const lastWranMsg = `在翻译文本 ${text1} 中动态参数 {c0} 未配置对应的格式化回调 formatCurrency`
+    const lastWranMsg = getNoFormatterWarn(text1, 'c0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
@@ -315,7 +370,7 @@ describe('格式化货币', () => {
     expect(spyWarn).toHaveBeenCalledTimes(1)
   })
 
-  it('正确配置 formatNumber', () => {
+  it('正确配置 formatCurrency', () => {
     const formatCurrency = vi.fn(({ payload, locale }) => {
       expect(locale).toBeUndefined()
       return payload + '万'
@@ -325,7 +380,6 @@ describe('格式化货币', () => {
       formatCurrency,
       locale: undefined,
     })
-    const text1 = '他买房花了{c0}'
     const trText1 = '他买房花了200万'
     const trText2 = '他买房花了200W'
     const trText3 = '他买房花了￥200W'
@@ -336,7 +390,7 @@ describe('格式化货币', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      '当前未配置 locale，可能会影响格式化回调 formatCurrency 中的逻辑',
+      getNoLocaleFormatterWran(formatterName),
     )
 
     // 未配置locale有1次警告输出
@@ -405,7 +459,7 @@ describe('格式化货币', () => {
     expect(spyWarn).toHaveBeenCalledTimes(0)
   })
 
-  it('正确配置 formatNumber，模拟抛异常', () => {
+  it('正确配置 formatCurrency，模拟抛异常', () => {
     const errMsg = '模拟异常'
     const formatCurrency = vi.fn(({ locale }) => {
       expect(locale).toBe('zh')
@@ -416,8 +470,6 @@ describe('格式化货币', () => {
       formatCurrency,
       locale: 'zh',
     })
-    const text1 = '他买房花了{c0}'
-    const trText1 = '他买房花了200'
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
@@ -432,13 +484,13 @@ describe('格式化货币', () => {
 
     // 正确输出错误信息
     expect(spyError).toHaveBeenLastCalledWith(
-      expect.stringContaining(text1),
-      errMsg,
+      ...getFormatterRunError(text1, 'c0', formatterName, errMsg),
     )
   })
 })
 
 describe('格式化日期', () => {
+  const formatterName = 'formatDate'
   const text = '今天的日期是{d0}'
   const langs = {
     en: {
@@ -484,7 +536,7 @@ describe('格式化日期', () => {
   })
 
   it('未配置 formatDate', () => {
-    const lastWranMsg = `在翻译文本 ${text} 中动态参数 {d0} 未配置对应的格式化回调 formatDate`
+    const lastWranMsg = getNoFormatterWarn(text, 'd0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
@@ -513,7 +565,7 @@ describe('格式化日期', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      '当前未配置 locale，可能会影响格式化回调 formatDate 中的逻辑',
+      getNoLocaleFormatterWran(formatterName),
     )
 
     // 未配置locale有1次警告输出
@@ -571,13 +623,13 @@ describe('格式化日期', () => {
 
     // 正确输出错误信息
     expect(spyError).toHaveBeenLastCalledWith(
-      expect.stringContaining(text),
-      errMsg,
+      ...getFormatterRunError(text, 'd0', formatterName, errMsg),
     )
   })
 })
 
 describe('格式化时间', () => {
+  const formatterName = 'formatTime'
   const text = '当前时间是{t0}'
   const langs = {
     en: {
@@ -626,7 +678,7 @@ describe('格式化时间', () => {
   })
 
   it('未配置 formatTime', () => {
-    const lastWranMsg = `在翻译文本 ${text} 中动态参数 {t0} 未配置对应的格式化回调 formatTime`
+    const lastWranMsg = getNoFormatterWarn(text, 't0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
@@ -655,7 +707,7 @@ describe('格式化时间', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      '当前未配置 locale，可能会影响格式化回调 formatTime 中的逻辑',
+      getNoLocaleFormatterWran(formatterName),
     )
 
     // 未配置locale有1次警告输出
@@ -713,13 +765,13 @@ describe('格式化时间', () => {
 
     // 正确输出错误信息
     expect(spyError).toHaveBeenLastCalledWith(
-      expect.stringContaining(text),
-      errMsg,
+      ...getFormatterRunError(text, 't0', formatterName, errMsg),
     )
   })
 })
 
 describe('格式化复数', () => {
+  const formatterName = 'formatPlural'
   const text = '我有{p0个苹果}，{p1个香蕉}和{p2个梨}'
   const text2 = '我有{p0}个苹果'
   const langs = {
@@ -788,7 +840,7 @@ describe('格式化复数', () => {
   })
 
   it('未配置 formatPlural', () => {
-    const lastWranMsg = `在翻译文本 ${text} 中动态参数 {p2个梨} 未配置对应的格式化回调 formatPlural`
+    const lastWranMsg = getNoFormatterWarn(text, 'p2个梨', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
@@ -813,7 +865,7 @@ describe('格式化复数', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      '当前未配置 locale，可能会影响格式化回调 formatPlural 中的逻辑',
+      getNoLocaleFormatterWran(formatterName),
     )
 
     // 未配置locale有3次警告输出
@@ -887,8 +939,7 @@ describe('格式化复数', () => {
 
     // 正确输出错误信息
     expect(spyError).toHaveBeenLastCalledWith(
-      expect.stringContaining(text),
-      errMsg,
+      ...getFormatterRunError(text, 'p2个梨', formatterName, errMsg),
     )
   })
 
@@ -911,7 +962,7 @@ describe('格式化复数', () => {
 
     // 正确输出错误信息
     expect(spyWarn).toHaveBeenLastCalledWith(
-      expect.stringContaining('未包含其需要复数处理的文案'),
+      getInvalidPluralWarn(langs.en[text2], 'P0'),
     )
   })
 })
