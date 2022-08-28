@@ -8,7 +8,7 @@
     "i18n/langs.json"
   ],
   "types": "./dist/lib/index.d.ts",
-  "main": "dist/lib/index.js",
+  "main": "./index.js",
   "bin": {
     "i18n": "dist/bin/index.js"
   },
@@ -18,7 +18,7 @@
     "test-init": "node ./dist/bin/index.js init",
     "test-t": "node ./dist/bin/index.js t",
     "test-translate": "node ./dist/bin/index.js translate",
-    "build": "npx tsc",
+    "build": "npx tsc && rimraf dist/lib && rollup -c",
     "publish": "npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",
     "lint-msg": "npx commitlint --edit",
@@ -58,6 +58,11 @@
     "husky": "8",
     "lint-staged": "^13.0.1",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.78.1",
+    "rollup-plugin-prettier": "^2.2.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.33.0",
     "typescript": "4",
     "vitest": "^0.22.0"
   },
