@@ -186,3 +186,732 @@ describe('动态参数验证', () => {
     ).toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
   })
 })
+
+describe('格式化数字', () => {
+  beforeEach(() => {
+    setI18N({
+      beginIndex: 0,
+    })
+    vi.clearAllMocks()
+  })
+
+  it('未配置 formatNumber，并尝试大小写验证', () => {
+    const text1 = '我有{n0}个苹果，{N1}个香蕉和{n2}个梨'
+    const trText1 = '我有5个苹果，4个香蕉和3个梨'
+    const lastWranMsg = `在翻译文本 ${text1} 中动态参数 {n2} 未配置对应的格式化回调 formatNumber`
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 未配置时，默认走正常的匹配逻辑
+    expect(i18n(text1, 5, 4, 3)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+
+    // 3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+  })
+
+  it('正确配置 formatNumber', () => {
+    const formatNumber = vi.fn(({ payload, locale }) => {
+      expect(locale).toBeUndefined()
+      return payload
+    })
+
+    setI18N({
+      formatNumber,
+      locale: undefined,
+    })
+    const text1 = '我有{n0}个苹果，{n1}个香蕉和{n2}个梨'
+    const trText1 = '我有5个苹果，4个香蕉和3个梨'
+    const trText2 = '我有15个苹果，14个香蕉和13个梨'
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 根据格式化回调的值返回
+    expect(i18n(text1, 5, 4, 3)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      '当前未配置 locale，可能会影响格式化回调 formatNumber 中的逻辑',
+    )
+
+    // 未配置locale有3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+
+    formatNumber.mockImplementation(({ payload, locale }) => {
+      expect(locale).toBe('zh')
+      return payload + 10
+    })
+
+    setI18N({
+      formatNumber,
+      locale: 'zh',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回
+    expect(i18n(text1, 5, 4, 3)).toBe(trText2)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+  })
+
+  it('正确配置 formatNumber，模拟抛异常，并验证起始下标', () => {
+    const errMsg = '模拟异常'
+    const formatNumber = vi.fn(({ locale }) => {
+      expect(locale).toBe('zh')
+      throw errMsg
+    })
+
+    setI18N({
+      formatNumber,
+      locale: 'zh',
+      beginIndex: 10,
+    })
+    const text1 = '我有{n10}个苹果，{n11}个香蕉和{n12}个梨'
+    const trText1 = '我有5个苹果，4个香蕉和3个梨'
+    const spyWarn = vi.spyOn(console, 'warn')
+    const spyError = vi.spyOn(console, 'error')
+
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(i18n(text1, 5, 4, 3)).toBe(trText1)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有三次错误输出
+    expect(spyError).toHaveBeenCalledTimes(3)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      expect.stringContaining(text1),
+      errMsg,
+    )
+  })
+})
+
+describe('格式化货币', () => {
+  beforeEach(() => {
+    setI18N({
+      beginIndex: 0,
+    })
+    vi.clearAllMocks()
+  })
+
+  it('未配置 formatCurrency', () => {
+    const text1 = '他买房花了{c0}'
+    const trText1 = '他买房花了200'
+    const lastWranMsg = `在翻译文本 ${text1} 中动态参数 {c0} 未配置对应的格式化回调 formatCurrency`
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 未配置时，默认走正常的匹配逻辑
+    expect(i18n(text1, 200)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+  })
+
+  it('正确配置 formatNumber', () => {
+    const formatCurrency = vi.fn(({ payload, locale }) => {
+      expect(locale).toBeUndefined()
+      return payload + '万'
+    })
+
+    setI18N({
+      formatCurrency,
+      locale: undefined,
+    })
+    const text1 = '他买房花了{c0}'
+    const trText1 = '他买房花了200万'
+    const trText2 = '他买房花了200W'
+    const trText3 = '他买房花了￥200W'
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 根据格式化回调的值返回
+    expect(i18n(text1, 200)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      '当前未配置 locale，可能会影响格式化回调 formatCurrency 中的逻辑',
+    )
+
+    // 未配置locale有1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    type Payload = {
+      money: number // 货币
+      base: 1 | 10 | 100 | 1000 | 10000 // 单位值，真实金额是 money x base
+      show:
+        | 'withUnit' // 100W
+        | 'withUnitAndSymbol' // ￥100W
+    }
+
+    formatCurrency.mockImplementation(
+      ({ payload, locale }: { payload: Payload; locale: string }) => {
+        expect(locale).toBe('zh')
+        const { money, base = 10000, show = 'withUnit' } = payload
+
+        const baseUnitMap = {
+          1: 'K',
+          10: 'K',
+          100: 'K',
+          1000: 'K',
+          10000: 'W',
+        }
+
+        return `${show === 'withUnitAndSymbol' ? '￥' : ''}${money}${
+          baseUnitMap[base]
+        }`
+      },
+    )
+
+    setI18N({
+      formatCurrency,
+      locale: 'zh',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回
+    expect(
+      i18n(text1, {
+        money: 200,
+      }),
+    ).toBe(trText2)
+
+    // 根据格式化回调的值返回
+    expect(
+      i18n(text1, {
+        money: 200,
+        show: 'withUnitAndSymbol',
+      }),
+    ).toBe(trText3)
+
+    // 根据格式化回调的值返回
+    expect(
+      i18n('他买电脑花了{c0}', {
+        money: 15,
+        base: 1000,
+        show: 'withUnitAndSymbol',
+      }),
+    ).toBe('他买电脑花了￥15K')
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+  })
+
+  it('正确配置 formatNumber，模拟抛异常', () => {
+    const errMsg = '模拟异常'
+    const formatCurrency = vi.fn(({ locale }) => {
+      expect(locale).toBe('zh')
+      throw errMsg
+    })
+
+    setI18N({
+      formatCurrency,
+      locale: 'zh',
+    })
+    const text1 = '他买房花了{c0}'
+    const trText1 = '他买房花了200'
+    const spyWarn = vi.spyOn(console, 'warn')
+    const spyError = vi.spyOn(console, 'error')
+
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(i18n(text1, 200)).toBe(trText1)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有1次错误输出
+    expect(spyError).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      expect.stringContaining(text1),
+      errMsg,
+    )
+  })
+})
+
+describe('格式化日期', () => {
+  const text = '今天的日期是{d0}'
+  const langs = {
+    en: {
+      [text]: `Today's date is {d0}`,
+    },
+  }
+  const date = new Date()
+  const trZhText = '今天的日期是' + formatDateByLocale(date)
+  const trZhTextWithLocale = '今天的日期是' + formatDateByLocale(date, 'zh')
+  const trEnTextWithLocale = langs.en[text].replace(
+    '{d0}',
+    formatDateByLocale(date, 'en'),
+  )
+
+  function formatDateByLocale(date: Date, locale?: 'en' | 'zh') {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
+    let res = ''
+
+    switch (locale) {
+      case 'en':
+        res = `${day}/${month}/${year}`
+        break
+      case 'zh':
+        res = `${year}/${month}${day}`
+        break
+      default:
+        res = date.toString()
+        break
+    }
+
+    return res
+  }
+
+  beforeEach(() => {
+    setI18N({
+      langs,
+      beginIndex: 0,
+    })
+    vi.clearAllMocks()
+  })
+
+  it('未配置 formatDate', () => {
+    const lastWranMsg = `在翻译文本 ${text} 中动态参数 {d0} 未配置对应的格式化回调 formatDate`
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 未配置时，默认走正常的匹配逻辑
+    expect(i18n(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+  })
+
+  it('正确配置 formatDate', () => {
+    const formatDate = vi.fn(({ payload, locale }) => {
+      return formatDateByLocale(payload, locale)
+    })
+
+    setI18N({
+      formatDate,
+      locale: undefined,
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 根据格式化回调的值返回
+    expect(i18n(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      '当前未配置 locale，可能会影响格式化回调 formatDate 中的逻辑',
+    )
+
+    // 未配置locale有1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    setI18N({
+      locale: 'zh',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回
+    expect(i18n(text, date)).toBe(trZhTextWithLocale)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    setI18N({
+      locale: 'en',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回，这里匹配英文对应的文案
+    expect(i18n(text, date)).toBe(trEnTextWithLocale)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+  })
+
+  it('正确配置 formatDate，模拟抛异常', () => {
+    const errMsg = '模拟异常'
+    const formatDate = vi.fn(({ locale }) => {
+      expect(locale).toBe('zh')
+      throw errMsg
+    })
+
+    setI18N({
+      formatDate,
+      locale: 'zh',
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+    const spyError = vi.spyOn(console, 'error')
+
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(i18n(text, date)).toBe(trZhText)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有1次错误输出
+    expect(spyError).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      expect.stringContaining(text),
+      errMsg,
+    )
+  })
+})
+
+describe('格式化时间', () => {
+  const text = '当前时间是{t0}'
+  const langs = {
+    en: {
+      [text]: `The current time is {t0}`,
+    },
+  }
+  const date = new Date()
+  const trZhText = '当前时间是' + formatTimeByLocale(date)
+  const trZhTextWithLocale = '当前时间是' + formatTimeByLocale(date, 'zh')
+  const trEnTextWithLocale = langs.en[text].replace(
+    '{t0}',
+    formatTimeByLocale(date, 'en'),
+  )
+
+  function formatTimeByLocale(date: Date, locale?: 'en' | 'zh') {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+
+    let res = ''
+
+    switch (locale) {
+      case 'en':
+        res = `${day}-${month}-${year}-${hour}-${minute}-${second}`
+        break
+      case 'zh':
+        res = `${year}/${month}${day} ${hour}:${minute}:${second}`
+        break
+      default:
+        res = date.toString()
+        break
+    }
+
+    return res
+  }
+
+  beforeEach(() => {
+    setI18N({
+      langs,
+      beginIndex: 0,
+    })
+    vi.clearAllMocks()
+  })
+
+  it('未配置 formatTime', () => {
+    const lastWranMsg = `在翻译文本 ${text} 中动态参数 {t0} 未配置对应的格式化回调 formatTime`
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 未配置时，默认走正常的匹配逻辑
+    expect(i18n(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+  })
+
+  it('正确配置 formatTime', () => {
+    const formatTime = vi.fn(({ payload, locale }) => {
+      return formatTimeByLocale(payload, locale)
+    })
+
+    setI18N({
+      formatTime,
+      locale: undefined,
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 根据格式化回调的值返回
+    expect(i18n(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      '当前未配置 locale，可能会影响格式化回调 formatTime 中的逻辑',
+    )
+
+    // 未配置locale有1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    setI18N({
+      locale: 'zh',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回
+    expect(i18n(text, date)).toBe(trZhTextWithLocale)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    setI18N({
+      locale: 'en',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回，这里匹配英文对应的文案
+    expect(i18n(text, date)).toBe(trEnTextWithLocale)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+  })
+
+  it('正确配置 formatTime，模拟抛异常', () => {
+    const errMsg = '模拟异常'
+    const formatTime = vi.fn(({ locale }) => {
+      expect(locale).toBe('zh')
+      throw errMsg
+    })
+
+    setI18N({
+      formatTime,
+      locale: 'zh',
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+    const spyError = vi.spyOn(console, 'error')
+
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(i18n(text, date)).toBe(trZhText)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有1次错误输出
+    expect(spyError).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      expect.stringContaining(text),
+      errMsg,
+    )
+  })
+})
+
+describe('格式化复数', () => {
+  const text = '我有{p0个苹果}，{p1个香蕉}和{p2个梨}'
+  const text2 = '我有{p0}个苹果'
+  const langs = {
+    en: {
+      [text]: `I have {P0 apples}, {P1 bananas} and {P2 pears}`,
+      [text2]: `I have {P0} apples`,
+    },
+  }
+  const trZhText = '我有5个苹果，4个香蕉和3个梨'
+  const trEnTextWithLocale = `I have 5 apples, 4 bananas and 3 pears`
+  const trEnTextWithLocaleAndCountZero = `I have no apple, no banana and no pear`
+  const trEnTextWithLocaleAndCountOne = `I have one apple, one banana and one pear`
+
+  function formatPlural({ payload, locale, keywords, text }) {
+    let resText = ''
+    switch (locale) {
+      case 'en':
+        switch (keywords) {
+          case 'apple':
+          case 'apples':
+            if (payload > 1) {
+              resText = `${payload} apples`
+            } else if ([1, '1'].includes(payload)) {
+              resText = `one apple`
+            } else {
+              resText = `no apple`
+            }
+            break
+          case 'banana':
+          case 'bananas':
+            if (payload > 1) {
+              resText = `${payload} bananas`
+            } else if ([1, '1'].includes(payload)) {
+              resText = `one banana`
+            } else {
+              resText = `no banana`
+            }
+            break
+          case 'pear':
+          case 'pears':
+            if (payload > 1) {
+              resText = `${payload} pears`
+            } else if ([1, '1'].includes(payload)) {
+              resText = `one pear`
+            } else {
+              resText = `no pear`
+            }
+            break
+        }
+        break
+      case 'zh':
+      default:
+        resText = text
+        break
+    }
+
+    return resText
+  }
+
+  beforeEach(() => {
+    setI18N({
+      langs,
+      beginIndex: 0,
+    })
+    vi.clearAllMocks()
+  })
+
+  it('未配置 formatPlural', () => {
+    const lastWranMsg = `在翻译文本 ${text} 中动态参数 {p2个梨} 未配置对应的格式化回调 formatPlural`
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 未配置时，默认走正常的匹配逻辑
+    expect(i18n(text, 5, 4, 3)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+
+    // 3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+  })
+
+  it('正确配置 formatPlural', () => {
+    setI18N({
+      formatPlural,
+      locale: undefined,
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+
+    // 根据格式化回调的值返回
+    expect(i18n(text, 5, 4, 3)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      '当前未配置 locale，可能会影响格式化回调 formatPlural 中的逻辑',
+    )
+
+    // 未配置locale有3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+
+    setI18N({
+      locale: 'zh',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回
+    expect(i18n(text, 5, 4, 3)).toBe(trZhText)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    setI18N({
+      locale: 'en',
+    })
+
+    // 清除之前的记录
+    spyWarn.mockClear()
+
+    // 根据格式化回调的值返回，这里匹配英文对应的文案
+    expect(i18n(text, 5, 4, 3)).toBe(trEnTextWithLocale)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    /** 验证量数为0时的情况 */
+
+    // 根据格式化回调的值返回，这里匹配英文对应的文案
+    expect(i18n(text, 0, 0, 0)).toBe(trEnTextWithLocaleAndCountZero)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    /** 验证量数为1时的情况 */
+
+    // 根据格式化回调的值返回，这里匹配英文对应的文案
+    expect(i18n(text, 1, 1, 1)).toBe(trEnTextWithLocaleAndCountOne)
+
+    // 现在不应该有警告
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+  })
+
+  it('正确配置 formatPlural，模拟抛异常', () => {
+    const errMsg = '模拟异常'
+    const formatPlural = vi.fn(({ locale }) => {
+      expect(locale).toBe('zh')
+      throw errMsg
+    })
+
+    setI18N({
+      formatPlural,
+      locale: 'zh',
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+    const spyError = vi.spyOn(console, 'error')
+
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(i18n(text, 5, 4, 3)).toBe(trZhText)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有3次错误输出
+    expect(spyError).toHaveBeenCalledTimes(3)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      expect.stringContaining(text),
+      errMsg,
+    )
+  })
+
+  it('正确配置 formatPlural，未正确设置动态参数标记', () => {
+    setI18N({
+      formatPlural,
+      locale: 'en',
+    })
+    const spyWarn = vi.spyOn(console, 'warn')
+    const spyError = vi.spyOn(console, 'error')
+
+    // 如果错误配置格式化标记，那么i18n函数将原样返回
+    expect(i18n(text2, 5)).toBe(langs.en[text2])
+
+    // 会有0次错误输出
+    expect(spyError).toHaveBeenCalledTimes(0)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      expect.stringContaining('未包含其需要复数处理的文案'),
+    )
+  })
+})
