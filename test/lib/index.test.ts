@@ -1,8 +1,6 @@
-import { checkPrime } from 'crypto'
-import { withI18N } from '../../src/lib'
 import { lib } from '../utils'
 
-const { setI18N, i18n } = lib
+const { setI18N, i18n, withI18N } = lib
 
 /**
  * 获取未配置 formatter 的警告提示信息
@@ -970,7 +968,7 @@ describe('格式化复数', () => {
 })
 
 it('模拟服务端，验证 withI18N', () => {
-  const text = '服务器隐藏，请稍后再试'
+  const text = '服务器异常，请稍后再试'
 
   const langs = {
     en: {
