@@ -1,28 +1,27 @@
 import ts from 'rollup-plugin-typescript2'
 import prettier from 'rollup-plugin-prettier'
 import { terser } from 'rollup-plugin-terser'
-import { version } from './package.json'
+import { version, name } from './package.json'
 
 const formats = ['umd', 'umd.min']
 
+const copyright =
+  'Copyright (c) 2022-present Eyelly Wu <https://github.com/eyelly-wu>'
+
 const banner = `/*
-* i18n-pro
+* ${name}
 * v${version}
 * ${new Date().toLocaleString()}
+* ${copyright}
 */`
 
-const minBanner = `// i18n-pro v${version} ${new Date().toLocaleString()}`
+const minBanner = `// ${name} v${version} ${new Date().toLocaleString()} ${copyright}`
 
 export default formats.map((format, index) => {
   const isLast = (index = index === formats.length - 1)
-  let outputExtra = {}
   let pluginsExtra = []
 
   const suffix = format.split('.')[1]
-
-  if (['umd', 'umd.min'].includes(format)) {
-    outputExtra.name = 'i18nPro'
-  }
 
   if (format.includes('.')) {
     pluginsExtra.push(
@@ -40,7 +39,7 @@ export default formats.map((format, index) => {
       file: `dist/lib/index${suffix ? '.' + suffix : ''}.js`,
       format: format.includes('.') ? format.split('.')[0] : format,
       banner: suffix ? minBanner : banner,
-      ...outputExtra,
+      name: 'i18nPro',
     },
     plugins: [
       ts({
@@ -51,6 +50,7 @@ export default formats.map((format, index) => {
             declaration: isLast,
             declarationDir: 'dist',
             module: 'ESNext',
+            target: 'es5',
           },
         },
       }),
