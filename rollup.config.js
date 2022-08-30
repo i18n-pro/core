@@ -18,7 +18,7 @@ const banner = `/*
 const minBanner = `// ${name} v${version} ${new Date().toLocaleString()} ${copyright}`
 
 export default formats.map((format, index) => {
-  const isLast = (index = index === formats.length - 1)
+  const isLast = index === formats.length - 1
   let pluginsExtra = []
 
   const suffix = format.split('.')[1]
