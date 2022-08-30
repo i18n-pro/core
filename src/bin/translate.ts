@@ -19,6 +19,9 @@ const config: Config['baiduConfig'] = {
   delay: 0,
 }
 
+// 记录最后一次请求完成的时间戳
+let lastRequestTimestamp = 0
+
 // 内部实验性的属性配置
 const innerConfig = {
   maxStringLength: BAI_DU_MAX_LENGTH,
@@ -190,11 +193,9 @@ async function translateTextsToLang(props: {
           count + SEPARATOR_STR.length + texts[i + 1].length > maxStringLength)
       ) {
         if (
-          // 非第一次请求，才开始延迟
-          (Object.keys(success).length != 0 ||
-            Object.keys(error).length != 0) &&
           typeof delay === 'number' &&
-          delay > 0
+          delay > 0 &&
+          delay * 1000 > Date.now() - lastRequestTimestamp
         ) {
           const now = Date.now()
           let last = 0
@@ -214,6 +215,7 @@ async function translateTextsToLang(props: {
           from,
           to,
         })
+        lastRequestTimestamp = Date.now()
         const { success: _success, error: _error } = res
         success = {
           ...success,
