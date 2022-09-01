@@ -1,6 +1,6 @@
 {
   "name": "i18n-pro",
-  "version": "1.3.0-alpha.3",
+  "version": "1.3.0-alpha.4",
   "description": "轻量、简单、灵活的自动翻译工具",
   "files": [
     "dist",
@@ -20,7 +20,7 @@
     "test-t": "node ./dist/bin/index.js t",
     "test-translate": "node ./dist/bin/index.js translate",
     "build": "npx tsc && rimraf dist/lib && rollup -c",
-    "publish": "npm publish --access=public --registry https://registry.npmjs.org",
+    "publish": "npm run build && npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",
     "lint-msg": "npx commitlint --edit",
     "test": "cross-env NODE_ENV=src vitest --ui",

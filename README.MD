@@ -7,7 +7,7 @@
   [![NPM version][npm-image]][npm-url]
   [![NPM downloads][download-image]][npm-url]
   [![][quality-score-image]][npm-url]
-  [![][bundlesize-js-image]][unpkg-js-url]
+  [![][bundlesize-js-image]][bundlephobia-url]
   [![][dependenices-image]][dependenices-url]
   [![][github-starts-image]][github-starts-url]
   [![][last-commit-image]][last-commit-url]
@@ -25,8 +25,8 @@
 [npm-url]: https://www.npmjs.com/package/i18n-pro
 [download-image]: https://img.shields.io/npm/dm/i18n-pro
 [quality-score-image]: https://img.shields.io/npms-io/quality-score/i18n-pro
-[bundlesize-js-image]: https://img.badgesize.io/https:/unpkg.com/i18n-pro/dist/lib/index.js?label=index.js&compression=gzip&style=flat-square
-[unpkg-js-url]: https://unpkg.com/browse/i18n-pro/dist/lib/index.js
+[bundlesize-js-image]: https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic
+[bundlephobia-url]: https://bundlephobia.com/package/i18n-pro
 [dependenices-image]: https://img.shields.io/librariesio/release/npm/i18n-pro
 [dependenices-url]: https://www.npmjs.com/package/i18n-pro?activeTab=dependencies
 [github-starts-image]: https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social
@@ -47,6 +47,17 @@
 # 愿景
 为了让接入国际化成为轻松且愉快的事😄💪🏻
 
+# 特性
+* 轻量：[![][bundlesize-js-image]][bundlephobia-url]
+* 简单：学习成本低，上手快
+* 灵活：支持动态参数、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）
+* 自动翻译：一个命令即可自动提取文本并翻译生成语言包
+* keyless：无需手动定义key，待翻译文本即key
+
+# Live Demo
+* [Open in CodeSandbox](https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/edit/i18n-pro-react-demo)
+
 # 原理
 
 该库主要由两部分构成
@@ -61,6 +72,7 @@
 i18n('xxx')
 i18n("xxx")
 i18n(`xxx`)
+
 // 支持动态参数
 i18n('xxx{0}xxx', param1)
 i18n('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
@@ -175,7 +187,7 @@ function App(){
 ```
 因此对于大部分的场景，在页面上切换语言时，建议**直接刷新**整个页面（如果还有好的方案请告知🤔）
 ## 8. DEMO
-哈哈哈，怎么能没有示例呢，当前库 `命令行工具` 的控制台输出就接入了国际化<br/>
+哈哈哈，除了上面的 [Live Demo](#live-demo)，当前库 `命令行工具` 的控制台输出也接入了国际化<br/>
 通过命令 `npx i18n h -L en` 就能看英文版了<br/>
 ![图片][demo-image]<br/>
 感兴趣的同学，可以看看源码
