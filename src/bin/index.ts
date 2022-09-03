@@ -60,7 +60,7 @@ async function translateController(props: {
     incrementalMode,
   )
 
-  const { success, error, langs } = translateRes
+  const { success, error, langs, textErrorMsg } = translateRes
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'filepaths.json'),
@@ -91,9 +91,16 @@ async function translateController(props: {
   })
 
   writeFilesSync({
-    filepath: path.join(outputPath, logDirname, 'translate-error.json'),
+    filepath: path.join(outputPath, logDirname, 'translate-fail.json'),
     fileContent: error,
     showName: i18n('翻译失败'),
+    indentSize,
+  })
+
+  writeFilesSync({
+    filepath: path.join(outputPath, logDirname, 'translate-error.json'),
+    fileContent: textErrorMsg,
+    showName: i18n('翻译有误'),
     indentSize,
   })
 

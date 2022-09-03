@@ -88,3 +88,92 @@ export function getLocale(args: string[]) {
   })
   return locale
 }
+
+/**
+ * 修复翻译文本的可修复问题
+ * @param text
+ * @returns
+ */
+export function fixErrorTranslateText(text: string) {
+  // 修复动标记态参数中间出现空格
+  // 目前发现中文翻译到日文，会出现类似问题
+  const res = text.replace(/\{[ncdtp]([ ]+)\d+[^}]*\}/gi, (t, i) => {
+    return t.replace(i, '')
+  })
+
+  return res
+}
+
+/**
+ * 获取基础动态参数翻译未匹配错误信息
+ * @param src 原文本
+ * @param dist 翻译文本
+ * @param regExp 动态参数模板正则
+ * @returns
+ */
+function getParamNotEqualMsgs(src: string, dist: string, regExp: RegExp) {
+  const srcParams: string[] = src.match(regExp) || []
+  const distParams: string[] = dist.match(regExp) || []
+
+  const errorMsg = srcParams.reduce((res, i) => {
+    if (!distParams.includes(i)) {
+      res.push({
+        msg: i18n('已翻译文案中缺少动态参数标识：{0}', i),
+        index: i.match(/\d+/)[0],
+      })
+    }
+    return res
+  }, [])
+
+  return errorMsg
+}
+
+/**
+ * 获取复数类型动态参数的错误信息
+ * @param src 源文本
+ * @param dist 翻译文本
+ * @returns
+ */
+function getPluralParamNotEqualMsgs(src: string, dist: string) {
+  const regExp = /\{p\d+[^}]+\}/gi
+  const srcParams: string[] = src.match(regExp) || []
+  const distParams: string[] = dist.match(regExp) || []
+
+  const errorMsg = srcParams.reduce((res, i) => {
+    const index = i.match(/\d+/)[0]
+
+    const isExist = distParams.some((i) =>
+      new RegExp(regExp.source.replace('\\d+', index), 'gi').test(i),
+    )
+
+    if (!isExist) {
+      res.push({
+        msg: i18n('已翻译文案中缺少动态参数标识：{0}', i),
+        index,
+      })
+    }
+    return res
+  }, [])
+
+  return errorMsg
+}
+
+/**
+ * 获取翻译后，翻译文本动态参数丢失的错误信息
+ * @param src 源文本
+ * @param dist 翻译文本
+ */
+export function getParamsNotEqualMsgs(src: string, dist: string) {
+  // 普通动态参数
+  const paramsMsgs = getParamNotEqualMsgs(src, dist, /\{\d+\}/g)
+  // 普通标记类型的动态参数
+  const tagParamsMsgs = getParamNotEqualMsgs(src, dist, /\{[ncdt]\d+\}/gi)
+  // 复数标记类型的动态参数
+  const pluralParams = getPluralParamNotEqualMsgs(src, dist)
+
+  const res = [...paramsMsgs, ...tagParamsMsgs, ...pluralParams]
+    .sort((a, b) => a.index - b.index)
+    .map((i) => i.msg)
+
+  return res
+}

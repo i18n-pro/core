@@ -7,6 +7,7 @@ import { logError, logSuccess } from './utils'
 import { Config, Langs } from '../type'
 import fetch from './fetch'
 import chalk, { STYLE_EOF } from './chalk'
+import { fixErrorTranslateText, getParamsNotEqualMsgs } from './utils'
 
 const md5 = require('md5-node')
 const url = require('url')
@@ -59,6 +60,7 @@ async function translateTextsToLangImpl(props: {
   const translateText = texts.join(SEPARATOR_STR)
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
+  const textErrorMsg: Record<string, string[]> = {}
 
   const q = translateText
   const salt = Date.now()
@@ -118,7 +120,12 @@ async function translateTextsToLangImpl(props: {
     texts.forEach((text) => {
       const dst = resMap[text]
       if (typeof dst !== 'undefined') {
-        success[text] = dst
+        const newDst = fixErrorTranslateText(dst)
+        const currentTextError = getParamsNotEqualMsgs(text, newDst)
+        if (currentTextError.length > 0) {
+          textErrorMsg[text] = currentTextError
+        }
+        success[text] = newDst
         logSuccess(
           i18n(
             '{0}({1}{2}{3})：{4}{5}{6}',
@@ -128,7 +135,7 @@ async function translateTextsToLangImpl(props: {
             chalk.redBright.italic(to),
             text,
             chalk.bold.greenBright(' → '),
-            dst,
+            newDst,
           ),
         )
       } else {
@@ -160,6 +167,7 @@ async function translateTextsToLangImpl(props: {
   return {
     success,
     error,
+    textErrorMsg,
   }
 }
 
@@ -179,6 +187,7 @@ async function translateTextsToLang(props: {
   let error = {}
   let count = 0
   let fromTexts: string[] = []
+  let textErrorMsg: Record<string, string[]> = {}
 
   try {
     for (let i = 0; i < texts.length; i++) {
@@ -216,7 +225,11 @@ async function translateTextsToLang(props: {
           to,
         })
         lastRequestTimestamp = Date.now()
-        const { success: _success, error: _error } = res
+        const {
+          success: _success,
+          error: _error,
+          textErrorMsg: _textErrorMsg,
+        } = res
         success = {
           ...success,
           ..._success,
@@ -225,6 +238,10 @@ async function translateTextsToLang(props: {
         error = {
           ...error,
           ..._error,
+        }
+
+        textErrorMsg = {
+          ..._textErrorMsg,
         }
 
         fromTexts = []
@@ -238,6 +255,7 @@ async function translateTextsToLang(props: {
   return {
     success,
     error,
+    textErrorMsg,
   }
 }
 
@@ -249,8 +267,8 @@ async function translateTextsToLang(props: {
  */
 function mergeTranslateLog(
   langCode: string,
-  textResMap: Record<string, string>,
-  logTarget: Record<string, Record<string, string>>,
+  textResMap: Record<string, string | string[]>,
+  logTarget: Record<string, Record<string, string | string[]>>,
 ) {
   Object.entries(textResMap).forEach(([text, target]) => {
     // NOTE 这里弃用lodash的set方法，因为字符中可能存在“.”，会导致结果异常
@@ -277,6 +295,7 @@ export async function translateTextsToLangsImpl(
 
   const success = {}
   const error = {}
+  const textErrorMsg = {}
   const langs = {}
   const textsMap = incrementalMode
     ? texts.reduce((res, item) => {
@@ -309,13 +328,20 @@ export async function translateTextsToLangsImpl(
         to,
       })
 
-      const { success: _success, error: _error } = res
+      const {
+        success: _success,
+        error: _error,
+        textErrorMsg: _textErrorMsg,
+      } = res
 
       // 记录翻译成功的信息
       mergeTranslateLog(locale, _success, success)
 
       // 记录翻译失败的信息
       mergeTranslateLog(locale, _error, error)
+
+      // 记录翻译结果不准确的信息
+      mergeTranslateLog(locale, _textErrorMsg, textErrorMsg)
 
       // 合并翻译成功的和原有已翻译的
       langs[locale] = {
@@ -331,5 +357,6 @@ export async function translateTextsToLangsImpl(
     success,
     error,
     langs,
+    textErrorMsg,
   }
 }

@@ -42,6 +42,8 @@
     "当前文本【{0}】未被翻译": "The current text [{0}] has not been translated",
     "{0}秒后将进行下一波翻译": "The next wave of translation will take place in {0} seconds",
     "检测到指定目录 {0} 不存在，已创建该目录": "Detected that the specified directory {0} does not exist, it has been created",
-    "已将 {0} 写入到 {1} 中": "Written {0} to {1}"
+    "已将 {0} 写入到 {1} 中": "Written {0} to {1}",
+    "已翻译文案中缺少动态参数标识：{0}": "The dynamic parameter ID is missing in the translated document: {0}",
+    "翻译有误": "Translation error"
   }
 }

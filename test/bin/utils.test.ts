@@ -1,6 +1,10 @@
 import path from 'path'
 import fs from 'fs'
 import { binUtils } from '../utils'
+import {
+  fixErrorTranslateText,
+  getParamsNotEqualMsgs,
+} from '../../src/bin/utils'
 
 const { writeFilesSync } = binUtils
 
@@ -119,5 +123,70 @@ describe('模拟写入文件', () => {
         expect.stringContaining(errorMsg),
       )
     })
+  })
+})
+
+describe('修复翻译异常的文案', () => {
+  it('修复标记动态参数标记和下标间出现空格', () => {
+    const text =
+      'GitHub用户数达到了{n 0}，这个的售价是{c 1}, 今天的日期是{d       2}, 现在的时间是{t           3},我有{p    4个苹果}'
+    const target =
+      'GitHub用户数达到了{n0}，这个的售价是{c1}, 今天的日期是{d2}, 现在的时间是{t3},我有{p4个苹果}'
+
+    const fixText = fixErrorTranslateText(text)
+    expect(fixText).toBe(target)
+  })
+})
+
+describe('找出动态参数翻译结果不正确', () => {
+  it('丢失动态参数', () => {
+    const text =
+      'GitHub用户数达到了{n0}，这个的售价是{c1}, 今天的日期是{d2}, 现在的时间是{t3},我有{p4个苹果}'
+    let trText =
+      'GitHub用户数达到了，这个的售价是{c1}, 今天的日期是{d2}, 现在的时间是{t3},我有{p4个苹果}'
+
+    let msg = getParamsNotEqualMsgs(text, trText)
+    expect(msg).toEqual(['已翻译文案中缺少动态参数标识：{n0}'])
+
+    trText =
+      'GitHub用户数达到了，这个的售价是, 今天的日期是{d2}, 现在的时间是{t3},我有{p4个苹果}'
+    msg = getParamsNotEqualMsgs(text, trText)
+    expect(msg).toEqual([
+      '已翻译文案中缺少动态参数标识：{n0}',
+      '已翻译文案中缺少动态参数标识：{c1}',
+    ])
+
+    trText =
+      'GitHub用户数达到了，这个的售价是, 今天的日期是, 现在的时间是{t3},我有{p4个苹果}'
+    msg = getParamsNotEqualMsgs(text, trText)
+    expect(msg).toEqual([
+      '已翻译文案中缺少动态参数标识：{n0}',
+      '已翻译文案中缺少动态参数标识：{c1}',
+      '已翻译文案中缺少动态参数标识：{d2}',
+    ])
+
+    trText =
+      'GitHub用户数达到了，这个的售价是, 今天的日期是, 现在的时间是,我有{p4个苹果}'
+    msg = getParamsNotEqualMsgs(text, trText)
+    expect(msg).toEqual([
+      '已翻译文案中缺少动态参数标识：{n0}',
+      '已翻译文案中缺少动态参数标识：{c1}',
+      '已翻译文案中缺少动态参数标识：{d2}',
+      '已翻译文案中缺少动态参数标识：{t3}',
+    ])
+
+    trText = 'GitHub用户数达到了，这个的售价是, 今天的日期是, 现在的时间是,我有'
+    msg = getParamsNotEqualMsgs(text, trText)
+    expect(msg).toEqual([
+      '已翻译文案中缺少动态参数标识：{n0}',
+      '已翻译文案中缺少动态参数标识：{c1}',
+      '已翻译文案中缺少动态参数标识：{d2}',
+      '已翻译文案中缺少动态参数标识：{t3}',
+      '已翻译文案中缺少动态参数标识：{p4个苹果}',
+    ])
+    trText =
+      'GitHub用户数达到了{n0}，这个的售价是{c1}, 今天的日期是{d2}, 现在的时间是{t3},我有{个苹果}'
+    msg = getParamsNotEqualMsgs(text, trText)
+    expect(msg).toEqual(['已翻译文案中缺少动态参数标识：{p4个苹果}'])
   })
 })
