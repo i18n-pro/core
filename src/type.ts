@@ -54,7 +54,7 @@ export type Config = {
  */
 export type Langs = Partial<Record<string, Record<string, string>>>
 
-type BaseFormatProps = {
+type BaseFormatProps<T> = {
   /**
    * 当前语言
    */
@@ -62,7 +62,14 @@ type BaseFormatProps = {
   /**
    * 动态参数的值
    */
-  payload: number | string | unknown
+  payload: number | string | unknown | T
+}
+
+type DateFormatProps<T> = BaseFormatProps<T> & {
+  /**
+   * 动态参数的值
+   */
+  payload: BaseFormatProps<T>['payload'] | Date
 }
 
 /**
@@ -89,7 +96,7 @@ export type I18NState<T extends Langs> = {
    * 例如：
    * i18n('我有{n0}个苹果，{n1}个香蕉和{n2}个梨')
    */
-  formatNumber?: (props: BaseFormatProps) => string | number
+  formatNumber?: <T>(props: BaseFormatProps<T>) => string | number
   /**
    * 格式化 货币 的回调函数
    * 翻译文本中动态参数配置了 {c0}，{c1}，{c3} 等形式
@@ -98,7 +105,7 @@ export type I18NState<T extends Langs> = {
    * 例如：
    * i18n('张三买房花了{d0}')
    */
-  formatCurrency?: (props: BaseFormatProps) => string | number
+  formatCurrency?: <T>(props: BaseFormatProps<T>) => string | number
   /**
    * 格式化 日期 的回调函数
    * 翻译文本中动态参数配置了 {d0}，{d1}，{d3} 等形式
@@ -107,7 +114,7 @@ export type I18NState<T extends Langs> = {
    * 例如：
    * i18n('今天的日期是{d0}')
    */
-  formatDate?: (props: BaseFormatProps) => string
+  formatDate?: <T>(props: DateFormatProps<T>) => string
   /**
    * 格式化 时间 的回调函数
    * 翻译文本中动态参数配置了 {t0}，{t1}，{t3} 等形式
@@ -116,7 +123,7 @@ export type I18NState<T extends Langs> = {
    * 例如：
    * i18n('当前时间是{t0}')
    */
-  formatTime?: (props: BaseFormatProps) => string
+  formatTime?: <T>(props: DateFormatProps<T>) => string
   /**
    * 格式化 时间 的回调函数
    * 翻译文本中动态参数配置了 {p0xxx}，{p1xxx}，{p3xxx} 等形式
@@ -125,8 +132,8 @@ export type I18NState<T extends Langs> = {
    * 例如：
    * i18n('我有{p0个苹果}，{p1个香蕉}和{p2个梨}')
    */
-  formatPlural?: (
-    props: BaseFormatProps & {
+  formatPlural?: <T>(
+    props: BaseFormatProps<T> & {
       /**
        * 复数的关键字
        */
