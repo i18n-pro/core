@@ -35,7 +35,7 @@ export function getTextFromFormatter(props: {
 }): string {
   const { type, originText, matchTagRes, arg, text: textProp, state } = props
   const { locale } = state
-  const [, matchTemplate, f, keywords = ''] = matchTagRes
+  const [, matchTemplate, f, keyword = ''] = matchTagRes
   const formatterName = tagFormatterNameMap[f?.toLocaleLowerCase()]
   const formatter = state[formatterName]
   let text = textProp
@@ -45,7 +45,7 @@ export function getTextFromFormatter(props: {
       `在翻译文本 ${originText} 中动态参数 ${matchTemplate} 未配置对应的格式化回调 ${formatterName}`,
     )
 
-    return text.replace(matchTemplate, `${arg}${keywords}`)
+    return text.replace(matchTemplate, `${arg}${keyword}`)
   }
 
   if (typeof locale === 'undefined') {
@@ -61,10 +61,10 @@ export function getTextFromFormatter(props: {
       ...(() => {
         let res = {}
         if (type === 'plural') {
-          const newKeywords = keywords?.trim?.()
+          const newkeyword = keyword?.trim?.()
           res = {
-            keywords: newKeywords,
-            text: `${arg}${keywords}`,
+            keyword: newkeyword,
+            text: `${arg}${keyword}`,
           }
         }
         return res
@@ -72,7 +72,7 @@ export function getTextFromFormatter(props: {
     })
     text = text.replace(matchTemplate, content)
   } catch (error) {
-    text = text.replace(matchTemplate, `${arg}${keywords}`)
+    text = text.replace(matchTemplate, `${arg}${keyword}`)
     console.error(
       `在翻译文本 ${originText} 中动态参数 ${matchTemplate} 调用对应的格式化回调 ${formatterName} 出错，需检查回调逻辑，错误信息如下：`,
       error,

@@ -130,7 +130,7 @@ export type I18NState<T extends Langs> = {
       /**
        * 复数的关键字
        */
-      keywords: string
+      keyword: string
       /**
        * 默认结合动态参数后的文本内容
        * 不需要复数的语言，例如中文可以直接返回该属性

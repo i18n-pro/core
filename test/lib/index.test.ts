@@ -785,11 +785,11 @@ describe('格式化复数', () => {
   const trEnTextWithLocaleAndCountZero = `I have no apple, no banana and no pear`
   const trEnTextWithLocaleAndCountOne = `I have one apple, one banana and one pear`
 
-  function formatPlural({ payload, locale, keywords, text }) {
+  function formatPlural({ payload, locale, keyword, text }) {
     let resText = ''
     switch (locale) {
       case 'en':
-        switch (keywords) {
+        switch (keyword) {
           case 'apple':
           case 'apples':
             if (payload > 1) {
