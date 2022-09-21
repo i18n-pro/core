@@ -258,7 +258,7 @@ type FormatFunc = <T>(props:{
 }) => number | string
 ```
 ### FormatDateFunc
-复数的格式化回调函数类型
+日期（时间）的格式化回调函数类型
 ```typescript
 type FormatPluralFunc = <T>(props:{
   locale: string, // 当前语言
@@ -333,7 +333,7 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', '22', '
 | translate-fail.json    | 翻译失败的文本列表                                                                                             |
 | translate-error.json   | 翻译有误的文本列表<br/><br/>当前可以识别出动态参数翻译后丢失的异常                                             |
 | translate-success.json | 翻译成功的文本列表<br/><br/>📢📢📢：只会包含本次翻译的文本，增量翻译模式下，原来已翻译过的文本不会包含在其中      |
-| `langCode`.json        | 某个目标语言独立的语言包<br/><br/> 当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包 |
+| langCode.json          | 某个目标语言独立的语言包<br/><br/> 当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包 |
 | langs.json             | 聚合的语言包<br/><br/> 当 `output.langType == 'multiple'` 时，会在日志目录下生成聚合的语言包                   |
 # Q&A
 ## 1. 动态参数（插值变量）为什么不支持对象属性解析？
@@ -384,7 +384,11 @@ const enToZh = '我的名字是｛0｝。我是｛1｝岁。我来自｛2｝。�
 个人感觉其实是没有必要的，只是设计上已经实现了，大家可以酌情灵活选择使用，当然不排除有的业务场景这样分开处理会更方便
 # 更新日志
 
-## [1.3.0] - 2022-09-xx
+
+## [1.3.1] - 2022-09-21
+### Fixed
+- 修复初始化命令在 Windows 系统中报异常
+## [1.3.0] - 2022-09-13
 ### Added
 - 添加新的日志输出类型：翻译有误的文本列表
 - 添加 `withI18N` 函数API用于支持服务端场景

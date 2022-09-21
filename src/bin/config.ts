@@ -4,7 +4,7 @@ import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import chalk from './chalk'
 
-const configPath = path.join(process.env.PWD, 'i18nrc.js')
+const configPath = path.join(process.cwd(), 'i18nrc.js')
 
 /**
  * 生成配置文件
