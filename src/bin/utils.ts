@@ -28,7 +28,10 @@ export function writeFilesSync(props: {
 }) {
   const { filepath, fileContent, showName, indentSize } = props
 
-  const dirpath = filepath.slice(0, filepath.lastIndexOf('/'))
+  const dirpath = filepath.slice(
+    0,
+    filepath.lastIndexOf(process.platform === 'win32' ? '\\' : '/'),
+  )
   try {
     // 先检查当前文件夹是否存在
     fs.statSync(dirpath)
