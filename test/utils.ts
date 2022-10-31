@@ -22,7 +22,7 @@ async function getCurrentModule<T>(path: string): Promise<T> {
   const type = process.env.NODE_ENV
   switch (type) {
     case 'pkg':
-      pkg = require(path.replace('src', 'dist'))
+      pkg = require(path.replace('src', 'dist/src'))
       break
   }
 

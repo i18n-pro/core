@@ -33,8 +33,13 @@ export function initConfig(pathProp?: string) {
 /**
  * 解析配置文件
  */
-export function readConfig(path): Config {
-  const currentConfigPath = path ? join(path, CONFIG_NAME) : configPath
+export function readConfig(props?: { path: string; isFile?: boolean }): Config {
+  const { path, isFile = false } = props || {}
+  const currentConfigPath = path
+    ? isFile
+      ? path
+      : join(path, CONFIG_NAME)
+    : configPath
 
   try {
     console.log(chalk.greenBright(i18n('读取配置文件')), currentConfigPath)

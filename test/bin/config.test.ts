@@ -54,7 +54,10 @@ describe('验证配置文件', () => {
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
-        readConfig('./abc.js')
+        readConfig({
+          path: './abc.js',
+          isFile: true,
+        })
         expect(spyLogo).toHaveBeenLastCalledWith(
           '❌',
           expect.stringMatching('Cannot find module'),
@@ -65,7 +68,10 @@ describe('验证配置文件', () => {
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
-        readConfig(path.join(__dirname, '../i18n/non_object_config.ts'))
+        readConfig({
+          path: path.join(__dirname, '../i18n/non_object_config.ts'),
+          isFile: true,
+        })
         expect(spyLogo).toHaveBeenLastCalledWith(
           '❌',
           expect.stringMatching('配置文件不是有效配置'),
@@ -76,7 +82,10 @@ describe('验证配置文件', () => {
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
-        readConfig(path.join(__dirname, '../i18n/empty_object_config.ts'))
+        readConfig({
+          path: path.join(__dirname, '../i18n/empty_object_config.ts'),
+          isFile: true,
+        })
         expect(spyLogo).toHaveBeenLastCalledWith(
           '❌',
           expect.stringMatching('配置文件为空'),

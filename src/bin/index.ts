@@ -14,11 +14,13 @@ import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 import extraLangs from './extra-langs'
 
+const relativePath = __filename.endsWith('js') ? '../../../' : '../../'
+
 const path = require('path')
 const langs = (() => {
   let langs = {}
   try {
-    langs = require('../../i18n/langs.json')
+    langs = require(relativePath + 'i18n/langs.json')
   } catch (error) {
     logWarning(
       chalk.yellowBright('读取多语言聚合语言包失败，采用默认 zh 的语言包'),
@@ -27,7 +29,7 @@ const langs = (() => {
   }
   return langs
 })()
-const packageInfo = require('../../package.json')
+const packageInfo = require(relativePath + 'package.json')
 
 async function translateController({
   incrementalMode,
@@ -42,7 +44,9 @@ async function translateController({
     fileRegExp = /\.[jt]s$/,
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     baiduConfig,
-  } = readConfig(configPath)
+  } = readConfig({
+    path: configPath,
+  })
 
   setTranslateConfig(baiduConfig)
 

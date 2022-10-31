@@ -36,7 +36,7 @@ export default formats.map((format, index) => {
   return {
     input: 'src/lib/index.ts',
     output: {
-      file: `dist/lib/index${suffix ? '.' + suffix : ''}.js`,
+      file: `dist/src/lib/index${suffix ? '.' + suffix : ''}.js`,
       format: format.includes('.') ? format.split('.')[0] : format,
       banner: suffix ? minBanner : banner,
       name: 'i18nPro',

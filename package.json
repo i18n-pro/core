@@ -3,22 +3,21 @@
   "version": "1.3.2",
   "description": "轻量、简单、灵活的自动翻译工具",
   "files": [
-    "dist",
+    "dist/src",
     "template",
     "i18n/langs.json",
     "./index.js"
   ],
-  "types": "./dist/lib/index.d.ts",
+  "types": "./dist/src/lib/index.d.ts",
   "main": "./index.js",
   "bin": {
-    "i18n": "dist/bin/index.js"
+    "i18n": "dist/src/bin/index.js"
   },
   "scripts": {
     "prepare": "husky install",
-    "dev": "npx tsc --watch",
-    "test-init": "node ./dist/bin/index.js init",
+    "test-init": "node ./dist/src/bin/index.js init",
     "test-t": "node ./dist/bin/index.js t",
-    "test-translate": "node ./dist/bin/index.js translate",
+    "test-translate": "node ./dist/src/bin/index.js translate",
     "build": "npx tsc && rimraf dist/lib && rollup -c",
     "publish": "npm run build && npm publish --access=public --registry https://registry.npmjs.org",
     "lint-code": "npx lint-staged",
