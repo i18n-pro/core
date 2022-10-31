@@ -6,7 +6,11 @@ import {
   transferArgsToObj,
   writeFilesSync,
 } from './utils'
-import { LOG_DIR_NAME as logDirname, NON_INCREMENTAL } from './constants'
+import {
+  LOG_DIR_NAME as logDirname,
+  NON_INCREMENTAL,
+  RELATIVE_PATH,
+} from './constants'
 import extraTexts from './extra-text'
 import { setTranslateConfig, translateTextsToLangsImpl } from './translate'
 import { i18n, setI18N } from '../lib/index'
@@ -14,13 +18,11 @@ import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 import extraLangs from './extra-langs'
 
-const relativePath = __filename.endsWith('js') ? '../../../' : '../../'
-
 const path = require('path')
 const langs = (() => {
   let langs = {}
   try {
-    langs = require(relativePath + 'i18n/langs.json')
+    langs = require(RELATIVE_PATH + 'i18n/langs.json')
   } catch (error) {
     logWarning(
       chalk.yellowBright('读取多语言聚合语言包失败，采用默认 zh 的语言包'),
@@ -29,7 +31,7 @@ const langs = (() => {
   }
   return langs
 })()
-const packageInfo = require(relativePath + 'package.json')
+const packageInfo = require(RELATIVE_PATH + 'package.json')
 
 async function translateController({
   incrementalMode,

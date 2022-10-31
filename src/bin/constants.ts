@@ -26,3 +26,6 @@ export const NON_INCREMENTAL = '--non-incremental'
 
 // 配置文件名
 export const CONFIG_NAME = 'i18nrc.js'
+
+// 相对定位的公共前缀
+export const RELATIVE_PATH = __filename.endsWith('js') ? '../../../' : '../../'
