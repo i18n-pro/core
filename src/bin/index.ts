@@ -1,6 +1,11 @@
 #! /usr/bin/env node
 import extraFileSync from './extra-file'
-import { getLocale, logWarning, writeFilesSync } from './utils'
+import {
+  getLocale,
+  logWarning,
+  transferArgsToObj,
+  writeFilesSync,
+} from './utils'
 import { LOG_DIR_NAME as logDirname, NON_INCREMENTAL } from './constants'
 import extraTexts from './extra-text'
 import { setTranslateConfig, translateTextsToLangsImpl } from './translate'
@@ -24,17 +29,20 @@ const langs = (() => {
 })()
 const packageInfo = require('../../package.json')
 
-async function translateController(props: {
+async function translateController({
+  incrementalMode,
+  configPath,
+}: {
   incrementalMode: boolean // 是否是增量翻译模式
+  configPath?: string // 配置文件路径
 }) {
-  const { incrementalMode } = props
   const {
     funcName = 'i18n',
     entry,
     fileRegExp = /\.[jt]s$/,
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     baiduConfig,
-  } = readConfig()
+  } = readConfig(configPath)
 
   setTranslateConfig(baiduConfig)
 
@@ -132,6 +140,8 @@ async function translateController(props: {
 export async function execCommand() {
   const [command, ...args] = process.argv.slice(2)
   const locale = getLocale([command, ...args])
+  const argObj = transferArgsToObj(args)
+  const configPath = argObj['--path'] || args['-P']
 
   setI18N({
     locale,
@@ -140,7 +150,7 @@ export async function execCommand() {
 
   switch (command) {
     case 'init':
-      initConfig()
+      initConfig(configPath)
       break
     case 'translate':
     case 't':
@@ -149,6 +159,7 @@ export async function execCommand() {
         console.time(label)
         await translateController({
           incrementalMode: !args.includes(NON_INCREMENTAL),
+          configPath,
         })
         console.timeLog(label)
       }

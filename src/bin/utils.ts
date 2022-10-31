@@ -180,3 +180,28 @@ export function getParamsNotEqualMsgs(src: string, dist: string) {
 
   return res
 }
+
+/**
+ * 将命令参数转换成对象
+ * @param args
+ * @returns
+ */
+export function transferArgsToObj(
+  args: string[],
+): Record<string, string | boolean> {
+  const isArgName = (value: string) =>
+    value?.startsWith('-') || value?.startsWith('--')
+
+  const res = args.reduce((res, item, index) => {
+    if (isArgName(item)) {
+      if (index === args.length - 1 || isArgName(args[index + 1])) {
+        res[item] = true
+      } else {
+        res[item] = args[index + 1]
+      }
+    }
+    return res
+  }, {})
+
+  return res
+}

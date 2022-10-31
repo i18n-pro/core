@@ -23,3 +23,6 @@ export const TRANSLATE_ERROR_TEXT = i18n('翻译失败')
 
 // 非增量翻译模式
 export const NON_INCREMENTAL = '--non-incremental'
+
+// 配置文件名
+export const CONFIG_NAME = 'i18nrc.js'

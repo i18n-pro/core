@@ -4,6 +4,7 @@ import { binUtils } from '../utils'
 import {
   fixErrorTranslateText,
   getParamsNotEqualMsgs,
+  transferArgsToObj,
 } from '../../src/bin/utils'
 
 const { writeFilesSync } = binUtils
@@ -188,5 +189,32 @@ describe('找出动态参数翻译结果不正确', () => {
       'GitHub用户数达到了{n0}，这个的售价是{c1}, 今天的日期是{d2}, 现在的时间是{t3},我有{个苹果}'
     msg = getParamsNotEqualMsgs(text, trText)
     expect(msg).toEqual(['已翻译文案中缺少动态参数标识：{p4个苹果}'])
+  })
+})
+
+it('模拟参数转换成对象', () => {
+  expect(transferArgsToObj([])).toMatchObject({})
+
+  expect(transferArgsToObj(['-p'])).toMatchObject({
+    '-p': true,
+  })
+
+  expect(transferArgsToObj(['-p', 'a'])).toMatchObject({
+    '-p': 'a',
+  })
+
+  expect(transferArgsToObj(['-p', '--path'])).toMatchObject({
+    '-p': true,
+    '--path': true,
+  })
+
+  expect(transferArgsToObj(['-p', 'a', '--path'])).toMatchObject({
+    '-p': 'a',
+    '--path': true,
+  })
+
+  expect(transferArgsToObj(['-p', 'a', '--path', 'b'])).toMatchObject({
+    '-p': 'a',
+    '--path': 'b',
   })
 })

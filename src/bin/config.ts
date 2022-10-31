@@ -1,22 +1,28 @@
-import path from 'path'
+import { join } from 'path'
 import fs from 'fs'
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import chalk from './chalk'
+import { CONFIG_NAME } from './constants'
 
-const configPath = path.join(process.cwd(), 'i18nrc.js')
+const configPath = join(process.cwd(), CONFIG_NAME)
 
 /**
  * 生成配置文件
  */
-export function initConfig() {
-  const sourcePath = path.join(__dirname, '../../template/i18nrc.js')
+export function initConfig(pathProp?: string) {
+  const targetPath = (() => {
+    return typeof pathProp === 'string'
+      ? join(pathProp, CONFIG_NAME)
+      : configPath
+  })()
+  const sourcePath = join(__dirname, '../../template/' + CONFIG_NAME)
 
   try {
-    fs.copyFileSync(sourcePath, configPath)
+    fs.copyFileSync(sourcePath, targetPath)
     console.log('\n')
     logSuccess(
-      i18n(`初始化配置完成，已将配置文件写入到 {0} 中`, configPath),
+      i18n(`初始化配置完成，已将配置文件写入到 {0} 中`, targetPath),
       '\n',
     )
   } catch (error) {
@@ -27,7 +33,9 @@ export function initConfig() {
 /**
  * 解析配置文件
  */
-export function readConfig(currentConfigPath = configPath): Config {
+export function readConfig(path): Config {
+  const currentConfigPath = path ? join(path, CONFIG_NAME) : configPath
+
   try {
     console.log(chalk.greenBright(i18n('读取配置文件')), currentConfigPath)
     const res = require(currentConfigPath)
