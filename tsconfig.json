@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": ".",
     "module": "CommonJS",
     "target": "ESNext",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
-    "paths": {},
+    "paths": {
+      "@lib/*": ["./src/lib/*"]
+    },
     "removeComments": true,
     "outDir": "dist",
     "resolveJsonModule": false,
     "declaration": true,
     "types": ["vitest/globals"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react"
   },
-  "include": ["src/", "template", "global.d.ts"]
+  "include": ["src/", "template", "global.d.ts", "docs", "docs/.tsx"]
 }

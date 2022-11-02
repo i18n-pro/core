@@ -15,6 +15,9 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "dev": "npx tsc --watch & jtm run",
+    "docs": "jtm run",
+    "docs-translate": "node ./dist/src/bin/index.js t -P /Users/Program/Git/MINE_LIB_SOURCING/i18n-pro/docs",
     "test-init": "node ./dist/src/bin/index.js init",
     "test-t": "node ./dist/bin/index.js t",
     "test-translate": "node ./dist/src/bin/index.js translate",
