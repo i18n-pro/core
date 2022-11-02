@@ -147,7 +147,7 @@ export async function execCommand() {
   const [command, ...args] = process.argv.slice(2)
   const locale = getLocale([command, ...args])
   const argObj = transferArgsToObj(args)
-  const configPath = argObj['--path'] || args['-P']
+  const configPath = (argObj['--path'] || argObj['-P']) as string
 
   setI18N({
     locale,
