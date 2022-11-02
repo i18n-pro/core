@@ -1,13 +1,12 @@
-<div style="text-align: center;" >
-
+<div style="text-align: center;">
+  
 [![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png 'logo')](https://github.com/eyelly-wu/i18n-pro)
 
 
 [English](./readme_en-US) | 简体中文
 
-<p style="font-size: 18px;" >
-轻量、简单、灵活的自动翻译工具
-</p>
+
+  <p style="font-size: 18px;">轻量、简单、灵活的自动翻译工具</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square 'npm-version')](https://www.npmjs.com/package/i18n-pro)
 [![npm-download](https://img.shields.io/npm/dm/i18n-pro 'npm-download')](https://www.npmjs.com/package/i18n-pro) 
@@ -205,9 +204,9 @@ function App(){
 
 |名称|类型|是否必设|默认值|说明|
 |-|-|:-|:-|:-|
-|funcName|string|否|i18n|命令行匹配翻译文本的函数名dx<br/><br/>如果在使用 `i18n` 函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名|
+|funcName|string|否|i18n|命令行匹配翻译文本的函数名dx<br /><br />如果在使用 `i18n` 函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名|
 |entry|string|是|-|指定翻译文件目录（绝对路径）|
-|fileRegExp|RegExp|否| `/.[jt]s$/` |匹配文件名的正则表达式<br/><br/>用于筛选需要被翻译的文件|
+|fileRegExp|RegExp|否| `/.[jt]s$/` |匹配文件名的正则表达式<br /><br />用于筛选需要被翻译的文件|
 |output|[Output](#output)|是|-|输出文件相关的配置|
 |baiduConfig|[BaiduConfig](#baiduconfig)|是|-|百度翻译相关的配置|
 
@@ -216,7 +215,7 @@ function App(){
 |名称|类型|是否必设|默认值|说明|
 |-|-|:-|:-|:-|
 |path|string|是|-|语言包生成的目录（绝对路径）|
-|langType|'single' \| 'multiple'|否|multiple|输出语言包文件的形式<br/><br/>假设目标语言是 `['en', 'jp']` <br/>**single**：只会生成一个聚合的语言包文件 `langs.json`，格式如下：<br/>`{"en":{"xxx":"xxx"},"jp":{"xxx":"xxx"}}`<br/><br/>**multiple**：每个目标语言都会生成对应的语言包文件，对应两个文件： `en.json`， `jp.json` ，格式如下：<br/>`{"xxx":"xxx"}`|
+|langType|'single' \| 'multiple'|否|multiple|输出语言包文件的形式<br /><br />假设目标语言是 `['en', 'jp']` <br />**single**：只会生成一个聚合的语言包文件 `langs.json`，格式如下：<br />`{"en":{"xxx":"xxx"},"jp":{"xxx":"xxx"}}`<br /><br />**multiple**：每个目标语言都会生成对应的语言包文件，对应两个文件： `en.json`， `jp.json` ，格式如下：<br />`{"xxx":"xxx"}`|
 |indentSize|number|否|2|语言包文件的缩进空格数|
 
 ### BaiduConfig
@@ -225,9 +224,9 @@ function App(){
 |-|-|:-|:-|:-|
 |appid|string|是|-|APPID，需要[注册账号](http://api.fanyi.baidu.com/doc/21 '文档中有指导说明')申请|
 |key|string|是|-|密钥，要求同上|
-|from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br/><br/>[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索**语种列表**|
-|to|string[]|是|-|翻译的目标语言代码，格式同上<br/><br/>📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
-|codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br/><br/>例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
+|from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br /><br />[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索**语种列表**|
+|to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
+|codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
 
 ## 2.命令
 
@@ -236,160 +235,81 @@ function App(){
 |命令|简写|用法|说明|
 |-|-|:-|:-|
 |init|-|`npx i18n init`|初始化配置文件|
-|translate|t|`npx i18n translate` <br/> `npx i18n t`|提取翻译文本，自动翻译并生成语言包|
-|version|v|`npx i18n version`<br/>`npx i18n v`|显示版本信息|
-|help|h|`npx i18n help`<br/>`npx i18n h`|显示帮助信息|
+|translate|t|`npx i18n translate` <br /> `npx i18n t`|提取翻译文本，自动翻译并生成语言包|
+|version|v|`npx i18n version`<br />`npx i18n v`|显示版本信息|
+|help|h|`npx i18n help`<br />`npx i18n h`|显示帮助信息|
 
 ### 命令参数
 
 |参数名|简写|参数值|适用命令|用法|说明|
 |-|-|-|:-|:-|:-|
-|--locale|-L|en \| zh|ALL|`npx i18n h -L en`<br/>`npx i18n h --locale en`|指定命令行显示语言<br/><br/>可选语言有中文（zh）/ 英文（en）， 默认为中文（zh）|
-|--non-incremental|-|-|`t`<br/>`translate`|`npx i18n t --non-incremental`|关闭增量翻译模式<br/><br/>⚠️⚠️⚠️：关闭增量翻译模式后，所有的文本会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文本丢失，需慎重考虑使用！！！|
-|--path|-P|-|`init`<br/>`t`<br/>`translate`|`npx i18n init -P /xxx/xxx/xxx`<br/>`npx i18n t -P /xxx/xxx/xxx`|指定配置文件路径（参数为绝对路径）<br/><br/>只需要指定路径名，配置文件名默认为 `i18nrc.js`|
+|--locale|-L|en \| zh|ALL|`npx i18n h -L en`<br />`npx i18n h --locale en`|指定命令行显示语言<br /><br />可选语言有中文（zh）/ 英文（en）， 默认为中文（zh）|
+|--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|关闭增量翻译模式<br /><br />⚠️⚠️⚠️：关闭增量翻译模式后，所有的文本会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文本丢失，需慎重考虑使用！！！|
+|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|指定配置文件路径（参数为绝对路径）<br /><br />只需要指定路径名，配置文件名默认为 `i18nrc.js`|
 
 # 函数API
 
 ## 函数列表
 下面的类型是以 `TypeScript` 语法来表示的<table>
-<tr>
-<th>
-函数名
-</th><th>
-类型
-</th><th>
-说明
-</th>
-</tr><tr>
-<td>
-i18n
-</td><td>
-<code>
-<pre>
-(
+  <tr>
+    <th>函数名</th>
+    <th>类型</th>
+    <th>说明</th>
+  </tr>
+  <tr>
+    <td>i18n</td>
+    <td>
+      <code>
+        <pre>(
   text: string,
   ...args: Array&lt;string|number|unknow&gt;
-) =&gt; string
-</pre>
-</code>
-</td><td>
-获取国际化文本<br/><br/>内部会根据当前语言<code>
-(locale)
-</code>从语言包<code>
-(langs)
-</code>中获取<code>
-text
-</code>对应的翻译文本，未匹配到对应翻译内容会直接显示<code>
-text
-</code>本身内容<br/><b>
-text
-</b>：待翻译的文本<br/><b>
-args
-</b>：表示动态参数，没有个数限制，<code>
-text
-</code>文本中需要以<code>
-{index}
-</code>的形式来接收，<code>
-index
-</code>表示动态参数的位置，从 0 开始（可在<code>
-setI18N
-</code>中自定义起始值），第1个参数对应 0，对2个参数对应1，以此往复<br/><br/>例如：<code>
-i18n('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
-                '小白')
-</code><br/>当前语言的执行结果是： 这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外<br/>百度翻译成英语的结果是：The man's name is 小帅, and he accidentally obtained super power. The woman's name is 小美, and she was accidentally chased by FBI. The child's name is 小白, and she was accidentally hit by an accident
-</td>
-</tr><tr>
-<td>
-setI18N
-</td><td>
-<code>
-<pre>
-(
+) =&gt; string</pre>
+      </code>
+    </td>
+    <td>
+      获取国际化文本<br /><br />内部会根据当前语言<code>(locale)</code>从语言包<code>(langs)</code>中获取<code>text</code>对应的翻译文本，未匹配到对应翻译内容会直接显示<code>text</code>本身内容<br /><b>text</b>：待翻译的文本<br /><b>args</b>：表示动态参数，没有个数限制，<code>text</code>文本中需要以<code>{index}</code>的形式来接收，<code>index</code>表示动态参数的位置，从 0 开始（可在<code>setI18N</code>中自定义起始值），第1个参数对应 0，对2个参数对应1，以此往复<br /><br />例如：<code>i18n('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
+                '小白')</code><br />当前语言的执行结果是： 这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外<br />百度翻译成英语的结果是：The man's name is 小帅, and he accidentally obtained super power. The woman's name is 小美, and she was accidentally chased by FBI. The child's name is 小白, and she was accidentally hit by an accident
+    </td>
+  </tr>
+  <tr>
+    <td>setI18N</td>
+    <td>
+      <code>
+        <pre>
+          (
     props: {
         locale?: string,
         langs?: Record<strng, Record<string, string>>,
         beginIndex?: number,
-        formatNumber?: <a href="#FormatFunc" >
-FormatFunc
-</a>,
-        formatCurrency?: <a href="#FormatFunc" >
-FormatFunc
-</a>,
-        formatDate?: <a href="#FormatDateFunc" >
-FormatDateFunc
-</a>,
-        formatTime?: <a href="#FormatDateFunc" >
-FormatDateFunc
-</a>,
-        formaPlural?: <a href="#FormatPluralFunc" >
-FormatPluralFunc
-</a>,
+        formatNumber?: <a href="#FormatFunc">FormatFunc</a>,
+        formatCurrency?: <a href="#FormatFunc">FormatFunc</a>,
+        formatDate?: <a href="#FormatDateFunc">FormatDateFunc</a>,
+        formatTime?: <a href="#FormatDateFunc">FormatDateFunc</a>,
+        formaPlural?: <a href="#FormatPluralFunc">FormatPluralFunc</a>,
     }
 ) => void
-</pre>
-</code>
-</td><td>
-设置语言、语言包及其他配置项<br/><br/><b>
-locale
-</b>：指定当前语言<br/><b>
-langs
-</b>：设置当前语言包<br/><b>
-beginIndex
-</b>：设置<code>
-i18n
-</code>函数中动态参数起始下标，默认为0<br/><b>
-formatNumber
-</b>：格式化数字类型动态参数的回调，对应的类型标记是<b>
-n
-</b>或<b>
-N
-</b><br/><b>
-formatCurrency
-</b>：格式化金额类型动态参数的回调，对应的类型标记是<b>
-c
-</b>或<b>
-C
-</b><br/><b>
-formatDate
-</b>：格式化日期类型动态参数的回调，对应的类型标记是<b>
-d
-</b>或<b>
-D
-</b><br/><b>
-formatTime
-</b>：格式化时间类型动态参数的回调，对应的类型标记是<b>
-t
-</b>或<b>
-T
-</b><br/><b>
-formaPlural
-</b>：格式化复数类型动态参数的回调，对应的类型标记是<b>
-p
-</b>或<b>
-P
-</b><br/><br/>📢📢📢：<code>
-locale
-</code>的值默认跟语言代码相对应，如需自定义，需参考<code>
-codeLocaleMap
-</code>的用法
-</td>
-</tr><tr>
-<td>
-withI18N
-</td><td>
-<code>
-<pre>
-(
+        </pre>
+      </code>
+    </td>
+    <td>
+      设置语言、语言包及其他配置项<br /><br /><b>locale</b>：指定当前语言<br /><b>langs</b>：设置当前语言包<br /><b>beginIndex</b>：设置<code>i18n</code>函数中动态参数起始下标，默认为0<br /><b>formatNumber</b>：格式化数字类型动态参数的回调，对应的类型标记是<b>n</b>或<b>N</b><br /><b>formatCurrency</b>：格式化金额类型动态参数的回调，对应的类型标记是<b>c</b>或<b>C</b><br /><b>formatDate</b>：格式化日期类型动态参数的回调，对应的类型标记是<b>d</b>或<b>D</b><br /><b>formatTime</b>：格式化时间类型动态参数的回调，对应的类型标记是<b>t</b>或<b>T</b><br /><b>formaPlural</b>：格式化复数类型动态参数的回调，对应的类型标记是<b>p</b>或<b>P</b><br /><br />📢📢📢：<code>locale</code>的值默认跟语言代码相对应，如需自定义，需参考<code>codeLocaleMap</code>的用法
+    </td>
+  </tr>
+  <tr>
+    <td>withI18N</td>
+    <td>
+      <code>
+        <pre>(
     props:{
           locale: string
     }
-) => ({ i18n })
-</pre>
-</code>
-</td><td>
-获取独立于主程序的i18n函数<br/><br/>适用于服务端，每个接口响应需要做国际化的处理
-</td>
-</tr>
+) => ({ i18n })</pre>
+      </code>
+    </td>
+    <td>
+      获取独立于主程序的i18n函数<br /><br />适用于服务端，每个接口响应需要做国际化的处理
+    </td>
+  </tr>
 </table>
 
 ## 函数类型
@@ -477,13 +397,13 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', '22', '
 |文件名|说明|
 |:-|:-|
 |filepaths.json|匹配到的文件路径列表|
-|texts-error.json|提取到所有不符合要求的翻译文本<br/><br/>📢📢📢：不包含使用变量、js语句等场景|
+|texts-error.json|提取到所有不符合要求的翻译文本<br /><br />📢📢📢：不包含使用变量、js语句等场景|
 |texts.json|提取到所有符合要求的翻译文本|
 |translate-fail.json|翻译失败的文本列表|
-|translate-error.json|翻译有误的文本列表<br/><br/>当前可以识别出动态参数翻译后丢失的异常|
-|translate-success.json|翻译成功的文本列表<br/><br/>📢📢📢：只会包含本次翻译的文本，增量翻译模式下，原来已翻译过的文本不会包含在其中|
-|langCode.json|某个目标语言独立的语言包<br/><br/>当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包|
-|langs.json|聚合的语言包<br/><br/>当 `output.langType == 'multiple'` 时，会在日志目录下生成聚合的语言包|
+|translate-error.json|翻译有误的文本列表<br /><br />当前可以识别出动态参数翻译后丢失的异常|
+|translate-success.json|翻译成功的文本列表<br /><br />📢📢📢：只会包含本次翻译的文本，增量翻译模式下，原来已翻译过的文本不会包含在其中|
+|langCode.json|某个目标语言独立的语言包<br /><br />当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包|
+|langs.json|聚合的语言包<br /><br />当 `output.langType == 'multiple'` 时，会在日志目录下生成聚合的语言包|
 
 # Q&A
 

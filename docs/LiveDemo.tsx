@@ -7,18 +7,12 @@ export default function LiveDemo() {
       <H1>Live Demo</H1>
       <UnorderList>
         <ListItem>
-          <Link
-            title="Open in CodeSandbox"
-            href="https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main"
-          >
+          <Link href="https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main">
             Open in CodeSandbox
           </Link>
         </ListItem>
         <ListItem>
-          <Link
-            title="Open in StackBlitz"
-            href="https://stackblitz.com/edit/i18n-pro-react-demo"
-          >
+          <Link href="https://stackblitz.com/edit/i18n-pro-react-demo">
             <Image
               alt="Open in StackBlitz"
               title="Open in StackBlitz"

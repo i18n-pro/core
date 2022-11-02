@@ -10,11 +10,7 @@ function renderLanguage() {
     if (global.docLocale == code) {
       res.push(name)
     } else {
-      res.push(
-        <Link title={name} href={`./readme_${locale}`}>
-          {name}
-        </Link>,
-      )
+      res.push(<Link href={`./readme_${locale}`}>{name}</Link>)
     }
 
     if (index != langs.length - 1) {

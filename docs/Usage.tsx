@@ -83,7 +83,7 @@ function InitConfig() {
       <Break />
       <H2>{`3. ${tr('初始化命令行配置文件')}`}</H2>
       {tr('在命令行终端输入如下命令，')}
-      <Link {...linkObj['command-list']} title={tr('更多命令')} />
+      <Link {...linkObj['command-list']}>{tr('更多命令')}</Link>
       <CodeBlock langType="bash">{`npx i18n init `}</CodeBlock>
       {tr('然后会在当前目录下生成一个{0}的文件', ' `i18nrc.js` ')}
     </>
@@ -96,7 +96,7 @@ function ModifyConfig() {
       <Break />
       <H2>{`4. ${tr('调整{0}配置', ' `i18nrc.js` ')}`}</H2>
       {tr('根据需求自行调整配置文件中的配置项，配置项的')}
-      <Link {...linkObj['command-list']} title={tr('说明')} />
+      <Link {...linkObj['command-list']}>{tr('说明')}</Link>
     </>
   )
 }

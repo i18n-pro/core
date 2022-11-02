@@ -31,10 +31,9 @@ export default function Principle() {
       {tr(
         '解析文本的{0}简易示例如下',
         render(
-          <Link
-            {...linkObj['matchting-rule']}
-            title={linkObj['matchting-rule'].alias}
-          />,
+          <Link {...linkObj['matchting-rule']}>
+            {linkObj['matchting-rule'].alias}
+          </Link>,
         ),
       )}
       <Break />
