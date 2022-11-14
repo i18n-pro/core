@@ -8,7 +8,6 @@ import React, {
   render,
   CodeBlock,
 } from 'jsx-to-md'
-import { linkObj } from './constants'
 
 export default function Principle() {
   return (
@@ -30,11 +29,9 @@ export default function Principle() {
       <Break />
       {tr(
         '解析文本的{0}简易示例如下',
-        render(
-          <Link {...linkObj['matchting-rule']}>
-            {linkObj['matchting-rule'].alias}
-          </Link>,
-        ),
+        ` ${render(
+          <Link href={`#${tr('匹配规则')}`}>{tr('匹配规则')}</Link>,
+        )} `,
       )}
       <Break />
       <CodeBlock langType="js">

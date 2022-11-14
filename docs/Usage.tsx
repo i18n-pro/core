@@ -8,8 +8,9 @@ import React, {
   Link,
   Image,
   H4,
+  render,
 } from 'jsx-to-md'
-import { linkObj, imageObj } from './constants'
+import { imageObj } from './constants'
 
 function Install() {
   return (
@@ -71,7 +72,7 @@ const text = i18n('${tr('你好世界')}')`}
 // ${tr('就是每个模块都需上面这样引入')}
 
 // ${tr('被翻译的文本')}
-const text = i18n('你好世界')`}
+const text = i18n('${tr('你好世界')}')`}
       </CodeBlock>
     </>
   )
@@ -83,7 +84,7 @@ function InitConfig() {
       <Break />
       <H2>{`3. ${tr('初始化命令行配置文件')}`}</H2>
       {tr('在命令行终端输入如下命令，')}
-      <Link {...linkObj['command-list']}>{tr('更多命令')}</Link>
+      <Link href={`#${tr('命令列表')}`}>{tr('更多命令')}</Link>
       <CodeBlock langType="bash">{`npx i18n init `}</CodeBlock>
       {tr('然后会在当前目录下生成一个{0}的文件', ' `i18nrc.js` ')}
     </>
@@ -95,8 +96,10 @@ function ModifyConfig() {
     <>
       <Break />
       <H2>{`4. ${tr('调整{0}配置', ' `i18nrc.js` ')}`}</H2>
-      {tr('根据需求自行调整配置文件中的配置项，配置项的')}
-      <Link {...linkObj['command-list']}>{tr('说明')}</Link>
+      {tr(
+        '根据需求自行调整配置文件中的配置项，配置项的{0}',
+        render(<Link href={`#${tr('命令行')}`}>{tr('说明')}</Link>),
+      )}
     </>
   )
 }
@@ -134,10 +137,10 @@ setI18N({
   langs:{
     en,
     jp,
-    // ...${tr('其他更多语言')}
+    // ... ${tr('其他更多语言')}
   },
 })
-// ${tr('后续是应用页面渲染逻辑')}`}
+// ${tr('后续才是应用的页面渲染逻辑')}`}
       </CodeBlock>
       {tr(
         '如果生成的语言包是聚合的形式{0}，操作如下：',
@@ -150,7 +153,7 @@ setI18N({
   locale: 'en',
   langs,
 })
-// ${tr('后续是应用页面渲染逻辑')}`}
+// ${tr('后续才是应用的页面渲染逻辑')}`}
       </CodeBlock>
       {tr(
         '至此，项目已经完全接入了国际化，上面{0}指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的翻译文本（需要用{1}函数包裹哟），就仅仅需要再次执行翻译命令{2}生成最新的语言包就可以了',

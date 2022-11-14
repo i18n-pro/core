@@ -1,7 +1,6 @@
 export type Link = Readonly<{
   title: string
   href: string
-  alias?: string
 }>
 
 export type Image = Readonly<{

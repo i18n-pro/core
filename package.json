@@ -1,7 +1,7 @@
 {
   "name": "i18n-pro",
   "version": "1.3.2",
-  "description": "轻量、简单、灵活的自动翻译工具",
+  "description": "Lightweight, simple, flexible and automatic-translation tools for internationalization（轻量、简单、灵活、自动翻译的国际化工具）",
   "files": [
     "dist/src",
     "template",
@@ -40,7 +40,8 @@
     "translation",
     "国际化",
     "多语言",
-    "自动翻译"
+    "自动翻译",
+    "automatic translation"
   ],
   "author": "Eyelly Wu",
   "license": "MIT",

@@ -1,30 +1,5 @@
 import React, { H1, H2, H3, Table, Column, Bold } from 'jsx-to-md'
 
-const commonTableColumns: Column[] = [
-  {
-    title: tr('名称'),
-    fieldName: 'name',
-    align: 'center',
-  },
-  {
-    title: tr('类型'),
-    fieldName: 'type',
-    align: 'center',
-  },
-  {
-    title: tr('是否必设'),
-    fieldName: 'required',
-  },
-  {
-    title: tr('默认值'),
-    fieldName: 'default',
-  },
-  {
-    title: tr('说明'),
-    fieldName: 'description',
-  },
-]
-
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
     {
@@ -40,10 +15,12 @@ function getCommonTableColumns() {
     {
       title: tr('是否必设'),
       fieldName: 'required',
+      align: 'center',
     },
     {
       title: tr('默认值'),
       fieldName: 'default',
+      align: 'center',
     },
     {
       title: tr('说明'),
@@ -68,7 +45,7 @@ function BasicConfig() {
       default: 'i18n',
       description: (
         <>
-          {tr('命令行匹配翻译文本的函数名dx')}
+          {tr('命令行匹配翻译文本的函数名')}
           <br />
           <br />
           {tr(
@@ -136,7 +113,7 @@ function Output() {
       name: 'langType',
       type: `'single' \\| 'multiple'`,
       required: tr('否'),
-      default: 'multiple',
+      default: "'multiple'",
       description: (
         <>
           {tr('输出语言包文件的形式')}
@@ -181,6 +158,7 @@ function Output() {
   return (
     <>
       <H3>{tr('Output')}</H3>
+      {tr('输出文件的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
   )
@@ -223,11 +201,12 @@ function BaiduConfig() {
           <br />
           <>
             {`[${tr('更多语言')}](http://api.fanyi.baidu.com/doc/21 '${tr(
-              '搜索"语种列表"',
+              '搜索{0}',
+              '"语种列表"',
             )}')`}
             ，
           </>
-          {tr('搜索{0}', `**${tr('语种列表')}**`)}
+          {tr('搜索{0}', '`语种列表`')}
         </>
       ),
     },
@@ -263,12 +242,13 @@ function BaiduConfig() {
       default: '{}',
       description: (
         <>
-          {tr('设置语言代码与 `locale` 的映射关系')}
+          {tr('设置语言代码与{0}的映射关系', ' `locale` ')}
           <br />
           <br />
           {tr(
-            '例如目标语言为{0}，想设置 `locale` 的值为{1}，那么需要配置{2}为{3}，最终生成的文件名{4}也会变成{5}',
+            '例如目标语言为{0}，想设置{1}的值为{2}，那么需要配置{3}为{4}，最终生成的文件名{5}也会变成{6}',
             " `['en']`",
+            ' `locale` ',
             " `'en_US'` ",
             ' `codeLocaleMap` ',
             ` \`${JSON.stringify({ en: 'en_US' })}\` `,
@@ -283,6 +263,7 @@ function BaiduConfig() {
   return (
     <>
       <H3>{tr('BaiduConfig')}</H3>
+      {tr('百度翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
   )
@@ -308,7 +289,7 @@ function CommandList() {
     },
     {
       title: tr('简写'),
-      fieldName: 'alias',
+      fieldName: 'shorthand',
       align: 'center',
     },
     {
@@ -322,20 +303,20 @@ function CommandList() {
   ]
 
   type CommandRecordItem = Record<
-    'command' | 'alias' | 'usage' | 'description',
+    'command' | 'shorthand' | 'usage' | 'description',
     string | JSX.Element | number
   >
 
   const data: CommandRecordItem[] = [
     {
       command: 'init',
-      alias: '-',
+      shorthand: '-',
       usage: '`npx i18n init`',
       description: tr('初始化配置文件'),
     },
     {
       command: 'translate',
-      alias: 't',
+      shorthand: 't',
       usage: (
         <>
           `npx i18n translate` <br /> `npx i18n t`
@@ -345,7 +326,7 @@ function CommandList() {
     },
     {
       command: 'version',
-      alias: 'v',
+      shorthand: 'v',
       usage: (
         <>
           `npx i18n version`
@@ -357,7 +338,7 @@ function CommandList() {
     },
     {
       command: 'help',
-      alias: 'h',
+      shorthand: 'h',
       usage: (
         <>
           `npx i18n help`
@@ -386,7 +367,7 @@ function CommandProp() {
     },
     {
       title: tr('简写'),
-      fieldName: 'alias',
+      fieldName: 'shorthand',
       align: 'center',
     },
     {
@@ -409,15 +390,15 @@ function CommandProp() {
   ]
 
   type CommandRecordItem = Record<
-    'name' | 'value' | 'command' | 'alias' | 'usage' | 'description',
+    'name' | 'value' | 'command' | 'shorthand' | 'usage' | 'description',
     string | JSX.Element | number
   >
 
   const data: CommandRecordItem[] = [
     {
       name: '--locale',
-      alias: '-L',
-      value: 'en \\| zh',
+      shorthand: '-L',
+      value: '`en` \\| `zh`',
       command: 'ALL',
       usage: (
         <>
@@ -431,13 +412,13 @@ function CommandProp() {
           {tr('指定命令行显示语言')}
           <br />
           <br />
-          {tr('可选语言有中文（zh）/ 英文（en）， 默认为中文（zh）')}
+          {tr('可选语言有中文（zh）/ 英文（en）， 默认为英文（en）')}
         </>
       ),
     },
     {
       name: '--non-incremental',
-      alias: '-',
+      shorthand: '-',
       value: '-',
       command: (
         <>
@@ -461,7 +442,7 @@ function CommandProp() {
     },
     {
       name: '--path',
-      alias: '-P',
+      shorthand: '-P',
       value: '-',
       command: (
         <>
@@ -501,7 +482,7 @@ function CommandProp() {
 function Command() {
   return (
     <>
-      <H2>2.{tr('命令')}</H2>
+      <H2>2. {tr('命令')}</H2>
       <CommandList />
       <CommandProp />
     </>

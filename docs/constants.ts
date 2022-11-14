@@ -54,19 +54,6 @@ const links = [
     title: 'lgtm-quality',
     href: 'https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript',
   },
-  {
-    title: 'matchting-rule',
-    href: '#' + tr('匹配规则'),
-    alias: tr('匹配规则'),
-  },
-  {
-    title: 'command-list',
-    href: '#' + tr('命令列表'),
-  },
-  {
-    title: 'command-line',
-    href: '#' + tr('命令行'),
-  },
 ] as const
 
 type LinkTitleType = ArrayObject<typeof links, 'title'>

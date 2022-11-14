@@ -1,15 +1,17 @@
 import React, { H1, Table, Column } from 'jsx-to-md'
 
-const commonTableColumns: Column[] = [
-  {
-    title: tr('文件名'),
-    fieldName: 'filename',
-  },
-  {
-    title: tr('说明'),
-    fieldName: 'description',
-  },
-]
+function getColumns() {
+  return [
+    {
+      title: tr('文件名'),
+      fieldName: 'filename',
+    },
+    {
+      title: tr('说明'),
+      fieldName: 'description',
+    },
+  ]
+}
 
 type RecordItem = Record<
   'filename' | 'description',
@@ -61,7 +63,7 @@ export default function OutputLog() {
           <br />
           📢📢📢：
           {tr(
-            '只会包含本次翻译的文本，增量翻译模式下，原来已翻译过的文本不会包含在其中',
+            '增量翻译模式下，只会包含本次翻译的文本，原来已翻译过的文本不会包含在其中',
           )}
         </>
       ),
@@ -105,7 +107,7 @@ export default function OutputLog() {
         ' `.log` ',
       )}
       ：
-      <Table columns={commonTableColumns} data={data} />
+      <Table columns={getColumns()} data={data} />
     </>
   )
 }

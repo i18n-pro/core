@@ -1,4 +1,12 @@
-import React, { H1, H2, H3, ListItem, UnorderList } from 'jsx-to-md'
+import React, {
+  H1,
+  H2,
+  H3,
+  Link,
+  ListItem,
+  render,
+  UnorderList,
+} from 'jsx-to-md'
 
 function VersionTitle({ version, date }: { version: string; date: string }) {
   return <H2>{`[${version}] - ${date}`}</H2>
@@ -115,11 +123,11 @@ function V_1_2_0() {
         <ListItem>
           {tr(
             '新增{0}文档说明以及新的输出日志类型：配到的文件路径列表',
-            `[${tr('输出日志')}](#${tr('输出日志')})`,
+            render(<Link href={`#${tr('输出日志')}`}>{tr('输出日志')}</Link>),
           )}
         </ListItem>
         <ListItem>
-          {tr('新增{0}模式', ' `增量翻译` ')}
+          {tr('新增{0}模式', ` \`${tr('增量翻译')}\` `)}
           <UnorderList level={2}>
             <ListItem>
               {tr(
@@ -293,12 +301,12 @@ function V_1_3_2() {
 function V_1_4_0() {
   return (
     <>
-      <VersionTitle version="1.4.2" date="2022-xx-xx" />
+      <VersionTitle version="1.4.0" date="2022-xx-xx" />
       <Added />
       <UnorderList>
         <ListItem>
           {tr(
-            '初始化命令和翻译命令添加{0}参数，支持灵活指定配置文件路径',
+            '初始化命令和翻译命令添加{0}参数，用于支持灵活指定配置文件路径',
             ' `-P` | `--path` ',
           )}
         </ListItem>

@@ -3,10 +3,10 @@ import React, { Break, H1, H2, render, H3, CodeBlock } from 'jsx-to-md'
 function renderFormatDesc() {
   const formatTypes = [
     { type: 'formatNumber', name: tr('数字'), lowTag: 'n', upperTag: 'N' },
-    { type: 'formatCurrency', name: tr('金额'), lowTag: 'c', upperTag: 'C' },
+    { type: 'formatCurrency', name: tr('货币'), lowTag: 'c', upperTag: 'C' },
     { type: 'formatDate', name: tr('日期'), lowTag: 'd', upperTag: 'D' },
     { type: 'formatTime', name: tr('时间'), lowTag: 't', upperTag: 'T' },
-    { type: 'formaPlural', name: tr('复数'), lowTag: 'p', upperTag: 'P' },
+    { type: 'formatPlural', name: tr('复数'), lowTag: 'p', upperTag: 'P' },
   ]
 
   return (
@@ -18,7 +18,7 @@ function renderFormatDesc() {
             <b>{type}</b>：
             {tr(
               '格式化{0}类型动态参数的回调，对应的类型标记是{1}{2}{3}',
-              name,
+              render(<b>{name}</b>),
               render(<b>{lowTag}</b>),
               tr('或'),
               render(<b>{upperTag}</b>),
@@ -44,14 +44,12 @@ function APIList() {
         <tr>
           <td>i18n</td>
           <td>
-            <code>
-              <pre>
-                {`(
+            <pre>
+              {`(
   text: string,
   ...args: Array&lt;string|number|unknow&gt;
 ) =&gt; string`}
-              </pre>
-            </code>
+            </pre>
           </td>
           <td>
             {tr('获取国际化文本')}
@@ -85,7 +83,7 @@ function APIList() {
               </code>,
             )}
             <br />
-            {tr('当前语言的执行结果是')}：
+            {tr('当前语言（中文:zh）的执行结果是')}：
             这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外
             <br />
             {tr('百度翻译成英语的结果是')}：The man's name is 小帅, and he
@@ -97,9 +95,8 @@ function APIList() {
         <tr>
           <td>setI18N</td>
           <td>
-            <code>
-              <pre>
-                {`(
+            <pre>
+              {`(
     props: {
         locale?: string,
         langs?: Record<strng, Record<string, string>>,
@@ -108,13 +105,12 @@ function APIList() {
         formatCurrency?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
         formatDate?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
         formatTime?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
-        formaPlural?: ${render(
+        formatPlural?: ${render(
           <a href="#FormatPluralFunc">FormatPluralFunc</a>,
         )},
     }
 ) => void`}
-              </pre>
-            </code>
+            </pre>
           </td>
           <td>
             {tr('设置语言、语言包及其他配置项')}
@@ -143,15 +139,13 @@ function APIList() {
         <tr>
           <td>withI18N</td>
           <td>
-            <code>
-              <pre>
-                {`(
+            <pre>
+              {`(
     props:{
           locale: string
     }
 ) => ({ i18n })`}
-              </pre>
-            </code>
+            </pre>
           </td>
           <td>
             {tr('获取独立于主程序的i18n函数')}
@@ -170,7 +164,7 @@ function FunctionType() {
     <>
       <Break />
       <H2>{tr('函数类型')}</H2>
-      <H3>FortmatFunc</H3>
+      <H3>FormatFunc</H3>
       {tr('通用的格式化回调类型')}
       <CodeBlock langType="ts">
         {`type FormatFunc = <T>(props:{
@@ -181,7 +175,7 @@ function FunctionType() {
       <H3>FormatDateFunc</H3>
       {tr('日期（时间）的格式化回调函数类型')}
       <CodeBlock langType="ts">
-        {`type FormatPluralFunc = <T>(props:{
+        {`type FormatDateFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
   payload: string | number | Date | unknow | T, // ${tr('动态参数')}
 }) => string`}
