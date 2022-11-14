@@ -1,167 +1,161 @@
-<div align="center" style="background:transparent;">
+<div style="text-align: center;">
+  
+[![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png 'logo')](https://github.com/eyelly-wu/i18n-pro)
 
-  [![logo][logo-image]][github-url]
 
-  <p>轻量、简单、灵活的自动翻译工具</p>
+English | [简体中文](./README_zh-CN)
 
-  [![NPM version][npm-image]][npm-url]
-  [![NPM downloads][download-image]][npm-url]
-  [![][quality-score-image]][npm-url]
-  [![][bundlesize-js-image]][bundlephobia-url]
-  [![][dependenices-image]][dependenices-url]
-  [![][github-starts-image]][github-starts-url]
-  [![][last-commit-image]][last-commit-url]
-  [![][github-issues-image]][github-issues-url]
-  [![codecov][codecov-image]][codecov-url]
-  [![Total alerts][lgtm-alerts-image]][lgtm-alerts-url]
-  [![Language grade: JavaScript][lgtm-quality-image]][lgtm-quality-url]
+
+  <p style="font-size: 18px;">Lightweight, simple, flexible and automatic-translation tools for internationalization</p>
+
+[![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square 'npm-version')](https://www.npmjs.com/package/i18n-pro)
+[![npm-download](https://img.shields.io/npm/dm/i18n-pro 'npm-download')](https://www.npmjs.com/package/i18n-pro) 
+[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro 'npm-quality-score')](https://www.npmjs.com/package/i18n-pro) 
+[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro) 
+[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic 'dependenices')](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies) 
+[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social 'github-stars')](https://github.com/eyelly-wu/i18n-pro/stargazers) 
+[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro 'last-commit')](https://github.com/eyelly-wu/i18n-pro/commits/main) 
+[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro 'github-issues')](https://github.com/eyelly-wu/i18n-pro/issues) 
+[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 'codecov')](https://codecov.io/gh/eyelly-wu/i18n-pro) 
+[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-alerts')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/) 
+[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-quality')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript) 
+
 </div>
 
-<!--这里使用的是https://www.imgurl.org/作为图床-->
-[demo-image]: https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif
-[logo-image]: https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png
-[github-url]: https://github.com/eyelly-wu/i18n-pro
-[npm-image]: https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/i18n-pro
-[download-image]: https://img.shields.io/npm/dm/i18n-pro
-[quality-score-image]: https://img.shields.io/npms-io/quality-score/i18n-pro
-[bundlesize-js-image]: https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic
-[bundlephobia-url]: https://bundlephobia.com/package/i18n-pro
-[dependenices-image]: https://img.shields.io/librariesio/release/npm/i18n-pro
-[dependenices-url]: https://www.npmjs.com/package/i18n-pro?activeTab=dependencies
-[github-starts-image]: https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social
-[github-starts-url]: https://github.com/eyelly-wu/i18n-pro/stargazers
-[last-commit-image]: https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro
-[last-commit-url]: https://github.com/eyelly-wu/i18n-pro/commits/main
-[github-issues-image]: https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro
-[github-issues-url]: https://github.com/eyelly-wu/i18n-pro/issues
-[baidu-api-type-url]: https://fanyiapp.cdn.bcebos.com/api/doc/%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E9%80%9A%E7%94%A8%E7%BF%BB%E8%AF%91API%E6%9C%8D%E5%8A%A1%E5%8D%87%E7%BA%A7%E8%AF%B4%E6%98%8E.pdf
-[codecov-image]: https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7
-[codecov-url]: https://codecov.io/gh/eyelly-wu/i18n-pro
-[lgtm-alerts-image]: https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18
-[lgtm-alerts-url]: https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/
-[lgtm-quality-image]: https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18
-[lgtm-quality-url]: https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript
+# Vision
+To make internationalization easy and enjoyable 😄💪🏻
 
+# Features
+* **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro)
+* **simple**：Low learning cost and easy to use
+* **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
+* **automatic-translation**：One command can automatically extract the text and translate it into a language pack
+* **keyless**：There is no need to define the key manually, the text to be translated is the key
 
-# 愿景
-为了让接入国际化成为轻松且愉快的事😄💪🏻
-
-# 特性
-* 轻量：[![][bundlesize-js-image]][bundlephobia-url]
-* 简单：学习成本低，易上手
-* 灵活：支持动态参数、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）
-* 自动翻译：一个命令即可自动提取文本并翻译生成语言包
-* keyless：无需手动定义key，待翻译文本即key
 
 # Live Demo
 * [Open in CodeSandbox](https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/edit/i18n-pro-react-demo)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg 'Open in StackBlitz')](https://stackblitz.com/edit/i18n-pro-react-demo)
 
-# 原理
 
-该库主要由两部分构成
-* 命令行工具
-* 函数API
+# Principle
+The library is mainly composed of two parts
+* Command Line Tool
+* Function API
 
-**命令行工具**：根据指定规则解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件
+**Command Line Tool**：Parse the text to be translated according to the specified rules, translate the text to the specified target language through the translation platform, and finally generate the language package file
 
-解析文本的[匹配规则](#匹配规则)简易示例如下
+A simple example of  [Matching Rules](#matching-rules)  for parsing text is as follows
+
 ```js
-// 普通字符串
+// Normal string
 i18n('xxx')
 i18n("xxx")
 i18n(`xxx`)
 
-// 支持动态参数
+// Support dynamic parameters
 i18n('xxx{0}xxx', param1)
 i18n('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
 
-// 动态参数类型标记
-i18n('用户数达到了{n0}', 100000000) // 数字类型
-i18n('售价为{c0}', 14999) // 货币类型
-i18n('今天的日期是{d0}', new Date()) // 日期类型
-i18n('当前时间：{t0}', new Date()) // 时间类型
-i18n('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3) // 复数类型
+// Dynamic parameters type marker
+i18n('The number of users has reached {n0}', 100000000) // Number Type
+i18n('The selling price is {c0}', 14999) // Currency type
+i18n('Today's date is {d0}', new Date()) // Date Type
+i18n('Current time: {t0}', new Date()) // Time Type
+i18n('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Plural type
 ```
-**函数API**：将国际化语言包接入到项目中，由 `i18n`、`setI18N` 和 `withI18N` 构成
 
-* **i18n**：用于包裹被翻译文本实现国际化，也作为命令行匹配翻译文本规则的标识
-* **setI18N**：设置语言、语言包及其他配置项
-* **withI18N**: 适用于服务端，每个接口响应需要做国际化的处理
+**Function API**：Connect the internationalization language pack into the project, which is composed of  `i18n`, `setI18N`  and  `withI18N` 
+* **i18n**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
+* **setI18N**：Set language, language pack and other configuration items
+* **withI18N**：It is applicable to the server. Each interface response needs to be internationalized
 
-所以 `命令行工具` 和 `函数API` 这两者搭配使用效果更佳，也正是由于这样的结构设计，使得 `i18n-pro` 库可以很方便集成到任何的 `JavaScript` 项目中
+Therefore,  `Command Line Tool`  and  `Function API`  work better together. It is precisely because of this structural design that  `i18n-pro`  library can be easily integrated into any  `JavaScript`  project
 
-# 用法
-## 1. 安装
+# Usage
+
+## 1. Install
+
 ```bash
 npm i i18n-pro
-# 或者
+# or
 yarn add i18n-pro
-# 或者
+# or
 pnpm i i18n-pro
 ```
-## 2. 接入函数API
-📢📢📢：这一步主要是用 `i18n` 函数包裹需要被翻译的文本
-> `函数API` 是以 `UMD` 形式来构建的，通过 `import` 或者 `require` 的方式都能引入，本文档中主要以 `import` 来举例说明
-### 挂载全局对象的形式
-#### 引用函数
+
+## 2. Access Function API
+📢📢📢：This step mainly uses  `i18n`  function to wrap the text to be translated
+> `Function API`  is constructed in the form of  `UMD` , and can be introduced through  `import`  or  `require` . This document mainly uses  `import`  as an example
+### The form of mounting global objects
+
+#### Reference function
+
 ```js
 import { setI18N, i18n } from 'i18n-pro'
 
-// 需要在应用页面渲染逻辑之前
-// 浏览器环境，注意：如果是Node环境需要将window替换成global
+// Before application page rendering logic
+// Browser environment, note: if it is Node environment, you need to replace window with global
 window.setI18N = setI18N
 window.i18n = i18n
-// 后续才是应用的页面渲染逻辑
+// The application page rendering logic is later
 ```
-#### 用 `i18n` 包裹需要翻译的文本
+
+#### Wrap the text to be translated with  `i18n` 
+
 ```js
-// 被翻译的文本
-const text = i18n('你好世界')
+// Translated text
+const text = i18n('Hello World')
 ```
-### 模块化引入的形式
-跟挂载全局对象的唯一区别就是每个模块都需要单独引入，其他使用并无差别
+
+### Form of module introduction
+The only difference from mounting global objects is that each module needs to be introduced separately, and there is no difference in other uses
 ```js
 import { setI18N, i18n } from 'i18n-pro'
-// 就是每个模块都需上面这样引入
+// Each module needs to be introduced as above
 
-// 被翻译的文本
-const text = i18n('你好世界')
+// Translated text
+const text = i18n('Hello World')
 ```
-## 3. 初始化命令行配置文件
-在命令行终端输入如下命令，[更多命令](#命令列表)
-```bash
-npx i18n init
-```
-然后会在当前目录下生成一个 `i18nrc.js` 的文件
-## 4. 调整 `i18nrc.js` 配置
-根据需求自行调整配置文件中的配置项，配置项的[说明](#命令行)
-## 5. 执行翻译命令
-```bash
-npx i18n t
-```
-命令执行成功的话，会在指定的目录下生成语言包文件
-## 6. 引入语言包文件
-语言包已经有了，就需要应用到项目中了
 
-如果生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），操作如下：
+
+## 3. Initialize command line configuration file
+Enter the following command at the command line terminal, [more commands](#command-list)
+```bash
+npx i18n init 
+```
+Then a  `i18nrc.js`  file will be generated in the current directory
+
+## 4. Adjust  `i18nrc.js`  configuration
+Adjust the configuration items in the configuration file according to the requirements, [Description](#command-line) of configuration items
+
+## 5. Execute translation command
+
+```bash
+npx i18n t 
+```
+If the command is executed successfully, the language pack file will be generated in the specified directory
+
+## 6. Importing language pack files
+The language pack already exists, so it needs to be applied to the project
+
+If the generated language pack is a separate file form （`output.langType == 'multiple'`） for each language, the operation is as follows:
 ```js
 import en from './i18n/en.json'
 import jp from './i18n/jp.json'
-// .. 其他更多语言
+// ... More languages
 
 setI18N({
   locale: 'en',
   langs:{
     en,
     jp,
-    // ...其他更多语言
+    // ... More languages
   },
 })
-// 后续是应用页面渲染逻辑
+// The application page rendering logic is later
 ```
-如果生成的语言包是聚合的形式（`output.langType == 'single'`），操作如下：
+If the generated language pack is in the form of aggregation （`output.langType == 'single'`）, the operation is as follows:
 ```js
 import langs from './i18n/langs.json'
 
@@ -169,21 +163,22 @@ setI18N({
   locale: 'en',
   langs,
 })
-// 后续是应用页面渲染逻辑
+// The application page rendering logic is later
 ```
-至此，项目已经完全接入了国际化，上面 `locale` 指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的翻译文本（需要用 `i18n` 函数包裹哟），就仅仅需要再次执行翻译命令 `npx i18n t` 生成最新的语言包就可以了
-## 7. 切换语言
-正常情况下，执行如下方法就行，但是页面上已渲染的内容不会再更新，只有等对应文本的 `i18n` 函数重新执行，才有可能显示新语言对应的文本
+So far, the project has been fully internationalized. The  `locale`  above is designated as any of the target languages, and the translated content can be seen on the page. Later, if there is new translation text in the project (you need to wrap it with  `i18n`  function), you just need to execute the translation command  `npx i18n t`  again to generate the latest language package
+
+## 7. Switch language
+Under normal circumstances, it is OK to execute the following methods, but the rendered content on the page will not be updated. The text in the new language can be displayed only if the  `i18n`  function for the corresponding text is reexecuted
 ```js
 setI18N({
-  locale: 'en', // 设置指定语言
+  locale: 'en', // Set the specified language
 })
 ```
-尽管有的 UI库（例如 `React`）可以利用它的 `context` 特性做到静态更新页面内容，但是对于不在组件内部的翻译文本内容，要做到静态更新也会有额外的处理成本，例如下面的这种场景，组件内使用了外部包含翻译内容的属性
+Although some UI libraries (such as  `React`) can use its  `context`  feature to statically update page content, for translated text content that is not in the component, there will be additional processing costs to statically update it. For example, in the following scenario, the component uses attributes that contain translated content externally
 ```js
-// 这个属性要做到静态更新，需要额外处理
-// 这里只是说明存在这种情况，不给出明确解决方案
-const FOO_TEXT = i18n('静态文本属性')
+// To achieve static update of this attribute, additional processing is required
+// Here is just to show that this situation exists, not to give a clear solution
+const FOO_TEXT = i18n('Static Text Attribute')
 
 function App(){
   return (
@@ -193,154 +188,229 @@ function App(){
   )
 }
 ```
-因此对于大部分的场景，在页面上切换语言时，建议**直接刷新**整个页面（如果还有好的方案请告知🤔）
-## 8. DEMO
-哈哈哈，除了上面的 [Live Demo](#live-demo)，当前库 `命令行工具` 的控制台输出也接入了国际化<br/>
-通过命令 `npx i18n h -L en` 就能看英文版了<br/>
-![图片][demo-image]<br/>
-感兴趣的同学，可以看看源码
-# 命令行
-## 1. `i18nrc.js` 配置
-### 基础配置
-|    名称     |            类型             | 是否必设 |    默认值    | 说明                                                                                                                 |
-| :---------: | :-------------------------: | :------: | :----------: | -------------------------------------------------------------------------------------------------------------------- |
-|  funcName   |           string            |    否    |     i18n     | 命令行匹配翻译文本的函数名<br/><br/>如果在使用 `i18n` 函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名 |
-|    entry    |           string            |    是    |      -       | 指定翻译文件目录（绝对路径）                                                                                         |
-| fileRegExp  |           RegExp            |    否    | `/\.[jt]s$/` | 匹配文件名的正则表达式<br/><br/>用于筛选需要被翻译的文件                                                             |
-|   output    |      [Output](#output)      |    是    |      -       | 输出文件相关的配置                                                                                                   |
-| baiduConfig | [BaiduConfig](#baiduconfig) |    是    |      -       | 百度翻译相关的配置                                                                                                   |
-### Output
-输出文件的配置
-|    名称    |          类型          | 是否必设 |   默认值   | 说明                                                                                                                                                                                                                                                                                                                         |
-| :--------: | :--------------------: | :------: | :--------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|    path    |         string         |    是    |     -      | 语言包生成的目录（绝对路径）                                                                                                                                                                                                                                                                                                 |
-|  langType  | 'single' \| 'multiple' |    否    | 'multiple' | 输出语言包文件的形式<br/><br/>假设目标语言是 `['en', 'jp']`<br/>**single** 只会生成一个聚合的语言包文件 `langs.json`，格式如下：<br/> `{ "en":{ "xxx":"xxx" }, "jp":{ "xxx":"xxx" } }` <br/><br/> **multiple** 每个目标语言都会生成对应的语言包文件，对应两个文件：`en.json`， `jp.json` ，格式如下：<br/> `{ "xxx":"xxx" }` |
-| indentSize |         number         |    否    |     2      | 语言包文件的缩进空格数                                                                                                                                                                                                                                                                                                       |
-### BaiduConfig
-百度翻译的配置
-|     名称      |         类型          | 是否必设 | 默认值 | 说明                                                                                                                                                                                                                                                                       |
-| :-----------: | :-------------------: | :------: | :----: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     appid     |        string         |    是    |   -    | APPID，需要[注册账号](http://api.fanyi.baidu.com/doc/21 '文档中有指导说明')申请                                                                                                                                                                                            |
-|      key      |        string         |    是    |   -    | 密钥，要求同上                                                                                                                                                                                                                                                             |
-|     from      |        string         |    是    |   -    | 被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`），[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索**语种列表**                                                                                                                                 |
-|      to       |       string[]        |    是    |   -    | 翻译的目标语言代码，格式同上<br/><br/>📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名（`output.langType=='multiple'`时）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用               |
-| codeLocaleMap | Record<string,string> |    否    |   {}   | 设置语言代码与 `locale` 的映射关系<br/><br/>例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'`，那么需要配置 `codeLocaleMap` 为 `{ 'en' : 'en_US' }`，最终生成的文件名（`output.langType=='multiple'`时）也会变成 `en_US.json`                                      |
-|     delay     |        number         |    否    |   0    | 接口调用延迟时长（单位:秒）<br/><br/>百度翻译平台根据不同[API服务类型][baidu-api-type-url]，对每秒请求数有限制，如果当前APPID只有1个用户使用，那么**普通版**可以设置为1，**高级版**和**尊享版**可不用设置；如果当前APPID多个用户同时在使用，`delay` 值越大接口越不容易报错 |
-## 2. 命令
-### 命令列表
-|   命令    | 简写  | 用法                                    | 说明                               |
-| :-------: | :---: | --------------------------------------- | ---------------------------------- |
-|   init    |   -   | `npx i18n init`                         | 初始化配置文件                     |
-| translate |   t   | `npx i18n translate` <br/> `npx i18n t` | 提取翻译文本，自动翻译并生成语言包 |
-|  version  |   v   | `npx i18n version` <br/> `npx i18n v`   | 显示版本信息                       |
-|   help    |   h   | `npx i18n help` <br/> `npx i18n h`      | 显示帮助信息                       |
+Therefore, for most scenarios, when switching languages on the page, it is recommended to **refresh directly** the whole page (if there is a good solution, please inform 🤔）
 
-### 命令参数
-|      参数名       | 简写  |   参数值    | 适用命令                       | 用法                                                              | 说明                                                                                                                                             |
-| :---------------: | :---: | :---------: | ------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-|     --locale      |  -L   | en    \| zh | ALL                            | `npx i18n h -L en`<br/> `npx i18n h  --locale en`                 | 指定命令行显示语言<br/><br/>可选语言有中文（zh）/ 英文（en）， 默认为中文（zh）                                                                  |
-| --non-incremental |   -   |      -      | `t` <br/> `translate`          | `npx i18n t --non-incremental`                                    | 关闭增量翻译模式<br/><br/> ⚠️⚠️⚠️：关闭增量翻译模式后，所有的文本会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文本丢失，需慎重考虑使用！！！ |
-|      --path       |  -P   |      -      | `init`<br/>`t`<br/>`translate` | `npx i18n init -P /xxx/xxx/xxx`<br/> `npx i18n t -P /xxx/xxx/xxx` | 指定配置文件路径（参数为绝对路径）<br/><br/>只需要指定路径名，配置文件名默认为 `i18nrc.js`                                                       |
-# 函数API
-## 函数列表
-下面的类型是以 `TypeScript` 语法来表示的
-|  函数名  | 类型                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 说明                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   i18n   | (<br/>&nbsp;&nbsp;&nbsp;&nbsp;text: string, <br/>&nbsp;&nbsp;&nbsp;&nbsp;...args: Array<string \| number \| unknow><br/>) => string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 获取国际化文本<br/><br/>内部会根据当前语言（`locale`）从语言包中（`langs`）获取 `text` 对应的翻译文本，未匹配到对应翻译内容会直接显示 `text` 本身内容<br/>**text**：待翻译的文本<br/>**args**：表示动态参数，没有个数限制，`text` 文本中需要以 `{index}` 的形式来接收，`index` 表示动态参数的位置，从 0 开始（可在 `setI18N` 中自定义起始值），第1个参数对应 0，对2个参数对应1，以此往复 <br/><br/> 例如：`i18n('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI', '小白')`<br/> 当前语言的执行结果是：这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外<br/>百度翻译成英语的结果是：The man's name is 小帅, and he accidentally obtained super power. The woman's name is 小美, and she was accidentally chased by FBI. The child's name is 小白, and she was accidentally hit by an accident |
-| setI18N  | (<br/>&nbsp;&nbsp;&nbsp;&nbsp;props: {<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;locale?: string,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;langs?: Record<strng, Record<string, string>>,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;beginIndex?: number,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formatNumber?: [FormatFunc](#fortmatfunc),<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formatCurrency?: [FormatFunc](#fortmatfunc),<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formatDate?: [FormatDateFunc](#formatdatefunc),<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formatTime?: [FormatFunc](#formatdatefunc),<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formaPlural?: [FormatPluralFunc](#formatpluralfunc),<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>) => void | 设置语言、语言包及其他配置项<br/><br/> **locale**：指定当前语言<br/>**langs**：设置当前语言包<br/>**beginIndex**：设置 `i18n` 函数中动态参数起始下标，默认为0<br/>**formatNumber**：格式化数字类型动态参数的回调，对应的类型标记是 **n** 或 **N**，<br/>**formatCurrency**：格式化货币类型动态参数的回调，对应的类型标记是 **c** 或 **C**<br/>**formatDate**：格式化日期类型动态参数的回调，对应的类型标记是 **d** 或 **D**<br/>**formatTime**：格式化时间类型动态参数的回调，对应的类型标记是 **t** 或 **T**<br/>**formatPlural**：格式化复数类型动态参数的回调，对应的类型标记是 **p** 或 **P**<br/><br/>📢📢📢：`locale` 的值默认跟语言代码相对应，如需自定义，需参考 `codeLocaleMap` 的用法<br/>                                                                                                                                                                                                                |
-| withI18N | (<br/>&nbsp;&nbsp;&nbsp;&nbsp;props:{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;locale: string<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>) => ({ i18n })                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | 获取独立于主程序的i18n函数<br/><br/>适用于服务端，每个接口响应需要做国际化的处理                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-## 函数类型
-### FortmatFunc
-通用的格式化回调类型
-```typescript
+## 8. DEMO
+Hahaha, in addition to the  [Live Demo](#live-demo) above, the console output of the current library  `Command Line Tool`  is also connected to internationalization
+
+You can read the English version through the command  `npx i18n h -L en` 
+![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif 'demo')
+If you are interested, you can look at the source code
+# Command Line
+
+## 1.  `i18nrc.js`  configuration
+
+### Basic configuration
+
+|Name|Type|Required|Default|Description|
+|:-:|:-:|:-:|:-:|:-|
+|funcName|string|no|i18n|Function name of command line for matching translated text<br /><br />If the  `i18n`  function is not renamed, it does not need to be adjusted here; otherwise, it is configured as the function name after renaming|
+|entry|string|yes|-|Specify the translation file directory (absolute path)|
+|fileRegExp|RegExp|no| `/.[jt]s$/` |The regular expression that matching filename<br /><br />Used to filter files to be translated|
+|output|[Output](#output)|yes|-|The configuration associated with the output file|
+|baiduConfig|[BaiduConfig](#baiduconfig)|yes|-|The configuration associated with the Baidu-Translation|
+
+### Output
+Configuration of output files
+|Name|Type|Required|Default|Description|
+|:-:|:-:|:-:|:-:|:-|
+|path|string|yes|-|The directory where the language pack is generated (absolute path)|
+|langType|'single' \| 'multiple'|no|'multiple'|Format of output language pack file<br /><br />Assume the target language is  `['en', 'jp']` <br />**single**：Only one aggregated language pack file  `langs.json` will be generated. The format is as follows:<br />`{"en":{"xxx":"xxx"},"jp":{"xxx":"xxx"}}`<br /><br />**multiple**：Each target language will generate a corresponding language pack file, which corresponds to two files:  `en.json`， `jp.json` . The format is as follows:<br />`{"xxx":"xxx"}`|
+|indentSize|number|no|2|Number of indented spaces in the language pack file|
+
+### BaiduConfig
+Configuration of Baidu-Translation
+|Name|Type|Required|Default|Description|
+|:-:|:-:|:-:|:-:|:-|
+|appid|string|yes|-|APPID, [Registered account](http://api.fanyi.baidu.com/doc/21 'There are instructions in the document') application is required|
+|key|string|yes|-|Key, as above|
+|from|string|yes|-|Language code of the translated text (for example,  `zh` for Chinese,  `en` for English)<br /><br />[More languages](http://api.fanyi.baidu.com/doc/21 'Search "语种列表"')，Search `语种列表`|
+|to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
+|codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
+
+## 2. Command
+
+### Command List
+
+|Command|Shorthand|Usage|Description|
+|:-:|:-:|:-|:-|
+|init|-|`npx i18n init`|Initialize the configuration file|
+|translate|t|`npx i18n translate` <br /> `npx i18n t`|Extract translated text, automatically translate and generate language pack|
+|version|v|`npx i18n version`<br />`npx i18n v`|Display version information|
+|help|h|`npx i18n help`<br />`npx i18n h`|Display help information|
+
+### Command Parameters
+
+|Parameter name|Shorthand|Parameter value|Applicable commands|Usage|Description|
+|:-:|:-:|:-:|:-|:-|:-|
+|--locale|-L|`en` \| `zh`|ALL|`npx i18n h -L en`<br />`npx i18n h --locale en`|Specify the command line display language<br /><br />The available languages are Chinese (zh)/English (en). The default is English (en)|
+|--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|Turn off incremental translation mode<br /><br />⚠️⚠️⚠️： After the incremental translation mode is turned off, all texts will be retranslated, which will result in the loss of **Manual translation**(Not translated by a translation platform) texts. Please consider using it carefully!!!|
+|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|Specify the configuration file path (the parameter is an absolute path)<br /><br />You only need to specify the path name. The default configuration filename is  `i18nrc.js`|
+
+# Function API
+
+## Function List
+The following types are expressed in  `TypeScript`  syntax<table>
+  <tr>
+    <th>Function Name</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>i18n</td>
+    <td>
+      <pre>
+(
+  text: string,
+  ...args: Array&lt;string|number|unknow&gt;
+) =&gt; string
+      </pre>
+    </td>
+    <td>
+      Get internationalized text<br /><br />Internally, the translation text corresponding to <code>text</code> will be obtained from the language package <code>(langs)</code> according to the current language <code>(locale)</code>. If the translation content is not matched, the content of <code>text</code> will be displayed directly<br /><b>text</b>：Text to be translated<br /><b>args</b>：It represents a dynamic parameters without number limitation. The <code>text</code> text needs to be received in the form of <code>{index}</code>. The <code>index</code> represents the position of the dynamic parameters, starting from 0 (you can customize the starting value in <code>setI18N</code>). The first parameter corresponds to 0, and the second parameter corresponds to 1, and so on<br /><br />for example：<code>
+  i18n('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
+                '小白')
+</code><br />The execution result of the current language (Chinese: zh) is： 这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外<br />The result of Baidu's translation into English is：The man's name is 小帅, and he accidentally obtained super power. The woman's name is 小美, and she was accidentally chased by FBI. The child's name is 小白, and she was accidentally hit by an accident
+    </td>
+  </tr>
+  <tr>
+    <td>setI18N</td>
+    <td>
+      <pre>
+(
+    props: {
+        locale?: string,
+        langs?: Record<strng, Record<string, string>>,
+        beginIndex?: number,
+        formatNumber?: <a href="#formatfunc">FormatFunc</a>,
+        formatCurrency?: <a href="#formatfunc">FormatFunc</a>,
+        formatDate?: <a href="#formatdatefunc">FormatDateFunc</a>,
+        formatTime?: <a href="#formatdatefunc">FormatDateFunc</a>,
+        formatPlural?: <a href="#formatpluralfunc">FormatPluralFunc</a>,
+    }
+) => void
+      </pre>
+    </td>
+    <td>
+      Set language, language pack and other configuration items<br /><br /><b>locale</b>：Specify the current language<br /><b>langs</b>：Set Current Language Pack<br /><b>beginIndex</b>：Set the starting subscript of the dynamic parameters in the <code>i18n</code> function. The default is 0<br /><b>formatNumber</b>：A callback to format dynamic parameters of type <b>Number</b>, with the corresponding type tag <b>n</b> or <b>N</b><br /><b>formatCurrency</b>：A callback to format dynamic parameters of type <b>Currency</b>, with the corresponding type tag <b>c</b> or <b>C</b><br /><b>formatDate</b>：A callback to format dynamic parameters of type <b>Date</b>, with the corresponding type tag <b>d</b> or <b>D</b><br /><b>formatTime</b>：A callback to format dynamic parameters of type <b>Time</b>, with the corresponding type tag <b>t</b> or <b>T</b><br /><b>formatPlural</b>：A callback to format dynamic parameters of type <b>Plural</b>, with the corresponding type tag <b>p</b> or <b>P</b><br /><br />📢📢📢：The value of <code>locale</code> corresponds to the language code by default. If you need to customize, please refer to the usage of <code>codeLocaleMap</code>
+    </td>
+  </tr>
+  <tr>
+    <td>withI18N</td>
+    <td>
+      <pre>
+(
+    props:{
+          locale: string
+    }
+) => ({ i18n })
+      </pre>
+    </td>
+    <td>
+      Get i18n functions independent of the main program<br /><br />It is applicable to the server. Each interface response needs to be internationalized
+    </td>
+  </tr>
+</table>
+
+## Function Type
+
+### FormatFunc
+Common format callback type
+```ts
 type FormatFunc = <T>(props:{
-  locale: string, // 当前语言
-  payload: string | number | unknow | T, // 动态参数
+  locale: string, // Current language
+  payload: string | number | unknow | T, // dynamic parameters 
 }) => number | string
 ```
+
 ### FormatDateFunc
-日期（时间）的格式化回调函数类型
-```typescript
-type FormatPluralFunc = <T>(props:{
-  locale: string, // 当前语言
-  payload: string | number | Date | unknow | T, // 动态参数
+Format callback function type of Date(Time)
+```ts
+type FormatDateFunc = <T>(props:{
+  locale: string, // Current language
+  payload: string | number | Date | unknow | T, // dynamic parameters 
 }) => string
 ```
+
 ### FormatPluralFunc
-复数的格式化回调函数类型
-```typescript
+Format callback function type of Plural
+```ts
 type FormatPluralFunc = <T>(props:{
-  locale: string, // 当前语言
-  payload: string | number | unknow | T, // 动态参数
-  text: string // 默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性
-  keyword: string // 复数关键词
+  locale: string, // Current language
+  payload: string | number | unknow | T, // dynamic parameters 
+  text: string // A string that combines quantifiers and nouns by default. Languages that do not require plural processing can return this property directly
+  keyword: string // Plural keyword
 }) => string
 ```
 
-# 匹配规则
-要求：
-+ `i18n` 函数第一个参数只能是纯字符串，不能包含变量，或者js语句
-+ 不能包含 `\n`、`\t` 等特殊字符
-+ 开始和结尾不能包含空格
-+ 如果用字符串模块语法不能换行
+# Matching Rules
+requirement：
+* The first parameter of the `i18n`  function can only be a pure string and cannot contain variables or js statements
+* Cannot contain special characters such as  `\n` and `\t` 
+* The beginning and end cannot contain spaces
+* If you use the  `Template Strings`  syntax, you cannot wrap lines
 
-不满足上面条件，可能会导致
-+ 翻译文本提取不正确
-+ 翻译结果不正确
+Failure to meet the above conditions may result in
+* Incorrect extraction of translated text
+* Incorrect translation result
 
-以下是可以匹配到的
+The following can be matched
 ```js
 i18n('xxx')
 i18n("xxx")
 i18n(`xxx`)
 ```
-以下是不会被匹配到的
+The following will not be matched
+
 ```js
 const foo = 'foo'
 const fooFunc = (x:string) => x
 
-// 不满足纯字符串
+// Does not satisfy pure string
 i18n(foo)
-i18n('xxx'+foo)
+i18n('xxx' + foo)
 i18n(`${foo}`)
 i18n(fooFunc(foo))
 
-// 包含 \n 或者 \t
+// Contains \n or \t
 i18n('x\nx')
 i18n('x\tx')
 
-// 前后包含空格
+// Include spaces before and after
 i18n(' xxx')
 i18n('xxx  ')
 i18n(' xxx ')
 
-// 字符串模板中有换行
+// There are line breaks in the Template Strings syntax
 i18n(`
 xxx
 `)
 ```
-如果需要拼接字符串，可以用动态参数
+If string splicing is required, dynamic parameters can be used
+
 ```js
-i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', '22', '火星', '码农')
+i18n('My name is {0}, I am {1} years old this year, from {2}, and I am a {3}', 'Wang Nima', 35, 'Mars', 'coder')
 ```
 
-# 输出日志
-为了方便追踪与定位问题，整个翻译过程中会有一些必要的日志输出，翻译命令执行完全后会在 `output.path` 目录下生成一个 `.log` 的日志目录，所有的日志是以独立文件的形式呈现，包含日志类型如下：
-| 文件名                 | 描述                                                                                                           |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------- |
-| filepaths.json         | 配到的文件路径列表                                                                                             |
-| texts-error.json       | 提取到所有不符合要求的翻译文本<br/><br/> 📢📢📢：不包含使用变量、js语句等场景                                     |
-| texts.json             | 提取到所有符合要求的翻译文本                                                                                   |
-| translate-fail.json    | 翻译失败的文本列表                                                                                             |
-| translate-error.json   | 翻译有误的文本列表<br/><br/>当前可以识别出动态参数翻译后丢失的异常                                             |
-| translate-success.json | 翻译成功的文本列表<br/><br/>📢📢📢：只会包含本次翻译的文本，增量翻译模式下，原来已翻译过的文本不会包含在其中      |
-| langCode.json          | 某个目标语言独立的语言包<br/><br/> 当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包 |
-| langs.json             | 聚合的语言包<br/><br/> 当 `output.langType == 'multiple'` 时，会在日志目录下生成聚合的语言包                   |
+# Output Log
+To facilitate tracking and locating problems, there will be some necessary log output during the whole translation process. After the translation command is executed completely, a  `.log`  log directory will be generated under the  `output.path`  directory. All logs are presented in the form of independent files, including the following log types：
+|Filename|Description|
+|:-|:-|
+|filepaths.json|List of matched file paths|
+|texts-error.json|Extract all unqualified translated texts<br /><br />📢📢📢：Scenarios such as using variables and js statements are not included|
+|texts.json|Extract all qualified translated texts|
+|translate-fail.json|List of failed translations|
+|translate-error.json|List of incorrectly translated texts<br /><br />Currently, we can identify the exceptions lost after dynamic parameters translation|
+|translate-success.json|List of successfully translated texts<br /><br />📢📢📢：In incremental translation mode, only the untranslated text will be included, and the text which has been translated will not be included|
+|langCode.json|An independent language pack for a target language<br /><br />When  `output.langType == 'single'` , a single language pack of target language will be generated in the log directory|
+|langs.json|Aggregated language pack<br /><br />When  `output.langType == 'multiple'` , the aggregated language pack will be generated in the log directory|
+
 # Q&A
-## 1. 动态参数（插值变量）为什么不支持对象属性解析？
-示例代码
+
+## 1. Why do dynamic parameters (interpolation variables) not support object attribute resolution?
+Sample code
 ```js
-// 对象属性解析
+// Object attribute resolution
 i18n('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
   name: '王尼玛',
   age: 22,
@@ -348,7 +418,7 @@ i18n('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
   job: '码农',
 })
 
-// 当前库的下标解析
+// Resolution of subscripts in the current library
 i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
   '王尼玛',
   '22',
@@ -356,103 +426,134 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
   '码农',
 )
 ```
-主要原因是文本中包含属性名，不利于通过第三方平台翻译，上面的示例中文翻译英文还OK，如果是英文翻译到中文或其他语言，动态参数中的属性名也会被翻译，这就是问题所在
+The main reason is that the text contains attribute names, which is not conducive to translation through third-party platforms. The Chinese translation of the above example is OK. If it is translated from English to Chinese or other languages, the attribute names in the dynamic parameters will also be translated, which is the problem
 
-对象属性解析的示例
+Example of object attribute resolution
 ```js
-// 待翻译文本为中文
+// The text to be translated is in Chinese
 const zh = '我叫{name}，今年{age}岁，来自{base}，是一名{job}'
 
-// 通过百度翻译成英文，看似OK的
+// Translated into English through Baidu-Translation, it seems OK
 const zhToEn = `My name is {name}. I'm {age} years old. I'm from {base}. I'm a {job} `
 
-// 再通过百度翻译从上面的英文翻译成中文，可以发现{job}的翻译就出问题了，而且不同的翻译平台，可能出现在的问题也不一样
+// Then translate the above English into Chinese through Baidu-Translation, we can find that the translation of {job} has problems, and different translation platforms may have different problems
 const enToZh = '我的名字是｛name｝。我{age}岁。我来自{base}。我是{工作}'
 ```
-再来看看下标解析的示例
+Let's take a look at the example of subscript parsing
 ```js
-// 待翻译文本为中文
+// The text to be translated is in Chinese
 const zh = '我叫{0}，今年{1}岁，来自{2}，是一名{3}'
 
-// 通过百度翻译成英文
+// Translated into English through Baidu-Translation
 const zhToEn = `My name is {0}. I'm {1} years old. I'm from {2}. I'm a {3}`
 
-// 通过百度翻译从上面的英文翻译成中文，不会出现上面参数匹配不上的问题
+// Translate the above English into Chinese through Baidu-Translation, and the above parameters will not be mismatched
 const enToZh = '我的名字是｛0｝。我是｛1｝岁。我来自｛2｝。我是｛3｝'
 ```
-虽然通过机器翻译本来就不能做到100%的准确率，但是这种方式也可以尽量不必要的错误
-## 2. 动态参数类型**日期**和**时间**分开有必要吗？
-个人感觉其实是没有必要的，只是设计上已经实现了，大家可以酌情灵活选择使用，当然不排除有的业务场景这样分开处理会更方便
-# 更新日志
+Although machine translation can not achieve 100% accuracy, it can make unnecessary mistakes as much as possible
+## 2. Is it necessary to separate dynamic parameters types **Date** and **Time**?
+Personally, I don't think it is necessary, but it has been implemented in the design. You can choose to use it flexibly at your discretion. Of course, it is not ruled out that some business scenarios will be more convenient to deal with separately
+# Changelog
 
 ## [1.4.0] - 2022-xx-xx
+
 ### Added
-- 初始化命令和翻译命令添加 `-P` | `--path` 参数，支持灵活指定配置文件路径
+* Add English document and set it as default document
+* Add  `-P` | `--path`  parameter to initialization command and translation command to support flexible specification of configuration file path
+
+### Changed
+
 ## [1.3.2] - 2022-09-24
+
 ### Fixed
-- 修复在 Windows 系统中执行翻译命令后会意外生成类 `xxx.jso` 文件夹
+* Fix unexpected generation of similar to  `xxx.jso`  folder after executing translation command in Windows system
+
 ## [1.3.1] - 2022-09-21
+
 ### Fixed
-- 修复初始化命令在 Windows 系统中报异常
+* Fix initialization command reporting an exception in Windows system
+
 ## [1.3.0] - 2022-09-13
+
 ### Added
-- 添加新的日志输出类型：翻译有误的文本列表
-- 添加 `withI18N` 函数API用于支持服务端场景
-- 添加动态参数类型标记和类型格式化回调函数
-  - 支持 数字、货币、日期、时间、复数 等类型的动态参数标记
-  - `setI18N` 添加了 `formatNumber`、`formatCurrency`、`formatDate`、`formatTime`、`formatPlural` 等属性
+* Add a new log output type: List of incorrectly translated texts
+* Add  `withI18N`  function API to support server scenarios
+* Add dynamic parameters type tags and type formatting callback functions
+
+   * Support dynamic parameters markers of Number, Currency, Date, Time, Plural, etc
+   * `setI18N`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
+
+
 ### Changed
-- `translate-error.json` 由**翻译失败**改为**翻译错误**类型，**翻译失败**由 `translate-fail.json` 来标识
+* `translate-error.json`  is changed from **Translation failed** to **translation error** type, and **Translation failed** is identified by  `translate-fail.json` 
+
 ### Fixed
-- 修复 `baiduConfig.delay` 在多个语言切换时不生效
+* Fix  `baiduConfig.delay`  does not take effect when multiple languages are switched
+
 ## [1.2.1] - 2022-07-07
+
 ### Fixed
-- 修复执行命令报错：`Error: Cannot find module 'md5-node'`
+* Fix execute command error: `Error: Cannot find module 'md5-node'`
+
 ## [1.2.0] - 2022-07-05
+
 ### Added
-- 新增翻译命令执行的耗时统计输出
-- 新增[输出日志](#输出日志)文档说明以及新的输出日志类型：配到的文件路径列表
-- 新增 `增量翻译` 模式
-  - 该模式默认开启，可通过命令参数 `--non-incremental` 关闭
-  - 支持只翻译目标语言未翻译过的文本
-  - 支持智能移除语言包中已翻译却未再使用的文本
-- 新增 `setI18N` 函数参数属性 `beginIndex`，用于指定动态参数的起始下标
-- 新增 `output.indentSize` 配置属性，用于指定输出文件缩进空格数
-- 新增 `baiduConfig.delay` 配置属性，用于设置百度翻译的延迟时间
-- 新增匹配规则约束：翻译文本中不能包含特殊字符 `\t`
+* Add time consuming statistics output of translation command execution
+* New [Output Log](#output-log) document description and new output log type: List of matched file paths
+* Add  `incremental translation`  mode
+
+   * This mode is enabled by default and can be closed through the command parameter  `--non-incremental` 
+   * Support for translating only untranslated text in the target language
+   * Support intelligent removal of translated but unused text in language pack
+
+* Add the  `setI18N`  function parameters attribute  `beginIndex` to specify the starting subscript of the dynamic parameters
+* Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
+* Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
+* New matching rule constraint: the translated text cannot contain the special character  `\t`
+
 ### Changed
-- 优化命令行不输命令只输参数 `-L` | `--locale` 也能显示对应语言的提示
-  - `npx i18n -L en`
-  - `npx i18n --locale en`
-- 优化翻译失败的输出日志（`translate-error.json`）给出了失败具体原因
-- 调整百度翻译接口批量翻译的请求字符数上限为 `3000`
+* Optimize the command line not input command only input parameter  `-L` | `--locale`  can also display the corresponding language prompts
+
+   * `npx i18n -L en`
+   * `npx i18n --locale en`
+
+* Optimize the translation failure output log（`translate-error.json`）given specific cause failure
+* Adjust the maximum number of characters requested for batch translation of Baidu-Translation interface to  `3000`
+
 ### Fixed
-- 修复 `setI18N` 设置单个属性会导致其他属性状态丢失
-- 修复翻译文本包含 `\t` 特殊字符导致翻译异常
+* Fix  `setI18N`  setting a single attribute will cause other attribute states to be lost
+* Fix translation exceptions caused by translation text containing  `\t`  special characters
 
 ## [1.1.1] - 2022-06-25
+
 ### Fixed
-- 修复文档中图片不显示的问题
+* Fix the problem that the picture does not appear in the document
+
 ## [1.1.0] - 2022-06-25
+
 ### Added
-- 新增 `README` 说明文档
-- 新增 `output.langType` 配置项支持生成不同格式的语言包
-- 新增 `from`、`to`、`codeLocaleMap` 百度翻译的配置项
-- 新增 `funcName` 配置项支持自定义匹配函数名
+* Add  `README`  description document
+* The new  `output.langType`  configuration item supports generating language pack in different formats
+* Add  `from`, `to`, `codeLocaleMap`  Baidu-Translation configuration items
+* New  `funcName`  configuration item supports user-defined matching function name
+
 ### Changed
-- 配置项 `filterFile` 已废弃，由 `fileRegExp` 代替
+* Configuration item  `filterFile`  has been deprecated and replaced by  `fileRegExp` 
+
 ### Removed
-- 移除了 `got`，`walk`，`chalk`，`lodash` 等依赖库
+* Remove  `got`, `walk`, `chalk`, `lodash`  and other dependencies
+
 ### Fixed
-- 修复日志文件（translate-success.json）在文本包含 `.` 的情况下格式错误
+* Fix the format error of the log file （translate-success.json） when the text contains  `.` 
 
 ## [1.0.0] - 2022-06-13
-### Added
-- 新增语言切换命令行参数
-- 新增 `i18n` 和 `setI18N` 函数API
-- 新增 `命令行工具` 的基本实现
 
-# License
+### Added
+* Add command line parameters for language switching
+* New  `i18n`  and  `setI18N`  function API
+* Add the basic implementation of  `Command Line Tool` 
+
+# LICENSE
 [MIT](./LICENSE)
 
 Copyright (c) 2022-present Eyelly Wu

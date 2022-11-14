@@ -304,6 +304,7 @@ function V_1_4_0() {
       <VersionTitle version="1.4.0" date="2022-xx-xx" />
       <Added />
       <UnorderList>
+        <ListItem>{tr('新增英文文档，并设置为默认文档')}</ListItem>
         <ListItem>
           {tr(
             '初始化命令和翻译命令添加{0}参数，用于支持灵活指定配置文件路径',
@@ -311,6 +312,7 @@ function V_1_4_0() {
           )}
         </ListItem>
       </UnorderList>
+      <Changed />
     </>
   )
 }
