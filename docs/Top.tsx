@@ -11,7 +11,7 @@ function renderLanguage() {
       res.push(name)
     } else {
       res.push(
-        <Link href={`./README${code != 'en' ? '_' + locale : ''}`}>
+        <Link href={`./README${code != 'en' ? '_' + locale : ''}.md`}>
           {name}
         </Link>,
       )
@@ -35,8 +35,12 @@ function renderLanguage() {
 }
 
 export default function Top() {
+  const props = {
+    align: 'center',
+  }
+
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div {...props}>
       <Break />
       <Link {...linkObj['github']}>
         <Image {...imageObj['logo']} />

@@ -1,24 +1,24 @@
-<div style="text-align: center;">
-  
+<div align="center">
+
 [![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png 'logo')](https://github.com/eyelly-wu/i18n-pro)
 
 
-[English](./README) | 简体中文
+[English](./README.MD) | 简体中文
 
 
   <p style="font-size: 18px;">轻量、简单、灵活、自动翻译的国际化工具</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square 'npm-version')](https://www.npmjs.com/package/i18n-pro)
-[![npm-download](https://img.shields.io/npm/dm/i18n-pro 'npm-download')](https://www.npmjs.com/package/i18n-pro) 
-[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro 'npm-quality-score')](https://www.npmjs.com/package/i18n-pro) 
-[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro) 
-[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic 'dependenices')](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies) 
-[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social 'github-stars')](https://github.com/eyelly-wu/i18n-pro/stargazers) 
-[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro 'last-commit')](https://github.com/eyelly-wu/i18n-pro/commits/main) 
-[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro 'github-issues')](https://github.com/eyelly-wu/i18n-pro/issues) 
-[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 'codecov')](https://codecov.io/gh/eyelly-wu/i18n-pro) 
-[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-alerts')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/) 
-[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-quality')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript) 
+[![npm-download](https://img.shields.io/npm/dm/i18n-pro 'npm-download')](https://www.npmjs.com/package/i18n-pro)
+[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro 'npm-quality-score')](https://www.npmjs.com/package/i18n-pro)
+[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro)
+[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic 'dependenices')](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies)
+[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social 'github-stars')](https://github.com/eyelly-wu/i18n-pro/stargazers)
+[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro 'last-commit')](https://github.com/eyelly-wu/i18n-pro/commits/main)
+[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro 'github-issues')](https://github.com/eyelly-wu/i18n-pro/issues)
+[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 'codecov')](https://codecov.io/gh/eyelly-wu/i18n-pro)
+[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-alerts')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/)
+[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-quality')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript)
 
 </div>
 
@@ -122,7 +122,7 @@ const text = i18n('你好世界')
 ## 3. 初始化命令行配置文件
 在命令行终端输入如下命令，[更多命令](#命令列表)
 ```bash
-npx i18n init 
+npx i18n init
 ```
 然后会在当前目录下生成一个 `i18nrc.js` 的文件
 
@@ -132,7 +132,7 @@ npx i18n init
 ## 5. 执行翻译命令
 
 ```bash
-npx i18n t 
+npx i18n t
 ```
 命令执行成功的话，会在指定的目录下生成语言包文件
 
@@ -202,50 +202,50 @@ function App(){
 
 ### 基础配置
 
-|名称|类型|是否必设|默认值|说明|
-|:-:|:-:|:-:|:-:|:-|
-|funcName|string|否|i18n|命令行匹配翻译文本的函数名<br /><br />如果在使用 `i18n` 函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名|
-|entry|string|是|-|指定翻译文件目录（绝对路径）|
-|fileRegExp|RegExp|否| `/.[jt]s$/` |匹配文件名的正则表达式<br /><br />用于筛选需要被翻译的文件|
-|output|[Output](#output)|是|-|输出文件相关的配置|
-|baiduConfig|[BaiduConfig](#baiduconfig)|是|-|百度翻译相关的配置|
+|    名称     |            类型             | 是否必设 |   默认值    | 说明                                                                                                                   |
+| :---------: | :-------------------------: | :------: | :---------: | :--------------------------------------------------------------------------------------------------------------------- |
+|  funcName   |           string            |    否    |    i18n     | 命令行匹配翻译文本的函数名<br /><br />如果在使用 `i18n` 函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名 |
+|    entry    |           string            |    是    |      -      | 指定翻译文件目录（绝对路径）                                                                                           |
+| fileRegExp  |           RegExp            |    否    | `/.[jt]s$/` | 匹配文件名的正则表达式<br /><br />用于筛选需要被翻译的文件                                                             |
+|   output    |      [Output](#output)      |    是    |      -      | 输出文件相关的配置                                                                                                     |
+| baiduConfig | [BaiduConfig](#baiduconfig) |    是    |      -      | 百度翻译相关的配置                                                                                                     |
 
 ### Output
 输出文件的配置
-|名称|类型|是否必设|默认值|说明|
-|:-:|:-:|:-:|:-:|:-|
-|path|string|是|-|语言包生成的目录（绝对路径）|
-|langType|'single' \| 'multiple'|否|'multiple'|输出语言包文件的形式<br /><br />假设目标语言是 `['en', 'jp']` <br />**single**：只会生成一个聚合的语言包文件 `langs.json`，格式如下：<br />`{"en":{"xxx":"xxx"},"jp":{"xxx":"xxx"}}`<br /><br />**multiple**：每个目标语言都会生成对应的语言包文件，对应两个文件： `en.json`， `jp.json` ，格式如下：<br />`{"xxx":"xxx"}`|
-|indentSize|number|否|2|语言包文件的缩进空格数|
+|    名称    |          类型          | 是否必设 |   默认值   | 说明                                                                                                                                                                                                                                                                                                                       |
+| :--------: | :--------------------: | :------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|    path    |         string         |    是    |     -      | 语言包生成的目录（绝对路径）                                                                                                                                                                                                                                                                                               |
+|  langType  | 'single' \| 'multiple' |    否    | 'multiple' | 输出语言包文件的形式<br /><br />假设目标语言是 `['en', 'jp']` <br />**single**：只会生成一个聚合的语言包文件 `langs.json`，格式如下：<br />`{"en":{"xxx":"xxx"},"jp":{"xxx":"xxx"}}`<br /><br />**multiple**：每个目标语言都会生成对应的语言包文件，对应两个文件： `en.json`， `jp.json` ，格式如下：<br />`{"xxx":"xxx"}` |
+| indentSize |         number         |    否    |     2      | 语言包文件的缩进空格数                                                                                                                                                                                                                                                                                                     |
 
 ### BaiduConfig
 百度翻译的配置
-|名称|类型|是否必设|默认值|说明|
-|:-:|:-:|:-:|:-:|:-|
-|appid|string|是|-|APPID，需要[注册账号](http://api.fanyi.baidu.com/doc/21 '文档中有指导说明')申请|
-|key|string|是|-|密钥，要求同上|
-|from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br /><br />[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索`语种列表`|
-|to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
-|codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
+|     名称      |          类型          | 是否必设 | 默认值 | 说明                                                                                                                                                                                                                                                        |
+| :-----------: | :--------------------: | :------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     appid     |         string         |    是    |   -    | APPID，需要[注册账号](http://api.fanyi.baidu.com/doc/21 '文档中有指导说明')申请                                                                                                                                                                             |
+|      key      |         string         |    是    |   -    | 密钥，要求同上                                                                                                                                                                                                                                              |
+|     from      |         string         |    是    |   -    | 被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br /><br />[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索`语种列表`                                                                                                          |
+|      to       |        string[]        |    是    |   -    | 翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用 |
+| codeLocaleMap | Record<string, string> |    否    |   {}   | 设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json`                          |
 
 ## 2. 命令
 
 ### 命令列表
 
-|命令|简写|用法|说明|
-|:-:|:-:|:-|:-|
-|init|-|`npx i18n init`|初始化配置文件|
-|translate|t|`npx i18n translate` <br /> `npx i18n t`|提取翻译文本，自动翻译并生成语言包|
-|version|v|`npx i18n version`<br />`npx i18n v`|显示版本信息|
-|help|h|`npx i18n help`<br />`npx i18n h`|显示帮助信息|
+|   命令    | 简写  | 用法                                     | 说明                               |
+| :-------: | :---: | :--------------------------------------- | :--------------------------------- |
+|   init    |   -   | `npx i18n init`                          | 初始化配置文件                     |
+| translate |   t   | `npx i18n translate` <br /> `npx i18n t` | 提取翻译文本，自动翻译并生成语言包 |
+|  version  |   v   | `npx i18n version`<br />`npx i18n v`     | 显示版本信息                       |
+|   help    |   h   | `npx i18n help`<br />`npx i18n h`        | 显示帮助信息                       |
 
 ### 命令参数
 
-|参数名|简写|参数值|适用命令|用法|说明|
-|:-:|:-:|:-:|:-|:-|:-|
-|--locale|-L|`en` \| `zh`|ALL|`npx i18n h -L en`<br />`npx i18n h --locale en`|指定命令行显示语言<br /><br />可选语言有中文（zh）/ 英文（en）， 默认为英文（en）|
-|--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|关闭增量翻译模式<br /><br />⚠️⚠️⚠️：关闭增量翻译模式后，所有的文本会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文本丢失，需慎重考虑使用！！！|
-|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|指定配置文件路径（参数为绝对路径）<br /><br />只需要指定路径名，配置文件名默认为 `i18nrc.js`|
+|      参数名       | 简写  |    参数值    | 适用命令                         | 用法                                                              | 说明                                                                                                                                              |
+| :---------------: | :---: | :----------: | :------------------------------- | :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+|     --locale      |  -L   | `en` \| `zh` | ALL                              | `npx i18n h -L en`<br />`npx i18n h --locale en`                  | 指定命令行显示语言<br /><br />可选语言有中文（zh）/ 英文（en）， 默认为英文（en）                                                                 |
+| --non-incremental |   -   |      -       | `t`<br />`translate`             | `npx i18n t --non-incremental`                                    | 关闭增量翻译模式<br /><br />⚠️⚠️⚠️：关闭增量翻译模式后，所有的文本会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文本丢失，需慎重考虑使用！！！ |
+|      --path       |  -P   |      -       | `init`<br />`t`<br />`translate` | `npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx` | 指定配置文件路径（参数为绝对路径）<br /><br />只需要指定路径名，配置文件名默认为 `i18nrc.js`                                                      |
 
 # 函数API
 
@@ -394,16 +394,16 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', 35, '�
 
 # 输出日志
 为了方便追踪与定位问题，整个翻译过程中会有一些必要的日志输出，翻译命令执行完全后会在 `output.path` 目录下生成一个 `.log` 的日志目录，所有的日志是以独立文件的形式呈现，包含日志类型如下：
-|文件名|说明|
-|:-|:-|
-|filepaths.json|匹配到的文件路径列表|
-|texts-error.json|提取到所有不符合要求的翻译文本<br /><br />📢📢📢：不包含使用变量、js语句等场景|
-|texts.json|提取到所有符合要求的翻译文本|
-|translate-fail.json|翻译失败的文本列表|
-|translate-error.json|翻译有误的文本列表<br /><br />当前可以识别出动态参数翻译后丢失的异常|
-|translate-success.json|翻译成功的文本列表<br /><br />📢📢📢：增量翻译模式下，只会包含本次翻译的文本，原来已翻译过的文本不会包含在其中|
-|langCode.json|某个目标语言独立的语言包<br /><br />当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包|
-|langs.json|聚合的语言包<br /><br />当 `output.langType == 'multiple'` 时，会在日志目录下生成聚合的语言包|
+| 文件名                 | 说明                                                                                                            |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| filepaths.json         | 匹配到的文件路径列表                                                                                            |
+| texts-error.json       | 提取到所有不符合要求的翻译文本<br /><br />📢📢📢：不包含使用变量、js语句等场景                                     |
+| texts.json             | 提取到所有符合要求的翻译文本                                                                                    |
+| translate-fail.json    | 翻译失败的文本列表                                                                                              |
+| translate-error.json   | 翻译有误的文本列表<br /><br />当前可以识别出动态参数翻译后丢失的异常                                            |
+| translate-success.json | 翻译成功的文本列表<br /><br />📢📢📢：增量翻译模式下，只会包含本次翻译的文本，原来已翻译过的文本不会包含在其中     |
+| langCode.json          | 某个目标语言独立的语言包<br /><br />当 `output.langType == 'single'` 时，会在日志目录下生成目标语言单个的语言包 |
+| langs.json             | 聚合的语言包<br /><br />当 `output.langType == 'multiple'` 时，会在日志目录下生成聚合的语言包                   |
 
 # Q&A
 
@@ -458,7 +458,7 @@ const enToZh = '我的名字是｛0｝。我是｛1｝岁。我来自｛2｝。�
 ## [1.4.0] - 2022-xx-xx
 
 ### Added
-* 新增英文文档，并设置为默认文档abcdasdf
+* 新增英文文档，并设置为默认文档
 * 初始化命令和翻译命令添加 `-P` | `--path` 参数，用于支持灵活指定配置文件路径
 
 ### Changed

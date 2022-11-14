@@ -1,9 +1,9 @@
-<div style="text-align: center;">
+<div align="center">
   
 [![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png 'logo')](https://github.com/eyelly-wu/i18n-pro)
 
 
-English | [简体中文](./README_zh-CN)
+English | [简体中文](./README_zh-CN.md)
 
 
   <p style="font-size: 18px;">Lightweight, simple, flexible and automatic-translation tools for internationalization</p>
