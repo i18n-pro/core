@@ -6,7 +6,7 @@ export type Link = Readonly<{
 export type Image = Readonly<{
   title: string
   alt: string
-  href: string
+  src: string
 }>
 
 export type LinkArray = Link[]

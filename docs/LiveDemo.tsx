@@ -16,7 +16,7 @@ export default function LiveDemo() {
             <Image
               alt="Open in StackBlitz"
               title="Open in StackBlitz"
-              href="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg"
+              src="https://developer.stackblitz.com/img/open_in_stackblitz_small.svg"
             />
           </Link>
         </ListItem>
