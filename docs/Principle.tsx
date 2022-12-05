@@ -12,15 +12,12 @@ import React, {
 export default function Principle() {
   return (
     <>
-      <Break />
       <H1>{tr('原理')}</H1>
       {tr('该库主要由两部分构成')}
-      <Break />
       <UnorderList>
         <ListItem>{tr('命令行工具')}</ListItem>
         <ListItem>{tr('函数API')}</ListItem>
       </UnorderList>
-      <Break />
       <Bold>{tr('命令行工具')}</Bold>：
       {tr(
         '根据指定规则解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件',
@@ -33,9 +30,9 @@ export default function Principle() {
           <Link href={`#${tr('匹配规则')}`}>{tr('匹配规则')}</Link>,
         )} `,
       )}
-      <Break />
-      <CodeBlock langType="js">
-        {`// ${tr('普通字符串')}
+      <CodeBlock
+        langType="js"
+        code={`// ${tr('普通字符串')}
 i18n('xxx')
 i18n("xxx")
 i18n(\`xxx\`)
@@ -55,8 +52,7 @@ i18n('${tr(
           `{${tr('p1个香蕉')}}`,
           `{${tr('p2个梨')}}`,
         )}', 5, 4, 3) // ${tr('复数类型')}`}
-      </CodeBlock>
-      <Break />
+      />
       <Bold>{tr('函数API')}</Bold>：
       {tr(
         '将国际化语言包接入到项目中，由{0}、{1}和{2}构成',
@@ -64,7 +60,6 @@ i18n('${tr(
         '`setI18N` ',
         ' `withI18N` ',
       )}
-      <Break />
       <UnorderList>
         <ListItem>
           <Bold>i18n</Bold>：
@@ -80,7 +75,6 @@ i18n('${tr(
           {tr('适用于服务端，每个接口响应需要做国际化的处理')}
         </ListItem>
       </UnorderList>
-      <Break />
       {tr(
         '所以{0}和{1}这两者搭配使用效果更佳，也正是由于这样的结构设计，使得{2}库可以很方便集成到任何的{3}项目中',
         ` \`${tr(`命令行工具`)}\` `,

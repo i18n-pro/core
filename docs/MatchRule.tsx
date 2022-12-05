@@ -5,7 +5,6 @@ export default function MatchRule() {
     <>
       <H1>{tr('匹配规则')}</H1>
       {tr('要求')}：
-      <Break />
       <UnorderList>
         <ListItem>
           {tr(
@@ -21,24 +20,20 @@ export default function MatchRule() {
           {tr('如果用{0}语法不能换行', ` \`${tr('模板字符串')}\` `)}
         </ListItem>
       </UnorderList>
-      <Break />
       {tr('不满足上面条件，可能会导致')}
-      <Break />
       <UnorderList>
         <ListItem>{tr('翻译文本提取不正确')}</ListItem>
         <ListItem>{tr('翻译结果不正确')}</ListItem>
       </UnorderList>
-      <Break />
       {tr('以下是可以匹配到的')}
-      <CodeBlock>
-        {`i18n('xxx')
+      <CodeBlock
+        code={`i18n('xxx')
 i18n("xxx")
 i18n(\`xxx\`)`}
-      </CodeBlock>
+      />
       {tr('以下是不会被匹配到的')}
-      <Break />
-      <CodeBlock>
-        {`const foo = 'foo'
+      <CodeBlock
+        code={`const foo = 'foo'
 const fooFunc = (x:string) => x
 
 // ${tr('不满足纯字符串')}
@@ -60,14 +55,13 @@ i18n(' xxx ')
 i18n(\`
 xxx
 \`)`}
-      </CodeBlock>
+      />
       {tr('如果需要拼接字符串，可以用动态参数')}
-      <Break />
-      <CodeBlock>
-        {`i18n('${tr('我叫{0}，今年{1}岁，来自{2}，是一名{3}')}', '${tr(
+      <CodeBlock
+        code={`i18n('${tr('我叫{0}，今年{1}岁，来自{2}，是一名{3}')}', '${tr(
           '王尼玛',
         )}', 35, '${tr('火星')}', '${tr('码农')}')`}
-      </CodeBlock>
+      />
     </>
   )
 }

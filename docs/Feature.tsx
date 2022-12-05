@@ -12,7 +12,6 @@ import { linkObj, imageObj } from './constants'
 export default function Vision() {
   return (
     <>
-      <Break />
       <H1>{tr('特性')}</H1>
       <UnorderList>
         <ListItem>

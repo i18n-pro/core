@@ -3,7 +3,6 @@ import React, { Break, H1, UnorderList, ListItem, Link, Image } from 'jsx-to-md'
 export default function LiveDemo() {
   return (
     <>
-      <Break />
       <H1>Live Demo</H1>
       <UnorderList>
         <ListItem>

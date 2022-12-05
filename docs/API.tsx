@@ -166,24 +166,27 @@ function FunctionType() {
       <H2>{tr('函数类型')}</H2>
       <H3>FormatFunc</H3>
       {tr('通用的格式化回调类型')}
-      <CodeBlock langType="ts">
-        {`type FormatFunc = <T>(props:{
+      <CodeBlock
+        langType="ts"
+        code={`type FormatFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
   payload: string | number | unknow | T, // ${tr('动态参数')}
 }) => number | string`}
-      </CodeBlock>
+      />
       <H3>FormatDateFunc</H3>
       {tr('日期（时间）的格式化回调函数类型')}
-      <CodeBlock langType="ts">
-        {`type FormatDateFunc = <T>(props:{
+      <CodeBlock
+        langType="ts"
+        code={`type FormatDateFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
   payload: string | number | Date | unknow | T, // ${tr('动态参数')}
 }) => string`}
-      </CodeBlock>
+      />
       <H3>FormatPluralFunc</H3>
       {tr('复数的格式化回调函数类型')}
-      <CodeBlock langType="ts">
-        {`type FormatPluralFunc = <T>(props:{
+      <CodeBlock
+        langType="ts"
+        code={`type FormatPluralFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
   payload: string | number | unknow | T, // ${tr('动态参数')}
   text: string // ${tr(
@@ -191,7 +194,7 @@ function FunctionType() {
   )}
   keyword: string // ${tr('复数关键词')}
 }) => string`}
-      </CodeBlock>
+      />
     </>
   )
 }
