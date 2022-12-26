@@ -46,14 +46,6 @@ const links = [
     title: 'codecov',
     href: 'https://codecov.io/gh/eyelly-wu/i18n-pro',
   },
-  {
-    title: 'lgtm-alerts',
-    href: 'https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/',
-  },
-  {
-    title: 'lgtm-quality',
-    href: 'https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript',
-  },
 ] as const
 
 type LinkTitleType = ArrayObject<typeof links, 'title'>
@@ -125,16 +117,6 @@ const images = [
     title: 'codecov',
     alt: 'codecov',
     src: 'https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7',
-  },
-  {
-    title: 'lgtm-alerts',
-    alt: 'lgtm-alerts',
-    src: 'https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18',
-  },
-  {
-    title: 'lgtm-quality',
-    alt: 'lgtm-quality',
-    src: 'https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18',
   },
 ] as const
 

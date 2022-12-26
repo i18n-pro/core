@@ -17,8 +17,6 @@
 [![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro "last-commit")](https://github.com/eyelly-wu/i18n-pro/commits/main "last-commit") 
 [![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues") 
 [![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/eyelly-wu/i18n-pro "codecov") 
-[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 "lgtm-alerts")](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/ "lgtm-alerts") 
-[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 "lgtm-quality")](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript "lgtm-quality") 
 
 </div>
 

@@ -88,14 +88,6 @@ export default function Top() {
         <Image {...imageObj.codecov} />
       </Link>{' '}
       <Break />
-      <Link {...linkObj['lgtm-alerts']}>
-        <Image {...imageObj['lgtm-alerts']} />
-      </Link>{' '}
-      <Break />
-      <Link {...linkObj['lgtm-quality']}>
-        <Image {...imageObj['lgtm-quality']} />
-      </Link>{' '}
-      <Break />
     </div>
   )
 }
