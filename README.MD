@@ -1,6 +1,6 @@
 <div align="center">
   
-[![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png 'logo')](https://github.com/eyelly-wu/i18n-pro)
+[![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png "logo")](https://github.com/eyelly-wu/i18n-pro "github")
 
 
 English | [简体中文](./README_zh-CN.md)
@@ -8,17 +8,17 @@ English | [简体中文](./README_zh-CN.md)
 
   <p style="font-size: 18px;">Lightweight, simple, flexible and automatic-translation tools for internationalization</p>
 
-[![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square 'npm-version')](https://www.npmjs.com/package/i18n-pro)
-[![npm-download](https://img.shields.io/npm/dm/i18n-pro 'npm-download')](https://www.npmjs.com/package/i18n-pro) 
-[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro 'npm-quality-score')](https://www.npmjs.com/package/i18n-pro) 
-[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro) 
-[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic 'dependenices')](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies) 
-[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social 'github-stars')](https://github.com/eyelly-wu/i18n-pro/stargazers) 
-[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro 'last-commit')](https://github.com/eyelly-wu/i18n-pro/commits/main) 
-[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro 'github-issues')](https://github.com/eyelly-wu/i18n-pro/issues) 
-[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 'codecov')](https://codecov.io/gh/eyelly-wu/i18n-pro) 
-[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-alerts')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/) 
-[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-quality')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript) 
+[![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
+[![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm") 
+[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro "npm-quality-score")](https://www.npmjs.com/package/i18n-pro "npm") 
+[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize") 
+[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic "dependenices")](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies "dependenices") 
+[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social "github-stars")](https://github.com/eyelly-wu/i18n-pro/stargazers "github-stars") 
+[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro "last-commit")](https://github.com/eyelly-wu/i18n-pro/commits/main "last-commit") 
+[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues") 
+[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/eyelly-wu/i18n-pro "codecov") 
+[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 "lgtm-alerts")](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/ "lgtm-alerts") 
+[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 "lgtm-quality")](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript "lgtm-quality") 
 
 </div>
 
@@ -26,7 +26,7 @@ English | [简体中文](./README_zh-CN.md)
 To make internationalization easy and enjoyable 😄💪🏻
 # Features
 
-* **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro)
+* **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **simple**：Low learning cost and easy to use
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
@@ -36,7 +36,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 # Live Demo
 
 * [Open in CodeSandbox](https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg 'Open in StackBlitz')](https://stackblitz.com/edit/i18n-pro-react-demo)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/edit/i18n-pro-react-demo)
 
 
 # Principle
@@ -193,7 +193,7 @@ Therefore, for most scenarios, when switching languages on the page, it is recom
 Hahaha, in addition to the  [Live Demo](#live-demo) above, the console output of the current library  `Command Line Tool`  is also connected to internationalization
 
 You can read the English version through the command  `npx i18n h -L en` 
-![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif 'demo')
+![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")
 If you are interested, you can look at the source code
 # Command Line
 

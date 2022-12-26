@@ -1,6 +1,6 @@
 <div align="center">
   
-[![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png 'logo')](https://github.com/eyelly-wu/i18n-pro)
+[![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png "logo")](https://github.com/eyelly-wu/i18n-pro "github")
 
 
 [English](./README.md) | 简体中文
@@ -8,17 +8,17 @@
 
   <p style="font-size: 18px;">轻量、简单、灵活、自动翻译的国际化工具</p>
 
-[![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square 'npm-version')](https://www.npmjs.com/package/i18n-pro)
-[![npm-download](https://img.shields.io/npm/dm/i18n-pro 'npm-download')](https://www.npmjs.com/package/i18n-pro) 
-[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro 'npm-quality-score')](https://www.npmjs.com/package/i18n-pro) 
-[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro) 
-[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic 'dependenices')](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies) 
-[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social 'github-stars')](https://github.com/eyelly-wu/i18n-pro/stargazers) 
-[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro 'last-commit')](https://github.com/eyelly-wu/i18n-pro/commits/main) 
-[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro 'github-issues')](https://github.com/eyelly-wu/i18n-pro/issues) 
-[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 'codecov')](https://codecov.io/gh/eyelly-wu/i18n-pro) 
-[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-alerts')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/) 
-[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 'lgtm-quality')](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript) 
+[![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
+[![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm") 
+[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro "npm-quality-score")](https://www.npmjs.com/package/i18n-pro "npm") 
+[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize") 
+[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic "dependenices")](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies "dependenices") 
+[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social "github-stars")](https://github.com/eyelly-wu/i18n-pro/stargazers "github-stars") 
+[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro "last-commit")](https://github.com/eyelly-wu/i18n-pro/commits/main "last-commit") 
+[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues") 
+[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/eyelly-wu/i18n-pro "codecov") 
+[![lgtm-alerts](https://img.shields.io/lgtm/alerts/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 "lgtm-alerts")](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/alerts/ "lgtm-alerts") 
+[![lgtm-quality](https://img.shields.io/lgtm/grade/javascript/g/eyelly-wu/i18n-pro.svg?logo=lgtm&logoWidth=18 "lgtm-quality")](https://lgtm.com/projects/g/eyelly-wu/i18n-pro/context:javascript "lgtm-quality") 
 
 </div>
 
@@ -26,7 +26,7 @@
 为了让接入国际化成为轻松且愉快的事😄💪🏻
 # 特性
 
-* **轻量**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic 'bundlesize')](https://bundlephobia.com/package/i18n-pro)
+* **轻量**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **简单**：学习成本低，易上手
 * **灵活**：支持动态参数、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）
 * **自动翻译**：一个命令即可自动提取文本并翻译生成语言包
@@ -36,7 +36,7 @@
 # Live Demo
 
 * [Open in CodeSandbox](https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg 'Open in StackBlitz')](https://stackblitz.com/edit/i18n-pro-react-demo)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/edit/i18n-pro-react-demo)
 
 
 # 原理
@@ -193,7 +193,7 @@ function App(){
 哈哈哈，除了上面的 [Live Demo](#live-demo)，当前库 `命令行工具` 的控制台输出也接入了国际化
 
 通过命令 `npx i18n h -L en` 就能看英文版了
-![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif 'demo')
+![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")
 感兴趣的同学，可以看看源码
 # 命令行
 
