@@ -1,49 +1,85 @@
 import {
   BAI_DU_MAX_LENGTH,
   SEPARATOR_STR,
-  TRANSLATE_ERROR_TEXT,
-} from './constants'
-import { logError, logSuccess } from './utils'
-import { Config, Langs } from '../type'
-import fetch from './fetch'
-import chalk, { STYLE_EOF } from './chalk'
-import { fixErrorTranslateText, getParamsNotEqualMsgs } from './utils'
+  YOU_DAO_MAX_LENGTH,
+} from '../constants'
+import { logError } from '../utils'
+import { Config, Langs, TranslatorConfig } from '../../type'
+import chalk from '../chalk'
+import { setBaiduConfig, translateByBaidu } from './baidu'
+import { setYoudaoConfig, translateByYoudao } from './youdao'
 
-const md5 = require('md5-node')
-const url = require('url')
-
-const config: Config['baiduConfig'] = {
-  appid: '',
-  key: '',
+let config: TranslatorConfig = {
   from: '',
   to: [],
-  delay: 0,
+  codeLocaleMap: undefined,
 }
 
 // 记录最后一次请求完成的时间戳
 let lastRequestTimestamp = 0
 
 // 内部实验性的属性配置
-const innerConfig = {
+let innerConfig = {
   maxStringLength: BAI_DU_MAX_LENGTH,
 }
+
+const translatorImplMap = {
+  baidu: translateByBaidu,
+  youdao: translateByYoudao,
+}
+
+const translatorSetConfigMap = {
+  baidu: setBaiduConfig,
+  youdao: setYoudaoConfig,
+}
+
+const translatorMaxStringLengthMap = {
+  baidu: BAI_DU_MAX_LENGTH,
+  youdao: YOU_DAO_MAX_LENGTH,
+}
+
+let currentTranslatorImpl: typeof translateByBaidu
+let currentTranslatorSetConfig: (
+  config: Config['baiduConfig'] | Config['youdaoConfig'],
+) => void
 
 /**
  * 设置翻译配置
  * @param configProp
  */
 export function setTranslateConfig(
-  configProp: Config['baiduConfig'],
+  configProp: Pick<Config, 'translator' | 'baiduConfig' | 'youdaoConfig'>,
   innerConfigProp = {
-    maxStringLength: BAI_DU_MAX_LENGTH,
+    maxStringLength: 1000000,
   },
 ) {
-  Object.entries(configProp).forEach(([key, value]) => {
-    config[key] = value
-  })
-  Object.entries(innerConfigProp).forEach(([key, value]) => {
-    innerConfig[key] = value
-  })
+  const { translator = 'baidu' } = configProp
+
+  if (!Object.keys(translatorImplMap).includes(translator)) {
+    logError(i18n('不存在 {0} 的配置项', `translator = ${translator}`))
+    process.exit(1)
+  }
+
+  config = configProp[`${translator}Config`]
+  currentTranslatorImpl = translatorImplMap[translator]
+  currentTranslatorSetConfig = translatorSetConfigMap[translator]
+  currentTranslatorSetConfig(configProp[`${translator}Config`])
+  innerConfig = {
+    ...innerConfigProp,
+    ...(() => {
+      const maxStringLength = translatorMaxStringLengthMap[translator]
+      if (maxStringLength) return { maxStringLength }
+      return {}
+    })(),
+  }
+}
+
+/**
+ * 获取当前翻译配置
+ * @returns
+ */
+export function getTranslateConfig() {
+  return config
 }
 
 /**
@@ -54,121 +90,9 @@ async function translateTextsToLangImpl(props: {
   from: string // 被翻译内容的默认语言
   to: string // 需要翻译到其他语言
 }) {
-  const { texts, from, to } = props
-  const { appid, key } = config
+  const res = await currentTranslatorImpl(props)
 
-  const translateText = texts.join(SEPARATOR_STR)
-  const success: Record<string, string> = {}
-  const error: Record<string, string> = {}
-  const textErrorMsg: Record<string, string[]> = {}
-
-  const q = translateText
-  const salt = Date.now()
-  const sign = md5(`${appid}${q}${salt}${key}`)
-
-  const body = {
-    q,
-    from: from,
-    to: to,
-    appid,
-    salt,
-    sign,
-  }
-
-  let res
-
-  try {
-    res = await fetch('http://api.fanyi.baidu.com/api/trans/vip/translate', {
-      method: 'POST',
-      data: new url.URLSearchParams(body).toString(),
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-    })
-
-    if (res.error_code) {
-      const errorTextMap = {
-        52003: i18n('appid 配置不正确'),
-        54001: i18n('key 配置不正确'),
-        54003: i18n(
-          '多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项{0}(具体可参考配置项文档说明)',
-          'baiduConfig.delay',
-        ),
-      }
-      let errorText = errorTextMap[res.error_code]
-      errorText = errorText
-        ? i18n('可能原因是: {0}', chalk.redBright(errorText))
-        : ''
-      throw `${chalk.redBright(i18n('百度翻译接口返回错误'))}：
-      ${i18n('错误码')}：${res.error_code}
-      ${i18n('错误信息')}：${res.error_msg}
-      ${i18n(
-        '可根据错误码在 {0} 该文档中查看错误具体原因',
-        chalk.blueBright.underline('http://api.fanyi.baidu.com/doc/21'),
-      )}
-      ${errorText}
-      `
-    }
-
-    const resMap = res?.trans_result?.reduce?.((res, item) => {
-      const { src, dst } = item
-      res[src] = dst
-
-      return res
-    }, {})
-
-    texts.forEach((text) => {
-      const dst = resMap[text]
-      if (typeof dst !== 'undefined') {
-        const newDst = fixErrorTranslateText(dst)
-        const currentTextError = getParamsNotEqualMsgs(text, newDst)
-        if (currentTextError.length > 0) {
-          textErrorMsg[text] = currentTextError
-        }
-        success[text] = newDst
-        logSuccess(
-          i18n(
-            '{0}({1}{2}{3})：{4}{5}{6}',
-            chalk.greenBright(i18n('翻译成功')),
-            chalk.redBright.italic(from),
-            chalk.bold.greenBright(' → '),
-            chalk.redBright.italic(to),
-            text,
-            chalk.bold.greenBright(' → '),
-            newDst,
-          ),
-        )
-      } else {
-        error[text] = i18n('当前文本【{0}】未被翻译', text)
-      }
-    })
-  } catch (e) {
-    logError(e)
-
-    if (res?.error_code && ['52003', '54001'].includes(res.error_code)) {
-      process.exit(1)
-    }
-
-    let currentErrorText = e || TRANSLATE_ERROR_TEXT
-
-    if (res?.error_code) {
-      currentErrorText = e
-        ?.replaceAll('\n', '')
-        ?.replaceAll(STYLE_EOF, '')
-        ?.replaceAll(chalk.redBright().replace(STYLE_EOF, ''), '')
-        ?.replaceAll(chalk.blueBright.underline().replace(STYLE_EOF, ''), '')
-    }
-
-    texts.forEach((text) => {
-      error[text] = currentErrorText
-    })
-  }
-
-  return {
-    success,
-    error,
-    textErrorMsg,
-  }
+  return res
 }
 
 /**

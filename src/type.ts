@@ -1,4 +1,14 @@
 /**
+ * 公共的翻译配置类型，适用于所有的翻译平台
+ */
+export type TranslatorConfig = {
+  from: string
+  to: string[]
+  codeLocaleMap?: Record<string, string> // 语言代码与locale的映射关系，key为语言代码，value为locale
+  delay?: number // 接口调用延迟时长（单位:秒）
+}
+
+/**
  * 模板配置文件
  */
 export type Config = {
@@ -37,16 +47,23 @@ export type Config = {
     indentSize: number // 输出文件的缩进大小，默认为 2
   }
   /**
+   * 指定翻译平台，默认为【百度】
+   */
+  translator?: 'baidu' | 'youdao'
+  /**
    * 百度翻译的配置
    */
   baiduConfig: {
     appid: string // 百度翻译的APPID
     key: string // 百度翻译的密钥
-    from: string // 当前语言代码
-    to: string[] // 翻译的目标语言代码
-    codeLocaleMap?: Record<string, string> // 语言代码与locale的映射关系，key为语言代码，value为locale
-    delay?: number // 接口调用延迟时长（单位:秒）
-  }
+  } & TranslatorConfig
+  /**
+   * 有道翻译的配置
+   */
+  youdaoConfig: {
+    appKey: string // 有道翻译的APPID
+    key: string // 有道翻译的密钥
+  } & TranslatorConfig
 }
 
 /**

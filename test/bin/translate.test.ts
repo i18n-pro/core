@@ -5,7 +5,7 @@ import { Langs } from '../../src/type'
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
 const { SEPARATOR_LENGTH } = binConstants
 
-describe('验证翻译实现', () => {
+describe.skip('验证翻译实现', () => {
   describe('没有内容需要翻译', () => {
     type Item = [
       string, // 描述内容

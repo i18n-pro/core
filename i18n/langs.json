@@ -34,9 +34,7 @@
     "key 配置不正确": "Key configuration is incorrect",
     "多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项{0}(具体可参考配置项文档说明)": "Multiple people use the same appid to perform translation at the same time. It is recommended to register a personal account to use or adjust the configuration item {0} (for details, please refer to the configuration item document description)",
     "可能原因是: {0}": "Possible reasons: {0}",
-    "百度翻译接口返回错误": "Baidu translation interface returned error",
     "错误码": "Error code",
-    "错误信息": "error message",
     "可根据错误码在 {0} 该文档中查看错误具体原因": "You can check the specific reason of the error in {0} this document according to the error code",
     "{0}({1}{2}{3})：{4}{5}{6}": "{0}({1}{2}{3})：{4}{5}{6}",
     "当前文本【{0}】未被翻译": "The current text [{0}] has not been translated",
@@ -44,6 +42,12 @@
     "检测到指定目录 {0} 不存在，已创建该目录": "Detected that the specified directory {0} does not exist, it has been created",
     "已将 {0} 写入到 {1} 中": "Written {0} to {1}",
     "已翻译文案中缺少动态参数标识：{0}": "The dynamic parameter ID is missing in the translated document: {0}",
-    "翻译有误": "Translation error"
+    "翻译有误": "Translation error",
+    "百度": "Baidu",
+    "不存在 {0} 的配置项": "There is no {0} configuration item",
+    "{0}翻译接口返回错误": "The {0} translation interface returned an error",
+    "不支持的语言类型": "Unsupported language types",
+    "appKey 配置不正确": "The appKey configuration is incorrect",
+    "有道": "Youdao"
   }
 }

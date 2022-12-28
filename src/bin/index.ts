@@ -12,7 +12,11 @@ import {
   RELATIVE_PATH,
 } from './constants'
 import extraTexts from './extra-text'
-import { setTranslateConfig, translateTextsToLangsImpl } from './translate'
+import {
+  getTranslateConfig,
+  setTranslateConfig,
+  translateTextsToLangsImpl,
+} from './translate/index'
 import { i18n, setI18N } from '../lib/index'
 import { initConfig, readConfig } from './config'
 import chalk from './chalk'
@@ -45,12 +49,12 @@ async function translateController({
     entry,
     fileRegExp = /\.[jt]s$/,
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
-    baiduConfig,
+    ...restTranslatorConfig
   } = readConfig({
     path: configPath,
   })
 
-  setTranslateConfig(baiduConfig)
+  setTranslateConfig(restTranslatorConfig)
 
   const filepaths = extraFileSync(entry, fileRegExp)
 
@@ -61,11 +65,13 @@ async function translateController({
 
   const trTextRes = extraTexts(filepaths, funcName)
 
+  const translateConfig = getTranslateConfig()
+
   const sourceLangs = extraLangs({
     path: outputPath,
     langType,
-    to: baiduConfig.to,
-    codeLocaleMap: baiduConfig.codeLocaleMap,
+    to: translateConfig.to,
+    codeLocaleMap: translateConfig.codeLocaleMap,
   })
 
   const translateRes = await translateTextsToLangsImpl(
