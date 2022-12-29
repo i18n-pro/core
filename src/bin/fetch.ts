@@ -1,4 +1,4 @@
-import http from 'http'
+import https from 'node:https'
 import type { IncomingMessage, RequestOptions } from 'node:http'
 
 /**
@@ -16,7 +16,7 @@ export default function fetch(
   const { data, ...restOptions } = options
 
   return new Promise((resolve, reject) => {
-    const req = http.request(url, restOptions, (reqs: IncomingMessage) => {
+    const req = https.request(url, restOptions, (reqs: IncomingMessage) => {
       let res = ''
       reqs.on('data', (d: NodeJS.ArrayBufferView | ArrayBuffer) => {
         res += d

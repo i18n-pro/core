@@ -49,7 +49,7 @@ export type Config = {
   /**
    * 指定翻译平台，默认为【百度】
    */
-  translator?: 'baidu' | 'youdao'
+  translator?: 'baidu' | 'youdao' | 'tencent'
   /**
    * 百度翻译的配置
    */
@@ -63,6 +63,16 @@ export type Config = {
   youdaoConfig: {
     appKey: string // 有道翻译的APPID
     key: string // 有道翻译的密钥
+  } & TranslatorConfig
+  /**
+   * 腾讯翻译的配置
+   */
+  tencentConfig: {
+    secretId: string // 用于标识 API 调用者身份，可以简单类比为用户名
+    secretKey: string // 用于验证 API 调用者的身份，可以简单类比为密码
+    region: string // 地域列表
+    projectId?: string // 项目ID
+    language?: string // 接口错误返回的提示信息的语言类型，取值：zh-CN，en-US，默认为zh-CN
   } & TranslatorConfig
 }
 

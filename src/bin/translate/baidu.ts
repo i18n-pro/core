@@ -1,9 +1,13 @@
-import hasha from 'hasha'
 import { URLSearchParams } from 'node:url'
 import { SEPARATOR_STR } from '../constants'
 import { Config } from '../../type'
 import fetch from '../fetch'
-import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
+import {
+  md5,
+  collectRes,
+  handleTranslateFail,
+  throwErrorByErrorCode,
+} from './utils'
 
 const config: Config['baiduConfig'] = {
   appid: '',
@@ -52,7 +56,7 @@ export async function translateByBaidu(props: {
 
   const q = translateText
   const salt = Date.now()
-  const sign = hasha(`${appid}${q}${salt}${key}`, { algorithm: 'md5' })
+  const sign = md5(`${appid}${q}${salt}${key}`)
 
   const body = {
     q,
@@ -67,7 +71,7 @@ export async function translateByBaidu(props: {
 
   try {
     const res: any = await fetch(
-      'http://api.fanyi.baidu.com/api/trans/vip/translate',
+      'https://api.fanyi.baidu.com/api/trans/vip/translate',
       {
         method: 'POST',
         data: new URLSearchParams(body as any).toString(),

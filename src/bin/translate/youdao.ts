@@ -1,7 +1,7 @@
-import hasha from 'hasha'
 import { Config } from '../../type'
 import fetch from '../fetch'
 import {
+  sha256,
   collectRes,
   getURLStringFromObj,
   handleTranslateFail,
@@ -57,7 +57,7 @@ export async function translateByYoudao(props: {
   const salt = new Date().getTime()
   const curtime = Math.round(new Date().getTime() / 1000)
   const str1 = appKey + truncate(texts.join('')) + salt + curtime + key
-  const sign = hasha(str1, { algorithm: 'sha256' })
+  const sign = sha256(str1)
 
   const body = {
     q: texts,
@@ -73,7 +73,7 @@ export async function translateByYoudao(props: {
   let errorCode
 
   try {
-    const res: any = await fetch('http://openapi.youdao.com/v2/api', {
+    const res: any = await fetch('https://openapi.youdao.com/v2/api', {
       method: 'POST',
       data: getURLStringFromObj(body),
       headers: {

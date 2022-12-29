@@ -48,6 +48,9 @@
     "{0}翻译接口返回错误": "The {0} translation interface returned an error",
     "不支持的语言类型": "Unsupported language types",
     "appKey 配置不正确": "The appKey configuration is incorrect",
-    "有道": "Youdao"
+    "有道": "Youdao",
+    "secretId 或者 secretKey 配置不正确": "Incorrect configuration of secretId or secretKey",
+    "错误信息: {0}": "Error message: {0}",
+    "腾讯": "Tencent"
   }
 }

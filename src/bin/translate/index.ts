@@ -8,6 +8,7 @@ import { Config, Langs, TranslatorConfig } from '../../type'
 import chalk from '../chalk'
 import { setBaiduConfig, translateByBaidu } from './baidu'
 import { setYoudaoConfig, translateByYoudao } from './youdao'
+import { setTencentConfig, translateByTencent } from './tencent'
 
 let config: TranslatorConfig = {
   from: '',
@@ -26,11 +27,13 @@ let innerConfig = {
 const translatorImplMap = {
   baidu: translateByBaidu,
   youdao: translateByYoudao,
+  tencent: translateByTencent,
 }
 
 const translatorSetConfigMap = {
   baidu: setBaiduConfig,
   youdao: setYoudaoConfig,
+  tencent: setTencentConfig,
 }
 
 const translatorMaxStringLengthMap = {
@@ -40,7 +43,10 @@ const translatorMaxStringLengthMap = {
 
 let currentTranslatorImpl: typeof translateByBaidu
 let currentTranslatorSetConfig: (
-  config: Config['baiduConfig'] | Config['youdaoConfig'],
+  config:
+    | Config['baiduConfig']
+    | Config['youdaoConfig']
+    | Config['tencentConfig'],
 ) => void
 
 /**

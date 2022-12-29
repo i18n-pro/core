@@ -82,8 +82,5 @@
   "homepage": "https://github.com/eyelly-wu/i18n-pro#readme",
   "bugs": {
     "url": "https://github.com/eyelly-wu/i18n-pro/issues"
-  },
-  "dependencies": {
-    "hasha": "^5.2.2"
   }
 }

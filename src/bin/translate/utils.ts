@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import chalk, { STYLE_EOF } from '../chalk'
 import { TRANSLATE_ERROR_TEXT } from '../constants'
 import {
@@ -6,6 +7,24 @@ import {
   logError,
   logSuccess,
 } from '../utils'
+
+/**
+ * MD5加密算法
+ * @param str 加密的字符
+ * @returns
+ */
+export function md5(str: string): string {
+  return createHash('md5').update(str).digest('hex').toString()
+}
+
+/**
+ * sha256加密算法
+ * @param str 加密的字符
+ * @returns
+ */
+export function sha256(str: string): string {
+  return createHash('sha256').update(str).digest('hex').toString()
+}
 
 /**
  * 将对象转换成URL
@@ -34,17 +53,26 @@ export function getURLStringFromObj(obj: Record<string, unknown>) {
  * @param errorCodeTipMap 内置错误码与提示信息的映射
  * @param translatorName 翻译平台的名称
  * @param docUrl 错误码参考文档的url
+ * @param errorMsg 接口默认返回的错误信息
  */
 export function throwErrorByErrorCode(
   errorCode: string,
   errorCodeTipMap: Record<string | number, string>,
   translatorName: string,
   docUrl: string,
+  errorMsg?: string,
 ) {
-  let errorText = errorCodeTipMap[errorCode]
-  errorText = errorText
-    ? i18n('可能原因是: {0}', chalk.redBright(errorText))
+  let errorText = errorMsg
+    ? i18n('错误信息: {0}', chalk.redBright(errorMsg))
     : ''
+
+  if (errorCodeTipMap[errorCode]) {
+    errorText = i18n(
+      '可能原因是: {0}',
+      chalk.redBright(errorCodeTipMap[errorCode]),
+    )
+  }
+
   throw `${chalk.redBright(i18n('{0}翻译接口返回错误', translatorName))}：
       ${i18n('错误码')}：${errorCode}
       ${i18n(
