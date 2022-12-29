@@ -1,4 +1,4 @@
-import http from 'http'
+import https from 'https'
 import { binfetch, mockRequest } from '../utils'
 
 describe('验证 fetch', () => {
@@ -9,10 +9,10 @@ describe('验证 fetch', () => {
         message: 'Hello World',
       },
     }
-    const spyRequest = vi.spyOn(http, 'request')
+    const spyRequest = vi.spyOn(https, 'request')
     spyRequest.mockImplementation(mockRequest({ data: mockData }))
     const res = await binfetch.default(
-      'http://fanyi-api.baidu.com/api/trans/vip/translate',
+      'https://fanyi-api.baidu.com/api/trans/vip/translate',
       {
         data: JSON.stringify({}),
       },
@@ -25,7 +25,7 @@ describe('验证 fetch', () => {
   describe('模拟异常请求', () => {
     it('整个请求异常', async () => {
       const errorMsg = '错误信息'
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
       spyRequest.mockImplementation(
         mockRequest({
           data: {},
@@ -43,7 +43,7 @@ describe('验证 fetch', () => {
     })
 
     it('解析数据异常', async () => {
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
 
       // 通过模拟 http.reqeust 实现达到返回错误数据
       spyRequest.mockImplementation(
