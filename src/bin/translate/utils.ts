@@ -94,8 +94,18 @@ export function collectRes(props: {
   success: Record<string, string> // 翻译成功对象
   error: Record<string, string> // 翻译失败对象
   textErrorMsg: Record<string, string[]> // 翻译有误对象
+  translatorName: string // 翻译平台名称
 }) {
-  const { from, to, texts, srcDistMap, success, error, textErrorMsg } = props
+  const {
+    from,
+    to,
+    texts,
+    srcDistMap,
+    success,
+    error,
+    textErrorMsg,
+    translatorName,
+  } = props
 
   texts.forEach((text) => {
     const dst = srcDistMap[text]
@@ -109,7 +119,7 @@ export function collectRes(props: {
       logSuccess(
         i18n(
           '{0}({1}{2}{3})：{4}{5}{6}',
-          chalk.greenBright(i18n('翻译成功')),
+          chalk.greenBright(i18n('{0}翻译成功', translatorName)),
           chalk.redBright.italic(from),
           chalk.bold.greenBright(' → '),
           chalk.redBright.italic(to),

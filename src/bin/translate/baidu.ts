@@ -17,6 +17,8 @@ const config: Config['baiduConfig'] = {
   delay: 0,
 }
 
+const TRANSLATOR_NAME = i18n('百度')
+
 const ERROR_CODE_TIP_MAP = {
   52003: i18n('appid 配置不正确'),
   54001: i18n('key 配置不正确'),
@@ -86,7 +88,7 @@ export async function translateByBaidu(props: {
       throwErrorByErrorCode(
         errorCode,
         ERROR_CODE_TIP_MAP,
-        i18n('百度'),
+        TRANSLATOR_NAME,
         'http://api.fanyi.baidu.com/doc/21',
       )
     }
@@ -106,6 +108,7 @@ export async function translateByBaidu(props: {
       success,
       error,
       textErrorMsg,
+      translatorName: TRANSLATOR_NAME,
     })
   } catch (e) {
     handleTranslateFail(e, errorCode, EXIT_ERROR_CODES, texts, error)

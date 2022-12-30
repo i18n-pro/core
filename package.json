@@ -82,5 +82,10 @@
   "homepage": "https://github.com/eyelly-wu/i18n-pro#readme",
   "bugs": {
     "url": "https://github.com/eyelly-wu/i18n-pro/issues"
+  },
+  "dependencies": {
+    "@alicloud/alimt20181012": "^1.0.4",
+    "@alicloud/openapi-client": "^0.4.4",
+    "@alicloud/tea-util": "^1.4.5"
   }
 }

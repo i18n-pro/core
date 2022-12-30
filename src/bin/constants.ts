@@ -6,12 +6,6 @@ global.i18n = i18n
 // 日志文件的生成目录
 export const LOG_DIR_NAME = '.log'
 
-// 百度每次翻译的最大字符数
-export const BAI_DU_MAX_LENGTH = 3000
-
-// 有道每次翻译的最大字符数
-export const YOU_DAO_MAX_LENGTH = 5000
-
 // 多文本翻译时字符间的分割符
 export const SEPARATOR = '\n'
 

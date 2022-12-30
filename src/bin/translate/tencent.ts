@@ -17,6 +17,8 @@ const config: Config['tencentConfig'] = {
   to: [],
 }
 
+const TRANSLATOR_NAME = i18n('腾讯')
+
 const ERROR_CODE_TIP_MAP = {
   'AuthFailure.SignatureFailure': i18n('secretId 或者 secretKey 配置不正确'),
 }
@@ -201,7 +203,7 @@ export async function translateByTencent(props: {
       throwErrorByErrorCode(
         errorCode,
         ERROR_CODE_TIP_MAP,
-        i18n('腾讯'),
+        TRANSLATOR_NAME,
         'https://cloud.tencent.com/document/api/551/40566#6.-.E9.94.99.E8.AF.AF.E7.A0.81',
         res?.Response?.Error?.Message,
       )
@@ -225,6 +227,7 @@ export async function translateByTencent(props: {
       success,
       error,
       textErrorMsg,
+      translatorName: TRANSLATOR_NAME,
     })
   } catch (e) {
     handleTranslateFail(e, errorCode, EXIT_ERROR_CODES, texts, error)

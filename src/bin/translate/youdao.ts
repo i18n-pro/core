@@ -15,6 +15,8 @@ const config: Config['youdaoConfig'] = {
   to: [],
 }
 
+const TRANSLATOR_NAME = i18n('有道')
+
 const ERROR_CODE_TIP_MAP = {
   102: i18n('不支持的语言类型'),
   108: i18n('appKey 配置不正确'),
@@ -87,7 +89,7 @@ export async function translateByYoudao(props: {
       throwErrorByErrorCode(
         errorCode,
         ERROR_CODE_TIP_MAP,
-        i18n('有道'),
+        TRANSLATOR_NAME,
         'https://ai.youdao.com/DOCSIRMA/html/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%BF%BB%E8%AF%91/API%E6%96%87%E6%A1%A3/%E6%89%B9%E9%87%8F%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1/%E6%89%B9%E9%87%8F%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1-API%E6%96%87%E6%A1%A3.html#section-10',
       )
     }
@@ -107,6 +109,7 @@ export async function translateByYoudao(props: {
       success,
       error,
       textErrorMsg,
+      translatorName: TRANSLATOR_NAME,
     })
   } catch (e) {
     handleTranslateFail(e, errorCode, EXIT_ERROR_CODES, texts, error)

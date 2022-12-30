@@ -145,7 +145,7 @@ describe('验证命令行响应命令', () => {
     })
   })
 
-  describe.skip('翻译', () => {
+  describe('翻译', () => {
     type Item = [
       string, // 用例描述
       string, // 命令

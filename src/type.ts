@@ -49,7 +49,7 @@ export type Config = {
   /**
    * 指定翻译平台，默认为【百度】
    */
-  translator?: 'baidu' | 'youdao' | 'tencent'
+  translator?: 'baidu' | 'youdao' | 'tencent' | 'aliyun'
   /**
    * 百度翻译的配置
    */
@@ -73,6 +73,16 @@ export type Config = {
     region: string // 地域列表
     projectId?: string // 项目ID
     language?: string // 接口错误返回的提示信息的语言类型，取值：zh-CN，en-US，默认为zh-CN
+  } & TranslatorConfig
+  /**
+   * 阿里云翻译的配置
+   */
+  aliyunConfig: {
+    accessKeyId: string // AccessKey ID
+    accessKeySecret: string // AccessKey Secret
+    scene?: string // 场景
+    apiType?: string // API Type
+    endpoint?: string // 服务地址，默认为 mt.aliyuncs.com
   } & TranslatorConfig
 }
 
@@ -172,4 +182,45 @@ export type I18NState<T extends Langs> = {
       text: string
     },
   ) => string
+}
+
+/**
+ * 最大字符数限制类型
+ */
+export type MaxLengthType =
+  | 'allStrLength' // 所有字符数限制
+  | 'strLengthAndArrLength' // 单个字符限制长度，并且数组长度也需限制
+
+/**
+ * 最大字符限制配置
+ */
+export type MaxLengthConfig = {
+  /**
+   * 限制类型
+   */
+  maxLengthType: MaxLengthType
+  /**
+   * 最大字符数，根据【限制类型】不同，用途不同
+   */
+  maxLength: number
+  /**
+   * 数组最大长度
+   */
+  maxArrayLength?: number
+  /**
+   * 以字符串形式传递时，不同文本间的分割符
+   */
+  separator?: string
+}
+
+/**
+ * 不同平台的最大字符限制配置
+ */
+export type MaxLengthConfigMap = Record<Config['translator'], MaxLengthConfig>
+
+/**
+ * 内部配置属性
+ */
+export type InnerConfig = {
+  maxLengthConfig: MaxLengthConfig
 }

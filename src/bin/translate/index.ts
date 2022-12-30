@@ -1,14 +1,17 @@
-import {
-  BAI_DU_MAX_LENGTH,
-  SEPARATOR_STR,
-  YOU_DAO_MAX_LENGTH,
-} from '../constants'
+import { SEPARATOR_STR } from '../constants'
 import { logError } from '../utils'
-import { Config, Langs, TranslatorConfig } from '../../type'
+import {
+  Config,
+  InnerConfig,
+  Langs,
+  MaxLengthConfigMap,
+  TranslatorConfig,
+} from '../../type'
 import chalk from '../chalk'
 import { setBaiduConfig, translateByBaidu } from './baidu'
 import { setYoudaoConfig, translateByYoudao } from './youdao'
 import { setTencentConfig, translateByTencent } from './tencent'
+import { setAliyunConfig, translateByAliyun } from './aliyun'
 
 let config: TranslatorConfig = {
   from: '',
@@ -20,25 +23,46 @@ let config: TranslatorConfig = {
 let lastRequestTimestamp = 0
 
 // 内部实验性的属性配置
-let innerConfig = {
-  maxStringLength: BAI_DU_MAX_LENGTH,
+let innerConfig: InnerConfig = {
+  maxLengthConfig: {
+    maxLengthType: 'allStrLength',
+    maxLength: 100000,
+  },
 }
 
 const translatorImplMap = {
   baidu: translateByBaidu,
   youdao: translateByYoudao,
   tencent: translateByTencent,
+  aliyun: translateByAliyun,
 }
 
 const translatorSetConfigMap = {
   baidu: setBaiduConfig,
   youdao: setYoudaoConfig,
   tencent: setTencentConfig,
+  aliyun: setAliyunConfig,
 }
 
-const translatorMaxStringLengthMap = {
-  baidu: BAI_DU_MAX_LENGTH,
-  youdao: YOU_DAO_MAX_LENGTH,
+const maxLengthMap: MaxLengthConfigMap = {
+  baidu: {
+    maxLengthType: 'allStrLength',
+    maxLength: 3000,
+    separator: SEPARATOR_STR,
+  },
+  youdao: {
+    maxLengthType: 'allStrLength',
+    maxLength: 5000,
+  },
+  tencent: {
+    maxLengthType: 'allStrLength',
+    maxLength: 5000,
+  },
+  aliyun: {
+    maxLengthType: 'allStrLength',
+    maxLength: 1000,
+    maxArrayLength: 50,
+  },
 }
 
 let currentTranslatorImpl: typeof translateByBaidu
@@ -46,7 +70,8 @@ let currentTranslatorSetConfig: (
   config:
     | Config['baiduConfig']
     | Config['youdaoConfig']
-    | Config['tencentConfig'],
+    | Config['tencentConfig']
+    | Config['aliyunConfig'],
 ) => void
 
 /**
@@ -54,10 +79,11 @@ let currentTranslatorSetConfig: (
  * @param configProp
  */
 export function setTranslateConfig(
-  configProp: Pick<Config, 'translator' | 'baiduConfig' | 'youdaoConfig'>,
-  innerConfigProp = {
-    maxStringLength: 1000000,
-  },
+  configProp: Pick<
+    Config,
+    'translator' | 'baiduConfig' | 'youdaoConfig' | 'aliyunConfig'
+  >,
+  innerConfigProp?: InnerConfig,
 ) {
   const { translator = 'baidu' } = configProp
 
@@ -71,12 +97,13 @@ export function setTranslateConfig(
   currentTranslatorSetConfig = translatorSetConfigMap[translator]
   currentTranslatorSetConfig(configProp[`${translator}Config`])
   innerConfig = {
-    ...innerConfigProp,
+    ...innerConfig,
     ...(() => {
-      const maxStringLength = translatorMaxStringLengthMap[translator]
-      if (maxStringLength) return { maxStringLength }
+      const maxLengthConfig = maxLengthMap[translator]
+      if (maxLengthConfig) return { maxLengthConfig }
       return {}
     })(),
+    ...(innerConfigProp || {}),
   }
 }
 
@@ -111,7 +138,14 @@ async function translateTextsToLang(props: {
 }) {
   const { texts, from, to } = props
   const { delay } = config
-  const { maxStringLength } = innerConfig
+  const {
+    maxLengthConfig: {
+      maxLengthType,
+      maxLength,
+      maxArrayLength,
+      separator = '',
+    },
+  } = innerConfig
 
   let success = {}
   let error = {}
@@ -122,14 +156,26 @@ async function translateTextsToLang(props: {
   try {
     for (let i = 0; i < texts.length; i++) {
       const t = texts[i]
+
+      // 限制单个文本的字符长度
+      if (maxLengthType === 'strLengthAndArrLength' && t.length > maxLength) {
+        error[t] = i18n('当前文本超出最大字符数限制：{0}', maxLength)
+        return
+      }
+
       fromTexts.push(t)
-      count += (count === 0 ? 0 : SEPARATOR_STR.length) + t.length
+      count += (count === 0 ? 0 : separator.length) + t.length
 
       if (
-        i === texts.length - 1 || // 最后一个
-        // 加上后面一个字符会超过最大字符
-        (texts.length - 1 > i &&
-          count + SEPARATOR_STR.length + texts[i + 1].length > maxStringLength)
+        i === texts.length - 1 ||
+        // 限制请求总字符串
+        (maxLengthType === 'allStrLength' &&
+          texts.length - 1 > i &&
+          // 多加一个文本超出限制
+          count + separator.length + texts[i + 1].length > maxLength) ||
+        // 限制数组长度
+        (maxLengthType === 'strLengthAndArrLength' &&
+          fromTexts.length == maxArrayLength)
       ) {
         if (
           typeof delay === 'number' &&
