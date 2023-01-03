@@ -59,7 +59,7 @@ const maxLengthMap: MaxLengthConfigMap = {
     maxLength: 5000,
   },
   aliyun: {
-    maxLengthType: 'allStrLength',
+    maxLengthType: 'strLengthAndArrLength',
     maxLength: 1000,
     maxArrayLength: 50,
   },
@@ -160,7 +160,7 @@ async function translateTextsToLang(props: {
       // 限制单个文本的字符长度
       if (maxLengthType === 'strLengthAndArrLength' && t.length > maxLength) {
         error[t] = i18n('当前文本超出最大字符数限制：{0}', maxLength)
-        return
+        continue
       }
 
       fromTexts.push(t)
