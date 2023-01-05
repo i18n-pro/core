@@ -49,7 +49,7 @@ export type Config = {
   /**
    * 指定翻译平台，默认为【百度】
    */
-  translator?: 'baidu' | 'youdao' | 'tencent' | 'aliyun'
+  translator?: 'baidu' | 'youdao' | 'tencent' | 'aliyun' | 'microsoft'
   /**
    * 百度翻译的配置
    */
@@ -83,6 +83,13 @@ export type Config = {
     scene?: string // 场景
     apiType?: string // API Type
     endpoint?: string // 服务地址，默认为 mt.aliyuncs.com
+  } & TranslatorConfig
+  /**
+   * 微软翻译的配置
+   */
+  microsoftConfig: {
+    key: string // Microsoft translator-key
+    location: string // 区域
   } & TranslatorConfig
 }
 
@@ -190,6 +197,7 @@ export type I18NState<T extends Langs> = {
 export type MaxLengthType =
   | 'allStrLength' // 所有字符数限制
   | 'strLengthAndArrLength' // 单个字符限制长度，并且数组长度也需限制
+  | 'allStrLengthAndArrLength' // 限制数组长度和总字符数
 
 /**
  * 最大字符限制配置

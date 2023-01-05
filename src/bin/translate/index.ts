@@ -12,6 +12,7 @@ import { setBaiduConfig, translateByBaidu } from './baidu'
 import { setYoudaoConfig, translateByYoudao } from './youdao'
 import { setTencentConfig, translateByTencent } from './tencent'
 import { setAliyunConfig, translateByAliyun } from './aliyun'
+import { setMicrosoftConfig, translateByMicrosoft } from './microsoft'
 
 let config: TranslatorConfig = {
   from: '',
@@ -35,6 +36,7 @@ const translatorImplMap = {
   youdao: translateByYoudao,
   tencent: translateByTencent,
   aliyun: translateByAliyun,
+  microsoft: translateByMicrosoft,
 }
 
 const translatorSetConfigMap = {
@@ -42,6 +44,7 @@ const translatorSetConfigMap = {
   youdao: setYoudaoConfig,
   tencent: setTencentConfig,
   aliyun: setAliyunConfig,
+  microsoft: setMicrosoftConfig,
 }
 
 const maxLengthMap: MaxLengthConfigMap = {
@@ -63,6 +66,11 @@ const maxLengthMap: MaxLengthConfigMap = {
     maxLength: 1000,
     maxArrayLength: 50,
   },
+  microsoft: {
+    maxLengthType: 'allStrLengthAndArrLength',
+    maxLength: 5000,
+    maxArrayLength: 1000,
+  },
 }
 
 let currentTranslatorImpl: typeof translateByBaidu
@@ -71,7 +79,8 @@ let currentTranslatorSetConfig: (
     | Config['baiduConfig']
     | Config['youdaoConfig']
     | Config['tencentConfig']
-    | Config['aliyunConfig'],
+    | Config['aliyunConfig']
+    | Config['microsoftConfig'],
 ) => void
 
 /**
@@ -169,12 +178,14 @@ async function translateTextsToLang(props: {
       if (
         i === texts.length - 1 ||
         // 限制请求总字符串
-        (maxLengthType === 'allStrLength' &&
+        (['allStrLength', 'allStrLengthAndArrLength'].includes(maxLengthType) &&
           texts.length - 1 > i &&
           // 多加一个文本超出限制
           count + separator.length + texts[i + 1].length > maxLength) ||
         // 限制数组长度
-        (maxLengthType === 'strLengthAndArrLength' &&
+        (['strLengthAndArrLength', 'allStrLengthAndArrLength'].includes(
+          maxLengthType,
+        ) &&
           fromTexts.length == maxArrayLength)
       ) {
         if (

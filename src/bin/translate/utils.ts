@@ -62,24 +62,22 @@ export function throwErrorByErrorCode(
   docUrl: string,
   errorMsg?: string,
 ) {
-  let errorText = errorMsg
-    ? i18n('错误信息: {0}', chalk.redBright(errorMsg))
+  const errorText = errorMsg
+    ? '\n   ' + i18n('错误信息: {0}', chalk.redBright(errorMsg))
     : ''
 
-  if (errorCodeTipMap[errorCode]) {
-    errorText = i18n(
-      '可能原因是: {0}',
-      chalk.redBright(errorCodeTipMap[errorCode]),
-    )
-  }
+  let errorReason = errorCodeTipMap[errorCode]
+  errorReason = errorReason
+    ? i18n('可能原因是: {0}', chalk.redBright(errorCodeTipMap[errorCode]))
+    : ''
 
   throw `${chalk.redBright(i18n('{0}翻译接口返回错误', translatorName))}：
-      ${i18n('错误码')}：${errorCode}
-      ${i18n(
-        '可根据错误码在 {0} 该文档中查看错误具体原因',
-        chalk.blueBright.underline(docUrl),
-      )}
-      ${errorText}
+   ${i18n('错误码')}：${errorCode}${errorText}
+   ${i18n(
+     '可根据错误码在 {0} 该文档中查看错误具体原因',
+     chalk.blueBright.underline(docUrl),
+   )}
+   ${errorReason}
       `
 }
 
@@ -145,7 +143,7 @@ export function collectRes(props: {
 export function handleTranslateFail(
   e: any,
   errorCode: string,
-  exitCodes: string[],
+  exitCodes: Array<string | number>,
   texts: string[],
   error: Record<string, string>,
 ) {

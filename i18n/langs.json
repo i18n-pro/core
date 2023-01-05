@@ -55,6 +55,8 @@
     "accessKeyId 或者 accessKeySecret 配置不正确": "accessKeyId or accessKeySecret configuration is incorrect",
     "当前文本超出最大字符数限制：{0}": "The current text exceeds the maximum number of characters limit:{0}",
     "阿里云": "Aliyun",
-    "{0}翻译成功": "{0} translation successful"
+    "{0}翻译成功": "{0} translation successful",
+    "key 或者 location 配置不正确": "The key or location configuration is incorrect",
+    "微软": "Microsoft"
   }
 }
