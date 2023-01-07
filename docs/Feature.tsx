@@ -1,7 +1,7 @@
 import React, {
   Break,
   H1,
-  UnorderList,
+  UnorderedList,
   ListItem,
   Link,
   Image,
@@ -13,7 +13,7 @@ export default function Vision() {
   return (
     <>
       <H1>{tr('特性')}</H1>
-      <UnorderList>
+      <UnorderedList>
         <ListItem>
           <Bold>{tr('轻量')}</Bold>：
           <Link {...linkObj.bundlesize}>
@@ -36,7 +36,7 @@ export default function Vision() {
         <ListItem>
           <Bold>keyless</Bold>：{tr('无需手动定义key，待翻译文本即key')}
         </ListItem>
-      </UnorderList>
+      </UnorderedList>
     </>
   )
 }

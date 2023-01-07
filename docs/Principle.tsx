@@ -1,7 +1,7 @@
 import React, {
   Break,
   H1,
-  UnorderList,
+  UnorderedList,
   ListItem,
   Link,
   Bold,
@@ -14,10 +14,10 @@ export default function Principle() {
     <>
       <H1>{tr('原理')}</H1>
       {tr('该库主要由两部分构成')}
-      <UnorderList>
+      <UnorderedList>
         <ListItem>{tr('命令行工具')}</ListItem>
         <ListItem>{tr('函数API')}</ListItem>
-      </UnorderList>
+      </UnorderedList>
       <Bold>{tr('命令行工具')}</Bold>：
       {tr(
         '根据指定规则解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件',
@@ -60,7 +60,7 @@ i18n('${tr(
         '`setI18N` ',
         ' `withI18N` ',
       )}
-      <UnorderList>
+      <UnorderedList>
         <ListItem>
           <Bold>i18n</Bold>：
           {tr(
@@ -74,7 +74,7 @@ i18n('${tr(
           <Bold>withI18N</Bold>：
           {tr('适用于服务端，每个接口响应需要做国际化的处理')}
         </ListItem>
-      </UnorderList>
+      </UnorderedList>
       {tr(
         '所以{0}和{1}这两者搭配使用效果更佳，也正是由于这样的结构设计，使得{2}库可以很方便集成到任何的{3}项目中',
         ` \`${tr(`命令行工具`)}\` `,

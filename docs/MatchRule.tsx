@@ -1,11 +1,11 @@
-import React, { Break, H1, UnorderList, ListItem, CodeBlock } from 'jsx-to-md'
+import React, { Break, H1, UnorderedList, ListItem, CodeBlock } from 'jsx-to-md'
 
 export default function MatchRule() {
   return (
     <>
       <H1>{tr('匹配规则')}</H1>
       {tr('要求')}：
-      <UnorderList>
+      <UnorderedList>
         <ListItem>
           {tr(
             '{0}函数第一个参数只能是纯字符串，不能包含变量，或者js语句',
@@ -19,12 +19,12 @@ export default function MatchRule() {
         <ListItem>
           {tr('如果用{0}语法不能换行', ` \`${tr('模板字符串')}\` `)}
         </ListItem>
-      </UnorderList>
+      </UnorderedList>
       {tr('不满足上面条件，可能会导致')}
-      <UnorderList>
+      <UnorderedList>
         <ListItem>{tr('翻译文本提取不正确')}</ListItem>
         <ListItem>{tr('翻译结果不正确')}</ListItem>
-      </UnorderList>
+      </UnorderedList>
       {tr('以下是可以匹配到的')}
       <CodeBlock
         code={`i18n('xxx')
