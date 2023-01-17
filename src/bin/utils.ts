@@ -79,7 +79,7 @@ export function writeFilesSync(props: {
  * @returns
  */
 export function getLocale(args: string[]) {
-  let locale = 'zh'
+  let locale = 'en'
   args.some((arg, index) => {
     if (
       (arg === '-L' || arg === '--locale') &&

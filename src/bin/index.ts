@@ -237,7 +237,7 @@ export async function execCommand() {
   ${i18n('参数')}:
 
         ${chalk.yellowBright('-L | --locale')}    zh | en       ${i18n(
-        '可选语言有中文（zh）/ 英文（{0}）， 默认为中文（zh）',
+        '可选语言有中文（zh）/ 英文（{0}）， 默认为英文（en）',
         'en',
       )}
         ${chalk.yellowBright(NON_INCREMENTAL)}              ${i18n(

@@ -20,7 +20,6 @@
     "提取翻译文本，自动翻译并生成语言包": "Extract translated text, automatically translate and generate language packs",
     "显示版本信息": "display version information",
     "显示帮助信息": "display help information",
-    "可选语言有中文（zh）/ 英文（{0}）， 默认为中文（zh）": "The optional languages are Chinese (zh) / English ({0}), and the default is Chinese (zh)",
     "非增量翻译模式进行翻译，已翻译的文本会完全被覆盖": "In the non incremental translation mode, the translated text will be completely overwritten",
     "输入命令有误:": "Error in input command:",
     "可输入{0}查看帮助信息": "You can enter {0} to view help information",
@@ -58,6 +57,7 @@
     "翻译失败({0})": "translation failed ({0})",
     "翻译有误({0})": "translation error ({0})",
     "多语言聚合文件({0})": "multilingual aggregation file ({0})",
-    "语言包 {0} 文件({1})": "language pack {0} file ({1})"
+    "语言包 {0} 文件({1})": "language pack {0} file ({1})",
+    "可选语言有中文（zh）/ 英文（{0}）， 默认为英文（en）": "The optional languages are Chinese (zh)/English ({0}), and the default is English (en)"
   }
 }
