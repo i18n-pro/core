@@ -205,3 +205,20 @@ export function transferArgsToObj(
 
   return res
 }
+
+/**
+ * get the length of translate result
+ * include success and error
+ * @param record
+ * @returns
+ */
+export function getTransResultLength(
+  record: Record<string, Record<string, string>>,
+) {
+  const length = Object.entries(record).reduce((res, [text, info]) => {
+    res += Object.keys(info).length
+    return res
+  }, 0)
+
+  return length
+}

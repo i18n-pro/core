@@ -2,6 +2,7 @@
 import extraFileSync from './extra-file'
 import {
   getLocale,
+  getTransResultLength,
   logWarning,
   transferArgsToObj,
   writeFilesSync,
@@ -85,42 +86,60 @@ async function translateController({
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'filepaths.json'),
     fileContent: filepaths,
-    showName: i18n('匹配到的文件路径列表'),
+    showName: i18n(
+      '匹配到的文件路径列表({0})',
+      chalk.greenBright(filepaths.length),
+    ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts.json'),
     fileContent: trTextRes.success,
-    showName: i18n('提取的国际化文本'),
+    showName: i18n(
+      '提取的国际化文本({0})',
+      chalk.greenBright(trTextRes.success.length),
+    ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts-error.json'),
     fileContent: trTextRes.error,
-    showName: i18n('提取的编写不规范的国际化文本'),
+    showName: i18n(
+      '提取的编写不规范的国际化文本({0})',
+      chalk.redBright(trTextRes.error.length),
+    ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-success.json'),
     fileContent: success,
-    showName: i18n('翻译成功'),
+    showName: i18n(
+      '翻译成功({0})',
+      chalk.greenBright(getTransResultLength(success)),
+    ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-fail.json'),
     fileContent: error,
-    showName: i18n('翻译失败'),
+    showName: i18n(
+      '翻译失败({0})',
+      chalk.redBright(getTransResultLength(error)),
+    ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-error.json'),
     fileContent: textErrorMsg,
-    showName: i18n('翻译有误'),
+    showName: i18n(
+      '翻译有误({0})',
+      chalk.redBright(getTransResultLength(textErrorMsg)),
+    ),
     indentSize,
   })
 
@@ -131,7 +150,10 @@ async function translateController({
       'langs.json',
     ),
     fileContent: langs,
-    showName: i18n('多语言聚合文件'),
+    showName: i18n(
+      '多语言聚合文件({0})',
+      chalk.greenBright(getTransResultLength(langs)),
+    ),
     indentSize,
   })
 
@@ -143,7 +165,11 @@ async function translateController({
         lang + '.json',
       ),
       fileContent: content as object,
-      showName: i18n('语言包 {0} 文件', lang),
+      showName: i18n(
+        '语言包 {0} 文件({1})',
+        lang,
+        chalk.greenBright(Object.keys(content).length),
+      ),
       indentSize,
     })
   })

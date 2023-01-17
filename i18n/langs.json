@@ -11,12 +11,6 @@
     "解析符合要求的国际化文本数:": "Number of internationalized texts that meet the requirements:",
     "解析不符合要求的国际化文本数:": "Number of internationalized text parsed that does not meet the requirements:",
     "未解析到需要翻译的文件，本次操作已结束": "The file that needs to be translated is not parsed. This operation has ended",
-    "匹配到的文件路径列表": "List of matched file paths",
-    "提取的国际化文本": "Extracted international text",
-    "提取的编写不规范的国际化文本": "Extracted international text with nonstandard compilation",
-    "翻译成功": "Translation successful",
-    "多语言聚合文件": "Multilingual aggregation file",
-    "语言包 {0} 文件": "Language pack {0} file",
     "共耗时": "Total time",
     "当前版本：{0}": "Current version: {0}",
     "命令": "command",
@@ -42,7 +36,6 @@
     "检测到指定目录 {0} 不存在，已创建该目录": "Detected that the specified directory {0} does not exist, it has been created",
     "已将 {0} 写入到 {1} 中": "Written {0} to {1}",
     "已翻译文案中缺少动态参数标识：{0}": "The dynamic parameter ID is missing in the translated document: {0}",
-    "翻译有误": "Translation error",
     "百度": "Baidu",
     "不存在 {0} 的配置项": "There is no {0} configuration item",
     "{0}翻译接口返回错误": "The {0} translation interface returned an error",
@@ -57,6 +50,14 @@
     "阿里云": "Aliyun",
     "{0}翻译成功": "{0} translation successful",
     "key 或者 location 配置不正确": "The key or location configuration is incorrect",
-    "微软": "Microsoft"
+    "微软": "Microsoft",
+    "匹配到的文件路径列表({0})": "list of matched file paths ({0})",
+    "提取的国际化文本({0})": "extracted internationalized texts ({0})",
+    "提取的编写不规范的国际化文本({0})": "extracted nonstandard international texts ({0})",
+    "翻译成功({0})": "translation succeeded ({0})",
+    "翻译失败({0})": "translation failed ({0})",
+    "翻译有误({0})": "translation error ({0})",
+    "多语言聚合文件({0})": "multilingual aggregation file ({0})",
+    "语言包 {0} 文件({1})": "language pack {0} file ({1})"
   }
 }
