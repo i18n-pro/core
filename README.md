@@ -9,14 +9,12 @@ English | [简体中文](./README_zh-CN.md)
   <p style="font-size: 18px;">Lightweight, simple, flexible and automatic-translation tools for internationalization</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
-[![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm") 
-[![npm-quality-score](https://img.shields.io/npms-io/quality-score/i18n-pro "npm-quality-score")](https://www.npmjs.com/package/i18n-pro "npm") 
-[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize") 
-[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic "dependenices")](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies "dependenices") 
-[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social "github-stars")](https://github.com/eyelly-wu/i18n-pro/stargazers "github-stars") 
-[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro "last-commit")](https://github.com/eyelly-wu/i18n-pro/commits/main "last-commit") 
-[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues") 
-[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/eyelly-wu/i18n-pro "codecov") 
+[![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm")
+[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic "dependenices")](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies "dependenices")
+[![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social "github-stars")](https://github.com/eyelly-wu/i18n-pro/stargazers "github-stars")
+[![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro/dev "last-commit")](https://github.com/eyelly-wu/i18n-pro/commits/dev "last-commit")
+[![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues")
+[![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/eyelly-wu/i18n-pro "codecov")
 
 </div>
 <details >

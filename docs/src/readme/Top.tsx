@@ -58,35 +58,27 @@ export default function Top() {
       <Break />
       <Link {...linkObj.npm}>
         <Image {...imageObj['npm-download']} />
-      </Link>{' '}
-      <Break />
-      <Link {...linkObj.npm}>
-        <Image {...imageObj['npm-quality-score']} />
-      </Link>{' '}
-      <Break />
-      <Link {...linkObj.bundlesize}>
-        <Image {...imageObj.bundlesize} />
-      </Link>{' '}
+      </Link>
       <Break />
       <Link {...linkObj.dependenices}>
         <Image {...imageObj.dependenices} />
-      </Link>{' '}
+      </Link>
       <Break />
       <Link {...linkObj['github-stars']}>
         <Image {...imageObj['github-stars']} />
-      </Link>{' '}
+      </Link>
       <Break />
       <Link {...linkObj['last-commit']}>
         <Image {...imageObj['last-commit']} />
-      </Link>{' '}
+      </Link>
       <Break />
       <Link {...linkObj['github-issues']}>
         <Image {...imageObj['github-issues']} />
-      </Link>{' '}
+      </Link>
       <Break />
       <Link {...linkObj.codecov}>
         <Image {...imageObj.codecov} />
-      </Link>{' '}
+      </Link>
       <Break />
     </div>
   )

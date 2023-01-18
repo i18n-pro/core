@@ -36,7 +36,7 @@ const links = [
   },
   {
     title: 'last-commit',
-    href: 'https://github.com/eyelly-wu/i18n-pro/commits/main',
+    href: 'https://github.com/eyelly-wu/i18n-pro/commits/dev',
   },
   {
     title: 'github-issues',
@@ -79,11 +79,6 @@ const images = [
     src: 'https://img.shields.io/npm/dm/i18n-pro',
   },
   {
-    title: 'npm-quality-score',
-    alt: 'npm-quality-score',
-    src: 'https://img.shields.io/npms-io/quality-score/i18n-pro',
-  },
-  {
     title: 'bundlesize',
     alt: 'bundlesize',
     src: 'https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic',
@@ -101,7 +96,7 @@ const images = [
   {
     title: 'last-commit',
     alt: 'last-commit',
-    src: 'https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro',
+    src: 'https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro/dev',
   },
   {
     title: 'github-issues',
