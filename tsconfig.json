@@ -7,15 +7,15 @@
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
     "paths": {
-      "@lib/*": ["./src/lib/*"]
+      "@lib": ["./src/lib/index.ts"]
     },
     "removeComments": true,
     "outDir": "dist",
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "declaration": true,
     "types": ["vitest/globals"],
     "esModuleInterop": true,
     "jsx": "react"
   },
-  "include": ["src/", "template", "global.d.ts", "docs", "docs/.tsx"]
+  "include": ["src/", "template", "global.d.ts", "docs/src"]
 }

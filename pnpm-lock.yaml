@@ -18,7 +18,7 @@ specifiers:
   eslint-formatter-table: ^7.32.1
   eslint-plugin-prettier: ^4.2.1
   husky: ^8.0.2
-  jsx-to-md: 0.8.2
+  jsx-to-md: 0.8.5
   lint-staged: ^13.1.0
   prettier: ^2.8.1
   rimraf: ^3.0.2
@@ -50,7 +50,7 @@ devDependencies:
   eslint-formatter-table: registry.npmmirror.com/eslint-formatter-table/7.32.1
   eslint-plugin-prettier: registry.npmmirror.com/eslint-plugin-prettier/4.2.1_kl4pe43v5b43npmso5hoplpbyi
   husky: registry.npmmirror.com/husky/8.0.2
-  jsx-to-md: registry.npmmirror.com/jsx-to-md/0.8.2
+  jsx-to-md: registry.npmmirror.com/jsx-to-md/0.8.5
   lint-staged: registry.npmmirror.com/lint-staged/13.1.0
   prettier: registry.npmmirror.com/prettier/2.8.1
   rimraf: registry.npmmirror.com/rimraf/3.0.2
@@ -3159,17 +3159,17 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  registry.npmmirror.com/jsx-to-md/0.8.2:
-    resolution: {integrity: sha512-zyOp6gq6HrDfhoxlqWZXqApET6KIDlcmzbMOlyPPYu2tVfgdBNLGz74dWxkReqfBUressNs1kVLE9Q39klxSUA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.8.2.tgz}
+  registry.npmmirror.com/jsx-to-md/0.8.5:
+    resolution: {integrity: sha512-72sAYmkVvyXuCXbb3Bs84heNePQoecWsBjrOJeSO6LhMt5Yhf5QnLF2xG/CdW6GHZluUP+Q2y2G71rc4gwHE4A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.8.5.tgz}
     name: jsx-to-md
-    version: 0.8.2
+    version: 0.8.5
     hasBin: true
     dependencies:
       '@types/node': registry.npmmirror.com/@types/node/18.11.17
       '@types/react': registry.npmmirror.com/@types/react/18.0.26
       shelljs: registry.npmmirror.com/shelljs/0.8.5
       ts-node-dev: registry.npmmirror.com/ts-node-dev/2.0.0_moeqx3xmzxqxagf2sz6mqkbb7m
-      tsconfig-paths: registry.npmmirror.com/tsconfig-paths/4.1.1
+      tsconfig-paths: registry.npmmirror.com/tsconfig-paths/4.1.2
       typescript: registry.npmmirror.com/typescript/4.9.4
     transitivePeerDependencies:
       - '@swc/core'
@@ -4707,10 +4707,10 @@ packages:
       yn: registry.npmmirror.com/yn/3.1.1
     dev: true
 
-  registry.npmmirror.com/tsconfig-paths/4.1.1:
-    resolution: {integrity: sha512-VgPrtLKpRgEAJsMj5Q/I/mXouC6A/7eJ/X4Nuk6o0cRPwBtznYxTCU4FodbexbzH9somBPEXYi0ZkUViUpJ21Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tsconfig-paths/-/tsconfig-paths-4.1.1.tgz}
+  registry.npmmirror.com/tsconfig-paths/4.1.2:
+    resolution: {integrity: sha512-uhxiMgnXQp1IR622dUXI+9Ehnws7i/y6xvpZB9IbUVOPy0muvdvgXeZOn88UcGPiT98Vp3rJPTa8bFoalZ3Qhw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tsconfig-paths/-/tsconfig-paths-4.1.2.tgz}
     name: tsconfig-paths
-    version: 4.1.1
+    version: 4.1.2
     engines: {node: '>=6'}
     dependencies:
       json5: registry.npmmirror.com/json5/2.2.2

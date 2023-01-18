@@ -6,7 +6,9 @@ import React, {
   ListItem,
   render,
   UnorderedList,
+  TableOfContents,
 } from 'jsx-to-md'
+import { initI18N } from '../utils'
 
 function VersionTitle({ version, date }: { version: string; date: string }) {
   return <H2>{`[${version}] - ${date}`}</H2>
@@ -317,10 +319,13 @@ function V_1_4_0() {
   )
 }
 
-export default function ChangeLog() {
+export default function ChangeLog(props) {
+  initI18N(props)
+
   return (
     <>
-      <H1>{tr('更新日志')}</H1>
+      <H1 skip>{tr('更新日志')}</H1>
+      <TableOfContents text={tr('目录')} open={false} />
       <V_1_4_0 />
       <V_1_3_2 />
       <V_1_3_1 />

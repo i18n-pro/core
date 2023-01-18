@@ -260,5 +260,9 @@
   "通过百度翻译将上面的英文翻译成中文，不会出现上面参数匹配不上的问题": "Translate the above English into Chinese through Baidu-Translation, and the above parameters will not be mismatched",
   "初始化命令和翻译命令添加{0}参数，用于支持灵活指定配置文件路径": "Add {0} parameter to initialization command and translation command to support flexible specification of configuration file path",
   "增量翻译": "incremental translation",
-  "新增英文文档，并设置为默认文档": "Add English document and set it as default document"
+  "新增英文文档，并设置为默认文档": "Add English document and set it as default document",
+  "目录": "Table of Contents",
+  "帮助文档": "Help Document",
+  "快速上手": "Quick Start",
+  "API": "API"
 }

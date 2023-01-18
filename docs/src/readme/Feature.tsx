@@ -7,7 +7,7 @@ import React, {
   Image,
   Bold,
 } from 'jsx-to-md'
-import { linkObj, imageObj } from './constants'
+import { linkObj, imageObj } from '../constants'
 
 export default function Vision() {
   return (

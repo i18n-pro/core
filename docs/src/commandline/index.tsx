@@ -1,4 +1,13 @@
-import React, { H1, H2, H3, Table, Column, Bold } from 'jsx-to-md'
+import React, {
+  H1,
+  H2,
+  H3,
+  Table,
+  Column,
+  Bold,
+  TableOfContents,
+} from 'jsx-to-md'
+import { initI18N } from '../utils'
 
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
@@ -489,10 +498,13 @@ function Command() {
   )
 }
 
-export default function CommandLine() {
+export default function CommandLine(props) {
+  initI18N(props)
+
   return (
     <>
-      <H1>{tr('命令行')}</H1>
+      <H1 skip>{tr('命令行')}</H1>
+      <TableOfContents text={tr('目录')} open={false} />
       <Config />
       <Command />
     </>

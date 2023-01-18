@@ -17,7 +17,7 @@
     "prepare": "husky install",
     "dev": "npx tsc --watch & jtm run",
     "docs": "jtm run",
-    "docs-translate": "node ./dist/src/bin/index.js t -P /Users/Program/Git/MINE_LIB_SOURCING/i18n-pro/docs",
+    "docs-translate": "node ./dist/src/bin/index.js t -P /Users/Program/Git/MINE_LIB_SOURCING/i18n-pro/docs/src",
     "test-init": "node ./dist/src/bin/index.js init",
     "test-t": "node ./dist/src/bin/index.js t",
     "test-translate": "node ./dist/src/bin/index.js translate",
@@ -60,7 +60,7 @@
     "eslint-formatter-table": "^7.32.1",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.2",
-    "jsx-to-md": "0.8.2",
+    "jsx-to-md": "0.8.5",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
@@ -87,5 +87,9 @@
     "@alicloud/alimt20181012": "^1.0.4",
     "@alicloud/openapi-client": "^0.4.4",
     "@alicloud/tea-util": "^1.4.5"
+  },
+  "codeNameMap": {
+    "en": "",
+    "zh": "zh-CN"
   }
 }

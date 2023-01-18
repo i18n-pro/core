@@ -3,7 +3,7 @@ import React, { Break, H1, Link } from 'jsx-to-md'
 export default function License() {
   return (
     <>
-      <H1>LICENSE</H1>
+      <H1>License</H1>
       <Link href="./LICENSE">MIT</Link>
       <Break />
       <Break />

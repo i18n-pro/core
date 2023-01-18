@@ -1,9 +1,19 @@
-import React, { Break, H1, UnorderedList, ListItem, CodeBlock } from 'jsx-to-md'
+import React, {
+  H1,
+  UnorderedList,
+  ListItem,
+  CodeBlock,
+  TableOfContents,
+} from 'jsx-to-md'
+import { initI18N } from '../utils'
 
-export default function MatchRule() {
+export default function MatchRule(props) {
+  initI18N(props)
+
   return (
     <>
-      <H1>{tr('匹配规则')}</H1>
+      <H1 skip>{tr('匹配规则')}</H1>
+      <TableOfContents text={tr('目录')} open={false} />
       {tr('要求')}：
       <UnorderedList>
         <ListItem>

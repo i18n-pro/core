@@ -1,6 +1,7 @@
-import React, { H1, H2, Break, CodeBlock } from 'jsx-to-md'
+import React, { H1, H2, Break, CodeBlock, TableOfContents } from 'jsx-to-md'
+import { initI18N } from '../utils'
 
-function UnsupportObjectParamsResolve() {
+function NonsupportObjectParamsResolve() {
   return (
     <>
       <H2>{`1. ${tr('动态参数（插值变量）为什么不支持对象属性解析？')}`}</H2>
@@ -75,11 +76,14 @@ function DateAndTime() {
   )
 }
 
-export default function QAndA() {
+export default function QAndA(props) {
+  initI18N(props)
+
   return (
     <>
-      <H1>Q&A</H1>
-      <UnsupportObjectParamsResolve />
+      <H1 skip>Q&A</H1>
+      <TableOfContents text={tr('目录')} open={false} />
+      <NonsupportObjectParamsResolve />
       <DateAndTime />
     </>
   )

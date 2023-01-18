@@ -1,4 +1,5 @@
-import React, { H1, Table, Column } from 'jsx-to-md'
+import React, { H1, Table, Column, TableOfContents } from 'jsx-to-md'
+import { initI18N } from '../utils'
 
 function getColumns() {
   return [
@@ -18,7 +19,9 @@ type RecordItem = Record<
   string | JSX.Element | number
 >
 
-export default function OutputLog() {
+export default function OutputLog(props) {
+  initI18N(props)
+
   const data: RecordItem[] = [
     {
       filename: 'filepaths.json',
@@ -100,7 +103,8 @@ export default function OutputLog() {
 
   return (
     <>
-      <H1>{tr('输出日志')}</H1>
+      <H1 skip>{tr('输出日志')}</H1>
+      <TableOfContents text={tr('目录')} open={false} />
       {tr(
         '为了方便追踪与定位问题，整个翻译过程中会有一些必要的日志输出，翻译命令执行完全后会在{0}目录下生成一个{1}的日志目录，所有的日志是以独立文件的形式呈现，包含日志类型如下',
         ' `output.path` ',

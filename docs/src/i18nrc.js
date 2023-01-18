@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   funcName: 'tr',
-  entry: path.join(__dirname, '../docs/'),
+  entry: path.join(__dirname, '../src/'),
   fileRegExp: /\.[jt]sx?$/,
   output: {
     path: path.join(__dirname, './i18n/'),

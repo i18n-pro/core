@@ -1,4 +1,4 @@
-import { Image, Link, ArrayObject } from './types'
+import { Image, Link, ArrayObject } from './readme/types'
 
 export const langs = [
   {

@@ -9,8 +9,10 @@ import React, {
   Image,
   H4,
   render,
+  TableOfContents,
 } from 'jsx-to-md'
-import { imageObj } from './constants'
+import { imageObj } from '../constants'
+import { initI18N } from '../utils'
 
 function Install() {
   return (
@@ -169,7 +171,7 @@ setI18N({
   )
 }
 
-function SwithLang() {
+function SwitchLang() {
   return (
     <>
       <Break />
@@ -230,18 +232,20 @@ function Demo() {
   )
 }
 
-export default function Usage() {
+export default function Usage(props) {
+  initI18N(props)
+
   return (
     <>
-      <Break />
-      <H1>{tr('用法')}</H1>
+      <H1 skip>{tr('快速上手')}</H1>
+      <TableOfContents text={tr('目录')} open={false} />
       <Install />
       <LinkApi />
       <InitConfig />
       <ModifyConfig />
       <ExecuteTranslateCommand />
       <ImportLangs />
-      <SwithLang />
+      <SwitchLang />
       <Demo />
     </>
   )

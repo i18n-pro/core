@@ -1,4 +1,13 @@
-import React, { Break, H1, H2, render, H3, CodeBlock } from 'jsx-to-md'
+import React, {
+  Break,
+  H1,
+  H2,
+  render,
+  H3,
+  CodeBlock,
+  TableOfContents,
+} from 'jsx-to-md'
+import { initI18N } from '../utils'
 
 function renderFormatDesc() {
   const formatTypes = [
@@ -199,10 +208,13 @@ function FunctionType() {
   )
 }
 
-export default function API() {
+export default function API(props) {
+  initI18N(props)
+
   return (
     <>
-      <H1>{tr('函数API')}</H1>
+      <H1 skip>{tr('函数API')}</H1>
+      <TableOfContents text={tr('目录')} open={false} />
       <APIList />
       <FunctionType />
     </>
