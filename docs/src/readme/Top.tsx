@@ -1,7 +1,7 @@
 import React, { Image, Link, Break } from 'jsx-to-md'
 import { linkObj, imageObj, langs } from '../constants'
 
-const sperator = ' | '
+const separator = ' | '
 
 function renderLanguage() {
   const res = langs.reduce((res, item, index) => {
@@ -18,7 +18,7 @@ function renderLanguage() {
     }
 
     if (index != langs.length - 1) {
-      res.push(sperator)
+      res.push(separator)
     }
 
     return res
