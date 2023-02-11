@@ -36,7 +36,6 @@
     "已将 {0} 写入到 {1} 中": "Written {0} to {1}",
     "已翻译文案中缺少动态参数标识：{0}": "The dynamic parameter ID is missing in the translated document: {0}",
     "百度": "Baidu",
-    "不存在 {0} 的配置项": "There is no {0} configuration item",
     "{0}翻译接口返回错误": "The {0} translation interface returned an error",
     "不支持的语言类型": "Unsupported language types",
     "appKey 配置不正确": "The appKey configuration is incorrect",
@@ -58,6 +57,12 @@
     "翻译有误({0})": "translation error ({0})",
     "多语言聚合文件({0})": "multilingual aggregation file ({0})",
     "语言包 {0} 文件({1})": "language pack {0} file ({1})",
-    "可选语言有中文（zh）/ 英文（{0}）， 默认为英文（en）": "The optional languages are Chinese (zh)/English ({0}), and the default is English (en)"
+    "可选语言有中文（zh）/ 英文（{0}）， 默认为英文（en）": "The optional languages are Chinese (zh)/English ({0}), and the default is English (en)",
+    "projectId 配置不正确": "The projectId is incorrectly configured",
+    "错误信息": "Error message",
+    "不存在{0}的配置项": "There is no {0} configuration item",
+    "当前{0}没有配置对应配置内容{1}": "Currently {0} has no corresponding configuration content {1}",
+    "location 或者 语言代码 配置不正确": "The location or language code is incorrectly configured",
+    "谷歌": "Google"
   }
 }

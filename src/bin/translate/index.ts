@@ -13,6 +13,7 @@ import { setYoudaoConfig, translateByYoudao } from './youdao'
 import { setTencentConfig, translateByTencent } from './tencent'
 import { setAliyunConfig, translateByAliyun } from './aliyun'
 import { setMicrosoftConfig, translateByMicrosoft } from './microsoft'
+import { setGoogleConfig, translateByGoogle } from './google'
 
 let config: TranslatorConfig = {
   from: '',
@@ -37,6 +38,7 @@ const translatorImplMap = {
   tencent: translateByTencent,
   aliyun: translateByAliyun,
   microsoft: translateByMicrosoft,
+  google: translateByGoogle,
 }
 
 const translatorSetConfigMap = {
@@ -45,6 +47,7 @@ const translatorSetConfigMap = {
   tencent: setTencentConfig,
   aliyun: setAliyunConfig,
   microsoft: setMicrosoftConfig,
+  google: setGoogleConfig,
 }
 
 const maxLengthMap: MaxLengthConfigMap = {
@@ -71,6 +74,10 @@ const maxLengthMap: MaxLengthConfigMap = {
     maxLength: 5000,
     maxArrayLength: 1000,
   },
+  google: {
+    maxLengthType: 'allStrLength',
+    maxLength: 5000,
+  },
 }
 
 let currentTranslatorImpl: typeof translateByBaidu
@@ -80,7 +87,8 @@ let currentTranslatorSetConfig: (
     | Config['youdaoConfig']
     | Config['tencentConfig']
     | Config['aliyunConfig']
-    | Config['microsoftConfig'],
+    | Config['microsoftConfig']
+    | Config['googleConfig'],
 ) => void
 
 /**
@@ -90,18 +98,38 @@ let currentTranslatorSetConfig: (
 export function setTranslateConfig(
   configProp: Pick<
     Config,
-    'translator' | 'baiduConfig' | 'youdaoConfig' | 'aliyunConfig'
+    | 'translator'
+    | 'baiduConfig'
+    | 'youdaoConfig'
+    | 'aliyunConfig'
+    | 'googleConfig'
   >,
   innerConfigProp?: InnerConfig,
 ) {
   const { translator = 'baidu' } = configProp
 
   if (!Object.keys(translatorImplMap).includes(translator)) {
-    logError(i18n('不存在 {0} 的配置项', `translator = ${translator}`))
+    logError(
+      i18n(
+        '不存在{0}的配置项',
+        chalk.yellowBright(` translator = ${translator} `),
+      ),
+    )
     process.exit(1)
   }
 
   config = configProp[`${translator}Config`]
+
+  if (typeof config === 'undefined' || Object.keys(config).length == 0) {
+    logError(
+      i18n(
+        '当前{0}没有配置对应配置内容{1}',
+        chalk.yellowBright(` translator = ${translator} `),
+        chalk.redBright(` ${translator}Config `),
+      ),
+    )
+    process.exit(1)
+  }
   currentTranslatorImpl = translatorImplMap[translator]
   currentTranslatorSetConfig = translatorSetConfigMap[translator]
   currentTranslatorSetConfig(configProp[`${translator}Config`])

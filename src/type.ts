@@ -49,7 +49,13 @@ export type Config = {
   /**
    * 指定翻译平台，默认为【百度】
    */
-  translator?: 'baidu' | 'youdao' | 'tencent' | 'aliyun' | 'microsoft'
+  translator?:
+    | 'baidu'
+    | 'youdao'
+    | 'tencent'
+    | 'aliyun'
+    | 'microsoft'
+    | 'google'
   /**
    * 百度翻译的配置
    */
@@ -90,6 +96,13 @@ export type Config = {
   microsoftConfig: {
     key: string // Microsoft translator-key
     location: string // 区域
+  } & TranslatorConfig
+  /**
+   * 谷歌翻译的配置
+   */
+  googleConfig: {
+    projectId: string // 项目ID
+    location?: string // 区域
   } & TranslatorConfig
 }
 

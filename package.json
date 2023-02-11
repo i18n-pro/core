@@ -1,6 +1,6 @@
 {
   "name": "i18n-pro",
-  "version": "1.3.2",
+  "version": "doc",
   "description": "Lightweight, simple, flexible and automatic-translation tools for internationalization（轻量、简单、灵活、自动翻译的国际化工具）",
   "files": [
     "dist/src",
@@ -86,7 +86,8 @@
   "dependencies": {
     "@alicloud/alimt20181012": "^1.0.4",
     "@alicloud/openapi-client": "^0.4.4",
-    "@alicloud/tea-util": "^1.4.5"
+    "@alicloud/tea-util": "^1.4.5",
+    "@google-cloud/translate": "7"
   },
   "codeNameMap": {
     "en": "",
