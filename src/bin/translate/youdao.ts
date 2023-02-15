@@ -1,4 +1,4 @@
-import { Config } from '../../type'
+import { BasicYoudaoConfig } from '../../type'
 import fetch from '../fetch'
 import {
   sha256,
@@ -8,7 +8,7 @@ import {
   throwErrorByErrorCode,
 } from './utils'
 
-const config: Config['youdaoConfig'] = {
+const config: BasicYoudaoConfig = {
   appKey: '',
   key: '',
   from: '',
@@ -29,7 +29,7 @@ const EXIT_ERROR_CODES = ['102', '108', '202']
  * 设置翻译配置
  * @param configProp
  */
-export function setYoudaoConfig(configProp: Config['youdaoConfig']) {
+export function setYoudaoConfig(configProp: typeof config): void {
   Object.entries(configProp).forEach(([key, value]) => {
     config[key] = value
   })

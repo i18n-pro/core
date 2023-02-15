@@ -1,5 +1,5 @@
 import { createHmac, BinaryToTextEncoding } from 'node:crypto'
-import { Config } from '../../type'
+import { BasicTencentConfig } from '../../type'
 import fetch from '../fetch'
 import {
   sha256 as getHash,
@@ -8,7 +8,7 @@ import {
   throwErrorByErrorCode,
 } from './utils'
 
-const config: Config['tencentConfig'] = {
+const config: BasicTencentConfig = {
   secretId: '',
   secretKey: '',
   projectId: undefined,

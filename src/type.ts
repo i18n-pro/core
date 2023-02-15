@@ -9,9 +9,20 @@ export type TranslatorConfig = {
 }
 
 /**
- * 模板配置文件
+ * 可供选择的翻译器（翻译平台）
  */
-export type Config = {
+type Translator =
+  | 'baidu'
+  | 'youdao'
+  | 'tencent'
+  | 'aliyun'
+  | 'microsoft'
+  | 'google'
+
+/**
+ * 公共的基础配置
+ */
+type BasicConfig = {
   funcName: string // 自定义函数名，默认为 i18n
   entry: string // 入口文件
   fileRegExp: RegExp // 匹配文件名的正则表达式
@@ -49,62 +60,138 @@ export type Config = {
   /**
    * 指定翻译平台，默认为【百度】
    */
-  translator?:
-    | 'baidu'
-    | 'youdao'
-    | 'tencent'
-    | 'aliyun'
-    | 'microsoft'
-    | 'google'
+  translator?: Translator
   /**
-   * 百度翻译的配置
+   * 允许其他任意属性
    */
-  baiduConfig: {
-    appid: string // 百度翻译的APPID
-    key: string // 百度翻译的密钥
-  } & TranslatorConfig
-  /**
-   * 有道翻译的配置
-   */
-  youdaoConfig: {
-    appKey: string // 有道翻译的APPID
-    key: string // 有道翻译的密钥
-  } & TranslatorConfig
-  /**
-   * 腾讯翻译的配置
-   */
-  tencentConfig: {
-    secretId: string // 用于标识 API 调用者身份，可以简单类比为用户名
-    secretKey: string // 用于验证 API 调用者的身份，可以简单类比为密码
-    region: string // 地域列表
-    projectId?: string // 项目ID
-    language?: string // 接口错误返回的提示信息的语言类型，取值：zh-CN，en-US，默认为zh-CN
-  } & TranslatorConfig
-  /**
-   * 阿里云翻译的配置
-   */
-  aliyunConfig: {
-    accessKeyId: string // AccessKey ID
-    accessKeySecret: string // AccessKey Secret
-    scene?: string // 场景
-    apiType?: string // API Type
-    endpoint?: string // 服务地址，默认为 mt.aliyuncs.com
-  } & TranslatorConfig
-  /**
-   * 微软翻译的配置
-   */
-  microsoftConfig: {
-    key: string // Microsoft translator-key
-    location: string // 区域
-  } & TranslatorConfig
-  /**
-   * 谷歌翻译的配置
-   */
-  googleConfig: {
-    projectId: string // 项目ID
-    location?: string // 区域
-  } & TranslatorConfig
+  [key: string]: unknown
 }
+
+type DefineTranslatorConfig<T extends Translator, C extends object> = {
+  translator: T
+} & Record<`${T}Config`, C>
+
+/**
+ * 基础百度翻译的配置
+ */
+export type BasicBaiduConfig = {
+  appid: string // 百度翻译的APPID
+  key: string // 百度翻译的密钥
+} & TranslatorConfig
+
+/**
+ * 完整的百度翻译的配置
+ */
+export type BaiduConfig = Omit<
+  DefineTranslatorConfig<'baidu', BasicBaiduConfig>,
+  'translator'
+> & {
+  translator?: 'baidu'
+}
+
+/**
+ * 有道翻译的配置
+ */
+export type BasicYoudaoConfig = {
+  appKey: string // 有道翻译的APPID
+  key: string // 有道翻译的密钥
+} & TranslatorConfig
+
+/**
+ * 完整的有道翻译的配置
+ */
+export type YoudaoConfig = DefineTranslatorConfig<'youdao', BasicYoudaoConfig>
+
+/**
+ * 腾讯翻译的配置
+ */
+export type BasicTencentConfig = {
+  secretId: string // 用于标识 API 调用者身份，可以简单类比为用户名
+  secretKey: string // 用于验证 API 调用者的身份，可以简单类比为密码
+  region: string // 地域列表
+  projectId?: string // 项目ID
+  language?: string // 接口错误返回的提示信息的语言类型，取值：zh-CN，en-US，默认为zh-CN
+} & TranslatorConfig
+
+/**
+ * 完整的腾讯翻译的配置
+ */
+export type TencentConfig = DefineTranslatorConfig<
+  'tencent',
+  BasicTencentConfig
+>
+
+/**
+ * 阿里云翻译的配置
+ */
+export type BasicAliyunConfig = {
+  accessKeyId: string // AccessKey ID
+  accessKeySecret: string // AccessKey Secret
+  scene?: string // 场景
+  apiType?: string // API Type
+  endpoint?: string // 服务地址，默认为 mt.aliyuncs.com
+} & TranslatorConfig
+
+/**
+ * 完整的阿里云翻译的配置
+ */
+export type AliyunConfig = DefineTranslatorConfig<'aliyun', BasicAliyunConfig>
+
+/**
+ * 微软翻译的配置
+ */
+export type BasicMicrosoftConfig = {
+  key: string // Microsoft translator-key
+  location: string // 区域
+} & TranslatorConfig
+
+/**
+ * 完整的微软翻译的配置
+ */
+export type MicrosoftConfig = DefineTranslatorConfig<
+  'microsoft',
+  BasicMicrosoftConfig
+>
+
+/**
+ * 谷歌翻译的配置
+ */
+export type BasicGoogleConfig = {
+  projectId: string // 项目ID
+  location?: string // 区域
+} & TranslatorConfig
+
+/**
+ * 完整的谷歌翻译的配置
+ */
+export type GoogleConfig = DefineTranslatorConfig<'google', BasicGoogleConfig>
+
+/**
+ * 翻译器基础的联合类型
+ */
+export type UnionBasicTranslatorConfig =
+  | BasicBaiduConfig
+  | BasicYoudaoConfig
+  | BasicTencentConfig
+  | BasicAliyunConfig
+  | BasicMicrosoftConfig
+  | BasicGoogleConfig
+
+/**
+ * 翻译器的联合类型
+ */
+export type UnionTranslatorConfig =
+  | BaiduConfig
+  | YoudaoConfig
+  | TencentConfig
+  | AliyunConfig
+  | MicrosoftConfig
+  | GoogleConfig
+
+/**
+ * 模板配置文件
+ */
+export type Config = BasicConfig & UnionTranslatorConfig
 
 /**
  * 语言包类型

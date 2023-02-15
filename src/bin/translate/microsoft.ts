@@ -1,8 +1,8 @@
-import { Config } from '../../type'
+import { BasicMicrosoftConfig } from '../../type'
 import fetch from '../fetch'
 import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
 
-const config: Config['microsoftConfig'] = {
+const config: BasicMicrosoftConfig = {
   key: '',
   location: '',
   from: '',

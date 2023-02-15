@@ -1,11 +1,12 @@
 import { SEPARATOR_STR } from '../constants'
 import { logError } from '../utils'
 import {
-  Config,
   InnerConfig,
   Langs,
   MaxLengthConfigMap,
   TranslatorConfig,
+  UnionBasicTranslatorConfig,
+  UnionTranslatorConfig,
 } from '../../type'
 import chalk from '../chalk'
 import { setBaiduConfig, translateByBaidu } from './baidu'
@@ -81,29 +82,14 @@ const maxLengthMap: MaxLengthConfigMap = {
 }
 
 let currentTranslatorImpl: typeof translateByBaidu
-let currentTranslatorSetConfig: (
-  config:
-    | Config['baiduConfig']
-    | Config['youdaoConfig']
-    | Config['tencentConfig']
-    | Config['aliyunConfig']
-    | Config['microsoftConfig']
-    | Config['googleConfig'],
-) => void
+let currentTranslatorSetConfig: (config: UnionBasicTranslatorConfig) => void
 
 /**
  * 设置翻译配置
  * @param configProp
  */
 export function setTranslateConfig(
-  configProp: Pick<
-    Config,
-    | 'translator'
-    | 'baiduConfig'
-    | 'youdaoConfig'
-    | 'aliyunConfig'
-    | 'googleConfig'
-  >,
+  configProp: UnionTranslatorConfig,
   innerConfigProp?: InnerConfig,
 ) {
   const { translator = 'baidu' } = configProp

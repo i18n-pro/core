@@ -1,6 +1,6 @@
 import { URLSearchParams } from 'node:url'
 import { SEPARATOR_STR } from '../constants'
-import { Config } from '../../type'
+import { BasicBaiduConfig } from '../../type'
 import fetch from '../fetch'
 import {
   md5,
@@ -9,7 +9,7 @@ import {
   throwErrorByErrorCode,
 } from './utils'
 
-const config: Config['baiduConfig'] = {
+const config: BasicBaiduConfig = {
   appid: '',
   key: '',
   from: '',
@@ -34,7 +34,7 @@ const EXIT_ERROR_CODES = ['52003', '54001']
  * 设置翻译配置
  * @param configProp
  */
-export function setBaiduConfig(configProp: Config['baiduConfig']) {
+export function setBaiduConfig(configProp: BasicBaiduConfig) {
   Object.entries(configProp).forEach(([key, value]) => {
     config[key] = value
   })

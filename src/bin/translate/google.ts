@@ -1,9 +1,9 @@
 import { TranslationServiceClient } from '@google-cloud/translate'
-import { Config } from '../../type'
+import { BasicGoogleConfig } from '../../type'
 import chalk from '../chalk'
 import { collectRes, handleTranslateFail } from './utils'
 
-const config: Config['googleConfig'] = {
+const config: BasicGoogleConfig = {
   projectId: '',
   location: 'global',
   from: '',

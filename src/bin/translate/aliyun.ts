@@ -1,10 +1,10 @@
 import { Config as OpenApiConfig } from '@alicloud/openapi-client'
 import alimt, { GetBatchTranslateRequest } from '@alicloud/alimt20181012'
 import { RuntimeOptions } from '@alicloud/tea-util'
-import type { Config } from '../../type'
+import type { BasicAliyunConfig } from '../../type'
 import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
 
-const config: Config['aliyunConfig'] = {
+const config: BasicAliyunConfig = {
   accessKeyId: '',
   accessKeySecret: '',
   from: '',

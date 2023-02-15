@@ -1,4 +1,4 @@
-import { Langs, Config } from '../type'
+import { Langs, Config, TranslatorConfig } from '../type'
 
 const fs = require('fs')
 const path = require('path')
@@ -33,7 +33,7 @@ function requireJsonFile<T extends object>(
  */
 export default function extraLangs(
   props: Pick<Config['output'], 'langType' | 'path'> &
-    Pick<Config['baiduConfig'], 'to' | 'codeLocaleMap'>,
+    Pick<TranslatorConfig, 'to' | 'codeLocaleMap'>,
 ) {
   let langs: Langs = {}
   const { langType, path: dirpath, to, codeLocaleMap = {} } = props

@@ -1,5 +1,6 @@
 import { i18nImpl } from './utils'
 import { Langs, I18NState } from '../type'
+export { Langs, I18NState } from '../type'
 
 let state = {} as I18NState<Langs>
 
