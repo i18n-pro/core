@@ -155,7 +155,7 @@ export function handleTranslateFail(
 
   let currentErrorText = e || TRANSLATE_ERROR_TEXT
 
-  currentErrorText = e
+  currentErrorText = currentErrorText
     ?.replaceAll('\n', '')
     ?.replaceAll(STYLE_EOF, '')
     ?.replaceAll(chalk.redBright().replace(STYLE_EOF, ''), '')

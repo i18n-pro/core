@@ -1,56 +1,19 @@
-import http from 'http'
-import { binTranslate, mockRequest, binConstants } from '../utils'
-import { Langs } from '../../src/type'
+import https from 'https'
+import {
+  binTranslate,
+  mockRequest,
+  binConstants,
+  binChalk as chalk,
+} from '../../utils'
+import { LANGS_PATH } from './utils'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
 const { SEPARATOR_LENGTH } = binConstants
 
-describe.skip('验证翻译实现', () => {
-  describe('没有内容需要翻译', () => {
-    type Item = [
-      string, // 描述内容
-      string[], // 待翻译的文本内容
-      string[], // 目标语言
-      Langs, // 生成的语言包
-    ]
-
-    const langs = require('../../i18n/langs.json')
-    const texts = Object.keys(langs['en'])
-
-    const matrix: Item[] = [
-      ['所有内容已翻译过', texts, ['en'], langs],
-      ['未配置目标语言', texts, [], {}],
-      ['没有需要翻译的文本内容', [], ['en'], { en: {} }],
-    ]
-
-    it.each(matrix)('%s', async (desc, texts, to, langs) => {
-      const spyRequest = vi.spyOn(http, 'request')
-
-      // 设置翻译配置
-      setTranslateConfig({
-        appid: '',
-        key: '',
-        from: 'zh',
-        to,
-      })
-
-      // 执行翻译
-      const res = await translateTextsToLangsImpl(texts, langs, true)
-
-      // 未发起接口请求
-      expect(spyRequest).toHaveBeenCalledTimes(0)
-      // 语言包
-      expect(res.langs).toEqual(langs)
-      // 翻译成功
-      expect(res.success).toEqual({})
-      // 翻译失败
-      expect(res.error).toEqual({})
-    })
-  })
-
+describe('验证翻译实现', () => {
   describe('有内容需要翻译', () => {
     it('已存在部分内容模拟新增', async () => {
-      const langs = require('../../i18n/langs.json')
+      const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
       const middleIndex = texts.length / 2
       const { existLangs, restLangs } = Object.entries(langs.en).reduce(
@@ -75,7 +38,7 @@ describe.skip('验证翻译实现', () => {
           },
         },
       )
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
 
       // 这里需要模拟 request 实现
       spyRequest.mockImplementation(
@@ -97,10 +60,12 @@ describe.skip('验证翻译实现', () => {
 
       // 设置翻译配置
       setTranslateConfig({
-        appid: '',
-        key: '',
-        from: 'zh',
-        to: ['en'],
+        baiduConfig: {
+          appid: '',
+          key: '',
+          from: 'zh',
+          to: ['en'],
+        },
       })
 
       // 执行翻译
@@ -124,9 +89,9 @@ describe.skip('验证翻译实现', () => {
     })
 
     it('禁用增量模式', async () => {
-      const langs = require('../../i18n/langs.json')
+      const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
 
       // 这里需要模拟 request 实现
       spyRequest.mockImplementation(
@@ -145,10 +110,12 @@ describe.skip('验证翻译实现', () => {
 
       // 设置翻译配置
       setTranslateConfig({
-        appid: '',
-        key: '',
-        from: 'zh',
-        to: ['en'],
+        baiduConfig: {
+          appid: '',
+          key: '',
+          from: 'zh',
+          to: ['en'],
+        },
       })
 
       // 执行翻译
@@ -195,9 +162,9 @@ describe.skip('验证翻译实现', () => {
     })
 
     it.each(matrix)('%s', async (error_msg, error_code, isAllKnow) => {
-      const langs = require('../../i18n/langs.json')
+      const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
       const spyLog = vi.spyOn(console, 'log')
 
       // 这里需要模拟 request 实现
@@ -212,10 +179,12 @@ describe.skip('验证翻译实现', () => {
 
       // 设置翻译配置
       setTranslateConfig({
-        appid: '',
-        key: '',
-        from: 'zh',
-        to: ['en'],
+        baiduConfig: {
+          appid: '',
+          key: '',
+          from: 'zh',
+          to: ['en'],
+        },
       })
 
       // 执行翻译
@@ -226,7 +195,9 @@ describe.skip('验证翻译实现', () => {
       // 控制台应该会正常输出一些日志信息
       expect(spyLog).toHaveBeenLastCalledWith(
         '❌',
-        expect.stringContaining(`错误信息：${error_msg}`),
+        expect.stringContaining(
+          `错误信息: ${chalk.default.redBright(error_msg)}`,
+        ),
       )
       expect(spyLog).toHaveBeenLastCalledWith(
         '❌',
@@ -247,7 +218,7 @@ describe.skip('验证翻译实现', () => {
       expect(res.error).toEqual(
         Object.entries(langs.en).reduce((res, [from]) => {
           res[from] = {
-            en: expect.stringContaining(`错误信息：${error_msg}`),
+            en: expect.stringContaining(`错误信息: ${error_msg}`),
           }
           return res
         }, {}),
@@ -257,7 +228,7 @@ describe.skip('验证翻译实现', () => {
 
   describe('模拟一些错误场景', () => {
     it('存在部分文本未被翻译的情况', async () => {
-      const langs = require('../../i18n/langs.json')
+      const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
       const middleIndex = texts.length / 2
       const { lostTexts, existLangs, restLangs } = Object.entries(
@@ -289,7 +260,7 @@ describe.skip('验证翻译实现', () => {
           },
         },
       )
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
 
       // 这里需要模拟 request 实现
       spyRequest.mockImplementation(
@@ -311,10 +282,12 @@ describe.skip('验证翻译实现', () => {
 
       // 设置翻译配置
       setTranslateConfig({
-        appid: '',
-        key: '',
-        from: 'zh',
-        to: ['en'],
+        baiduConfig: {
+          appid: '',
+          key: '',
+          from: 'zh',
+          to: ['en'],
+        },
       })
 
       // 执行翻译
@@ -351,9 +324,9 @@ describe.skip('验证翻译实现', () => {
     })
 
     it('请求异常却未捕获到异常信息', async () => {
-      const langs = require('../../i18n/langs.json')
+      const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
 
       // 这里需要模拟 request 实现
       spyRequest.mockImplementation(
@@ -367,10 +340,12 @@ describe.skip('验证翻译实现', () => {
 
       // 设置翻译配置
       setTranslateConfig({
-        appid: '',
-        key: '',
-        from: 'zh',
-        to: ['en'],
+        baiduConfig: {
+          appid: '',
+          key: '',
+          from: 'zh',
+          to: ['en'],
+        },
       })
 
       // 执行翻译
@@ -403,9 +378,9 @@ describe.skip('验证翻译实现', () => {
     const matrix: Item[] = [[100], [200], [500], [1000], [3000], [10000]]
 
     it.each(matrix)('本次请求最大字符数：%d', async (maxStringLength) => {
-      const langs = require('../../i18n/langs.json')
+      const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
-      const spyRequest = vi.spyOn(http, 'request')
+      const spyRequest = vi.spyOn(https, 'request')
       // 计算出需要翻译调用翻译接口的次数
       let count = 0
       let strCount = 0
@@ -445,14 +420,19 @@ describe.skip('验证翻译实现', () => {
       // 设置翻译配置
       setTranslateConfig(
         {
-          appid: '',
-          key: '',
-          from: 'zh',
-          to: ['en'],
-          delay: 1,
+          baiduConfig: {
+            appid: '',
+            key: '',
+            from: 'zh',
+            to: ['en'],
+            delay: 1,
+          },
         },
         {
-          maxStringLength,
+          maxLengthConfig: {
+            maxLengthType: 'allStrLength',
+            maxLength: maxStringLength,
+          },
         },
       )
 

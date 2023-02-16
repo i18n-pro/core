@@ -90,6 +90,7 @@ export async function translateByBaidu(props: {
         ERROR_CODE_TIP_MAP,
         TRANSLATOR_NAME,
         'http://api.fanyi.baidu.com/doc/21',
+        res.error_msg,
       )
     }
 
@@ -111,6 +112,7 @@ export async function translateByBaidu(props: {
       translatorName: TRANSLATOR_NAME,
     })
   } catch (e) {
+    console.log({ e })
     handleTranslateFail(e, errorCode, EXIT_ERROR_CODES, texts, error)
   }
 
