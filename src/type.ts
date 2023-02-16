@@ -11,7 +11,7 @@ export type TranslatorConfig = {
 /**
  * 可供选择的翻译器（翻译平台）
  */
-type Translator =
+export type Translator =
   | 'baidu'
   | 'youdao'
   | 'tencent'

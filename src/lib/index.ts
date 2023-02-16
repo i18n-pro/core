@@ -42,7 +42,7 @@ export function i18n(
  */
 export function withI18N(props: {
   locale: string // 独立于主程序的语言
-}) {
+}): { i18n: typeof i18n } {
   const { locale } = props
 
   return {
