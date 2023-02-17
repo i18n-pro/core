@@ -1,6 +1,8 @@
-import { i18n, setI18N } from '@lib'
+import { initI18N as originInitI18N } from '@lib'
 import en from './i18n/en.json'
 import packageInfo from '../../package.json'
+
+const { i18n, setI18N } = originInitI18N({ namespace: 'default' })
 
 global.tr = i18n
 

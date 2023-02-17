@@ -4,7 +4,7 @@ import {
   invalidPluralFormatterRegex,
   tagFormatterNameMap,
 } from './contants'
-import { Langs, I18NState } from '../type'
+import { I18NState } from './type'
 
 /**
  * 获取目标正则
@@ -31,7 +31,7 @@ export function getTextFromFormatter(props: {
   index: number // 动态参数的起始下标
   arg: unknown // 动态参数值
   text: string // 待处理的文案
-  state: I18NState<Langs> // 国际化状态
+  state: I18NState // Internationalization state
 }): string {
   const { type, originText, matchTagRes, arg, text: textProp, state } = props
   const { locale } = state
@@ -85,12 +85,12 @@ export function getTextFromFormatter(props: {
 /**
  * i18n 函数API的具体实现
  * @param i18nState 当前i18n所有状态
- * @param text 原文本
- * @param args 动态参数
+ * @param text Original text
+ * @param args Dynamic parameter
  * @returns
  */
 export function i18nImpl(
-  i18nState: I18NState<Langs>,
+  i18nState: I18NState,
   text,
   ...args: Array<string | number | unknown>
 ) {

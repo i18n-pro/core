@@ -18,7 +18,7 @@ import {
   setTranslateConfig,
   translateTextsToLangsImpl,
 } from './translate/index'
-import { i18n, setI18N } from '../lib/index'
+import { i18n, setI18N } from './i18n'
 import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 import extraLangs from './extra-langs'

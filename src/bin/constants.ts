@@ -1,4 +1,4 @@
-import { i18n } from '../lib'
+import { i18n } from './i18n'
 
 // 设置为全局属性
 global.i18n = i18n
