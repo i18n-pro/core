@@ -106,14 +106,15 @@ function withI18N(
 export function initI18N(stateProp: I18NState) {
   const { namespace = 'default' } = stateProp
 
-  if (!namespace) {
+  if (typeof stateProp.namespace == 'undefined') {
     console.warn(
       'No namespace is set, and using with other libraries can cause bugs',
     )
-  } else if (typeof state[namespace] != 'undefined') {
+  }
+
+  if (typeof state[namespace] != 'undefined') {
     console.error(
-      'A configuration with the same namespace `{0}` already exists, so you may need to redefine one',
-      namespace,
+      `A configuration with the same namespace '${namespace}' already exists, so you may need to redefine one`,
     )
   }
 

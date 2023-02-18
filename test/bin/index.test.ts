@@ -3,9 +3,9 @@ import {
   binIndex,
   binConfig,
   changeProcessArgv,
-  lib,
   binExtraFile,
   binConstants,
+  binI18N,
 } from '../utils'
 import langs from '../../i18n/langs.json'
 import path from 'path'
@@ -27,22 +27,22 @@ describe('验证命令行响应命令', () => {
 
     it('是否正确匹配英文参数', () => {
       // 修改命令行参数
-      changeProcessArgv('init', '', '', '-L', 'en')
+      changeProcessArgv('init', '', '', '-L', 'zh')
 
       const spyConfig = vi.spyOn(binConfig, 'initConfig')
       expect(spyConfig.getMockName()).toBe('initConfig')
       spyConfig.mockImplementation(() => undefined)
 
-      const spyLib = vi.spyOn(lib, 'setI18N')
-      expect(spyLib.getMockName()).toBe('setI18N')
+      const { setI18N } = binI18N
 
       execCommand()
-      // 正确匹配命令
-      expect(spyConfig).toHaveBeenCalledTimes(1)
-      // 正确匹配语言
-      expect(spyLib).toHaveBeenCalledTimes(1)
-      expect(spyLib).toHaveBeenCalledWith({
-        locale: 'en',
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { namespace, ...state } = setI18N({})
+
+      // 正确匹配语言状态
+      expect(state).toEqual({
+        locale: 'zh',
         langs,
       })
     })
@@ -66,7 +66,7 @@ describe('验证命令行响应命令', () => {
 
     it.each(matrix)(
       '是否能正确响应 %s',
-      (dscrption, command, locale, cm, usage) => {
+      (description, command, locale, cm, usage) => {
         // 修改命令行参数
         changeProcessArgv(command, '', '', '-L', locale)
         const spy = vi.spyOn(console, 'log')
@@ -97,26 +97,29 @@ describe('验证命令行响应命令', () => {
       ['v -L en', 'v', 'en', 'Current version'],
     ]
 
-    it.each(matrix)('是否能正确响应 %s', (dscrption, command, locale, tip) => {
-      // 修改命令行参数
-      changeProcessArgv(command, '', '', '-L', locale)
-      const spy = vi.spyOn(console, 'log')
-      expect(spy.getMockName()).toBe('log')
-      execCommand()
-      // 正确匹配命令
-      expect(spy).toHaveBeenCalledTimes(1)
-      // 简单验证是否正常输出
-      expect(spy).toHaveBeenLastCalledWith(
-        '\n',
-        expect.stringContaining(tip),
-        '\n',
-      )
-      expect(spy).toHaveBeenLastCalledWith(
-        '\n',
-        expect.stringContaining(require('../../package.json').version),
-        '\n',
-      )
-    })
+    it.each(matrix)(
+      '是否能正确响应 %s',
+      (description, command, locale, tip) => {
+        // 修改命令行参数
+        changeProcessArgv(command, '', '', '-L', locale)
+        const spy = vi.spyOn(console, 'log')
+        expect(spy.getMockName()).toBe('log')
+        execCommand()
+        // 正确匹配命令
+        expect(spy).toHaveBeenCalledTimes(1)
+        // 简单验证是否正常输出
+        expect(spy).toHaveBeenLastCalledWith(
+          '\n',
+          expect.stringContaining(tip),
+          '\n',
+        )
+        expect(spy).toHaveBeenLastCalledWith(
+          '\n',
+          expect.stringContaining(require('../../package.json').version),
+          '\n',
+        )
+      },
+    )
   })
 
   describe('命令错误', () => {
@@ -132,17 +135,20 @@ describe('验证命令行响应命令', () => {
       ['xxx -L en', 'xxx', 'en', 'Error in input command'],
     ]
 
-    it.each(matrix)('是否能正确响应 %s', (dscrption, command, locale, tip) => {
-      // 修改命令行参数
-      changeProcessArgv(command, '', '', '-L', locale)
-      const spy = vi.spyOn(console, 'log')
-      expect(spy.getMockName()).toBe('log')
-      execCommand()
-      // 正确匹配命令
-      expect(spy).toHaveBeenCalledTimes(1)
-      // 简单验证是否正常输出
-      expect(spy).toHaveBeenLastCalledWith(expect.stringContaining(tip))
-    })
+    it.each(matrix)(
+      '是否能正确响应 %s',
+      (description, command, locale, tip) => {
+        // 修改命令行参数
+        changeProcessArgv(command, '', '', '-L', locale)
+        const spy = vi.spyOn(console, 'log')
+        expect(spy.getMockName()).toBe('log')
+        execCommand()
+        // 正确匹配命令
+        expect(spy).toHaveBeenCalledTimes(1)
+        // 简单验证是否正常输出
+        expect(spy).toHaveBeenLastCalledWith(expect.stringContaining(tip))
+      },
+    )
   })
 
   describe('翻译', () => {
@@ -162,7 +168,7 @@ describe('验证命令行响应命令', () => {
 
     it.each(matrix)(
       '是否能正确响应 %s',
-      async (dscrption, command, locale, timeTip) => {
+      async (description, command, locale, timeTip) => {
         // 修改命令行参数
         changeProcessArgv(command, '', '', '-L', locale)
         const spyTime = vi.spyOn(console, 'time')
@@ -208,6 +214,7 @@ describe('验证命令行响应命令', () => {
           from: 'en',
           to: ['jp'],
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
 
       await execCommand()

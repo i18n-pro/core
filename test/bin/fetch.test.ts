@@ -1,5 +1,5 @@
 import https from 'https'
-import { binfetch, mockRequest } from '../utils'
+import { binFetch, mockRequest } from '../utils'
 
 describe('验证 fetch', () => {
   it('模拟正常请求', async () => {
@@ -11,7 +11,7 @@ describe('验证 fetch', () => {
     }
     const spyRequest = vi.spyOn(https, 'request')
     spyRequest.mockImplementation(mockRequest({ data: mockData }))
-    const res = await binfetch.default(
+    const res = await binFetch.default(
       'https://fanyi-api.baidu.com/api/trans/vip/translate',
       {
         data: JSON.stringify({}),
@@ -34,7 +34,7 @@ describe('验证 fetch', () => {
         }),
       )
       try {
-        await binfetch.default('xxx', {
+        await binFetch.default('xxx', {
           data: JSON.stringify({}),
         })
       } catch (error) {
@@ -51,7 +51,7 @@ describe('验证 fetch', () => {
       )
 
       try {
-        await binfetch.default('xxx', {
+        await binFetch.default('xxx', {
           data: JSON.stringify({}),
         })
       } catch (error) {

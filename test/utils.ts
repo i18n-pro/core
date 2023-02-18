@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { URLSearchParams } from 'url'
 import * as Lib from '../src/lib'
 import * as BinIndex from '../src/bin'
@@ -5,11 +6,12 @@ import * as BinConfig from '../src/bin/config'
 import * as BinChalk from '../src/bin/chalk'
 import * as BinExtraLangs from '../src/bin/extra-langs'
 import * as BinExtraText from '../src/bin/extra-text'
-import * as Binfetch from '../src/bin/fetch'
+import * as BinFetch from '../src/bin/fetch'
 import * as BinTranslate from '../src/bin/translate'
 import * as BinConstants from '../src/bin/constants'
 import * as BinUtils from '../src/bin/utils'
 import * as BinExtraFile from '../src/bin/extra-file'
+import * as BinI18N from '../src/bin/i18n'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -66,7 +68,7 @@ export const binExtraText = await getCurrentModule<typeof BinExtraText>(
 )
 
 // 获取当前 bin-fetch 的导出内容
-export const binfetch = await getCurrentModule<typeof Binfetch>(
+export const binFetch = await getCurrentModule<typeof BinFetch>(
   '../src/bin/fetch',
 )
 
@@ -89,6 +91,9 @@ export const binUtils = await getCurrentModule<typeof BinUtils>(
 export const binExtraFile = await getCurrentModule<typeof BinExtraFile>(
   '../src/bin/extra-file',
 )
+
+// 获取当前 bin-i18n 的导出内容
+export const binI18N = await getCurrentModule<typeof BinI18N>('../src/bin/i18n')
 
 /**
  * 简易获取模拟 http.request 的方法

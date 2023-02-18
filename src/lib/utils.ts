@@ -42,7 +42,7 @@ export function getTextFromFormatter(props: {
 
   if (typeof formatter !== 'function') {
     console.warn(
-      `在翻译文本 ${originText} 中动态参数 ${matchTemplate} 未配置对应的格式化回调 ${formatterName}`,
+      `The dynamic parameter ${matchTemplate} in the translated text ${originText} is not configured with the corresponding format callback ${formatterName}`,
     )
 
     return text.replace(matchTemplate, `${arg}${keyword}`)
@@ -50,7 +50,7 @@ export function getTextFromFormatter(props: {
 
   if (typeof locale === 'undefined') {
     console.warn(
-      `当前未配置 locale，可能会影响格式化回调 ${formatterName} 中的逻辑`,
+      `The locale is not currently configured and may affect the logic in the format callback ${formatterName}`,
     )
   }
 
@@ -74,7 +74,7 @@ export function getTextFromFormatter(props: {
   } catch (error) {
     text = text.replace(matchTemplate, `${arg}${keyword}`)
     console.error(
-      `在翻译文本 ${originText} 中动态参数 ${matchTemplate} 调用对应的格式化回调 ${formatterName} 出错，需检查回调逻辑，错误信息如下：`,
+      `An error occurred in calling the corresponding format callback ${formatterName} for dynamic parameter ${matchTemplate} in translated text ${originText}. The callback logic needs to be checked. The error message is as follows: `,
       error,
     )
   }
@@ -115,7 +115,7 @@ export function i18nImpl(
 
     if (invalidPluralMatchTagRes) {
       console.warn(
-        `在翻译文本 ${originText} 中复数形式动态参数 ${invalidPluralMatchTagRes[1]} 未包含其需要复数处理的文案，例如：i18n('I have {p0 apple}')`,
+        `The plural dynamic parameter ${invalidPluralMatchTagRes[1]} in the translated text ${originText} does not contain the text that needs to be plural, for example: i18n('I have {p0 apple}')`,
       )
       return
     }

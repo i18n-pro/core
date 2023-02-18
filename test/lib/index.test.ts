@@ -2,8 +2,6 @@ import { lib } from '../utils'
 
 const { initI18N } = lib
 
-const { setI18N, i18n, withI18N } = initI18N({ namespace: 'default' })
-
 /**
  * 获取未配置 formatter 的警告提示信息
  * @param text 翻译文本
@@ -16,7 +14,7 @@ function getNoFormatterWarn(
   template: string,
   formatterName: string,
 ) {
-  return `在翻译文本 ${text} 中动态参数 {${template}} 未配置对应的格式化回调 ${formatterName}`
+  return `The dynamic parameter {${template}} in the translated text ${text} is not configured with the corresponding format callback ${formatterName}`
 }
 
 /**
@@ -24,8 +22,8 @@ function getNoFormatterWarn(
  * @param formatterName
  * @returns
  */
-function getNoLocaleFormatterWran(formatterName: string) {
-  return `当前未配置 locale，可能会影响格式化回调 ${formatterName} 中的逻辑`
+function getNoLocaleFormatterWarn(formatterName: string) {
+  return `The locale is not currently configured and may affect the logic in the format callback ${formatterName}`
 }
 
 /**
@@ -43,7 +41,7 @@ function getFormatterRunError(
   errorMsg: string | Error,
 ) {
   return [
-    `在翻译文本 ${text} 中动态参数 {${template}} 调用对应的格式化回调 ${formatterName} 出错，需检查回调逻辑，错误信息如下：`,
+    `An error occurred in calling the corresponding format callback ${formatterName} for dynamic parameter {${template}} in translated text ${text}. The callback logic needs to be checked. The error message is as follows: `,
     errorMsg,
   ]
 }
@@ -55,8 +53,29 @@ function getFormatterRunError(
  * @returns
  */
 function getInvalidPluralWarn(text: string, template: string) {
-  return `在翻译文本 ${text} 中复数形式动态参数 {${template}} 未包含其需要复数处理的文案，例如：i18n('I have {p0 apple}')`
+  return `The plural dynamic parameter {${template}} in the translated text ${text} does not contain the text that needs to be plural, for example: i18n('I have {p0 apple}')`
 }
+
+describe('initI18N', () => {
+  it('未设置namespace提示警告', () => {
+    const spyWarn = vi.spyOn(console, 'warn')
+    initI18N({})
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      'No namespace is set, and using with other libraries can cause bugs',
+    )
+  })
+
+  it('相同namespace提示错误', () => {
+    const spyError = vi.spyOn(console, 'error')
+    spyError.mockClear()
+    initI18N({ namespace: 'default' })
+    expect(spyError).toHaveBeenCalledTimes(1)
+    expect(spyError).toHaveBeenLastCalledWith(
+      "A configuration with the same namespace 'default' already exists, so you may need to redefine one",
+    )
+  })
+})
 
 describe('基础功能验证', () => {
   const { setI18N, i18n } = initI18N({ namespace: 'basic' })
@@ -189,8 +208,8 @@ it('setI18N', () => {
   })
 })
 
-describe.skip('动态参数验证', () => {
-  const { i18n } = initI18N({ namespace: 'default' })
+describe('动态参数验证', () => {
+  const { i18n } = initI18N({ namespace: 'dynamic-parameter' })
 
   it('基本功能', () => {
     expect(i18n('你好{0}', '世界')).toBe('你好世界')
@@ -246,7 +265,7 @@ describe.skip('动态参数验证', () => {
   describe('设置起始下标', () => {
     it('非数字', () => {
       const { i18n } = initI18N({
-        namespace: 'default',
+        namespace: 'beginIndex-no-number',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         beginIndex: '1' as any,
       })
@@ -255,7 +274,7 @@ describe.skip('动态参数验证', () => {
 
     it('数字1', () => {
       const { i18n } = initI18N({
-        namespace: 'default',
+        namespace: 'beginIndex-1',
         beginIndex: 1,
       })
       expect(i18n('你好{0}', '世界')).not.toBe('你好世界')
@@ -264,7 +283,7 @@ describe.skip('动态参数验证', () => {
 
     it('数字2', () => {
       const { i18n } = initI18N({
-        namespace: 'default',
+        namespace: 'beginIndex-2',
         beginIndex: 2,
       })
       expect(i18n('你好{0}，我是{1}', '张三', '李四')).not.toBe(
@@ -277,7 +296,7 @@ describe.skip('动态参数验证', () => {
 
     it('数字10', () => {
       const { i18n } = initI18N({
-        namespace: 'default',
+        namespace: 'beginIndex-10',
         beginIndex: 10,
       })
 
@@ -314,7 +333,7 @@ describe.skip('动态参数验证', () => {
   })
 })
 
-describe.skip('格式化数字', () => {
+describe('格式化数字', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -324,15 +343,15 @@ describe.skip('格式化数字', () => {
   const trText1 = '我有5个苹果，4个香蕉和3个梨'
 
   it('未配置 formatNumber，并尝试大小写验证', () => {
-    const { setI18N, i18n } = initI18N({ namespace: 'default' })
-    const lastWranMsg = getNoFormatterWarn(text1, 'n2', formatterName)
+    const { i18n } = initI18N({ namespace: 'format-number-no-config' })
+    const lastWarnMsg = getNoFormatterWarn(text1, 'n2', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
     expect(i18n(text1, 5, 4, 3)).toBe(trText1)
 
     // 最后一次输出内容匹配
-    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 3次警告输出
     expect(spyWarn).toHaveBeenCalledTimes(3)
@@ -344,8 +363,8 @@ describe.skip('格式化数字', () => {
       return payload
     })
 
-    const { setI18N, i18n, withI18N } = initI18N({
-      namespace: 'default',
+    const { setI18N, i18n } = initI18N({
+      namespace: 'format-number-config',
       formatNumber,
       locale: undefined,
     })
@@ -358,7 +377,7 @@ describe.skip('格式化数字', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      getNoLocaleFormatterWran(formatterName),
+      getNoLocaleFormatterWarn(formatterName),
     )
 
     // 未配置locale有3次警告输出
@@ -390,8 +409,8 @@ describe.skip('格式化数字', () => {
       throw errMsg
     })
 
-    const { setI18N, i18n, withI18N } = initI18N({
-      namespace: 'default',
+    const { i18n } = initI18N({
+      namespace: 'format-number-config-error',
       formatNumber,
       locale: 'zh',
       beginIndex: 10,
@@ -418,7 +437,7 @@ describe.skip('格式化数字', () => {
   })
 })
 
-describe.skip('格式化货币', () => {
+describe('格式化货币', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -428,18 +447,18 @@ describe.skip('格式化货币', () => {
   const trText1 = '他买房花了200'
 
   it('未配置 formatCurrency', () => {
-    const { setI18N, i18n, withI18N } = initI18N({
-      namespace: 'default',
+    const { i18n } = initI18N({
+      namespace: 'format-currency-no-config',
       beginIndex: 0,
     })
-    const lastWranMsg = getNoFormatterWarn(text1, 'c0', formatterName)
+    const lastWarnMsg = getNoFormatterWarn(text1, 'c0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
     expect(i18n(text1, 200)).toBe(trText1)
 
     // 最后一次输出内容匹配
-    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 1次警告输出
     expect(spyWarn).toHaveBeenCalledTimes(1)
@@ -451,8 +470,8 @@ describe.skip('格式化货币', () => {
       return payload + '万'
     })
 
-    const { setI18N, i18n, withI18N } = initI18N({
-      namespace: 'default',
+    const { setI18N, i18n } = initI18N({
+      namespace: 'format-currency-config',
       beginIndex: 0,
       formatCurrency,
       locale: undefined,
@@ -468,7 +487,7 @@ describe.skip('格式化货币', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      getNoLocaleFormatterWran(formatterName),
+      getNoLocaleFormatterWarn(formatterName),
     )
 
     // 未配置locale有1次警告输出
@@ -543,8 +562,12 @@ describe.skip('格式化货币', () => {
       throw errMsg
     })
 
-    setI18N({
+    const { i18n, setI18N } = initI18N({
+      namespace: 'format-currency-config-error',
       formatCurrency,
+    })
+
+    setI18N({
       locale: 'zh',
     })
     const spyWarn = vi.spyOn(console, 'warn')
@@ -566,7 +589,7 @@ describe.skip('格式化货币', () => {
   })
 })
 
-describe.skip('格式化日期', () => {
+describe('格式化日期', () => {
   const formatterName = 'formatDate'
   const text = '今天的日期是{d0}'
   const langs = {
@@ -605,22 +628,19 @@ describe.skip('格式化日期', () => {
   }
 
   beforeEach(() => {
-    setI18N({
-      langs,
-      beginIndex: 0,
-    })
     vi.clearAllMocks()
   })
 
   it('未配置 formatDate', () => {
-    const lastWranMsg = getNoFormatterWarn(text, 'd0', formatterName)
+    const { i18n } = initI18N({ namespace: 'format-date-no-config' })
+    const lastWarnMsg = getNoFormatterWarn(text, 'd0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
     expect(i18n(text, date)).toBe(trZhText)
 
     // 最后一次输出内容匹配
-    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 1次警告输出
     expect(spyWarn).toHaveBeenCalledTimes(1)
@@ -631,9 +651,11 @@ describe.skip('格式化日期', () => {
       return formatDateByLocale(payload, locale)
     })
 
-    setI18N({
-      formatDate,
+    const { i18n, setI18N } = initI18N({
+      namespace: 'format-date-config',
       locale: undefined,
+      formatDate,
+      langs,
     })
     const spyWarn = vi.spyOn(console, 'warn')
 
@@ -642,7 +664,7 @@ describe.skip('格式化日期', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      getNoLocaleFormatterWran(formatterName),
+      getNoLocaleFormatterWarn(formatterName),
     )
 
     // 未配置locale有1次警告输出
@@ -682,9 +704,11 @@ describe.skip('格式化日期', () => {
       throw errMsg
     })
 
-    setI18N({
+    const { i18n } = initI18N({
+      namespace: 'format-date-config-error',
       formatDate,
       locale: 'zh',
+      langs,
     })
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
@@ -705,7 +729,7 @@ describe.skip('格式化日期', () => {
   })
 })
 
-describe.skip('格式化时间', () => {
+describe('格式化时间', () => {
   const formatterName = 'formatTime'
   const text = '当前时间是{t0}'
   const langs = {
@@ -747,22 +771,23 @@ describe.skip('格式化时间', () => {
   }
 
   beforeEach(() => {
-    setI18N({
-      langs,
-      beginIndex: 0,
-    })
     vi.clearAllMocks()
   })
 
   it('未配置 formatTime', () => {
-    const lastWranMsg = getNoFormatterWarn(text, 't0', formatterName)
+    const { i18n } = initI18N({
+      namespace: 'format-time-no-config',
+      langs,
+      beginIndex: 0,
+    })
+    const lastWarnMsg = getNoFormatterWarn(text, 't0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
     expect(i18n(text, date)).toBe(trZhText)
 
     // 最后一次输出内容匹配
-    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 1次警告输出
     expect(spyWarn).toHaveBeenCalledTimes(1)
@@ -773,10 +798,14 @@ describe.skip('格式化时间', () => {
       return formatTimeByLocale(payload, locale)
     })
 
-    setI18N({
+    const { setI18N, i18n } = initI18N({
+      namespace: 'format-time-config',
+      langs,
+      beginIndex: 0,
       formatTime,
       locale: undefined,
     })
+
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 根据格式化回调的值返回
@@ -784,7 +813,7 @@ describe.skip('格式化时间', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      getNoLocaleFormatterWran(formatterName),
+      getNoLocaleFormatterWarn(formatterName),
     )
 
     // 未配置locale有1次警告输出
@@ -824,10 +853,14 @@ describe.skip('格式化时间', () => {
       throw errMsg
     })
 
-    setI18N({
+    const { i18n } = initI18N({
+      namespace: 'format-time-config-error',
+      langs,
+      beginIndex: 0,
       formatTime,
       locale: 'zh',
     })
+
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
@@ -847,7 +880,7 @@ describe.skip('格式化时间', () => {
   })
 })
 
-describe.skip('格式化复数', () => {
+describe('格式化复数', () => {
   const formatterName = 'formatPlural'
   const text = '我有{p0个苹果}，{p1个香蕉}和{p2个梨}'
   const text2 = '我有{p0}个苹果'
@@ -909,31 +942,36 @@ describe.skip('格式化复数', () => {
   }
 
   beforeEach(() => {
-    setI18N({
-      langs,
-      beginIndex: 0,
-    })
     vi.clearAllMocks()
   })
 
   it('未配置 formatPlural', () => {
-    const lastWranMsg = getNoFormatterWarn(text, 'p2个梨', formatterName)
+    const { i18n } = initI18N({
+      namespace: 'format-plural-no-config',
+      langs,
+      beginIndex: 0,
+      locale: undefined,
+    })
+    const lastWarnMsg = getNoFormatterWarn(text, 'p2个梨', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
     // 未配置时，默认走正常的匹配逻辑
     expect(i18n(text, 5, 4, 3)).toBe(trZhText)
 
     // 最后一次输出内容匹配
-    expect(spyWarn).toHaveBeenLastCalledWith(lastWranMsg)
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 3次警告输出
     expect(spyWarn).toHaveBeenCalledTimes(3)
   })
 
   it('正确配置 formatPlural', () => {
-    setI18N({
-      formatPlural,
+    const { setI18N, i18n } = initI18N({
+      namespace: 'format-plural-config',
+      langs,
+      beginIndex: 0,
       locale: undefined,
+      formatPlural,
     })
     const spyWarn = vi.spyOn(console, 'warn')
 
@@ -942,7 +980,7 @@ describe.skip('格式化复数', () => {
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
-      getNoLocaleFormatterWran(formatterName),
+      getNoLocaleFormatterWarn(formatterName),
     )
 
     // 未配置locale有3次警告输出
@@ -997,11 +1035,14 @@ describe.skip('格式化复数', () => {
       expect(locale).toBe('zh')
       throw errMsg
     })
-
-    setI18N({
-      formatPlural,
+    const { i18n } = initI18N({
+      namespace: 'format-plural-config-error',
+      langs,
+      beginIndex: 0,
       locale: 'zh',
+      formatPlural,
     })
+
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
@@ -1021,9 +1062,12 @@ describe.skip('格式化复数', () => {
   })
 
   it('正确配置 formatPlural，未正确设置动态参数标记', () => {
-    setI18N({
-      formatPlural,
+    const { i18n } = initI18N({
+      namespace: 'format-plural-config-undefined',
+      langs,
+      beginIndex: 0,
       locale: 'en',
+      formatPlural,
     })
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
@@ -1044,7 +1088,7 @@ describe.skip('格式化复数', () => {
   })
 })
 
-it.skip('模拟服务端，验证 withI18N', () => {
+it('模拟服务端，验证 withI18N', () => {
   const text = '服务器异常，请稍后再试'
 
   const langs = {
@@ -1052,6 +1096,12 @@ it.skip('模拟服务端，验证 withI18N', () => {
       [text]: 'The server is hidden. Please try again later',
     },
   }
+
+  const { setI18N, i18n, withI18N } = initI18N({
+    namespace: 'withI18N',
+    beginIndex: 0,
+    locale: 'en',
+  })
 
   // NOTE 语言设置要在 withI18N逻辑执行之前
   setI18N({
