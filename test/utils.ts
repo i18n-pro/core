@@ -12,6 +12,8 @@ import * as BinConstants from '../src/bin/constants'
 import * as BinUtils from '../src/bin/utils'
 import * as BinExtraFile from '../src/bin/extra-file'
 import * as BinI18N from '../src/bin/i18n'
+import * as BinAliyunTranslate from '../src/bin/translate/aliyun'
+import * as BinGoogleTranslate from '../src/bin/translate/google'
 
 /**
  * 获取当前指定路径模块的导出内容
@@ -94,6 +96,16 @@ export const binExtraFile = await getCurrentModule<typeof BinExtraFile>(
 
 // 获取当前 bin-i18n 的导出内容
 export const binI18N = await getCurrentModule<typeof BinI18N>('../src/bin/i18n')
+
+// 获取当前 bin/translate/aliyun 的导出内容
+export const binAliyunTranslate = await getCurrentModule<
+  typeof BinAliyunTranslate
+>('../src/bin/translate/aliyun')
+
+// 获取当前 bin/translate/google 的导出内容
+export const binGoogleTranslate = await getCurrentModule<
+  typeof BinGoogleTranslate
+>('../src/bin/translate/google')
 
 /**
  * 简易获取模拟 http.request 的方法

@@ -28,8 +28,10 @@ export function setGoogleConfig(configProp: typeof config) {
     config[key] = value
   })
 }
-;``
+
 const translationClient = new TranslationServiceClient()
+
+export const translationClientForTest = translationClient
 
 async function translateImpl(
   props: Pick<typeof config, 'projectId' | 'location' | 'from'> & {

@@ -3,6 +3,7 @@ import alimt, { GetBatchTranslateRequest } from '@alicloud/alimt20181012'
 import { RuntimeOptions } from '@alicloud/tea-util'
 import type { BasicAliyunConfig } from '../../type'
 import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
+import type Client from '@alicloud/alimt20181012'
 
 const config: BasicAliyunConfig = {
   accessKeyId: '',
@@ -29,6 +30,19 @@ export function setAliyunConfig(configProp: typeof config) {
   })
 }
 
+export const mockClientUtil = (() => {
+  let client: Client
+
+  return {
+    getClient() {
+      return client
+    },
+    setClient(clientProp: Client) {
+      client = clientProp
+    },
+  }
+})()
+
 /**
  * 调用阿里云SDK
  * @param props
@@ -53,7 +67,8 @@ async function translateImpl(props: {
     accessKeySecret,
   })
   openApiConfig.endpoint = endpoint
-  const client = new alimt(openApiConfig)
+  const mockClient = mockClientUtil.getClient()
+  const client = mockClient || new alimt(openApiConfig)
   const getBatchTranslateRequest = new GetBatchTranslateRequest({
     sourceText: JSON.stringify(
       texts.reduce((res, item, index) => {
@@ -82,8 +97,8 @@ async function translateImpl(props: {
     }
   } catch (error) {
     return {
-      code: error.code,
-      message: error.data?.Message,
+      code: error?.code,
+      message: error?.data?.Message,
     }
   }
 }
