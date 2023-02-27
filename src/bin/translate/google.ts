@@ -103,7 +103,7 @@ export async function translateByGoogle(props: {
 
     if (res?.errorMsg) {
       throw `${chalk.redBright(i18n('{0}翻译接口返回错误', TRANSLATOR_NAME))}：
-      ${i18n('错误信息')}：${res.errorMsg}
+      ${i18n('错误信息')}：${chalk.redBright(res.errorMsg)}
       ${
         res.reason
           ? `${i18n('可能原因是: {0}', chalk.redBright(res.reason))}`

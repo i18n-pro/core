@@ -112,7 +112,6 @@ export async function translateByBaidu(props: {
       translatorName: TRANSLATOR_NAME,
     })
   } catch (e) {
-    console.log({ e })
     handleTranslateFail(e, errorCode, EXIT_ERROR_CODES, texts, error)
   }
 
