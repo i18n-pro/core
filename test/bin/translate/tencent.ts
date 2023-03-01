@@ -5,6 +5,7 @@ import { mockRequest } from '../../utils'
 export function tencentMockRequestImpl(props: { to: string; langs: Langs }) {
   const { to, langs } = props
   const spyRequest = vi.spyOn(https, 'request')
+  const currentLang = langs[to]
 
   // 这里需要模拟 request 实现
   spyRequest.mockImplementation(
@@ -19,6 +20,22 @@ export function tencentMockRequestImpl(props: { to: string; langs: Langs }) {
             [] as string[],
           ),
         },
+      },
+      getResData(requestData: { [key: string]: '' }) {
+        let SourceTextList = []
+        try {
+          const obj = JSON.parse(Object.keys(requestData)[0])
+          SourceTextList = obj.SourceTextList
+        } catch (error) {
+          console.error(error)
+        }
+        return {
+          Response: {
+            TargetTextList: SourceTextList.map((item) => {
+              return currentLang?.[item]
+            }),
+          },
+        }
       },
     }),
   )

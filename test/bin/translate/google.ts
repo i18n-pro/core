@@ -10,16 +10,14 @@ export function googleMockRequestImpl(props: { to: string; langs: Langs }) {
     'translateText',
   )
 
-  spyTranslateText.mockImplementation(() => {
+  spyTranslateText.mockImplementation(({ contents }) => {
+    const currentLang = langs[to]
+
     return [
       {
-        translations: Object.entries(langs[to] || {}).reduce(
-          (res, [from, to]) => {
-            res.push({ translatedText: to })
-            return res
-          },
-          [] as Array<{ translatedText: string }>,
-        ),
+        translations: contents.map((text) => {
+          return { translatedText: currentLang?.[text] }
+        }, [] as Array<{ translatedText: string }>),
       },
     ]
   })

@@ -107,7 +107,7 @@ export function collectRes(props: {
 
   texts.forEach((text) => {
     const dst = srcDistMap[text]
-    if (typeof dst !== 'undefined') {
+    if (typeof dst === 'string' && dst) {
       const newDst = fixErrorTranslateText(dst)
       const currentTextError = getParamsNotEqualMsgs(text, newDst)
       if (currentTextError.length > 0) {

@@ -1,5 +1,11 @@
 import https from 'https'
-import { binTranslate, binUtils, mockRequest, binChalk } from '../../utils'
+import {
+  binTranslate,
+  binUtils,
+  mockRequest,
+  binChalk,
+  binConstants,
+} from '../../utils'
 import {
   Langs,
   Translator,
@@ -320,10 +326,6 @@ describe('验证翻译实现', () => {
       const res = await translateTextsToLangsImpl(texts, langs, false)
       // 验证模拟请求
       expectCallback?.()
-      console.log({
-        resLangs: res.langs,
-        langs,
-      })
       // 语言包
       expect(res.langs).toEqual(langs)
       // 翻译成功
@@ -506,104 +508,103 @@ describe('验证翻译实现', () => {
     )
   })
 
-  describe.todo('模拟一些错误场景', () => {
-    it('存在部分文本未被翻译的情况', async () => {
-      const langs = require(LANGS_PATH)
-      const texts = Object.keys(langs['en'])
-      const middleIndex = texts.length / 2
-      const { lostTexts, existLangs, restLangs } = Object.entries(
-        langs.en,
-      ).reduce(
-        (res, [from, to], index) => {
-          if (index <= middleIndex) {
-            res.existLangs.en[from] = to
-            res.existTexts.push(from)
-          } else if (index % 3 == 0) {
-            res.lostTexts.push(from)
-            res.lostLangs.en[from] = to
-          } else {
-            res.restLangs.en[from] = to
-            res.restTexts.push(from)
-          }
-          return res
-        },
-        {
-          lostTexts: [] as string[],
-          lostLangs: { en: {} },
-          existTexts: [] as string[],
-          existLangs: {
-            en: {},
+  describe('模拟一些错误场景', () => {
+    type Item = [Translator, object]
+
+    const matrix: Item[] = [
+      ['baidu', { from: 'zh', to: ['en'] }],
+      ['youdao', { from: 'zh', to: ['en'] }],
+      ['tencent', { from: 'zh', to: ['en'] }],
+      ['aliyun', { from: 'zh', to: ['en'] }],
+      ['microsoft', { from: 'zh', to: ['en'] }],
+      ['google', { from: 'zh', to: ['en'] }],
+    ]
+
+    it.each(matrix)(
+      '%s: 存在部分文本未被翻译的情况',
+      async (translator, config) => {
+        const to = 'en'
+        const langs = require(LANGS_PATH)
+        const texts = Object.keys(langs['en'])
+        const middleIndex = texts.length / 2
+        const { lostTexts, existLangs, restLangs } = Object.entries(
+          langs.en,
+        ).reduce(
+          (res, [from, to], index) => {
+            if (index <= middleIndex) {
+              res.existLangs.en[from] = to
+              res.existTexts.push(from)
+            } else if (index % 3 == 0) {
+              res.lostTexts.push(from)
+              res.lostLangs.en[from] = to
+            } else {
+              res.restLangs.en[from] = to
+              res.restTexts.push(from)
+            }
+            return res
           },
-          restTexts: [] as string[],
-          restLangs: {
-            en: {},
+          {
+            lostTexts: [] as string[],
+            lostLangs: { en: {} },
+            existTexts: [] as string[],
+            existLangs: {
+              en: {},
+            },
+            restTexts: [] as string[],
+            restLangs: {
+              en: {},
+            },
           },
-        },
-      )
-      const spyRequest = vi.spyOn(https, 'request')
+        )
 
-      // 这里需要模拟 request 实现
-      spyRequest.mockImplementation(
-        mockRequest({
-          data: {
-            trans_result: Object.entries(restLangs.en).reduce(
-              (res, [src, dst]) => {
-                res.push({
-                  src,
-                  dst,
-                })
-                return res
-              },
-              [] as Array<{ src: string; dst: any }>,
-            ),
+        // 调用各自的模拟函数，模拟请求实现
+        const expectCallback = translatorMockRequestMap[translator]?.({
+          to,
+          langs: restLangs,
+        })
+
+        // 设置翻译配置
+        setTranslateConfig({
+          translator,
+          [translator + 'Config']: config,
+        } as UnionTranslatorConfig)
+
+        // 执行翻译
+        const res = await translateTextsToLangsImpl(texts, existLangs, true)
+
+        // 验证模拟请求
+        expectCallback?.()
+
+        // 语言包
+        expect(res.langs).toEqual({
+          en: {
+            ...existLangs.en,
+            ...restLangs.en,
           },
-        }),
-      )
+        })
+        // 翻译成功
+        expect(res.success).toEqual(
+          Object.entries(restLangs.en).reduce((res, [from, to]) => {
+            res[from] = {
+              en: to,
+            }
+            return res
+          }, {}),
+        )
 
-      // 设置翻译配置
-      setTranslateConfig({
-        baiduConfig: {
-          appid: '',
-          key: '',
-          from: 'zh',
-          to: ['en'],
-        },
-      })
+        // 翻译失败
+        expect(res.error).toEqual(
+          lostTexts.reduce((res, item) => {
+            res[item] = {
+              en: expect.stringContaining(`当前文本【${item}】未被翻译`),
+            }
+            return res
+          }, {}),
+        )
+      },
+    )
 
-      // 执行翻译
-      const res = await translateTextsToLangsImpl(texts, existLangs, true)
-
-      // 正常发起一次接口请求
-      expect(spyRequest).toHaveBeenCalledTimes(1)
-      // 语言包
-      expect(res.langs).toEqual({
-        en: {
-          ...existLangs.en,
-          ...restLangs.en,
-        },
-      })
-      // 翻译成功
-      expect(res.success).toEqual(
-        Object.entries(restLangs.en).reduce((res, [from, to]) => {
-          res[from] = {
-            en: to,
-          }
-          return res
-        }, {}),
-      )
-
-      // 翻译失败
-      expect(res.error).toEqual(
-        lostTexts.reduce((res, item) => {
-          res[item] = {
-            en: expect.stringContaining(`当前文本【${item}】未被翻译`),
-          }
-          return res
-        }, {}),
-      )
-    })
-
-    it('请求异常却未捕获到异常信息', async () => {
+    it.todo('请求异常却未捕获到异常信息', async () => {
       const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
       const spyRequest = vi.spyOn(https, 'request')

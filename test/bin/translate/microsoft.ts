@@ -5,6 +5,7 @@ import { mockRequest } from '../../utils'
 export function microsoftMockRequestImpl(props: { to: string; langs: Langs }) {
   const { to, langs } = props
   const spyRequest = vi.spyOn(https, 'request')
+  const currentLang = langs[to]
 
   // 这里需要模拟 request 实现
   spyRequest.mockImplementation(
@@ -19,6 +20,23 @@ export function microsoftMockRequestImpl(props: { to: string; langs: Langs }) {
         })
         return res
       }, [] as Array<{ translations: { text: string }[] }>),
+      getResData(requestData: { [key: string]: '' }) {
+        let texts = []
+        try {
+          texts = JSON.parse(Object.keys(requestData)[0])
+        } catch (error) {
+          console.error(error)
+        }
+        return texts.map(({ text }) => {
+          return {
+            translations: [
+              {
+                text: currentLang?.[text],
+              },
+            ],
+          } as { translations: { text: string | undefined }[] }
+        })
+      },
     }),
   )
 
