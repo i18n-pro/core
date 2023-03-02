@@ -96,6 +96,7 @@ async function translateImpl(props: {
       translatedList: res.body.translatedList,
     }
   } catch (error) {
+    if (!error?.code) throw error
     return {
       code: error?.code,
       message: error?.data?.Message,

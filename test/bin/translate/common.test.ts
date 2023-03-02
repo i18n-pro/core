@@ -13,15 +13,12 @@ import {
   UnionTranslatorConfig,
 } from '../../../src/type'
 import { LANGS_PATH } from './utils'
-import { baiduMockErrorRequestImpl, baiduMockRequestImpl } from './baidu'
-import { youdaoMockErrorRequestImpl, youdaoMockRequestImpl } from './youdao'
-import { tencentMockErrorRequestImpl, tencentMockRequestImpl } from './tencent'
-import { aliyunMockErrorRequestImpl, aliyunMockRequestImpl } from './aliyun'
-import {
-  microsoftMockErrorRequestImpl,
-  microsoftMockRequestImpl,
-} from './microsoft'
-import { googleMockErrorRequestImpl, googleMockRequestImpl } from './google'
+import { baiduMockRequestImpl } from './baidu'
+import { youdaoMockRequestImpl } from './youdao'
+import { tencentMockRequestImpl } from './tencent'
+import { aliyunMockRequestImpl } from './aliyun'
+import { microsoftMockRequestImpl } from './microsoft'
+import { googleMockRequestImpl } from './google'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
 
@@ -32,15 +29,6 @@ const translatorMockRequestMap = {
   aliyun: aliyunMockRequestImpl,
   microsoft: microsoftMockRequestImpl,
   google: googleMockRequestImpl,
-}
-
-const translatorMockErrorRequestMap = {
-  baidu: baiduMockErrorRequestImpl,
-  youdao: youdaoMockErrorRequestImpl,
-  tencent: tencentMockErrorRequestImpl,
-  aliyun: aliyunMockErrorRequestImpl,
-  microsoft: microsoftMockErrorRequestImpl,
-  google: googleMockErrorRequestImpl,
 }
 
 describe('验证翻译公共逻辑', () => {
@@ -274,6 +262,7 @@ describe('验证翻译实现', () => {
 
         // 调用各自的模拟函数，模拟请求实现
         const expectCallback = translatorMockRequestMap[translator]?.({
+          type: 'normal',
           to,
           langs: restLangs,
         })
@@ -312,6 +301,7 @@ describe('验证翻译实现', () => {
 
       // 调用各自的模拟函数，模拟请求实现
       const expectCallback = translatorMockRequestMap[translator]?.({
+        type: 'normal',
         to,
         langs,
       })
@@ -448,7 +438,8 @@ describe('验证翻译实现', () => {
         const texts = Object.keys(langs['en'])
 
         // 调用各自的模拟函数，模拟请求实现
-        const expectCallback = translatorMockErrorRequestMap[translator]?.({
+        const expectCallback = translatorMockRequestMap[translator]?.({
+          type: 'errorMsg',
           errorCode,
           errorMsg,
         })
@@ -559,6 +550,7 @@ describe('验证翻译实现', () => {
 
         // 调用各自的模拟函数，模拟请求实现
         const expectCallback = translatorMockRequestMap[translator]?.({
+          type: 'normal',
           to,
           langs: restLangs,
         })
@@ -604,51 +596,44 @@ describe('验证翻译实现', () => {
       },
     )
 
-    it.todo('请求异常却未捕获到异常信息', async () => {
-      const langs = require(LANGS_PATH)
-      const texts = Object.keys(langs['en'])
-      const spyRequest = vi.spyOn(https, 'request')
+    it.each(matrix)(
+      '%s: 请求异常却未捕获到异常信息',
+      async (translator, config) => {
+        const langs = require(LANGS_PATH)
+        const texts = Object.keys(langs['en'])
 
-      // 这里需要模拟 request 实现
-      spyRequest.mockImplementation(
-        mockRequest({
-          data: {},
-          // 整个请求失败，并且没有返回错误信息的时候，最终会使用默认的错误信息
-          errorMsg: '',
-          errorType: 'onError',
-        }),
-      )
+        // 调用各自的模拟函数，模拟请求实现
+        const expectCallback = translatorMockRequestMap[translator]?.({
+          type: 'noErrorMsg',
+        })
 
-      // 设置翻译配置
-      setTranslateConfig({
-        baiduConfig: {
-          appid: '',
-          key: '',
-          from: 'zh',
-          to: ['en'],
-        },
-      })
+        // 设置翻译配置
+        setTranslateConfig({
+          translator,
+          [translator + 'Config']: config,
+        } as UnionTranslatorConfig)
 
-      // 执行翻译
-      const res = await translateTextsToLangsImpl(texts, langs, false)
+        // 执行翻译
+        const res = await translateTextsToLangsImpl(texts, langs, false)
 
-      // 正常发起一次接口请求
-      expect(spyRequest).toHaveBeenCalledTimes(1)
-      // 语言包
-      expect(res.langs).toEqual({ en: {} })
-      // 翻译成功
-      expect(res.success).toEqual({})
-      // 翻译失败
-      expect(res.error).toEqual(
-        Object.entries(langs.en).reduce((res, [from]) => {
-          res[from] = {
-            // 默认的错误信息
-            en: binConstants.TRANSLATE_ERROR_TEXT,
-          }
-          return res
-        }, {}),
-      )
-    })
+        // 验证模拟请求
+        expectCallback?.()
+        // 语言包
+        expect(res.langs).toEqual({ en: {} })
+        // 翻译成功
+        expect(res.success).toEqual({})
+        // 翻译失败
+        expect(res.error).toEqual(
+          Object.entries(langs.en).reduce((res, [from]) => {
+            res[from] = {
+              // 默认的错误信息
+              en: binConstants.TRANSLATE_ERROR_TEXT,
+            }
+            return res
+          }, {}),
+        )
+      },
+    )
   })
 
   describe.todo('模拟字符数过多分批次进行翻译', () => {

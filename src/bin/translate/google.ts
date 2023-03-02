@@ -62,6 +62,7 @@ async function translateImpl(
     res.translations = translations
   } catch (e) {
     const message = e.message || e
+    if (!e) throw e
     Object.entries(ERROR_CODE_TIP_MAP).some(([code, msg]) => {
       if (message.includes(code)) {
         res.reason = msg
