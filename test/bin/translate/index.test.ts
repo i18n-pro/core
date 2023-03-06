@@ -8,6 +8,7 @@ import {
 } from '../../utils'
 import {
   Langs,
+  MaxLengthConfig,
   Translator,
   UnionBasicTranslatorConfig,
   UnionTranslatorConfig,
@@ -21,6 +22,7 @@ import { microsoftMockRequestImpl } from './microsoft'
 import { googleMockRequestImpl } from './google'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
+const { SEPARATOR_LENGTH } = binConstants
 
 const translatorMockRequestMap = {
   baidu: baiduMockRequestImpl,
@@ -31,7 +33,7 @@ const translatorMockRequestMap = {
   google: googleMockRequestImpl,
 }
 
-describe('验证翻译公共逻辑', () => {
+describe('验证翻译实现', () => {
   describe('没有内容需要翻译', () => {
     type Item = [
       string, // 描述内容
@@ -215,9 +217,7 @@ describe('验证翻译公共逻辑', () => {
       })
     })
   })
-})
 
-describe('验证翻译实现', () => {
   describe('有内容需要翻译', () => {
     type Item = [Translator, object]
 
@@ -636,30 +636,224 @@ describe('验证翻译实现', () => {
     )
   })
 
-  describe.todo('模拟字符数过多分批次进行翻译', () => {
+  describe('模拟字符数过多分批次进行翻译', () => {
     type Item = [
-      number, // 每次请求的最大字符数
+      string, // 描述
+      MaxLengthConfig, // 配置
     ]
 
-    const matrix: Item[] = [[100], [200], [500], [1000], [3000], [10000]]
+    const matrix: Item[] = [
+      [
+        '限制总长度为 100',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 100,
+        },
+      ],
+      [
+        '限制总长度为 200',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 200,
+        },
+      ],
+      [
+        '限制总长度为 500',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 500,
+        },
+      ],
+      [
+        '限制总长度为 1000',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 1000,
+        },
+      ],
+      [
+        '限制总长度为 3000',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 3000,
+        },
+      ],
+      [
+        '限制总长度为 5000',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 5000,
+        },
+      ],
+      [
+        '限制总长度为 10000',
+        {
+          maxLengthType: 'allStrLength',
+          maxLength: 10000,
+        },
+      ],
+      [
+        '单个字符长度为 30，总数组长度为 10',
+        {
+          maxLengthType: 'strLengthAndArrLength',
+          maxLength: 30,
+          maxArrayLength: 10,
+        },
+      ],
+      [
+        '单个字符长度为 40，总数组长度为 20',
+        {
+          maxLengthType: 'strLengthAndArrLength',
+          maxLength: 40,
+          maxArrayLength: 20,
+        },
+      ],
+      [
+        '单个字符长度为 50，总数组长度为 30',
+        {
+          maxLengthType: 'strLengthAndArrLength',
+          maxLength: 50,
+          maxArrayLength: 30,
+        },
+      ],
+      [
+        '单个字符长度为 50，总数组长度为 40',
+        {
+          maxLengthType: 'strLengthAndArrLength',
+          maxLength: 50,
+          maxArrayLength: 40,
+        },
+      ],
+      [
+        '总字符长度为 100，总数组长度为 10',
+        {
+          maxLengthType: 'allStrLengthAndArrLength',
+          maxLength: 100,
+          maxArrayLength: 10,
+        },
+      ],
+      [
+        '总字符长度为 100，总数组长度为 20',
+        {
+          maxLengthType: 'allStrLengthAndArrLength',
+          maxLength: 100,
+          maxArrayLength: 20,
+        },
+      ],
+      [
+        '总字符长度为 500，总数组长度为 20',
+        {
+          maxLengthType: 'allStrLengthAndArrLength',
+          maxLength: 500,
+          maxArrayLength: 20,
+        },
+      ],
+      [
+        '总字符长度为 1000，总数组长度为 30',
+        {
+          maxLengthType: 'allStrLengthAndArrLength',
+          maxLength: 1000,
+          maxArrayLength: 30,
+        },
+      ],
+      [
+        '总字符长度为 3000，总数组长度为 40',
+        {
+          maxLengthType: 'allStrLengthAndArrLength',
+          maxLength: 3000,
+          maxArrayLength: 40,
+        },
+      ],
+      [
+        '总字符长度为 5000，总数组长度为 100',
+        {
+          maxLengthType: 'allStrLengthAndArrLength',
+          maxLength: 5000,
+          maxArrayLength: 100,
+        },
+      ],
+    ]
 
-    it.each(matrix)('本次请求最大字符数：%d', async (maxStringLength) => {
+    it.each(matrix)('%s', async (desc, config) => {
+      const { maxLengthType, maxLength, maxArrayLength } = config
       const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
       const spyRequest = vi.spyOn(https, 'request')
+      const errorText: Record<string, Record<string, string>> = {}
+
       // 计算出需要翻译调用翻译接口的次数
       let count = 0
-      let strCount = 0
-      for (let i = 0; i < texts.length; i++) {
-        strCount += (i == 0 ? 0 : SEPARATOR_LENGTH) + texts[i].length
-        if (
-          i == texts.length - 1 ||
-          (texts.length - 1 > i &&
-            strCount + SEPARATOR_LENGTH + texts[i + 1].length > maxStringLength)
-        ) {
-          count++
-          strCount = 0
-        }
+      switch (maxLengthType) {
+        case 'allStrLength':
+          {
+            let strCount = 0
+            for (let i = 0; i < texts.length; i++) {
+              strCount += (i == 0 ? 0 : SEPARATOR_LENGTH) + texts[i].length
+              if (
+                i == texts.length - 1 ||
+                (texts.length - 1 > i &&
+                  strCount + SEPARATOR_LENGTH + texts[i + 1].length > maxLength)
+              ) {
+                count++
+                strCount = 0
+              }
+            }
+          }
+          break
+        case 'strLengthAndArrLength':
+          {
+            let arrCount = 0
+            texts.forEach((text, i) => {
+              if (text.length > maxLength) {
+                errorText[text] = {
+                  en: `当前文本超出最大字符数限制：${maxLength}`,
+                }
+              } else if (
+                arrCount == (maxArrayLength as number) ||
+                i === texts.length - 1
+              ) {
+                // 如果当前是最后一个，又满足最大数据，则+2
+                count +=
+                  count > 0 &&
+                  arrCount == maxArrayLength &&
+                  i === texts.length - 1
+                    ? 2
+                    : 1
+                arrCount = 1
+              } else {
+                arrCount += 1
+              }
+            })
+          }
+          break
+        case 'allStrLengthAndArrLength':
+          {
+            let str = ''
+            let arrCount = 0
+            texts.forEach((text, i) => {
+              let tempStr = str + text
+              if (
+                tempStr.length < maxLength &&
+                i < texts.length - 1 &&
+                (tempStr + texts[i + 1]).length > maxLength
+              ) {
+                tempStr = ''
+                count += 1
+                arrCount = 0
+              } else if (arrCount + 1 == maxArrayLength) {
+                arrCount = 0
+                tempStr = ''
+                count += 1
+              } else if (i == texts.length - 1) {
+                count += 1
+              } else {
+                arrCount += 1
+              }
+
+              str = tempStr
+            })
+          }
+          break
       }
 
       // 这里需要模拟 request 实现
@@ -695,10 +889,7 @@ describe('验证翻译实现', () => {
           },
         },
         {
-          maxLengthConfig: {
-            maxLengthType: 'allStrLength',
-            maxLength: maxStringLength,
-          },
+          maxLengthConfig: config,
         },
       )
 
@@ -708,18 +899,30 @@ describe('验证翻译实现', () => {
       // 正常发起一次接口请求，这里可能不止一次
       expect(spyRequest).toHaveBeenCalledTimes(count)
       // 语言包
-      expect(res.langs).toEqual(langs)
+      const errorTexts = Object.keys(errorText || {})
+      const targetLangs = Object.entries(langs.en).reduce(
+        (res, [from, to]) => {
+          if (!errorTexts.includes(from)) {
+            res.en[from] = to
+          }
+          return res
+        },
+        { en: {} },
+      )
+      expect(res.langs).toEqual(targetLangs)
       // 翻译成功
       expect(res.success).toEqual(
         Object.entries(langs.en).reduce((res, [from, to]) => {
-          res[from] = {
-            en: to,
+          if (!errorTexts.includes(from)) {
+            res[from] = {
+              en: to,
+            }
           }
           return res
         }, {}),
       )
       // 翻译失败
-      expect(res.error).toEqual({})
+      expect(res.error).toEqual(errorText)
     })
   })
 })
