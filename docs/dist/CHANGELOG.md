@@ -4,7 +4,7 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[[1.4.0] - 2022-xx-xx](#[140]---2022-xx-xx)<br/>
+  &emsp;&emsp;[[2.0.0] - 2023-0x-xx](#[200]---2023-0x-xx)<br/>
   &emsp;&emsp;&emsp;&emsp;[Added](#added)<br/>
   &emsp;&emsp;&emsp;&emsp;[Changed](#changed)<br/>
   &emsp;&emsp;[[1.3.2] - 2022-09-24](#[132]---2022-09-24)<br/>
@@ -33,15 +33,29 @@
 
 </details>
 
-## [1.4.0] - 2022-xx-xx
+## [2.0.0] - 2023-0x-xx
 
 ### Added
 
-* Add English document and set it as default document
+* 添加对命名空间的支持（非兼容更新）
+   * 新增 `initI18N` 函数用于获取原有的核心的 `i18n` 、 `setI18N` 、 `withI18N` 函数
+   * 新增 `namespace` 属性用于支持命名空间
+* 新增翻译执行后，控制台输出内容对不同日志类型的数量统计显示
+* 新增如下翻译平台的支持
+   * 谷歌
+   * 微软
+   * 阿里
+   * 腾讯
+   * 有道
+* 新增英文文档，并设置为默认语言文档
 * Add  `-P` | `--path`  parameter to initialization command and translation command to support flexible specification of configuration file path
 
 
 ### Changed
+
+*  `setI18N` 函数只能动态修改 `locale` 、 `langs` 等属性，其他的属性均由 `initI18N` 首次调用定义，后续不可更改
+* 设置命令行语言默认为英文
+
 
 ## [1.3.2] - 2022-09-24
 

@@ -36,6 +36,12 @@ export default function Vision() {
         <ListItem>
           <Bold>keyless</Bold>：{tr('无需手动定义key，待翻译文本即key')}
         </ListItem>
+        <ListItem>
+          <Bold>多翻译平台支持</Bold>：
+          {`${tr('谷歌')}、${tr('微软')}、${tr('腾讯')}、${tr('阿里')}、${tr(
+            '有道',
+          )}、${tr('百度')}、${tr('更多平台敬请期待')}`}
+        </ListItem>
       </UnorderedList>
     </>
   )

@@ -7,6 +7,7 @@ import React, {
   render,
   UnorderedList,
   TableOfContents,
+  List,
 } from 'jsx-to-md'
 import { initI18N } from '../utils'
 
@@ -300,21 +301,54 @@ function V_1_3_2() {
   )
 }
 
-function V_1_4_0() {
+function V_2_0_0() {
   return (
     <>
-      <VersionTitle version="1.4.0" date="2022-xx-xx" />
+      <VersionTitle version="2.0.0" date="2023-0x-xx" />
       <Added />
-      <UnorderedList>
-        <ListItem>{tr('新增英文文档，并设置为默认文档')}</ListItem>
-        <ListItem>
-          {tr(
+      <List
+        items={[
+          'U',
+          [
+            tr('添加对命名空间的支持（非兼容更新）'),
+            [
+              'U',
+              tr(
+                '新增{0}函数用于获取原有的核心的{1}、{2}、{3}函数',
+                ' `initI18N` ',
+                ' `i18n` ',
+                ' `setI18N` ',
+                ' `withI18N` ',
+              ),
+              tr('新增{0}属性用于支持命名空间', ' `namespace` '),
+            ],
+          ],
+          tr('新增翻译执行后，控制台输出内容对不同日志类型的数量统计显示'),
+          [
+            tr('新增如下翻译平台的支持'),
+            ['U', tr('谷歌'), tr('微软'), tr('阿里'), tr('腾讯'), tr('有道')],
+          ],
+          tr('新增英文文档，并设置为默认语言文档'),
+          tr(
             '初始化命令和翻译命令添加{0}参数，用于支持灵活指定配置文件路径',
             ' `-P` | `--path` ',
-          )}
-        </ListItem>
-      </UnorderedList>
+          ),
+        ]}
+      />
       <Changed />
+      <List
+        items={[
+          'U',
+          tr(
+            '{0}函数只能动态修改{1}、{2}等属性，其他的属性均由{3}首次调用定义，后续不可更改',
+            ' `setI18N` ',
+            ' `locale` ',
+            ' `langs` ',
+            ' `initI18N` ',
+          ),
+          tr('设置命令行语言默认为英文'),
+        ]}
+      />
     </>
   )
 }
@@ -326,7 +360,7 @@ export default function ChangeLog(props) {
     <>
       <H1 skip>{tr('更新日志')}</H1>
       <TableOfContents text={tr('目录')} open={false} />
-      <V_1_4_0 />
+      <V_2_0_0 />
       <V_1_3_2 />
       <V_1_3_1 />
       <V_1_3_0 />

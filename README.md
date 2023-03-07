@@ -39,6 +39,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
 * **keyless**：There is no need to define the key manually, the text to be translated is the key
+* **多翻译平台支持**：谷歌、微软、腾讯、阿里、有道、百度、更多平台敬请期待
 
 
 # Live Demo
@@ -56,25 +57,40 @@ The library is mainly composed of two parts
 
 A simple example of  [Matching Rules](#matching-rules)  for parsing text is as follows
 ```js
-// Normal string
+/** Normal string */
+
 i18n('xxx')
 i18n("xxx")
 i18n(`xxx`)
 
-// Support dynamic parameters
+
+/** Support dynamic parameters */
+
 i18n('xxx{0}xxx', param1)
 i18n('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
 
-// Dynamic parameters type marker
-i18n('The number of users has reached {n0}', 100000000) // Number Type
-i18n('The selling price is {c0}', 14999) // Currency type
-i18n('Today's date is {d0}', new Date()) // Date Type
-i18n('Current time: {t0}', new Date()) // Time Type
-i18n('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Plural type
+
+/** Dynamic parameters type marker */
+
+// Number Type
+i18n('The number of users has reached {n0}', 100000000)
+
+// Currency type
+i18n('The selling price is {c0}', 14999)
+
+// Date Type
+i18n('Today's date is {d0}', new Date())
+
+// Time Type
+i18n('Current time: {t0}', new Date())
+
+// Plural type
+i18n('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
-**Function API**：Connect the internationalization language pack into the project, which is composed of  `i18n`, `setI18N`  and  `withI18N` 
+**Function API**：将国际化语言包接入到项目中，由 `initI18N` 、 `i18n` 、 `setI18N` 和 `withI18N` 构成
+* **initI18N**：用于初始化固定配置，最后返回包含如下3个 API 的对象
 * **i18n**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
-* **setI18N**：Set language, language pack and other configuration items
+* **setI18N**：设置语言、语言包
 * **withI18N**：It is applicable to the server. Each interface response needs to be internationalized
 
 Therefore,  `Command Line Tool`  and  `Function API`  work better together. It is precisely because of this structural design that  `i18n-pro`  library can be easily integrated into any  `JavaScript`  project
