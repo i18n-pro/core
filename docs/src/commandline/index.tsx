@@ -7,7 +7,7 @@ import React, {
   Bold,
   TableOfContents,
 } from 'jsx-to-md'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
@@ -499,7 +499,7 @@ function Command() {
 }
 
 export default function CommandLine(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

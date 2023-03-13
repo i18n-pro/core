@@ -5,8 +5,8 @@
   <summary>Table of Contents</summary>
 
   &emsp;&emsp;[[2.0.0] - 2023-0x-xx](#[200]---2023-0x-xx)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Added](#added)<br/>
   &emsp;&emsp;&emsp;&emsp;[Changed](#changed)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Added](#added)<br/>
   &emsp;&emsp;[[1.3.2] - 2022-09-24](#[132]---2022-09-24)<br/>
   &emsp;&emsp;&emsp;&emsp;[Fixed](#fixed)<br/>
   &emsp;&emsp;[[1.3.1] - 2022-09-21](#[131]---2022-09-21)<br/>
@@ -35,10 +35,24 @@
 
 ## [2.0.0] - 2023-0x-xx
 
+### Changed
+
+* 调整API命名
+   * 遵循小驼峰命名规则
+      * `setI18N` → `setI18n`
+      * `withI18N` → `withI18n`
+   * 更简洁
+      * `i18n` → `t`
+* 调整 `setI18n` 用法
+   *  `setI18n` 函数只能动态修改 `locale` 和 `langs` ，其他的属性均由 `initI18n` 首次调用定义，后续不可更改
+   * 增加返回参数，会返回当前命名空间下的所有配置状态
+* 设置命令行语言默认为英文
+
+
 ### Added
 
 * 添加对命名空间的支持（非兼容更新）
-   * 新增 `initI18N` 函数用于获取原有的核心的 `i18n` 、 `setI18N` 、 `withI18N` 函数
+   * 新增 `initI18n` 函数用于获取原有的核心的 `t` 、 `setI18n` 、 `withI18n` 函数
    * 新增 `namespace` 属性用于支持命名空间
 * 新增翻译执行后，控制台输出内容对不同日志类型的数量统计显示
 * 新增如下翻译平台的支持
@@ -49,12 +63,6 @@
    * 有道
 * 新增英文文档，并设置为默认语言文档
 * Add  `-P` | `--path`  parameter to initialization command and translation command to support flexible specification of configuration file path
-
-
-### Changed
-
-*  `setI18N` 函数只能动态修改 `locale` 、 `langs` 等属性，其他的属性均由 `initI18N` 首次调用定义，后续不可更改
-* 设置命令行语言默认为英文
 
 
 ## [1.3.2] - 2022-09-24
@@ -76,10 +84,10 @@
 ### Added
 
 * Add a new log output type: List of incorrectly translated texts
-* Add  `withI18N`  function API to support server scenarios
+* Add  `withI18n`  function API to support server scenarios
 * Add dynamic parameters type tags and type formatting callback functions
    * Support dynamic parameters markers of Number, Currency, Date, Time, Plural, etc
-   * `setI18N`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
+   * `setI18n`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
 
 
 ### Changed
@@ -109,7 +117,7 @@
    * This mode is enabled by default and can be closed through the command parameter  `--non-incremental` 
    * Support for translating only untranslated text in the target language
    * Support intelligent removal of translated but unused text in language pack
-* Add the  `setI18N`  function parameters attribute  `beginIndex` to specify the starting subscript of the dynamic parameters
+* Add the  `setI18n`  function parameters attribute  `beginIndex` to specify the starting subscript of the dynamic parameters
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
 * New matching rule constraint: the translated text cannot contain the special character  `\t`
@@ -126,7 +134,7 @@
 
 ### Fixed
 
-* Fix  `setI18N`  setting a single attribute will cause other attribute states to be lost
+* Fix  `setI18n`  setting a single attribute will cause other attribute states to be lost
 * Fix translation exceptions caused by translation text containing  `\t`  special characters
 
 
@@ -167,6 +175,6 @@
 ### Added
 
 * Add command line parameters for language switching
-* New  `i18n`  and  `setI18N`  function API
+* New  `i18n`  and  `setI18n`  function API
 * Add the basic implementation of  `Command Line Tool` 
 

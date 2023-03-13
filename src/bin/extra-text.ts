@@ -57,7 +57,7 @@ export function extraText(
  */
 export default function extraTexts(
   filepaths: string[],
-  funcName = 'i18n',
+  funcName = 't',
 ): {
   success: string[] // 正确的列表
   error: string[] // 错误的列表
@@ -77,11 +77,11 @@ export default function extraTexts(
   error = Array.from(new Set(error))
 
   logSuccess(
-    chalk.greenBright(i18n('解析符合要求的国际化文本数:')),
+    chalk.greenBright(t('解析符合要求的国际化文本数:')),
     success.length,
   )
   logSuccess(
-    chalk.greenBright(i18n('解析不符合要求的国际化文本数:')),
+    chalk.greenBright(t('解析不符合要求的国际化文本数:')),
     error.length,
   )
 

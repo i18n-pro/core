@@ -9,7 +9,7 @@ import React, {
   TableOfContents,
   List,
 } from 'jsx-to-md'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 function VersionTitle({ version, date }: { version: string; date: string }) {
   return <H2>{`[${version}] - ${date}`}</H2>
@@ -40,7 +40,7 @@ function V_1_0_0() {
       <UnorderedList>
         <ListItem>{tr('新增语言切换命令行参数')}</ListItem>
         <ListItem>
-          {tr('新增{0}和{1}函数API', ' `i18n` ', ' `setI18N` ')}
+          {tr('新增{0}和{1}函数API', ' `i18n` ', ' `setI18n` ')}
         </ListItem>
         <ListItem>
           {tr('新增{0}的基本实现', ` \`${tr('命令行工具')}\` `)}
@@ -147,7 +147,7 @@ function V_1_2_0() {
         <ListItem>
           {tr(
             '新增{0}函数参数属性{1}，用于指定动态参数的起始下标',
-            ' `setI18N` ',
+            ' `setI18n` ',
             ' `beginIndex`',
           )}
         </ListItem>
@@ -192,7 +192,7 @@ function V_1_2_0() {
       <Fixed />
       <UnorderedList>
         <ListItem>
-          {tr('修复{0}设置单个属性会导致其他属性状态丢失', ' `setI18N` ')}
+          {tr('修复{0}设置单个属性会导致其他属性状态丢失', ' `setI18n` ')}
         </ListItem>
         <ListItem>
           {tr('修复翻译文本包含{0}特殊字符导致翻译异常', ' `\\t` ')}
@@ -227,7 +227,7 @@ function V_1_3_0() {
       <UnorderedList>
         <ListItem>{tr('添加新的日志输出类型：翻译有误的文本列表')}</ListItem>
         <ListItem>
-          {tr('添加{0}函数API用于支持服务端场景', ' `withI18N` ')}
+          {tr('添加{0}函数API用于支持服务端场景', ' `withI18n` ')}
         </ListItem>
         <ListItem>
           {tr('添加动态参数类型标记和类型格式化回调函数')}
@@ -238,7 +238,7 @@ function V_1_3_0() {
             <ListItem>
               {tr(
                 '{0}添加了{1}、{2}、{3}、{4}、{5}等属性',
-                '`setI18N` ',
+                '`setI18n` ',
                 ' `formatNumber`',
                 '`formatCurrency`',
                 '`formatDate`',
@@ -305,6 +305,39 @@ function V_2_0_0() {
   return (
     <>
       <VersionTitle version="2.0.0" date="2023-0x-xx" />
+      <Changed />
+      <List
+        items={[
+          'U',
+          [
+            tr('调整API命名'),
+            [
+              'U',
+              [
+                tr('遵循小驼峰命名规则'),
+                ['U', '`setI18N` → `setI18n`', '`withI18N` → `withI18n`'],
+              ],
+              [tr('更简洁'), ['U', '`i18n` → `t`']],
+            ],
+          ],
+          [
+            tr('调整{0}用法', ' `setI18n` '),
+            [
+              'U',
+              tr(
+                '{0}函数只能动态修改{1}和{2}，其他的属性均由{3}首次调用定义，后续不可更改',
+                ' `setI18n` ',
+                ' `locale` ',
+                ' `langs` ',
+                ' `initI18n` ',
+              ),
+              tr('增加返回参数，会返回当前命名空间下的所有配置状态'),
+            ],
+          ],
+
+          tr('设置命令行语言默认为英文'),
+        ]}
+      />
       <Added />
       <List
         items={[
@@ -315,10 +348,10 @@ function V_2_0_0() {
               'U',
               tr(
                 '新增{0}函数用于获取原有的核心的{1}、{2}、{3}函数',
-                ' `initI18N` ',
-                ' `i18n` ',
-                ' `setI18N` ',
-                ' `withI18N` ',
+                ' `initI18n` ',
+                ' `t` ',
+                ' `setI18n` ',
+                ' `withI18n` ',
               ),
               tr('新增{0}属性用于支持命名空间', ' `namespace` '),
             ],
@@ -335,26 +368,12 @@ function V_2_0_0() {
           ),
         ]}
       />
-      <Changed />
-      <List
-        items={[
-          'U',
-          tr(
-            '{0}函数只能动态修改{1}、{2}等属性，其他的属性均由{3}首次调用定义，后续不可更改',
-            ' `setI18N` ',
-            ' `locale` ',
-            ' `langs` ',
-            ' `initI18N` ',
-          ),
-          tr('设置命令行语言默认为英文'),
-        ]}
-      />
     </>
   )
 }
 
 export default function ChangeLog(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

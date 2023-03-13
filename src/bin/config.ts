@@ -21,10 +21,7 @@ export function initConfig(pathProp?: string) {
   try {
     fs.copyFileSync(sourcePath, targetPath)
     console.log('\n')
-    logSuccess(
-      i18n(`初始化配置完成，已将配置文件写入到 {0} 中`, targetPath),
-      '\n',
-    )
+    logSuccess(t(`初始化配置完成，已将配置文件写入到 {0} 中`, targetPath), '\n')
   } catch (error) {
     logError(error)
   }
@@ -42,12 +39,12 @@ export function readConfig(props?: { path: string; isFile?: boolean }): Config {
     : configPath
 
   try {
-    console.log(chalk.greenBright(i18n('读取配置文件')), currentConfigPath)
+    console.log(chalk.greenBright(t('读取配置文件')), currentConfigPath)
     const res = require(currentConfigPath)
     if (typeof res !== 'object') {
-      throw new Error(i18n('配置文件不是有效配置'))
+      throw new Error(t('配置文件不是有效配置'))
     } else if (Object.keys(res).length === 0) {
-      throw new Error(i18n('配置文件为空', JSON.stringify(res)))
+      throw new Error(t('配置文件为空', JSON.stringify(res)))
     }
     return res
   } catch (error) {

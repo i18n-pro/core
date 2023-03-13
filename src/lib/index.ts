@@ -1,8 +1,8 @@
-import { i18nImpl } from './utils'
-import { I18NState, SetI18N, I18N, WithI18N } from './type'
-export { Langs, I18NState, SetI18N, I18N, WithI18N } from './type'
+import { translateImpl } from './utils'
+import { I18nState, SetI18n, Translate, WithI18n } from './type'
+export { Langs, I18nState, SetI18n, Translate, WithI18n } from './type'
 
-let state = {} as I18NState
+let state = {} as I18nState
 
 function getCurrentState(namespace: string) {
   return state[namespace] || {}
@@ -14,7 +14,7 @@ function getCurrentState(namespace: string) {
  * @param state Internationalization state
  * @returns Updated internationalization state
  */
-function setI18N(namespace: string, stateProp: Parameters<SetI18N>[0]) {
+function setI18n(namespace: string, stateProp: Parameters<SetI18n>[0]) {
   const currentState = getCurrentState(namespace)
 
   const newState = Object.entries(stateProp || {}).reduce(
@@ -67,12 +67,12 @@ function setI18N(namespace: string, stateProp: Parameters<SetI18N>[0]) {
  * @param text Original text
  * @param args Dynamic parameter
  */
-function i18n(
+function translate(
   namespace: string,
   text: string,
   ...args: Array<string | number | unknown>
 ): string {
-  return i18nImpl(getCurrentState(namespace), text, ...args)
+  return translateImpl(getCurrentState(namespace), text, ...args)
 }
 
 /**
@@ -83,16 +83,16 @@ function i18n(
  * @param props Specify configuration attributes
  * @returns
  */
-function withI18N(
+function withI18n(
   namespace: string,
   props: {
     locale: string // 独立于主程序的语言
   },
-): { i18n: typeof i18n } {
+): { t: Translate } {
   const { locale } = props
 
   return {
-    i18n: i18nImpl.bind(null, {
+    t: translateImpl.bind(null, {
       ...getCurrentState(namespace),
       locale,
     }),
@@ -103,7 +103,7 @@ function withI18N(
  * Initialize the internationalization state
  * @param state Internationalization state
  */
-export function initI18N(stateProp: I18NState) {
+export function initI18n(stateProp: I18nState) {
   const { namespace = 'default' } = stateProp
 
   if (typeof stateProp.namespace == 'undefined') {
@@ -131,8 +131,8 @@ export function initI18N(stateProp: I18NState) {
   }
 
   return {
-    setI18N: setI18N.bind(null, namespace) as SetI18N,
-    i18n: i18n.bind(null, namespace) as I18N,
-    withI18N: withI18N.bind(null, namespace) as WithI18N,
+    setI18n: setI18n.bind(null, namespace) as SetI18n,
+    t: translate.bind(null, namespace) as Translate,
+    withI18n: withI18n.bind(null, namespace) as WithI18n,
   }
 }

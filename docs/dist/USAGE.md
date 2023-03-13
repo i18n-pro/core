@@ -37,11 +37,11 @@ pnpm i i18n-pro
 #### Reference function
 
 ```js
-import { setI18N, i18n } from 'i18n-pro'
+import { setI18n, i18n } from 'i18n-pro'
 
 // Before application page rendering logic
 // Browser environment, note: if it is Node environment, you need to replace window with global
-window.setI18N = setI18N
+window.setI18n = setI18n
 window.i18n = i18n
 // The application page rendering logic is later
 ```
@@ -56,7 +56,7 @@ const text = i18n('Hello World')
 ### Form of module introduction
 The only difference from mounting global objects is that each module needs to be introduced separately, and there is no difference in other uses
 ```js
-import { setI18N, i18n } from 'i18n-pro'
+import { setI18n, i18n } from 'i18n-pro'
 // Each module needs to be introduced as above
 
 // Translated text
@@ -90,7 +90,7 @@ import en from './i18n/en.json'
 import jp from './i18n/jp.json'
 // ... More languages
 
-setI18N({
+setI18n({
   locale: 'en',
   langs:{
     en,
@@ -104,7 +104,7 @@ If the generated language pack is in the form of aggregation （`output.langType
 ```js
 import langs from './i18n/langs.json'
 
-setI18N({
+setI18n({
   locale: 'en',
   langs,
 })
@@ -115,7 +115,7 @@ So far, the project has been fully internationalized. The  `locale`  above is de
 ## 7. Switch language
 Under normal circumstances, it is OK to execute the following methods, but the rendered content on the page will not be updated. The text in the new language can be displayed only if the  `i18n`  function for the corresponding text is reexecuted
 ```js
-setI18N({
+setI18n({
   locale: 'en', // Set the specified language
 })
 ```

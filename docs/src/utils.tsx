@@ -1,13 +1,13 @@
-import { initI18N as originInitI18N } from '@lib'
+import { initI18n as originInitI18n } from '@lib'
 import en from './i18n/en.json'
 import packageInfo from '../../package.json'
 
-const { i18n, setI18N } = originInitI18N({ namespace: 'default' })
+const { t, setI18n } = originInitI18n({ namespace: 'default' })
 
-global.tr = i18n
+global.tr = t
 
-export function initI18N({ locale }) {
-  setI18N({
+export function initI18n({ locale }) {
+  setI18n({
     locale,
     langs: {
       en,

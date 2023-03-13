@@ -11,7 +11,7 @@ import * as BinTranslate from '../src/bin/translate'
 import * as BinConstants from '../src/bin/constants'
 import * as BinUtils from '../src/bin/utils'
 import * as BinExtraFile from '../src/bin/extra-file'
-import * as BinI18N from '../src/bin/i18n'
+import * as BinI18n from '../src/bin/i18n'
 import * as BinAliyunTranslate from '../src/bin/translate/aliyun'
 import * as BinGoogleTranslate from '../src/bin/translate/google'
 
@@ -95,7 +95,7 @@ export const binExtraFile = await getCurrentModule<typeof BinExtraFile>(
 )
 
 // 获取当前 bin-i18n 的导出内容
-export const binI18N = await getCurrentModule<typeof BinI18N>('../src/bin/i18n')
+export const binI18n = await getCurrentModule<typeof BinI18n>('../src/bin/i18n')
 
 // 获取当前 bin/translate/aliyun 的导出内容
 export const binAliyunTranslate = await getCurrentModule<

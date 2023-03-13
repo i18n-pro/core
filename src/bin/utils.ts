@@ -42,7 +42,7 @@ export function writeFilesSync(props: {
           recursive: true,
         })
         logSuccess(
-          i18n(
+          t(
             `检测到指定目录 {0} 不存在，已创建该目录`,
             chalk.greenBright(dirpath),
           ),
@@ -62,7 +62,7 @@ export function writeFilesSync(props: {
   try {
     fs.writeFileSync(filepath, JSON.stringify(fileContent, null, indentSize))
     logSuccess(
-      i18n(
+      t(
         `已将 {0} 写入到 {1} 中`,
         showName,
         chalk.blueBright.underline.italic(filepath),
@@ -121,7 +121,7 @@ function getParamNotEqualMsgs(src: string, dist: string, regExp: RegExp) {
   const errorMsg = srcParams.reduce((res, i) => {
     if (!distParams.includes(i)) {
       res.push({
-        msg: i18n('已翻译文案中缺少动态参数标识：{0}', i),
+        msg: t('已翻译文案中缺少动态参数标识：{0}', i),
         index: i.match(/\d+/)[0],
       })
     }
@@ -151,7 +151,7 @@ function getPluralParamNotEqualMsgs(src: string, dist: string) {
 
     if (!isExist) {
       res.push({
-        msg: i18n('已翻译文案中缺少动态参数标识：{0}', i),
+        msg: t('已翻译文案中缺少动态参数标识：{0}', i),
         index,
       })
     }

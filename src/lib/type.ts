@@ -22,7 +22,7 @@ type DateFormatProps<T> = BaseFormatProps<T> & {
 /**
  * 国际化内部保存状态
  */
-export type I18NState = {
+export type I18nState = {
   /**
    * 命名空间
    */
@@ -103,16 +103,16 @@ export type I18NState = {
  * @param state Internationalization state
  * @returns Updated internationalization state
  */
-export type SetI18N = (
-  stateProp: Pick<I18NState, 'locale' | 'langs'>,
-) => I18NState
+export type SetI18n = (
+  stateProp: Pick<I18nState, 'locale' | 'langs'>,
+) => I18nState
 
 /**
  * Get the internationalized text based on the Original text
  * @param text Original text
  * @param args Dynamic parameter
  */
-export type I18N = (
+export type Translate = (
   text: string,
   ...args: Array<string | number | unknown>
 ) => string
@@ -125,10 +125,10 @@ export type I18N = (
  * @param props Specify configuration attributes
  * @returns
  */
-export type WithI18N = (props: {
+export type WithI18n = (props: {
   /**
    * Language independent of the main program
    */
 
   locale: string
-}) => { i18n: I18N }
+}) => { t: Translate }

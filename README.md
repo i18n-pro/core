@@ -87,11 +87,11 @@ i18n('Current time: {t0}', new Date())
 // Plural type
 i18n('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
-**Function API**：将国际化语言包接入到项目中，由 `initI18N` 、 `i18n` 、 `setI18N` 和 `withI18N` 构成
-* **initI18N**：用于初始化固定配置，最后返回包含如下3个 API 的对象
+**Function API**：将国际化语言包接入到项目中，由 `initI18n` 、 `i18n` 、 `setI18n` 和 `withI18n` 构成
+* **initI18n**：用于初始化固定配置，最后返回包含如下3个 API 的对象
 * **i18n**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
-* **setI18N**：设置语言、语言包
-* **withI18N**：It is applicable to the server. Each interface response needs to be internationalized
+* **setI18n**：设置语言、语言包
+* **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 
 Therefore,  `Command Line Tool`  and  `Function API`  work better together. It is precisely because of this structural design that  `i18n-pro`  library can be easily integrated into any  `JavaScript`  project
 # Help Document

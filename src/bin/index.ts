@@ -18,7 +18,7 @@ import {
   setTranslateConfig,
   translateTextsToLangsImpl,
 } from './translate/index'
-import { i18n, setI18N } from './i18n'
+import { t, setI18n } from './i18n'
 import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 import extraLangs from './extra-langs'
@@ -46,7 +46,7 @@ async function translateController({
   configPath?: string // 配置文件路径
 }) {
   const {
-    funcName = 'i18n',
+    funcName = 't',
     entry,
     fileRegExp = /\.[jt]s$/,
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
@@ -60,7 +60,7 @@ async function translateController({
   const filepaths = extraFileSync(entry, fileRegExp)
 
   if (filepaths.length === 0) {
-    console.log(i18n('未解析到需要翻译的文件，本次操作已结束'))
+    console.log(t('未解析到需要翻译的文件，本次操作已结束'))
     return
   }
 
@@ -86,7 +86,7 @@ async function translateController({
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'filepaths.json'),
     fileContent: filepaths,
-    showName: i18n(
+    showName: t(
       '匹配到的文件路径列表({0})',
       chalk.greenBright(filepaths.length),
     ),
@@ -96,7 +96,7 @@ async function translateController({
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts.json'),
     fileContent: trTextRes.success,
-    showName: i18n(
+    showName: t(
       '提取的国际化文本({0})',
       chalk.greenBright(trTextRes.success.length),
     ),
@@ -106,7 +106,7 @@ async function translateController({
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts-error.json'),
     fileContent: trTextRes.error,
-    showName: i18n(
+    showName: t(
       '提取的编写不规范的国际化文本({0})',
       chalk.redBright(trTextRes.error.length),
     ),
@@ -116,7 +116,7 @@ async function translateController({
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-success.json'),
     fileContent: success,
-    showName: i18n(
+    showName: t(
       '翻译成功({0})',
       chalk.greenBright(getTransResultLength(success)),
     ),
@@ -126,17 +126,14 @@ async function translateController({
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-fail.json'),
     fileContent: error,
-    showName: i18n(
-      '翻译失败({0})',
-      chalk.redBright(getTransResultLength(error)),
-    ),
+    showName: t('翻译失败({0})', chalk.redBright(getTransResultLength(error))),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-error.json'),
     fileContent: textErrorMsg,
-    showName: i18n(
+    showName: t(
       '翻译有误({0})',
       chalk.redBright(getTransResultLength(textErrorMsg)),
     ),
@@ -150,7 +147,7 @@ async function translateController({
       'langs.json',
     ),
     fileContent: langs,
-    showName: i18n(
+    showName: t(
       '多语言聚合文件({0})',
       chalk.greenBright(getTransResultLength(langs)),
     ),
@@ -165,7 +162,7 @@ async function translateController({
         lang + '.json',
       ),
       fileContent: content as object,
-      showName: i18n(
+      showName: t(
         '语言包 {0} 文件({1})',
         lang,
         chalk.greenBright(Object.keys(content).length),
@@ -181,7 +178,7 @@ export async function execCommand() {
   const argObj = transferArgsToObj(args)
   const configPath = (argObj['--path'] || argObj['-P']) as string
 
-  setI18N({
+  setI18n({
     locale,
     langs,
   })
@@ -193,7 +190,7 @@ export async function execCommand() {
     case 'translate':
     case 't':
       {
-        const label = chalk.yellowBright(i18n('共耗时'))
+        const label = chalk.yellowBright(t('共耗时'))
         console.time(label)
         await translateController({
           incrementalMode: !args.includes(NON_INCREMENTAL),
@@ -206,7 +203,7 @@ export async function execCommand() {
     case 'version':
       console.log(
         '\n',
-        i18n('当前版本：{0}', chalk.greenBright(packageInfo.version)),
+        t('当前版本：{0}', chalk.greenBright(packageInfo.version)),
         '\n',
       )
       break
@@ -214,41 +211,41 @@ export async function execCommand() {
     case 'help':
       console.log(`
   ${chalk.redBright('i18n')} <${chalk.greenBright(
-        i18n('命令'),
-      )}> [${chalk.yellowBright(i18n('参数'))}]
+        t('命令'),
+      )}> [${chalk.yellowBright(t('参数'))}]
 
 
-  ${i18n('用法')}:
+  ${t('用法')}:
 
-  i18n  ${chalk.greenBright('init')}                           ${i18n(
+  i18n  ${chalk.greenBright('init')}                           ${t(
         '初始化配置文件',
       )}
-  i18n  ${chalk.greenBright('t | translate')}                  ${i18n(
+  i18n  ${chalk.greenBright('t | translate')}                  ${t(
         '提取翻译文本，自动翻译并生成语言包',
       )}
-  i18n  ${chalk.greenBright('v | version')}                    ${i18n(
+  i18n  ${chalk.greenBright('v | version')}                    ${t(
         '显示版本信息',
       )}
-  i18n  ${chalk.greenBright('h | help')}                       ${i18n(
+  i18n  ${chalk.greenBright('h | help')}                       ${t(
         '显示帮助信息',
       )}
 
 
-  ${i18n('参数')}:
+  ${t('参数')}:
 
-        ${chalk.yellowBright('-L | --locale')}    zh | en       ${i18n(
+        ${chalk.yellowBright('-L | --locale')}    zh | en       ${t(
         '可选语言有中文（zh）/ 英文（{0}）， 默认为英文（en）',
         'en',
       )}
-        ${chalk.yellowBright(NON_INCREMENTAL)}              ${i18n(
+        ${chalk.yellowBright(NON_INCREMENTAL)}              ${t(
         '非增量翻译模式进行翻译，已翻译的文本会完全被覆盖',
       )}
           `)
       break
     default:
       console.log(`
-  ${chalk.redBright(i18n('输入命令有误:'))}
-  ${i18n('可输入{0}查看帮助信息', chalk.greenBright(' i18n h '))}
+  ${chalk.redBright(t('输入命令有误:'))}
+  ${t('可输入{0}查看帮助信息', chalk.greenBright(' i18n h '))}
       `)
   }
 }

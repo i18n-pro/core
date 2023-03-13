@@ -71,14 +71,14 @@ i18n('${tr(
       <Bold>{tr('函数API')}</Bold>：
       {tr(
         '将国际化语言包接入到项目中，由{0}、{1}、{2}和{3}构成',
-        ' `initI18N` ',
+        ' `initI18n` ',
         ' `i18n` ',
-        ' `setI18N` ',
-        ' `withI18N` ',
+        ' `setI18n` ',
+        ' `withI18n` ',
       )}
       <UnorderedList>
         <ListItem>
-          <Bold>initI18N</Bold>：
+          <Bold>initI18n</Bold>：
           {tr('用于初始化固定配置，最后返回包含如下3个 API 的对象')}
         </ListItem>
         <ListItem>
@@ -88,10 +88,10 @@ i18n('${tr(
           )}
         </ListItem>
         <ListItem>
-          <Bold>setI18N</Bold>：{tr('设置语言、语言包')}
+          <Bold>setI18n</Bold>：{tr('设置语言、语言包')}
         </ListItem>
         <ListItem>
-          <Bold>withI18N</Bold>：
+          <Bold>withI18n</Bold>：
           {tr('适用于服务端，每个接口响应需要做国际化的处理')}
         </ListItem>
       </UnorderedList>

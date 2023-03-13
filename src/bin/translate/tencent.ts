@@ -17,10 +17,10 @@ const config: BasicTencentConfig = {
   to: [],
 }
 
-const TRANSLATOR_NAME = i18n('腾讯')
+const TRANSLATOR_NAME = t('腾讯')
 
 const ERROR_CODE_TIP_MAP = {
-  'AuthFailure.SignatureFailure': i18n('secretId 或者 secretKey 配置不正确'),
+  'AuthFailure.SignatureFailure': t('secretId 或者 secretKey 配置不正确'),
 }
 
 const EXIT_ERROR_CODES = [

@@ -96,7 +96,7 @@ export function setTranslateConfig(
 
   if (!Object.keys(translatorImplMap).includes(translator)) {
     logError(
-      i18n(
+      t(
         '不存在{0}的配置项',
         chalk.yellowBright(` translator = ${translator} `),
       ),
@@ -108,7 +108,7 @@ export function setTranslateConfig(
 
   if (typeof config === 'undefined' || Object.keys(config).length == 0) {
     logError(
-      i18n(
+      t(
         '当前{0}没有配置对应配置内容{1}',
         chalk.yellowBright(` translator = ${translator} `),
         chalk.redBright(` ${translator}Config `),
@@ -178,16 +178,19 @@ async function translateTextsToLang(props: {
 
   try {
     for (let i = 0; i < texts.length; i++) {
-      const t = texts[i]
+      const text = texts[i]
 
       // 限制单个文本的字符长度
-      if (maxLengthType === 'strLengthAndArrLength' && t.length > maxLength) {
-        error[t] = i18n('当前文本超出最大字符数限制：{0}', maxLength)
+      if (
+        maxLengthType === 'strLengthAndArrLength' &&
+        text.length > maxLength
+      ) {
+        error[text] = t('当前文本超出最大字符数限制：{0}', maxLength)
         continue
       }
 
-      fromTexts.push(t)
-      count += (count === 0 ? 0 : separator.length) + t.length
+      fromTexts.push(text)
+      count += (count === 0 ? 0 : separator.length) + text.length
 
       if (
         i === texts.length - 1 ||
@@ -212,7 +215,7 @@ async function translateTextsToLang(props: {
           const prefix = '\u001b[100D'
           while ((last = Date.now() - now) < delay * 1000) {
             process.stdout.write(
-              i18n(
+              t(
                 '{0}秒后将进行下一波翻译',
                 chalk.redBright(Math.ceil((delay * 1000 - last) / 1000)),
               ) + prefix,

@@ -63,17 +63,17 @@ export function throwErrorByErrorCode(
   errorMsg?: string,
 ) {
   const errorText = errorMsg
-    ? '\n   ' + i18n('错误信息: {0}', chalk.redBright(errorMsg))
+    ? '\n   ' + t('错误信息: {0}', chalk.redBright(errorMsg))
     : ''
 
   let errorReason = errorCodeTipMap[errorCode]
   errorReason = errorReason
-    ? i18n('可能原因是: {0}', chalk.redBright(errorCodeTipMap[errorCode]))
+    ? t('可能原因是: {0}', chalk.redBright(errorCodeTipMap[errorCode]))
     : ''
 
-  throw `${chalk.redBright(i18n('{0}翻译接口返回错误', translatorName))}：
-   ${i18n('错误码')}：${errorCode}${errorText}
-   ${i18n(
+  throw `${chalk.redBright(t('{0}翻译接口返回错误', translatorName))}：
+   ${t('错误码')}：${errorCode}${errorText}
+   ${t(
      '可根据错误码在 {0} 该文档中查看错误具体原因',
      chalk.blueBright.underline(docUrl),
    )}
@@ -115,9 +115,9 @@ export function collectRes(props: {
       }
       success[text] = newDst
       logSuccess(
-        i18n(
+        t(
           '{0}({1}{2}{3})：{4}{5}{6}',
-          chalk.greenBright(i18n('{0}翻译成功', translatorName)),
+          chalk.greenBright(t('{0}翻译成功', translatorName)),
           chalk.redBright.italic(from),
           chalk.bold.greenBright(' → '),
           chalk.redBright.italic(to),
@@ -127,7 +127,7 @@ export function collectRes(props: {
         ),
       )
     } else {
-      error[text] = i18n('当前文本【{0}】未被翻译', text)
+      error[text] = t('当前文本【{0}】未被翻译', text)
     }
   })
 }

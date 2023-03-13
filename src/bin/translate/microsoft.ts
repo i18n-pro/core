@@ -9,10 +9,10 @@ const config: BasicMicrosoftConfig = {
   to: [],
 }
 
-const TRANSLATOR_NAME = i18n('微软')
+const TRANSLATOR_NAME = t('微软')
 
 const ERROR_CODE_TIP_MAP = {
-  401000: i18n('key 或者 location 配置不正确'),
+  401000: t('key 或者 location 配置不正确'),
 }
 
 const EXIT_ERROR_CODES = [401000]

@@ -7,7 +7,7 @@ import React, {
   CodeBlock,
   TableOfContents,
 } from 'jsx-to-md'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 function renderFormatDesc() {
   const formatTypes = [
@@ -80,7 +80,7 @@ function APIList() {
               render(<code>text</code>),
               render(<code>{'{index}'}</code>),
               render(<code>index</code>),
-              render(<code>setI18N</code>),
+              render(<code>setI18n</code>),
             )}
             <br />
             <br />
@@ -102,7 +102,7 @@ function APIList() {
           </td>
         </tr>
         <tr>
-          <td>setI18N</td>
+          <td>setI18n</td>
           <td>
             <pre>
               {`(
@@ -146,7 +146,7 @@ function APIList() {
           </td>
         </tr>
         <tr>
-          <td>withI18N</td>
+          <td>withI18n</td>
           <td>
             <pre>
               {`(
@@ -209,7 +209,7 @@ function FunctionType() {
 }
 
 export default function API(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

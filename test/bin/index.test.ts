@@ -5,7 +5,7 @@ import {
   changeProcessArgv,
   binExtraFile,
   binConstants,
-  binI18N,
+  binI18n,
 } from '../utils'
 import langs from '../../i18n/langs.json'
 import path from 'path'
@@ -33,12 +33,12 @@ describe('验证命令行响应命令', () => {
       expect(spyConfig.getMockName()).toBe('initConfig')
       spyConfig.mockImplementation(() => undefined)
 
-      const { setI18N } = binI18N
+      const { setI18n } = binI18n
 
       execCommand()
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { namespace, ...state } = setI18N({})
+      const { namespace, ...state } = setI18n({})
 
       // 正确匹配语言状态
       expect(state).toEqual({

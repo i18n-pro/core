@@ -3,8 +3,8 @@ import {
   commonFormatterRegex,
   invalidPluralFormatterRegex,
   tagFormatterNameMap,
-} from './contants'
-import { I18NState } from './type'
+} from './constants'
+import { I18nState } from './type'
 
 /**
  * 获取目标正则
@@ -31,7 +31,7 @@ export function getTextFromFormatter(props: {
   index: number // 动态参数的起始下标
   arg: unknown // 动态参数值
   text: string // 待处理的文案
-  state: I18NState // Internationalization state
+  state: I18nState // Internationalization state
 }): string {
   const { type, originText, matchTagRes, arg, text: textProp, state } = props
   const { locale } = state
@@ -61,9 +61,9 @@ export function getTextFromFormatter(props: {
       ...(() => {
         let res = {}
         if (type === 'plural') {
-          const newkeyword = keyword?.trim?.()
+          const newKeyword = keyword?.trim?.()
           res = {
-            keyword: newkeyword,
+            keyword: newKeyword,
             text: `${arg}${keyword}`,
           }
         }
@@ -83,14 +83,14 @@ export function getTextFromFormatter(props: {
 }
 
 /**
- * i18n 函数API的具体实现
+ * translate 函数API的具体实现
  * @param i18nState 当前i18n所有状态
  * @param text Original text
  * @param args Dynamic parameter
  * @returns
  */
-export function i18nImpl(
-  i18nState: I18NState,
+export function translateImpl(
+  i18nState: I18nState,
   text,
   ...args: Array<string | number | unknown>
 ) {
@@ -115,7 +115,7 @@ export function i18nImpl(
 
     if (invalidPluralMatchTagRes) {
       console.warn(
-        `The plural dynamic parameter ${invalidPluralMatchTagRes[1]} in the translated text ${originText} does not contain the text that needs to be plural, for example: i18n('I have {p0 apple}')`,
+        `The plural dynamic parameter ${invalidPluralMatchTagRes[1]} in the translated text ${originText} does not contain the text that needs to be plural, for example: t('I have {p0 apple}')`,
       )
       return
     }

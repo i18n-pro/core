@@ -30,14 +30,14 @@ The following types are expressed in  `TypeScript`  syntax<table>
       </pre>
     </td>
     <td>
-      Get internationalized text<br /><br />Internally, the translation text corresponding to <code>text</code> will be obtained from the language package <code>(langs)</code> according to the current language <code>(locale)</code>. If the translation content is not matched, the content of <code>text</code> will be displayed directly<br /><b>text</b>：Text to be translated<br /><b>args</b>：It represents a dynamic parameters without number limitation. The <code>text</code> text needs to be received in the form of <code>{index}</code>. The <code>index</code> represents the position of the dynamic parameters, starting from 0 (you can customize the starting value in <code>setI18N</code>). The first parameter corresponds to 0, and the second parameter corresponds to 1, and so on<br /><br />for example：<code>
+      Get internationalized text<br /><br />Internally, the translation text corresponding to <code>text</code> will be obtained from the language package <code>(langs)</code> according to the current language <code>(locale)</code>. If the translation content is not matched, the content of <code>text</code> will be displayed directly<br /><b>text</b>：Text to be translated<br /><b>args</b>：It represents a dynamic parameters without number limitation. The <code>text</code> text needs to be received in the form of <code>{index}</code>. The <code>index</code> represents the position of the dynamic parameters, starting from 0 (you can customize the starting value in <code>setI18n</code>). The first parameter corresponds to 0, and the second parameter corresponds to 1, and so on<br /><br />for example：<code>
   i18n('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
                 '小白')
 </code><br />The execution result of the current language (Chinese: zh) is： 这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外<br />The result of Baidu's translation into English is：The man's name is 小帅, and he accidentally obtained super power. The woman's name is 小美, and she was accidentally chased by FBI. The child's name is 小白, and she was accidentally hit by an accident
     </td>
   </tr>
   <tr>
-    <td>setI18N</td>
+    <td>setI18n</td>
     <td>
       <pre>
 (
@@ -59,7 +59,7 @@ The following types are expressed in  `TypeScript`  syntax<table>
     </td>
   </tr>
   <tr>
-    <td>withI18N</td>
+    <td>withI18n</td>
     <td>
       <pre>
 (

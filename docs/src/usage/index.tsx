@@ -12,7 +12,7 @@ import React, {
   TableOfContents,
 } from 'jsx-to-md'
 import { imageObj } from '../constants'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 function Install() {
   return (
@@ -49,7 +49,7 @@ function LinkApi() {
       <H4>{tr('引用函数')}</H4>
       <CodeBlock
         langType="js"
-        code={`import { setI18N, i18n } from 'i18n-pro'
+        code={`import { setI18n, i18n } from 'i18n-pro'
 
 // ${tr('需要在应用页面渲染逻辑之前')}
 // ${tr(
@@ -58,7 +58,7 @@ function LinkApi() {
           'window',
           'global',
         )}
-window.setI18N = setI18N
+window.setI18n = setI18n
 window.i18n = i18n
 // ${tr('后续才是应用的页面渲染逻辑')}`}
       />
@@ -74,7 +74,7 @@ const text = i18n('${tr('你好世界')}')`}
       )}
       <CodeBlock
         langType="js"
-        code={`import { setI18N, i18n } from 'i18n-pro'
+        code={`import { setI18n, i18n } from 'i18n-pro'
 // ${tr('就是每个模块都需上面这样引入')}
 
 // ${tr('被翻译的文本')}
@@ -138,7 +138,7 @@ function ImportLangs() {
 import jp from './i18n/jp.json'
 // ... ${tr('其他更多语言')}
 
-setI18N({
+setI18n({
   locale: 'en',
   langs:{
     en,
@@ -155,7 +155,7 @@ setI18N({
       <CodeBlock
         code={`import langs from './i18n/langs.json'
 
-setI18N({
+setI18n({
   locale: 'en',
   langs,
 })
@@ -181,7 +181,7 @@ function SwitchLang() {
         ' `i18n` ',
       )}
       <CodeBlock
-        code={`setI18N({
+        code={`setI18n({
   locale: 'en', // ${tr('设置指定语言')}
 })`}
       />
@@ -233,7 +233,7 @@ function Demo() {
 }
 
 export default function Usage(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

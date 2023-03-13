@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  funcName: 'i18n',
+  funcName: 't',
   entry: path.join(__dirname, './src/bin/'),
   fileRegExp: /.*\.[jt]s$/,
   output: {

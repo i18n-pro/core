@@ -15,12 +15,12 @@ const config: BasicYoudaoConfig = {
   to: [],
 }
 
-const TRANSLATOR_NAME = i18n('有道')
+const TRANSLATOR_NAME = t('有道')
 
 const ERROR_CODE_TIP_MAP = {
-  102: i18n('不支持的语言类型'),
-  108: i18n('appKey 配置不正确'),
-  202: i18n('key 配置不正确'),
+  102: t('不支持的语言类型'),
+  108: t('appKey 配置不正确'),
+  202: t('key 配置不正确'),
 }
 
 const EXIT_ERROR_CODES = ['102', '108', '202']

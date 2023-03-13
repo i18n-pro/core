@@ -1,5 +1,5 @@
 import React, { H1, H2, Break, CodeBlock, TableOfContents } from 'jsx-to-md'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 function NonsupportObjectParamsResolve() {
   return (
@@ -77,7 +77,7 @@ function DateAndTime() {
 }
 
 export default function QAndA(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

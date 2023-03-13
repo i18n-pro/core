@@ -5,10 +5,10 @@ import React, {
   CodeBlock,
   TableOfContents,
 } from 'jsx-to-md'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 export default function MatchRule(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React, { H1, Table, Column, TableOfContents } from 'jsx-to-md'
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 
 function getColumns() {
   return [
@@ -20,7 +20,7 @@ type RecordItem = Record<
 >
 
 export default function OutputLog(props) {
-  initI18N(props)
+  initI18n(props)
 
   const data: RecordItem[] = [
     {

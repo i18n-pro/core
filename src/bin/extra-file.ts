@@ -21,7 +21,7 @@ function extraFileSyncImpl(dirpath: string, fileRegExp: RegExp) {
     } else {
       if (fileRegExp.test(filename)) {
         filepaths.push(filepath)
-        console.log(chalk.greenBright(i18n('已录入')), filepath)
+        console.log(chalk.greenBright(t('已录入')), filepath)
       }
     }
   })
@@ -35,12 +35,12 @@ function extraFileSyncImpl(dirpath: string, fileRegExp: RegExp) {
  * @returns
  */
 export default function extraFileSync(dirpath: string, fileRegExp: RegExp) {
-  console.log(chalk.greenBright(i18n('开始解析路径：')), dirpath)
+  console.log(chalk.greenBright(t('开始解析路径：')), dirpath)
 
   const filepaths = extraFileSyncImpl(dirpath, fileRegExp)
 
   logSuccess(
-    chalk.greenBright(i18n('解析符合要求的文件路径数:')),
+    chalk.greenBright(t('解析符合要求的文件路径数:')),
     filepaths.length,
   )
 

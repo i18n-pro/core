@@ -1,4 +1,4 @@
-import { initI18N } from '../utils'
+import { initI18n } from '../utils'
 import React, { TableOfContents } from 'jsx-to-md'
 import Top from './Top'
 import Vision from './Vision'
@@ -9,7 +9,7 @@ import HelpDoc from './HelpDoc'
 import License from './License'
 
 export default function Doc(props) {
-  initI18N(props)
+  initI18n(props)
 
   return (
     <>

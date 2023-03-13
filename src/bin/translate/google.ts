@@ -10,11 +10,11 @@ const config: BasicGoogleConfig = {
   to: [],
 }
 
-const TRANSLATOR_NAME = i18n('谷歌')
+const TRANSLATOR_NAME = t('谷歌')
 
 const ERROR_CODE_TIP_MAP = {
-  '5 NOT_FOUND': i18n('projectId 配置不正确'),
-  '3 INVALID_ARGUMENT': i18n('location 或者 语言代码 配置不正确'),
+  '5 NOT_FOUND': t('projectId 配置不正确'),
+  '3 INVALID_ARGUMENT': t('location 或者 语言代码 配置不正确'),
 }
 
 const EXIT_ERROR_CODES = Object.keys(ERROR_CODE_TIP_MAP)
@@ -103,12 +103,10 @@ export async function translateByGoogle(props: {
     errorCode = res?.errorCode
 
     if (res?.errorMsg) {
-      throw `${chalk.redBright(i18n('{0}翻译接口返回错误', TRANSLATOR_NAME))}：
-      ${i18n('错误信息')}：${chalk.redBright(res.errorMsg)}
+      throw `${chalk.redBright(t('{0}翻译接口返回错误', TRANSLATOR_NAME))}：
+      ${t('错误信息')}：${chalk.redBright(res.errorMsg)}
       ${
-        res.reason
-          ? `${i18n('可能原因是: {0}', chalk.redBright(res.reason))}`
-          : ''
+        res.reason ? `${t('可能原因是: {0}', chalk.redBright(res.reason))}` : ''
       }
          `
     }

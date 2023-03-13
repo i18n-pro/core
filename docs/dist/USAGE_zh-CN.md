@@ -37,11 +37,11 @@ pnpm i i18n-pro
 #### 引用函数
 
 ```js
-import { setI18N, i18n } from 'i18n-pro'
+import { setI18n, i18n } from 'i18n-pro'
 
 // 需要在应用页面渲染逻辑之前
 // 浏览器环境，注意：如果是Node环境需要将window替换成global
-window.setI18N = setI18N
+window.setI18n = setI18n
 window.i18n = i18n
 // 后续才是应用的页面渲染逻辑
 ```
@@ -56,7 +56,7 @@ const text = i18n('你好世界')
 ### 模块化引入的形式
 跟挂载全局对象的唯一区别就是每个模块都需要单独引入，其他使用并无差别
 ```js
-import { setI18N, i18n } from 'i18n-pro'
+import { setI18n, i18n } from 'i18n-pro'
 // 就是每个模块都需上面这样引入
 
 // 被翻译的文本
@@ -90,7 +90,7 @@ import en from './i18n/en.json'
 import jp from './i18n/jp.json'
 // ... 其他更多语言
 
-setI18N({
+setI18n({
   locale: 'en',
   langs:{
     en,
@@ -104,7 +104,7 @@ setI18N({
 ```js
 import langs from './i18n/langs.json'
 
-setI18N({
+setI18n({
   locale: 'en',
   langs,
 })
@@ -115,7 +115,7 @@ setI18N({
 ## 7. 切换语言
 正常情况下，执行如下方法就行，但是页面上已渲染的内容不会再更新，只有等对应文本的 `i18n` 函数重新执行，才有可能显示新语言对应的文本
 ```js
-setI18N({
+setI18n({
   locale: 'en', // 设置指定语言
 })
 ```

@@ -1,7 +1,7 @@
-import { i18n } from './i18n'
+import { t } from './i18n'
 
 // 设置为全局属性
-global.i18n = i18n
+global.t = t
 
 // 日志文件的生成目录
 export const LOG_DIR_NAME = '.log'
@@ -16,7 +16,7 @@ export const SEPARATOR_LENGTH = 1
 export const SEPARATOR_STR = SEPARATOR.repeat(SEPARATOR_LENGTH)
 
 // 翻译失败的文本内容显示
-export const TRANSLATE_ERROR_TEXT = i18n('翻译失败')
+export const TRANSLATE_ERROR_TEXT = t('翻译失败')
 
 // 非增量翻译模式
 export const NON_INCREMENTAL = '--non-incremental'

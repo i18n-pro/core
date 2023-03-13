@@ -12,10 +12,10 @@ const config: BasicAliyunConfig = {
   to: [],
 }
 
-const TRANSLATOR_NAME = i18n('阿里云')
+const TRANSLATOR_NAME = t('阿里云')
 
 const ERROR_CODE_TIP_MAP = {
-  MissingAccessKeyId: i18n('accessKeyId 或者 accessKeySecret 配置不正确'),
+  MissingAccessKeyId: t('accessKeyId 或者 accessKeySecret 配置不正确'),
 }
 
 const EXIT_ERROR_CODES = ['MissingAccessKeyId']

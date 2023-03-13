@@ -17,12 +17,12 @@ const config: BasicBaiduConfig = {
   delay: 0,
 }
 
-const TRANSLATOR_NAME = i18n('百度')
+const TRANSLATOR_NAME = t('百度')
 
 const ERROR_CODE_TIP_MAP = {
-  52003: i18n('appid 配置不正确'),
-  54001: i18n('key 配置不正确'),
-  54003: i18n(
+  52003: t('appid 配置不正确'),
+  54001: t('key 配置不正确'),
+  54003: t(
     '多个人同时使用了同一个APPID的执行翻译，建议注册个人账号来使用或者调整配置项{0}(具体可参考配置项文档说明)',
     'baiduConfig.delay',
   ),
