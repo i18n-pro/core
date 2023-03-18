@@ -1,3 +1,4 @@
+import { encode } from 'gpt-3-encoder'
 import { SEPARATOR_STR } from '../constants'
 import { logError } from '../utils'
 import {
@@ -15,6 +16,7 @@ import { setTencentConfig, translateByTencent } from './tencent'
 import { setAliyunConfig, translateByAliyun } from './aliyun'
 import { setMicrosoftConfig, translateByMicrosoft } from './microsoft'
 import { setGoogleConfig, translateByGoogle } from './google'
+import { setOpenAIConfig, translateByOpenAI } from './openai'
 
 let config: TranslatorConfig = {
   from: '',
@@ -40,6 +42,7 @@ const translatorImplMap = {
   aliyun: translateByAliyun,
   microsoft: translateByMicrosoft,
   google: translateByGoogle,
+  openai: translateByOpenAI,
 }
 
 const translatorSetConfigMap = {
@@ -49,6 +52,7 @@ const translatorSetConfigMap = {
   aliyun: setAliyunConfig,
   microsoft: setMicrosoftConfig,
   google: setGoogleConfig,
+  openai: setOpenAIConfig,
 }
 
 const maxLengthMap: MaxLengthConfigMap = {
@@ -78,6 +82,11 @@ const maxLengthMap: MaxLengthConfigMap = {
   google: {
     maxLengthType: 'allStrLength',
     maxLength: 5000,
+  },
+  openai: {
+    maxLengthType: 'allTokenLength',
+    maxLength: 1000,
+    separator: SEPARATOR_STR,
   },
 }
 
@@ -145,6 +154,7 @@ async function translateTextsToLangImpl(props: {
   texts: string[] // 需要翻译的文本内容
   from: string // 被翻译内容的默认语言
   to: string // 需要翻译到其他语言
+  tokens: number // token的长度
 }) {
   const res = await currentTranslatorImpl(props)
 
@@ -175,6 +185,7 @@ async function translateTextsToLang(props: {
   let count = 0
   let fromTexts: string[] = []
   let textErrorMsg: Record<string, string[]> = {}
+  let tokens = 0
 
   try {
     for (let i = 0; i < texts.length; i++) {
@@ -203,7 +214,11 @@ async function translateTextsToLang(props: {
         (['strLengthAndArrLength', 'allStrLengthAndArrLength'].includes(
           maxLengthType,
         ) &&
-          fromTexts.length == maxArrayLength)
+          fromTexts.length == maxArrayLength) ||
+        (['allTokenLength'].includes(maxLengthType) &&
+          texts.length - 1 > i &&
+          // 多加一个文本超出限制
+          (tokens = encode(fromTexts + texts[i + 1]).length) > maxLength)
       ) {
         if (
           typeof delay === 'number' &&
@@ -227,6 +242,7 @@ async function translateTextsToLang(props: {
           texts: fromTexts,
           from,
           to,
+          tokens,
         })
         lastRequestTimestamp = Date.now()
         const {

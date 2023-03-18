@@ -1,3 +1,5 @@
+import type { HttpsProxyAgentOptions as OriginHttpsProxyAgentOptions } from 'https-proxy-agent'
+
 /**
  * 公共的翻译配置类型，适用于所有的翻译平台
  */
@@ -18,6 +20,7 @@ export type Translator =
   | 'aliyun'
   | 'microsoft'
   | 'google'
+  | 'openai'
 
 /**
  * 公共的基础配置
@@ -167,6 +170,24 @@ export type BasicGoogleConfig = {
 export type GoogleConfig = DefineTranslatorConfig<'google', BasicGoogleConfig>
 
 /**
+ * https-proxy-agent 工具库构建参数
+ */
+export type HttpsProxyAgentOptions = OriginHttpsProxyAgentOptions
+
+/**
+ * OpenAI翻译的配置
+ */
+export type BasicOpenAIConfig = {
+  key: string // OpenAI API Key
+  proxy?: HttpsProxyAgentOptions // 代理配置
+} & TranslatorConfig
+
+/**
+ * 完整的OpenAI翻译的配置
+ */
+export type OpenAIConfig = DefineTranslatorConfig<'openai', BasicOpenAIConfig>
+
+/**
  * 翻译器基础的联合类型
  */
 export type UnionBasicTranslatorConfig =
@@ -176,6 +197,7 @@ export type UnionBasicTranslatorConfig =
   | BasicAliyunConfig
   | BasicMicrosoftConfig
   | BasicGoogleConfig
+  | BasicOpenAIConfig
 
 /**
  * 翻译器的联合类型
@@ -187,6 +209,7 @@ export type UnionTranslatorConfig =
   | AliyunConfig
   | MicrosoftConfig
   | GoogleConfig
+  | OpenAIConfig
 
 /**
  * 模板配置文件
@@ -205,6 +228,7 @@ export type MaxLengthType =
   | 'allStrLength' // 所有字符数限制
   | 'strLengthAndArrLength' // 单个字符限制长度，并且数组长度也需限制
   | 'allStrLengthAndArrLength' // 限制数组长度和总字符数
+  | 'allTokenLength' // 所有字符Token长度
 
 /**
  * 最大字符限制配置
