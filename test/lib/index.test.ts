@@ -1053,7 +1053,7 @@ describe('格式化复数', () => {
     )
   })
 
-  it.only('正确配置 formatPlural，未正确设置动态参数标记', () => {
+  it('正确配置 formatPlural，未正确设置动态参数标记', () => {
     const { t } = initI18n({
       namespace: 'format-plural-config-undefined',
       langs,
