@@ -311,7 +311,7 @@ export async function translateTextsToLangsImpl(
   try {
     for (const to of tos) {
       const locale = codeLocaleMap[to] || to
-      const lang = langsProp[to] || {}
+      const lang = langsProp[locale] || {}
       // 过滤已翻译的字段
       const filterTexts = incrementalMode
         ? texts.filter((text) => !lang[text])
