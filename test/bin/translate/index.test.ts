@@ -20,6 +20,7 @@ import { tencentMockRequestImpl } from './tencent'
 import { aliyunMockRequestImpl } from './aliyun'
 import { microsoftMockRequestImpl } from './microsoft'
 import { googleMockRequestImpl } from './google'
+import { openaiMockRequestImpl } from './openai'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
 const { SEPARATOR_LENGTH } = binConstants
@@ -31,6 +32,7 @@ const translatorMockRequestMap = {
   aliyun: aliyunMockRequestImpl,
   microsoft: microsoftMockRequestImpl,
   google: googleMockRequestImpl,
+  openai: openaiMockRequestImpl,
 }
 
 describe('验证翻译实现', () => {
@@ -76,6 +78,9 @@ describe('验证翻译实现', () => {
       google: {
         projectId: '',
       },
+      openai: {
+        key: '',
+      },
     }
 
     const commonItem: [string, string[], string[], Langs][] = [
@@ -87,7 +92,6 @@ describe('验证翻译实现', () => {
     const matrix: Item[] = Object.entries(translatorConfigMap).reduce(
       (res, [translator, config]) => {
         commonItem.forEach((item) => {
-          console.log({ item })
           const [first, ...rest] = item
 
           res.push([
@@ -228,6 +232,7 @@ describe('验证翻译实现', () => {
       ['aliyun', { from: 'zh', to: ['en'] }],
       ['microsoft', { from: 'zh', to: ['en'] }],
       ['google', { from: 'zh', to: ['en'] }],
+      ['openai', { from: 'zh', to: ['en'] }],
     ]
 
     it.each(matrix)(
@@ -412,7 +417,14 @@ describe('验证翻译实现', () => {
         true,
       ],
       [
-        'google',
+        'openai',
+        '内部错误信息',
+        { from: 'zh', to: ['en'] },
+        'invalid_api_key',
+        false,
+      ],
+      [
+        'openai',
         '随意定的错误码信息',
         { from: 'zh', to: ['en'] },
         '100',
@@ -509,6 +521,7 @@ describe('验证翻译实现', () => {
       ['aliyun', { from: 'zh', to: ['en'] }],
       ['microsoft', { from: 'zh', to: ['en'] }],
       ['google', { from: 'zh', to: ['en'] }],
+      ['openai', { from: 'zh', to: ['en'] }],
     ]
 
     it.each(matrix)(
