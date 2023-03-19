@@ -127,12 +127,12 @@ describe('验证命令行响应命令', () => {
       string, // 用例描述
       string, // 命令
       'zh' | 'en',
-      '输入命令有误' | 'Error in input command',
+      string,
     ]
 
     const matrix: Item[] = [
       ['xxx', 'xxx', 'zh', '输入命令有误'],
-      ['xxx -L en', 'xxx', 'en', 'Error in input command'],
+      ['xxx -L en', 'xxx', 'en', 'Input command is incorrect'],
     ]
 
     it.each(matrix)(
