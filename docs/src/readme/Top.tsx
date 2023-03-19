@@ -60,9 +60,6 @@ export default function Top() {
         <Image {...imageObj['npm-download']} />
       </Link>
       <Break />
-      <Link {...linkObj.dependenices}>
-        <Image {...imageObj.dependenices} />
-      </Link>
       <Break />
       <Link {...linkObj['github-stars']}>
         <Image {...imageObj['github-stars']} />

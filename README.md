@@ -10,7 +10,7 @@ English | [简体中文](./README_zh-CN.md)
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
 [![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm")
-[![dependenices](https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic "dependenices")](https://www.npmjs.com/package/i18n-pro?activeTab=dependencies "dependenices")
+
 [![github-stars](https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social "github-stars")](https://github.com/eyelly-wu/i18n-pro/stargazers "github-stars")
 [![last-commit](https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro/dev "last-commit")](https://github.com/eyelly-wu/i18n-pro/commits/dev "last-commit")
 [![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues")
@@ -38,8 +38,9 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **simple**：Low learning cost and easy to use
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
+   * **支持增量翻译模式**：只翻译新增文本，智能移除未使用文本
+   * **支持多翻译平台**：OpenAI、谷歌、微软、腾讯、阿里、有道、百度（需自行注册账号）
 * **keyless**：There is no need to define the key manually, the text to be translated is the key
-* **多翻译平台支持**：谷歌、微软、腾讯、阿里、有道、百度、更多平台敬请期待
 
 
 # Live Demo
@@ -53,43 +54,43 @@ The library is mainly composed of two parts
 * Command Line Tool
 * Function API
 
-**Command Line Tool**：Parse the text to be translated according to the specified rules, translate the text to the specified target language through the translation platform, and finally generate the language package file
+**Command Line Tool**：根据指定规则（正则匹配）解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件
 
 A simple example of  [Matching Rules](#matching-rules)  for parsing text is as follows
 ```js
 /** Normal string */
 
-i18n('xxx')
-i18n("xxx")
-i18n(`xxx`)
+t('xxx')
+t("xxx")
+t(`xxx`)
 
 
 /** Support dynamic parameters */
 
-i18n('xxx{0}xxx', param1)
-i18n('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
+t('xxx{0}xxx', param1)
+t('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
 
 
 /** Dynamic parameters type marker */
 
 // Number Type
-i18n('The number of users has reached {n0}', 100000000)
+t('The number of users has reached {n0}', 100000000)
 
 // Currency type
-i18n('The selling price is {c0}', 14999)
+t('The selling price is {c0}', 14999)
 
 // Date Type
-i18n('Today's date is {d0}', new Date())
+t('Today's date is {d0}', new Date())
 
 // Time Type
-i18n('Current time: {t0}', new Date())
+t('Current time: {t0}', new Date())
 
 // Plural type
-i18n('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
+t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
 **Function API**：将国际化语言包接入到项目中，由 `initI18n` 、 `i18n` 、 `setI18n` 和 `withI18n` 构成
 * **initI18n**：用于初始化固定配置，最后返回包含如下3个 API 的对象
-* **i18n**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
+* **t**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
 * **setI18n**：设置语言、语言包
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 

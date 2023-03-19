@@ -27,10 +27,6 @@ const links = [
     href: 'https://bundlephobia.com/package/i18n-pro',
   },
   {
-    title: 'dependenices',
-    href: 'https://www.npmjs.com/package/i18n-pro?activeTab=dependencies',
-  },
-  {
     title: 'github-stars',
     href: 'https://github.com/eyelly-wu/i18n-pro/stargazers',
   },
@@ -82,11 +78,6 @@ const images = [
     title: 'bundlesize',
     alt: 'bundlesize',
     src: 'https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic',
-  },
-  {
-    title: 'dependenices',
-    alt: 'dependenices',
-    src: 'https://img.shields.io/librariesio/github/eyelly-wu/i18n-pro?style=plastic',
   },
   {
     title: 'github-stars',
