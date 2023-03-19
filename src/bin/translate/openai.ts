@@ -36,7 +36,7 @@ export async function translateByOpenAI(props: {
   tokens: number // token的长度
 }) {
   const { texts, from, to, tokens } = props
-  const { key, proxy } = config
+  const { key, proxy, model = 'gpt-3.5-turbo' } = config
 
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
@@ -46,15 +46,20 @@ export async function translateByOpenAI(props: {
   const text = texts.join('\n')
 
   try {
-    const res: any = await fetch('https://api.openai.com/v1/completions', {
+    const res: any = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       data: JSON.stringify({
-        model: 'text-davinci-003',
-        prompt: `Translate those texts from ${from} to ${to}, keep the original newline format\n${text}`,
+        model,
+        messages: [
+          {
+            role: 'user',
+            content: `Translate those texts from ${from} to ${to}, keep the original newline format\n${text}`,
+          },
+        ],
         temperature: 0,
         max_tokens: 4000 - tokens,
         top_p: 1,
-        frequency_penalty: 0.5,
+        frequency_penalty: 0,
         presence_penalty: 0,
       }),
       headers: {
@@ -76,7 +81,7 @@ export async function translateByOpenAI(props: {
       )
     }
 
-    const transText = res.choices[0].text.replace('\n\n', '')
+    const transText = res.choices[0].message.content.replace(/^\n\n/, '')
     const transTexts = transText.split('\n')
 
     const srcDistMap = transTexts.reduce?.((res, item, index) => {
