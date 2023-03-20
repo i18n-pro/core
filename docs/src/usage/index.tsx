@@ -34,51 +34,66 @@ function LinkApi() {
   return (
     <>
       <H2>{`2. ${tr('接入函数API')}`}</H2>
-      📢📢📢：{tr('这一步主要是用{0}函数包裹需要被翻译的文本', ' `i18n` ')}
-      <BlockQuote>
-        {tr(
-          '{0}是以{1}形式来构建的，通过{2}或者{3}的方式都能引入，本文档中主要以{4}来举例说明',
-          ` \`${tr(`函数API`)}\` `,
-          ' `UMD` ',
-          ' `import` ',
-          ' `require` ',
-          ' `import` ',
-        )}
-      </BlockQuote>
-      <H3>{tr('挂载全局对象的形式')}</H3>
-      <H4>{tr('引用函数')}</H4>
+      <H3>{tr('初始化')}</H3>
       <CodeBlock
-        langType="js"
-        code={`import { setI18n, i18n } from 'i18n-pro'
+        code={`
+// i18n.js
+import { initI18n } from 'i18n-pro'
 
-// ${tr('需要在应用页面渲染逻辑之前')}
+const {
+  t,
+  setI18n,
+  withI18n,
+} = initI18n({
+  // ${tr('命名空间属性是必须配置的')}
+  namespace: 'testI18N',
+})
+
+// ${tr(
+          '这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API',
+        )}
+// ${tr(
+          '注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户API命名冲突',
+        )}
 // ${tr(
           '浏览器环境，注意：如果是{0}环境需要将{1}替换成{2}',
-          'Node',
-          'window',
-          'global',
+          ' Node ',
+          ' window ',
+          ' global ',
         )}
+window.t = t
 window.setI18n = setI18n
-window.i18n = i18n
-// ${tr('后续才是应用的页面渲染逻辑')}`}
+window.withI18n = withI18n
+
+
+// ${tr('这里导出API是便于其他模块能使用对应API')}
+return {
+  t,
+  setI18n,
+  withI18n,
+}
+`}
       />
-      <H4>{tr('用{0}包裹需要翻译的文本', ' `i18n` ')}</H4>
+      <H3>{tr('项目入口文件引入 i18n.js')}</H3>
+      <CodeBlock
+        code={`
+ // App.js
+ import './i18n.js'
+
+ // ${tr('后续是应用的执行（渲染）逻辑')}
+`}
+      />
+      <H3>{tr('用{0}包裹翻译文本', ' `t` ')}</H3>
+      {tr('这一步主要是用{0}函数包裹需要被翻译的文本', ' `t` ')}
       <CodeBlock
         langType="js"
-        code={`// ${tr('被翻译的文本')}
-const text = i18n('${tr('你好世界')}')`}
-      />
-      <H3>{tr('模块化引入的形式')}</H3>
-      {tr(
-        '跟挂载全局对象的唯一区别就是每个模块都需要单独引入，其他使用并无差别',
-      )}
-      <CodeBlock
-        langType="js"
-        code={`import { setI18n, i18n } from 'i18n-pro'
-// ${tr('就是每个模块都需上面这样引入')}
+        code={`
+/** 同目录下的 test.js */
+// 如果是挂载全局对象，可以省略下行代码
+import { t } from './i18n.js'
 
 // ${tr('被翻译的文本')}
-const text = i18n('${tr('你好世界')}')`}
+const text = t('${tr('你好世界')}')`}
       />
     </>
   )
@@ -164,7 +179,7 @@ setI18n({
       {tr(
         '至此，项目已经完全接入了国际化，上面{0}指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的翻译文本（需要用{1}函数包裹哟），就仅仅需要再次执行翻译命令{2}生成最新的语言包就可以了',
         ' `locale` ',
-        ' `i18n` ',
+        ' `t` ',
         ' `npx i18n t` ',
       )}
     </>
@@ -178,7 +193,7 @@ function SwitchLang() {
       <H2>{`7. ${tr('切换语言')}`}</H2>
       {tr(
         '正常情况下，执行如下方法就行，但是页面上已渲染的内容不会再更新，只有等对应文本的{0}函数重新执行，才有可能显示新语言对应的文本',
-        ' `i18n` ',
+        ' `t` ',
       )}
       <CodeBlock
         code={`setI18n({
@@ -193,7 +208,7 @@ function SwitchLang() {
       <CodeBlock
         code={`// ${tr('这个属性要做到静态更新，需要额外处理')}
 // ${tr('这里只是说明存在这种情况，不给出明确解决方案')}
-const FOO_TEXT = i18n('${tr('静态文本属性')}')
+const FOO_TEXT = t('${tr('静态文本属性')}')
 
 function App(){
   return (

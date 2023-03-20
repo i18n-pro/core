@@ -6,10 +6,9 @@
 
   &emsp;&emsp;[1. Install](#1-install)<br/>
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
-  &emsp;&emsp;&emsp;&emsp;[The form of mounting global objects](#the-form-of-mounting-global-objects)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Reference function](#reference-function)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Wrap the text to be translated with  `i18n` ](#wrap-the-text-to-be-translated-with-i18n)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Form of module introduction](#form-of-module-introduction)<br/>
+  &emsp;&emsp;&emsp;&emsp;[初始化](#初始化)<br/>
+  &emsp;&emsp;&emsp;&emsp;[项目入口文件引入 i18n.js](#项目入口文件引入-i18njs)<br/>
+  &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹翻译文本](#用-t-包裹翻译文本)<br/>
   &emsp;&emsp;[3. Initialize command line configuration file](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust-i18nrcjs-configuration)<br/>
   &emsp;&emsp;[5. Execute translation command](#5-execute-translation-command)<br/>
@@ -30,37 +29,56 @@ pnpm i i18n-pro
 ```
 
 ## 2. Access Function API
-📢📢📢：This step mainly uses  `i18n`  function to wrap the text to be translated
-> `Function API`  is constructed in the form of  `UMD` , and can be introduced through  `import`  or  `require` . This document mainly uses  `import`  as an example
-### The form of mounting global objects
 
-#### Reference function
+### 初始化
 
 ```js
-import { setI18n, i18n } from 'i18n-pro'
+// i18n.js
+import { initI18n } from 'i18n-pro'
 
-// Before application page rendering logic
-// Browser environment, note: if it is Node environment, you need to replace window with global
+const {
+  t,
+  setI18n,
+  withI18n,
+} = initI18n({
+  // 命名空间属性是必须配置的
+  namespace: 'testI18N',
+})
+
+// 这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API
+// 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户API命名冲突
+// Browser environment, note: if it is  Node  environment, you need to replace  window  with  global 
+window.t = t
 window.setI18n = setI18n
-window.i18n = i18n
-// The application page rendering logic is later
+window.withI18n = withI18n
+
+
+// 这里导出API是便于其他模块能使用对应API
+return {
+  t,
+  setI18n,
+  withI18n,
+}
 ```
 
-#### Wrap the text to be translated with  `i18n` 
+### 项目入口文件引入 i18n.js
 
 ```js
-// Translated text
-const text = i18n('Hello World')
+ // App.js
+ import './i18n.js'
+
+ // 后续是应用的执行（渲染）逻辑
 ```
 
-### Form of module introduction
-The only difference from mounting global objects is that each module needs to be introduced separately, and there is no difference in other uses
+### 用 `t` 包裹翻译文本
+This step mainly uses  `t`  function to wrap the text to be translated
 ```js
-import { setI18n, i18n } from 'i18n-pro'
-// Each module needs to be introduced as above
+/** 同目录下的 test.js */
+// 如果是挂载全局对象，可以省略下行代码
+import { t } from './i18n.js'
 
 // Translated text
-const text = i18n('Hello World')
+const text = t('Hello World')
 ```
 
 
@@ -110,10 +128,10 @@ setI18n({
 })
 // The application page rendering logic is later
 ```
-So far, the project has been fully internationalized. The  `locale`  above is designated as any of the target languages, and the translated content can be seen on the page. Later, if there is new translation text in the project (you need to wrap it with  `i18n`  function), you just need to execute the translation command  `npx i18n t`  again to generate the latest language package
+So far, the project has been fully internationalized. The  `locale`  above is designated as any of the target languages, and the translated content can be seen on the page. Later, if there is new translation text in the project (you need to wrap it with  `t`  function), you just need to execute the translation command  `npx i18n t`  again to generate the latest language package
 
 ## 7. Switch language
-Under normal circumstances, it is OK to execute the following methods, but the rendered content on the page will not be updated. The text in the new language can be displayed only if the  `i18n`  function for the corresponding text is reexecuted
+Under normal circumstances, it is OK to execute the following methods, but the rendered content on the page will not be updated. The text in the new language can be displayed only if the  `t`  function for the corresponding text is reexecuted
 ```js
 setI18n({
   locale: 'en', // Set the specified language
@@ -123,7 +141,7 @@ Although some UI libraries (such as  `React`) can use its  `context`  feature to
 ```js
 // To achieve static update of this attribute, additional processing is required
 // Here is just to show that this situation exists, not to give a clear solution
-const FOO_TEXT = i18n('Static Text Attribute')
+const FOO_TEXT = t('Static Text Attribute')
 
 function App(){
   return (
