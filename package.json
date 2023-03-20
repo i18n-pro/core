@@ -1,6 +1,6 @@
 {
   "name": "i18n-pro",
-  "version": "doc",
+  "version": "2.0.0_alpha.0",
   "description": "Lightweight, simple, flexible and automatic-translation tools for internationalization（轻量、简单、灵活、自动翻译的国际化工具）",
   "files": [
     "dist/src",

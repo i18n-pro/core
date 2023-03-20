@@ -19,12 +19,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      - name: 安装 pnpm
-        run: npm i -g pnpm
+      - name: 更新 npm
+        run: npm i -g npm
         shell: sh
 
       - name: 安装依赖
-        run: pnpm i
+        run: npm i
         shell: sh
 
       - name: 构建
