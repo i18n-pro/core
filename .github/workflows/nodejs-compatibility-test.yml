@@ -1,0 +1,40 @@
+name: Node.js Compatibility Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x, 14.x, 16.x]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: 安装 pnpm
+        run: npm i -g pnpm
+        shell: sh
+
+      - name: 安装依赖
+        run: pnpm i
+        shell: sh
+
+      - name: 构建
+        run: npm run build
+        shell: sh
+
+      - name: 测试构建包
+        run: npm run test:pkg
+        shell: sh
+
+      - name: 测试源码并生成覆盖率
+        run: npm run coverage
+        shell: sh
