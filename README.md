@@ -88,8 +88,8 @@ t('Current time: {t0}', new Date())
 // Plural type
 t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
-**Function API**：将国际化语言包接入到项目中，由 `initI18n` 、 `i18n` 、 `setI18n` 和 `withI18n` 构成
-* **initI18n**：用于初始化固定配置，最后返回包含如下3个 API 的对象
+**Function API**：将国际化语言包接入到项目中，由 `initI18n` 、 `t` 、 `setI18n` 和 `withI18n` 构成
+* **initI18n**：用于初始化固定配置，最后返回包含如下 3 个 API 的对象
 * **t**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
 * **setI18n**：设置语言、语言包
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
@@ -97,13 +97,13 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 Therefore,  `Command Line Tool`  and  `Function API`  work better together. It is precisely because of this structural design that  `i18n-pro`  library can be easily integrated into any  `JavaScript`  project
 # Help Document
 
-* [Quick Start](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/USAGE.md)
-* [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md)
-* [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API.md)
-* [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)
-* [Output Log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)
-* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
-* [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG.md)
+* [Quick Start](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/USAGE.md)
+* [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/COMMAND_LINE.md)
+* [API](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/API.md)
+* [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/MATCH_RULE.md)
+* [Output Log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/OUTPUT_LOG.md)
+* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/Q&A.md)
+* [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/CHANGELOG.md)
 
 
 # License

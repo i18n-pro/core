@@ -1,12 +1,10 @@
 import React, {
-  Break,
   H1,
   UnorderedList,
   ListItem,
   Link,
   Image,
   Bold,
-  List,
 } from 'jsx-to-md'
 import { linkObj, imageObj } from '../constants'
 

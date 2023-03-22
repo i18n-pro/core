@@ -20,12 +20,45 @@
     <th>说明</th>
   </tr>
   <tr>
+    <td>initI18n</td>
+    <td>
+      <pre>
+(
+    props: {
+        namespace: string,
+        locale?: string,
+        langs?: Record<strng, Record<string, string>>,
+        beginIndex?: number,
+        formatNumber?: <a href="#formatfunc">FormatFunc</a>,
+        formatCurrency?: <a href="#formatfunc">FormatFunc</a>,
+        formatDate?: <a href="#formatdatefunc">FormatDateFunc</a>,
+        formatTime?: <a href="#formatdatefunc">FormatDateFunc</a>,
+        formatPlural?: <a href="#formatpluralfunc">FormatPluralFunc</a>,
+    }
+) => ({
+  setI18n,
+  t,
+  withI18n,
+})
+      </pre>
+    </td>
+    <td>
+      初始化固定配置，获取返回核心 API<br /><br /><b>namespace</b>：指定命名空间<br /><b>locale</b>：指定当前语言<br /><b>langs</b>：设置当前语言包<br /><b>beginIndex</b>：设置<code> t </code>函数中动态参数起始下标，默认为 0<br /><b>formatNumber</b>：格式化<b>数字</b>类型动态参数的回调，对应的类型标记是<b> n </b>或<b> N </b><br /><b>formatCurrency</b>：格式化<b>货币</b>类型动态参数的回调，对应的类型标记是<b> c </b>或<b> C </b><br /><b>formatDate</b>：格式化<b>日期</b>类型动态参数的回调，对应的类型标记是<b> d </b>或<b> D </b><br /><b>formatTime</b>：格式化<b>时间</b>类型动态参数的回调，对应的类型标记是<b> t </b>或<b> T </b><br /><b>formatPlural</b>：格式化<b>复数</b>类型动态参数的回调，对应的类型标记是<b> p </b>或<b> P </b><br /><br />📢📢📢：<code>locale</code>的值默认跟语言代码相对应，如需自定义，需参考<code>codeLocaleMap</code>的用法
+    </td>
+  </tr>
+</table><span>以下是核心API</span><table>
+  <tr>
+    <th>函数名</th>
+    <th>类型</th>
+    <th>说明</th>
+  </tr>
+  <tr>
     <td>t</td>
     <td>
       <pre>
 (
   text: string,
-  ...args: Array&lt;string|number|unknow&gt;
+  ...args: Array&lt;string|number|unknown&gt;
 ) =&gt; string
       </pre>
     </td>
@@ -43,19 +76,13 @@
 (
     props: {
         locale?: string,
-        langs?: Record<strng, Record<string, string>>,
-        beginIndex?: number,
-        formatNumber?: <a href="#formatfunc">FormatFunc</a>,
-        formatCurrency?: <a href="#formatfunc">FormatFunc</a>,
-        formatDate?: <a href="#formatdatefunc">FormatDateFunc</a>,
-        formatTime?: <a href="#formatdatefunc">FormatDateFunc</a>,
-        formatPlural?: <a href="#formatpluralfunc">FormatPluralFunc</a>,
+        langs?: Record<string, Record<string, string>>,
     }
 ) => void
       </pre>
     </td>
     <td>
-      设置语言、语言包及其他配置项<br /><br /><b>locale</b>：指定当前语言<br /><b>langs</b>：设置当前语言包<br /><b>beginIndex</b>：设置<code>t</code>函数中动态参数起始下标，默认为0<br /><b>formatNumber</b>：格式化<b>数字</b>类型动态参数的回调，对应的类型标记是<b>n</b>或<b>N</b><br /><b>formatCurrency</b>：格式化<b>货币</b>类型动态参数的回调，对应的类型标记是<b>c</b>或<b>C</b><br /><b>formatDate</b>：格式化<b>日期</b>类型动态参数的回调，对应的类型标记是<b>d</b>或<b>D</b><br /><b>formatTime</b>：格式化<b>时间</b>类型动态参数的回调，对应的类型标记是<b>t</b>或<b>T</b><br /><b>formatPlural</b>：格式化<b>复数</b>类型动态参数的回调，对应的类型标记是<b>p</b>或<b>P</b><br /><br />📢📢📢：<code>locale</code>的值默认跟语言代码相对应，如需自定义，需参考<code>codeLocaleMap</code>的用法
+      设置语言、语言包<br /><br /><b>locale</b>：指定当前语言<br /><b>langs</b>：设置当前语言包，支持增量添加，新增的会覆盖合并到原有的之中<br />
     </td>
   </tr>
   <tr>

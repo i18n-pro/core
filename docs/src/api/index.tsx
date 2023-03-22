@@ -28,9 +28,9 @@ function renderFormatDesc() {
             {tr(
               '格式化{0}类型动态参数的回调，对应的类型标记是{1}{2}{3}',
               render(<b>{name}</b>),
-              render(<b>{lowTag}</b>),
+              render(<b> {lowTag} </b>),
               tr('或'),
-              render(<b>{upperTag}</b>),
+              render(<b> {upperTag} </b>),
             )}
           </>
         )
@@ -51,12 +51,71 @@ function APIList() {
           <th>{tr('说明')}</th>
         </tr>
         <tr>
-          <td>i18n</td>
+          <td>initI18n</td>
+          <td>
+            <pre>
+              {`(
+    props: {
+        namespace: string,
+        locale?: string,
+        langs?: Record<strng, Record<string, string>>,
+        beginIndex?: number,
+        formatNumber?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
+        formatCurrency?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
+        formatDate?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
+        formatTime?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
+        formatPlural?: ${render(
+          <a href="#FormatPluralFunc">FormatPluralFunc</a>,
+        )},
+    }
+) => ({
+  setI18n,
+  t,
+  withI18n,
+})`}
+            </pre>
+          </td>
+          <td>
+            {tr('初始化固定配置，获取返回核心 API')}
+            <br />
+            <br />
+            <b>namespace</b>：{tr('指定命名空间')}
+            <br />
+            <b>locale</b>：{tr('指定当前语言')}
+            <br />
+            <b>langs</b>：{tr('设置当前语言包')}
+            <br />
+            <b>beginIndex</b>：
+            {tr(
+              '设置{0}函数中动态参数起始下标，默认为 0',
+              render(<code> t </code>),
+            )}
+            {renderFormatDesc()}
+            <br />
+            <br />
+            📢📢📢：
+            {tr(
+              '{0}的值默认跟语言代码相对应，如需自定义，需参考{1}的用法',
+              render(<code>locale</code>),
+              render(<code>codeLocaleMap</code>),
+            )}
+          </td>
+        </tr>
+      </table>
+      <span>{tr('以下是核心API')}</span>
+      <table>
+        <tr>
+          <th>{tr('函数名')}</th>
+          <th>{tr('类型')}</th>
+          <th>{tr('说明')}</th>
+        </tr>
+        <tr>
+          <td>t</td>
           <td>
             <pre>
               {`(
   text: string,
-  ...args: Array&lt;string|number|unknow&gt;
+  ...args: Array&lt;string|number|unknown&gt;
 ) =&gt; string`}
             </pre>
           </td>
@@ -87,7 +146,7 @@ function APIList() {
             {tr('例如')}：
             {render(
               <code>
-                {`i18n('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
+                {`t('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
                 '小白')`}
               </code>,
             )}
@@ -108,41 +167,20 @@ function APIList() {
               {`(
     props: {
         locale?: string,
-        langs?: Record<strng, Record<string, string>>,
-        beginIndex?: number,
-        formatNumber?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
-        formatCurrency?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
-        formatDate?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
-        formatTime?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
-        formatPlural?: ${render(
-          <a href="#FormatPluralFunc">FormatPluralFunc</a>,
-        )},
+        langs?: Record<string, Record<string, string>>,
     }
 ) => void`}
             </pre>
           </td>
           <td>
-            {tr('设置语言、语言包及其他配置项')}
+            {tr('设置语言、语言包')}
             <br />
             <br />
             <b>locale</b>：{tr('指定当前语言')}
             <br />
-            <b>langs</b>：{tr('设置当前语言包')}
+            <b>langs</b>：
+            {tr('设置当前语言包，支持增量添加，新增的会覆盖合并到原有的之中')}
             <br />
-            <b>beginIndex</b>：
-            {tr(
-              '设置{0}函数中动态参数起始下标，默认为0',
-              render(<code>i18n</code>),
-            )}
-            {renderFormatDesc()}
-            <br />
-            <br />
-            📢📢📢：
-            {tr(
-              '{0}的值默认跟语言代码相对应，如需自定义，需参考{1}的用法',
-              render(<code>locale</code>),
-              render(<code>codeLocaleMap</code>),
-            )}
           </td>
         </tr>
         <tr>
@@ -153,7 +191,7 @@ function APIList() {
     props:{
           locale: string
     }
-) => ({ i18n })`}
+) => ({ t })`}
             </pre>
           </td>
           <td>

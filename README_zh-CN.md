@@ -88,8 +88,8 @@ t('当前时间：{t0}', new Date())
 // 复数类型
 t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3) 
 ```
-**函数API**：将国际化语言包接入到项目中，由 `initI18n` 、 `i18n` 、 `setI18n` 和 `withI18n` 构成
-* **initI18n**：用于初始化固定配置，最后返回包含如下3个 API 的对象
+**函数API**：将国际化语言包接入到项目中，由 `initI18n` 、 `t` 、 `setI18n` 和 `withI18n` 构成
+* **initI18n**：用于初始化固定配置，最后返回包含如下 3 个 API 的对象
 * **t**：用于包裹被翻译文本实现国际化，也作为命令行匹配翻译文本规则的标识
 * **setI18n**：设置语言、语言包
 * **withI18n**：适用于服务端，每个接口响应需要做国际化的处理
@@ -97,13 +97,13 @@ t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3)
 所以 `命令行工具` 和 `函数API` 这两者搭配使用效果更佳，也正是由于这样的结构设计，使得 `i18n-pro` 库可以很方便集成到任何的 `JavaScript` 项目中
 # 帮助文档
 
-* [快速上手](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/USAGE_zh-CN.md)
-* [命令行](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE_zh-CN.md)
-* [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API_zh-CN.md)
-* [匹配规则](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE_zh-CN.md)
-* [输出日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG_zh-CN.md)
-* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A_zh-CN.md)
-* [更新日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG_zh-CN.md)
+* [快速上手](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/USAGE_zh-CN.md)
+* [命令行](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/COMMAND_LINE_zh-CN.md)
+* [API](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/API_zh-CN.md)
+* [匹配规则](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/MATCH_RULE_zh-CN.md)
+* [输出日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/OUTPUT_LOG_zh-CN.md)
+* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/Q&A_zh-CN.md)
+* [更新日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/CHANGELOG_zh-CN.md)
 
 
 # License
