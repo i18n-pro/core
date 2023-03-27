@@ -76,7 +76,7 @@ function APIList() {
             </pre>
           </td>
           <td>
-            {tr('初始化固定配置，获取返回核心 API')}
+            {tr('初始化固定配置，获取核心 API')}
             <br />
             <br />
             <b>namespace</b>：{tr('指定命名空间')}
@@ -125,10 +125,10 @@ function APIList() {
             <br />
             {tr(
               '内部会根据当前语言{0}从语言包{1}中获取{2}对应的翻译文本，未匹配到对应翻译内容会直接显示{3}本身内容',
-              render(<code>(locale)</code>),
-              render(<code>(langs)</code>),
-              render(<code>text</code>),
-              render(<code>text</code>),
+              render(<code> locale </code>),
+              render(<code> langs </code>),
+              render(<code> text </code>),
+              render(<code> text </code>),
             )}
             <br />
             <b>text</b>：{tr('待翻译的文本')}
@@ -136,10 +136,10 @@ function APIList() {
             <b>args</b>：
             {tr(
               '表示动态参数，没有个数限制，{0}文本中需要以{1}的形式来接收，{2}表示动态参数的位置，从 0 开始（可在{3}中自定义起始值），第1个参数对应 0，对2个参数对应1，以此往复',
-              render(<code>text</code>),
-              render(<code>{'{index}'}</code>),
-              render(<code>index</code>),
-              render(<code>setI18n</code>),
+              render(<code> text </code>),
+              render(<code> {'{index}'} </code>),
+              render(<code> index </code>),
+              render(<code> initI18n </code>),
             )}
             <br />
             <br />
@@ -195,7 +195,7 @@ function APIList() {
             </pre>
           </td>
           <td>
-            {tr('获取独立于主程序的i18n函数')}
+            {tr('获取独立于主程序的{0}函数', render(<code> t </code>))}
             <br />
             <br />
             {tr('适用于服务端，每个接口响应需要做国际化的处理')}
