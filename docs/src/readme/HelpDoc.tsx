@@ -1,4 +1,4 @@
-import React, { H1, List, Link } from 'jsx-to-md'
+import { H1, List, Link } from 'jsx-to-md'
 import { getDocHref } from '../utils'
 
 export default function DocLink() {

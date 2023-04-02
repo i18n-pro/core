@@ -1,11 +1,4 @@
-import React, {
-  H1,
-  UnorderedList,
-  ListItem,
-  Link,
-  Image,
-  Bold,
-} from 'jsx-to-md'
+import { H1, UnorderedList, ListItem, Link, Image, Bold } from 'jsx-to-md'
 import { linkObj, imageObj } from '../constants'
 
 export default function Vision() {

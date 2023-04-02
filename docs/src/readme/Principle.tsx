@@ -1,4 +1,4 @@
-import React, {
+import {
   Break,
   H1,
   UnorderedList,

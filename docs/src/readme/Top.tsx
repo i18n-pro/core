@@ -1,4 +1,4 @@
-import React, { Image, Link, Break } from 'jsx-to-md'
+import { Image, Link, Break } from 'jsx-to-md'
 import { linkObj, imageObj, langs } from '../constants'
 
 const separator = ' | '

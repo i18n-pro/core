@@ -1,5 +1,5 @@
 import { initI18n } from '../utils'
-import React, { TableOfContents } from 'jsx-to-md'
+import { TableOfContents } from 'jsx-to-md'
 import Top from './Top'
 import Vision from './Vision'
 import Feature from './Feature'

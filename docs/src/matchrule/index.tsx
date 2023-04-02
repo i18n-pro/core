@@ -1,4 +1,4 @@
-import React, {
+import {
   H1,
   UnorderedList,
   ListItem,

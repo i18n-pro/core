@@ -1,4 +1,4 @@
-import React, { H1, H2, Break, CodeBlock, TableOfContents } from 'jsx-to-md'
+import { H1, H2, Break, CodeBlock, TableOfContents } from 'jsx-to-md'
 import { initI18n } from '../utils'
 
 function NonsupportObjectParamsResolve() {

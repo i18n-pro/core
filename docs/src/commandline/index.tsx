@@ -1,12 +1,4 @@
-import React, {
-  H1,
-  H2,
-  H3,
-  Table,
-  Column,
-  Bold,
-  TableOfContents,
-} from 'jsx-to-md'
+import { H1, H2, H3, Table, Column, Bold, TableOfContents } from 'jsx-to-md'
 import { initI18n } from '../utils'
 
 function getCommonTableColumns() {

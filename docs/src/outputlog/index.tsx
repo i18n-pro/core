@@ -1,4 +1,4 @@
-import React, { H1, Table, Column, TableOfContents } from 'jsx-to-md'
+import { H1, Table, Column, TableOfContents } from 'jsx-to-md'
 import { initI18n } from '../utils'
 
 function getColumns() {

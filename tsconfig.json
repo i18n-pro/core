@@ -15,7 +15,8 @@
     "declaration": true,
     "types": ["vitest/globals"],
     "esModuleInterop": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "jsxImportSource": "jsx-to-md"
   },
   "include": ["src/", "template", "global.d.ts", "docs/src"]
 }

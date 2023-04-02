@@ -1,4 +1,4 @@
-import React, { Break, H1, Link } from 'jsx-to-md'
+import { Break, H1, Link } from 'jsx-to-md'
 
 export default function License() {
   return (
