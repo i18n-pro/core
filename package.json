@@ -88,8 +88,10 @@
     "@alicloud/openapi-client": "^0.4.4",
     "@alicloud/tea-util": "^1.4.5",
     "@google-cloud/translate": "7",
+    "google-translate-api-x": "^10.6.1",
     "gpt-3-encoder": "^1.1.4",
-    "https-proxy-agent": "^5.0.1"
+    "https-proxy-agent": "^5.0.1",
+    "node-fetch": "2"
   },
   "codeNameMap": {
     "en": "",

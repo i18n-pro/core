@@ -63,6 +63,7 @@
     "appKey 配置不正确": "The appKey configuration is incorrect",
     "检测到指定目录 {0} 不存在，已创建该目录": "Detected that the specified directory {0} does not exist, and the directory has been created",
     "已将 {0} 写入到 {1} 中": "{0} has been written to {1}",
-    "已翻译文案中缺少动态参数标识：{0}": "The translated text is missing dynamic parameter identifier: {0}"
+    "已翻译文案中缺少动态参数标识：{0}": "The translated text is missing dynamic parameter identifier: {0}",
+    "谷歌X": "GoogleX"
   }
 }

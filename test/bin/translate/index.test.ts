@@ -21,6 +21,7 @@ import { aliyunMockRequestImpl } from './aliyun'
 import { microsoftMockRequestImpl } from './microsoft'
 import { googleMockRequestImpl } from './google'
 import { openaiMockRequestImpl } from './openai'
+import { googlexMockRequestImpl } from './googlex'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
 const { SEPARATOR_LENGTH } = binConstants
@@ -32,6 +33,7 @@ const translatorMockRequestMap = {
   aliyun: aliyunMockRequestImpl,
   microsoft: microsoftMockRequestImpl,
   google: googleMockRequestImpl,
+  googlex: googlexMockRequestImpl,
   openai: openaiMockRequestImpl,
 }
 
@@ -232,6 +234,7 @@ describe('验证翻译实现', () => {
       ['aliyun', { from: 'zh', to: ['en'] }],
       ['microsoft', { from: 'zh', to: ['en'] }],
       ['google', { from: 'zh', to: ['en'] }],
+      ['googlex', { from: 'zh', to: ['en'] }],
       ['openai', { from: 'zh', to: ['en'] }],
     ]
 

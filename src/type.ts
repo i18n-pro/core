@@ -20,6 +20,7 @@ export type Translator =
   | 'aliyun'
   | 'microsoft'
   | 'google'
+  | 'googlex'
   | 'openai'
 
 /**
@@ -170,6 +171,21 @@ export type BasicGoogleConfig = {
 export type GoogleConfig = DefineTranslatorConfig<'google', BasicGoogleConfig>
 
 /**
+ * 谷歌翻译X的配置
+ */
+export type BasicGooglexConfig = {
+  proxy?: HttpsProxyAgentOptions // 代理配置
+} & TranslatorConfig
+
+/**
+ * 完整的谷歌X翻译的配置
+ */
+export type GooglexConfig = DefineTranslatorConfig<
+  'googlex',
+  BasicGooglexConfig
+>
+
+/**
  * https-proxy-agent 工具库构建参数
  */
 export type HttpsProxyAgentOptions = OriginHttpsProxyAgentOptions
@@ -198,6 +214,7 @@ export type UnionBasicTranslatorConfig =
   | BasicAliyunConfig
   | BasicMicrosoftConfig
   | BasicGoogleConfig
+  | BasicGooglexConfig
   | BasicOpenAIConfig
 
 /**
@@ -210,6 +227,7 @@ export type UnionTranslatorConfig =
   | AliyunConfig
   | MicrosoftConfig
   | GoogleConfig
+  | GooglexConfig
   | OpenAIConfig
 
 /**

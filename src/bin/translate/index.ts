@@ -17,6 +17,7 @@ import { setAliyunConfig, translateByAliyun } from './aliyun'
 import { setMicrosoftConfig, translateByMicrosoft } from './microsoft'
 import { setGoogleConfig, translateByGoogle } from './google'
 import { setOpenAIConfig, translateByOpenAI } from './openai'
+import { setGooglexConfig, translateByGooglex } from './googlex'
 
 let config: TranslatorConfig = {
   from: '',
@@ -42,6 +43,7 @@ const translatorImplMap = {
   aliyun: translateByAliyun,
   microsoft: translateByMicrosoft,
   google: translateByGoogle,
+  googlex: translateByGooglex,
   openai: translateByOpenAI,
 }
 
@@ -52,6 +54,7 @@ const translatorSetConfigMap = {
   aliyun: setAliyunConfig,
   microsoft: setMicrosoftConfig,
   google: setGoogleConfig,
+  googlex: setGooglexConfig,
   openai: setOpenAIConfig,
 }
 
@@ -80,6 +83,10 @@ const maxLengthMap: MaxLengthConfigMap = {
     maxArrayLength: 1000,
   },
   google: {
+    maxLengthType: 'allStrLength',
+    maxLength: 5000,
+  },
+  googlex: {
     maxLengthType: 'allStrLength',
     maxLength: 5000,
   },
