@@ -97,13 +97,13 @@ t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3)
 所以 `命令行工具` 和 `函数API` 这两者搭配使用效果更佳，也正是由于这样的结构设计，使得 `i18n-pro` 库可以很方便集成到任何的 `JavaScript` 项目中
 # 帮助文档
 
-* [快速上手](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/USAGE_zh-CN.md)
-* [命令行](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/COMMAND_LINE_zh-CN.md)
-* [API](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/API_zh-CN.md)
-* [匹配规则](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/MATCH_RULE_zh-CN.md)
-* [输出日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/OUTPUT_LOG_zh-CN.md)
-* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/Q&A_zh-CN.md)
-* [更新日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/CHANGELOG_zh-CN.md)
+* [快速上手](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/USAGE_zh-CN.md)
+* [命令行](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE_zh-CN.md)
+* [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API_zh-CN.md)
+* [匹配规则](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE_zh-CN.md)
+* [输出日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG_zh-CN.md)
+* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A_zh-CN.md)
+* [更新日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG_zh-CN.md)
 
 
 # License

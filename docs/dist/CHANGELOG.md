@@ -37,31 +37,31 @@
 
 ### Changed
 
-* 调整API命名
-   * 遵循小驼峰命名规则
+* Adjust the API naming
+   * Follow the naming rules of the small hump
       * `setI18N` → `setI18n`
       * `withI18N` → `withI18n`
-   * 更简洁
+   * More concise
       * `i18n` → `t`
-* 调整 `setI18n` 用法
-   *  `setI18n` 函数只能动态修改 `locale` 和 `langs` ，其他的属性均由 `initI18n` 首次调用定义，后续不可更改
-   * 增加返回参数，会返回当前命名空间下的所有配置状态
-* 设置命令行语言默认为英文
+* Adjust  `setI18n`  usage
+   *  `setI18n`  Function can only modify  `locale`  and  `langs`  dynamically. The other attributes are first called and defined by  `initI18n` .
+   * Increase the return parameters, and will return all the configuration status in the current name space
+* Set the command line language defaults to English
 
 
 ### Added
 
-* 添加对命名空间的支持（非兼容更新）
-   * 新增 `initI18n` 函数用于获取原有的核心的 `t` 、 `setI18n` 、 `withI18n` 函数
-   * 新增 `namespace` 属性用于支持命名空间
-* 新增翻译执行后，控制台输出内容对不同日志类型的数量统计显示
-* 新增如下翻译平台的支持
-   * 谷歌
-   * 微软
-   * 阿里
-   * 腾讯
-   * 有道
-* 新增英文文档，并设置为默认语言文档
+* Add support for naming space (non -compatible update)
+   * New  `initI18n`  function is used to obtain the original core  `t` ,  `setI18n` ,  `withI18n`  function
+   * New  `namespace`  attribute is used to support naming space
+* After the execution of the new translation, the output content of the console is displayed on the number of different log types
+* Added the following support of the following translation platform
+   * Google
+   * Microsoft
+   * Ali
+   * Tencent
+   * Have a way
+* Added English documents and set it to the default language documentation
 * Add  `-P` | `--path`  parameter to initialization command and translation command to support flexible specification of configuration file path
 
 

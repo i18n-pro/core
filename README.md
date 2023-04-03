@@ -38,8 +38,8 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **simple**：Low learning cost and easy to use
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
-   * **支持增量翻译模式**：只翻译新增文本，智能移除未使用文本
-   * **支持多翻译平台**：OpenAI、谷歌、微软、腾讯、阿里、有道、百度（需自行注册账号）
+   * **Support incremental translation mode**：Only translate the new text, intelligently remove unused text
+   * **Support multi -translation platform**：OpenAI、Google、Microsoft、Tencent、Ali、Have a way、Baidu（You need to register your own account）
 * **keyless**：There is no need to define the key manually, the text to be translated is the key
 
 
@@ -54,7 +54,7 @@ The library is mainly composed of two parts
 * Command Line Tool
 * Function API
 
-**Command Line Tool**：根据指定规则（正则匹配）解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件
+**Command Line Tool**：Any text that needs to be translated based on the specified rules (regular match), and translates the text to the specified target language through the translation platform, and finally generates a language package file
 
 A simple example of  [Matching Rules](#matching-rules)  for parsing text is as follows
 ```js
@@ -88,22 +88,22 @@ t('Current time: {t0}', new Date())
 // Plural type
 t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
-**Function API**：将国际化语言包接入到项目中，由 `initI18n` 、 `t` 、 `setI18n` 和 `withI18n` 构成
-* **initI18n**：用于初始化固定配置，最后返回包含如下 3 个 API 的对象
+**Function API**：Connect the international language package into the project, consisting of  `initI18n` ,  `t` ,  `setI18n`  and  `withI18n` 
+* **initI18n**：Used to initialize the fixed configuration, and finally return the objects containing the following 3 APIs
 * **t**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
-* **setI18n**：设置语言、语言包
+* **setI18n**：Set language and language package
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 
 Therefore,  `Command Line Tool`  and  `Function API`  work better together. It is precisely because of this structural design that  `i18n-pro`  library can be easily integrated into any  `JavaScript`  project
 # Help Document
 
-* [Quick Start](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/USAGE.md)
-* [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/COMMAND_LINE.md)
-* [API](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/API.md)
-* [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/MATCH_RULE.md)
-* [Output Log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/OUTPUT_LOG.md)
-* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/Q&A.md)
-* [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0_alpha.0/docs/dist/CHANGELOG.md)
+* [Quick Start](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/USAGE.md)
+* [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md)
+* [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API.md)
+* [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)
+* [Output Log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)
+* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
+* [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG.md)
 
 
 # License

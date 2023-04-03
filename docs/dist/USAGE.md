@@ -6,9 +6,9 @@
 
   &emsp;&emsp;[1. Install](#1-install)<br/>
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
-  &emsp;&emsp;&emsp;&emsp;[初始化](#初始化)<br/>
-  &emsp;&emsp;&emsp;&emsp;[项目入口文件引入 i18n.js](#项目入口文件引入-i18njs)<br/>
-  &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹翻译文本](#用-t-包裹翻译文本)<br/>
+  &emsp;&emsp;&emsp;&emsp;[initialization](#initialization)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Project entrance file introduces i18n.js](#project-entrance-file-introduces-i18njs)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Use  `t`  package to translate text](#use-t-package-to-translate-text)<br/>
   &emsp;&emsp;[3. Initialize command line configuration file](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust-i18nrcjs-configuration)<br/>
   &emsp;&emsp;[5. Execute translation command](#5-execute-translation-command)<br/>
@@ -30,7 +30,7 @@ pnpm i i18n-pro
 
 ## 2. Access Function API
 
-### 初始化
+### initialization
 
 ```js
 // i18n.js
@@ -41,19 +41,19 @@ const {
   setI18n,
   withI18n,
 } = initI18n({
-  // 命名空间属性是必须配置的
+  // The namespace attribute must be configured
   namespace: 'testI18N',
 })
 
-// 这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API
-// 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户API命名冲突
+// Here you can mount the API to the global object.
+// Note: If you are currently using  i18n-pro in a independent third -party library or component, it is not recommended to do this, which may cause your user API naming conflict
 // Browser environment, note: if it is  Node  environment, you need to replace  window  with  global 
 window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
 
-// 这里导出API是便于其他模块能使用对应API
+// The export API here is convenient for other modules to use the corresponding API
 return {
   t,
   setI18n,
@@ -61,16 +61,16 @@ return {
 }
 ```
 
-### 项目入口文件引入 i18n.js
+### Project entrance file introduces i18n.js
 
 ```js
  // App.js
  import './i18n.js'
 
- // 后续是应用的执行（渲染）逻辑
+ // The follow -up (rendering) logic of application (rendering)
 ```
 
-### 用 `t` 包裹翻译文本
+### Use  `t`  package to translate text
 This step mainly uses  `t`  function to wrap the text to be translated
 ```js
 /** 同目录下的 test.js */

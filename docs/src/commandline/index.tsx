@@ -1,4 +1,16 @@
-import { H1, H2, H3, Table, Column, Bold, TableOfContents } from 'jsx-to-md'
+import {
+  H1,
+  H2,
+  H3,
+  Table,
+  Column,
+  Bold,
+  TableOfContents,
+  BlockQuote,
+  Link,
+  render,
+  Break,
+} from 'jsx-to-md'
 import { initI18n } from '../utils'
 
 function getCommonTableColumns() {
@@ -155,12 +167,12 @@ function BasicConfig() {
     },
     {
       name: 'translator',
-      type: ' `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`',
+      type: ' `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`',
       required: tr('否'),
-      default: 'baidu',
+      default: 'googlex',
       description: (
         <>
-          {tr('指定翻译平台，默认为{0}', ' `baidu` ')}
+          {tr('指定翻译平台，默认为{0}', ' `googlex` ')}
           <br />
           <br />
           {tr('指定好{0}后，还需配合对应的配置文件', ' `translator` ')}
@@ -168,11 +180,25 @@ function BasicConfig() {
           {tr(
             '例如{0}配置为{1}, 则还需要配置{2}',
             ' `translator` ',
-            ' `baidu` ',
-            ' `baiduConfig` ',
+            ' `googlex` ',
+            ' `googlexConfig` ',
           )}
         </>
       ),
+    },
+    {
+      name: 'googlexConfig',
+      type: '[GooglexConfig](#googlexconfig)',
+      required: tr('否'),
+      default: '-',
+      description: tr('{0}翻译相关的配置', tr('谷歌X')),
+    },
+    {
+      name: 'openaiConfig',
+      type: '[OpenaiConfig](#openaiconfig)',
+      required: tr('否'),
+      default: '-',
+      description: tr('{0}翻译相关的配置', 'OpenAI'),
     },
     {
       name: 'baiduConfig',
@@ -271,6 +297,162 @@ function Output() {
     <>
       <H3>{tr('Output')}</H3>
       {tr('输出文件的配置')}
+      <Table columns={getCommonTableColumns()} data={data} />
+    </>
+  )
+}
+
+function GooglexConfig() {
+  const data: RecordItem[] = [
+    {
+      name: 'proxy',
+      type: 'string',
+      required: tr('否'),
+      default: '-',
+      description: (
+        <>
+          {tr('配置代理服务')}
+          <br />
+          <br />
+          {tr(
+            '部分国家和地区不能正常访问{0}服务，需要配置代理才行',
+            ' `谷歌` ',
+          )}
+          <br />
+          格式：`protocol://hostname:port`
+          <br />
+          例如：`http://127.0.0.1:8087`
+        </>
+      ),
+    },
+    {
+      name: 'from',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: (
+        <>
+          {tr(
+            '被翻译文本的语言代码（例如中文的是{0}，英文的是{1}）',
+            ' `zh-CN`',
+            ' `en`',
+          )}
+          <br />
+          <br />
+          <>
+            {`[${tr(
+              '支持语言',
+            )}](https://github.com/AidanWelch/google-translate-api)`}
+            ，
+          </>
+          {tr('需查阅对应文档')}
+        </>
+      ),
+    },
+    ...getCommonConfig(),
+  ]
+
+  return (
+    <>
+      <H3>GooglexConfig</H3>
+      {tr('谷歌X翻译的配置')}
+      <BlockQuote>
+        {tr(
+          '基于{0}实现，无需注册，免费使用',
+          ` ${render(
+            <Link href="https://github.com/AidanWelch/google-translate-api">
+              google-translate-api-x
+            </Link>,
+          )} `,
+        )}
+      </BlockQuote>
+      <Break />
+      <Table columns={getCommonTableColumns()} data={data} />
+    </>
+  )
+}
+
+function OpenAIConfig() {
+  const data: RecordItem[] = [
+    {
+      name: 'key',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: tr(
+        'OpenAI API Key，需要{0}申请',
+        `[${tr('注册账号')}](https://chat.openai.com/auth/login)`,
+      ),
+    },
+    {
+      name: 'model',
+      type: 'string',
+      required: tr('是'),
+      default: 'gpt-3.5-turbo',
+      description: (
+        <>
+          {tr('指定模型版本')}
+          <br />
+          <br />
+          {tr(
+            '使用模型，默认为{0}，当前只兼容{1}模型',
+            ' `gpt-3.5-turbo` ',
+            ' `Chart` ',
+          )}
+        </>
+      ),
+    },
+    {
+      name: 'proxy',
+      type: 'string',
+      required: tr('否'),
+      default: '-',
+      description: (
+        <>
+          {tr('配置代理服务')}
+          <br />
+          <br />
+          {tr(
+            '部分国家和地区不能正常访问{0}服务，需要配置代理才行',
+            ' `OpenAI` ',
+          )}
+          <br />
+          格式：`protocol://hostname:port`
+          <br />
+          例如：`http://127.0.0.1:8087`
+        </>
+      ),
+    },
+    {
+      name: 'from',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: (
+        <>
+          {tr(
+            '被翻译文本的语言（例如中文是{0}，英文是{1}）',
+            ' `Chinese`',
+            ' `English`',
+          )}
+          <br />
+          <br />
+          {tr('特殊说明：')}
+          {tr(
+            '由于{0}目前没有推出纯文本的翻译API，因此只能通过自定义的{1}来执行翻译，这里要求提供的翻译语言必须是英文',
+            ' `OpenAI` ',
+            ' `Prompt` ',
+          )}
+        </>
+      ),
+    },
+    ...getCommonConfig(),
+  ]
+
+  return (
+    <>
+      <H3>OpenAIConfig</H3>
+      {tr('OpenAI翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
   )
@@ -387,7 +569,7 @@ function YoudaoConfig() {
 
   return (
     <>
-      <H3>{tr('YoudaoConfig')}</H3>
+      <H3>YoudaoConfig</H3>
       {tr('有道翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
@@ -474,7 +656,7 @@ function TencentConfig() {
 
   return (
     <>
-      <H3>{tr('TencentConfig')}</H3>
+      <H3>TencentConfig</H3>
       {tr('腾讯翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
@@ -564,7 +746,7 @@ function AliyunConfig() {
 
   return (
     <>
-      <H3>{tr('AliyunConfig')}</H3>
+      <H3>AliyunConfig</H3>
       {tr('阿里云翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
@@ -577,6 +759,8 @@ function Config() {
       <H2>1. {tr('{0}配置', ' `i18nrc.js` ')}</H2>
       <BasicConfig />
       <Output />
+      <GooglexConfig />
+      <OpenAIConfig />
       <BaiduConfig />
       <YoudaoConfig />
       <TencentConfig />

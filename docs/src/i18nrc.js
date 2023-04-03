@@ -7,10 +7,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, './i18n/'),
   },
-  baiduConfig: {
-    appid: '20220530001234107',
-    key: '4DsAkNxFeKPg5wMLrrVG',
-    from: 'zh',
+  translator: 'googlex',
+  googlexConfig: {
+    from: 'zh-CN',
     to: ['en'],
+    proxy: 'http://127.0.0.1:1087',
   },
 }

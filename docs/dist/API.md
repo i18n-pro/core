@@ -43,10 +43,10 @@ The following types are expressed in  `TypeScript`  syntax<table>
       </pre>
     </td>
     <td>
-      初始化固定配置，获取核心 API<br /><br /><b>namespace</b>：指定命名空间<br /><b>locale</b>：Specify the current language<br /><b>langs</b>：Set Current Language Pack<br /><b>beginIndex</b>：设置<code> t </code>函数中动态参数起始下标，默认为 0<br /><b>formatNumber</b>：A callback to format dynamic parameters of type <b>Number</b>, with the corresponding type tag <b> n </b> or <b> N </b><br /><b>formatCurrency</b>：A callback to format dynamic parameters of type <b>Currency</b>, with the corresponding type tag <b> c </b> or <b> C </b><br /><b>formatDate</b>：A callback to format dynamic parameters of type <b>Date</b>, with the corresponding type tag <b> d </b> or <b> D </b><br /><b>formatTime</b>：A callback to format dynamic parameters of type <b>Time</b>, with the corresponding type tag <b> t </b> or <b> T </b><br /><b>formatPlural</b>：A callback to format dynamic parameters of type <b>Plural</b>, with the corresponding type tag <b> p </b> or <b> P </b><br /><br />📢📢📢：The value of <code>locale</code> corresponds to the language code by default. If you need to customize, please refer to the usage of <code>codeLocaleMap</code>
+      Initialize a fixed configuration to get the core API<br /><br /><b>namespace</b>：Specify the naming space<br /><b>locale</b>：Specify the current language<br /><b>langs</b>：Set Current Language Pack<br /><b>beginIndex</b>：Set the dynamic parameters in the <code> t </code> function to start the bidding, the default is 0<br /><b>formatNumber</b>：A callback to format dynamic parameters of type <b>Number</b>, with the corresponding type tag <b> n </b> or <b> N </b><br /><b>formatCurrency</b>：A callback to format dynamic parameters of type <b>Currency</b>, with the corresponding type tag <b> c </b> or <b> C </b><br /><b>formatDate</b>：A callback to format dynamic parameters of type <b>Date</b>, with the corresponding type tag <b> d </b> or <b> D </b><br /><b>formatTime</b>：A callback to format dynamic parameters of type <b>Time</b>, with the corresponding type tag <b> t </b> or <b> T </b><br /><b>formatPlural</b>：A callback to format dynamic parameters of type <b>Plural</b>, with the corresponding type tag <b> p </b> or <b> P </b><br /><br />📢📢📢：The value of <code>locale</code> corresponds to the language code by default. If you need to customize, please refer to the usage of <code>codeLocaleMap</code>
     </td>
   </tr>
-</table><span>以下是核心API</span><table>
+</table><span>The following is the core API</span><table>
   <tr>
     <th>Function Name</th>
     <th>Type</th>
@@ -82,7 +82,7 @@ The following types are expressed in  `TypeScript`  syntax<table>
       </pre>
     </td>
     <td>
-      设置语言、语言包<br /><br /><b>locale</b>：Specify the current language<br /><b>langs</b>：设置当前语言包，支持增量添加，新增的会覆盖合并到原有的之中<br />
+      Set language and language package<br /><br /><b>locale</b>：Specify the current language<br /><b>langs</b>：Set the current language package to support incremental addition, and the new one will cover the merger to the original<br />
     </td>
   </tr>
   <tr>
@@ -97,7 +97,7 @@ The following types are expressed in  `TypeScript`  syntax<table>
       </pre>
     </td>
     <td>
-      获取独立于主程序的<code> t </code>函数<br /><br />It is applicable to the server. Each interface response needs to be internationalized
+      Get the <code> t </code> function independent of the main program order<br /><br />It is applicable to the server. Each interface response needs to be internationalized
     </td>
   </tr>
 </table>

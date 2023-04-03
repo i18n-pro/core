@@ -7,6 +7,8 @@
   &emsp;&emsp;[1.  `i18nrc.js` 配置](#1-i18nrcjs-配置)<br/>
   &emsp;&emsp;&emsp;&emsp;[基础配置](#基础配置)<br/>
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
+  &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>
+  &emsp;&emsp;&emsp;&emsp;[OpenAIConfig](#openaiconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[BaiduConfig](#baiduconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[YoudaoConfig](#youdaoconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[TencentConfig](#tencentconfig)<br/>
@@ -27,7 +29,9 @@
 |entry|string|是|-|指定翻译文件目录（绝对路径）|
 |fileRegExp|RegExp|否| `/.[jt]s$/` |匹配文件名的正则表达式<br /><br />用于筛选需要被翻译的文件|
 |output|[Output](#output)|是|-|输出文件相关的配置|
-|translator| `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|否|baidu|指定翻译平台，默认为 `baidu` <br /><br />指定好 `translator` 后，还需配合对应的配置文件<br />例如 `translator` 配置为 `baidu` , 则还需要配置 `baiduConfig` |
+|translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|否|googlex|指定翻译平台，默认为 `googlex` <br /><br />指定好 `translator` 后，还需配合对应的配置文件<br />例如 `translator` 配置为 `googlex` , 则还需要配置 `googlexConfig` |
+|googlexConfig|[GooglexConfig](#googlexconfig)|否|-|谷歌X翻译相关的配置|
+|openaiConfig|[OpenaiConfig](#openaiconfig)|否|-|OpenAI翻译相关的配置|
 |baiduConfig|[BaiduConfig](#baiduconfig)|否|-|百度翻译相关的配置|
 |youdaoConfig|[YoudaoConfig](#youdaoconfig)|否|-|有道翻译相关的配置|
 |tencentConfig|[TencentConfig](#tencentconfig)|否|-|腾讯翻译相关的配置|
@@ -40,6 +44,30 @@
 |path|string|是|-|语言包生成的目录（绝对路径）|
 |langType|'single' <br/> 'multiple'|否|'multiple'|输出语言包文件的形式<br /><br />假设目标语言是 `['en', 'jp']` <br />**single**：只会生成一个聚合的语言包文件 `langs.json`，格式如下：<br />`{"en":{"xxx":"xxx"},"jp":{"xxx":"xxx"}}`<br /><br />**multiple**：每个目标语言都会生成对应的语言包文件，对应两个文件： `en.json`， `jp.json` ，格式如下：<br />`{"xxx":"xxx"}`|
 |indentSize|number|否|2|语言包文件的缩进空格数|
+
+### GooglexConfig
+谷歌X翻译的配置
+>基于 [google-translate-api-x](https://github.com/AidanWelch/google-translate-api) 实现，无需注册，免费使用
+
+|名称|类型|是否必设|默认值|说明|
+|:-:|:-:|:-:|:-:|:-|
+|proxy|string|否|-|配置代理服务<br /><br />部分国家和地区不能正常访问 `谷歌` 服务，需要配置代理才行<br />格式：`protocol://hostname:port`<br />例如：`http://127.0.0.1:8087`|
+|from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh-CN`，英文的是 `en`）<br /><br />[支持语言](https://github.com/AidanWelch/google-translate-api)，需查阅对应文档|
+|to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
+|codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+
+### OpenAIConfig
+OpenAI翻译的配置
+|名称|类型|是否必设|默认值|说明|
+|:-:|:-:|:-:|:-:|:-|
+|key|string|是|-|OpenAI API Key，需要[注册账号](https://chat.openai.com/auth/login)申请|
+|model|string|是|gpt-3.5-turbo|指定模型版本<br /><br />使用模型，默认为 `gpt-3.5-turbo` ，当前只兼容 `Chart` 模型|
+|proxy|string|否|-|配置代理服务<br /><br />部分国家和地区不能正常访问 `OpenAI` 服务，需要配置代理才行<br />格式：`protocol://hostname:port`<br />例如：`http://127.0.0.1:8087`|
+|from|string|是|-|被翻译文本的语言（例如中文是 `Chinese`，英文是 `English`）<br /><br />特殊说明：由于 `OpenAI` 目前没有推出纯文本的翻译API，因此只能通过自定义的 `Prompt` 来执行翻译，这里要求提供的翻译语言必须是英文|
+|to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
+|codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### BaiduConfig
 百度翻译的配置
