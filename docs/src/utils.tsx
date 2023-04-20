@@ -1,3 +1,4 @@
+import {getAnchor} from 'jsx-to-md'
 import { initI18n as originInitI18n } from '@lib'
 import en from './i18n/en.json'
 import packageInfo from '../../package.json'
@@ -22,8 +23,7 @@ export function getDocHref(filename: string, anchorProp?: string) {
   const { version, codeNameMap } = packageInfo as any
   let name = codeNameMap[global.docLocale]
   name = name ? `_${name}` : ''
-  let anchor = anchorProp ? `#${anchorProp}` : ''
-  anchor = anchor.replace(/ /g, '-').replace('.', '').toLocaleLowerCase()
+  const anchor = anchorProp ? getAnchor(anchorProp) : ''
 
   const res = `https://github.com/eyelly-wu/i18n-pro/blob/v${version}/docs/dist/${filename}${name}.md${anchor}`
 

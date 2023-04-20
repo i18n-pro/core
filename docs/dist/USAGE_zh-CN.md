@@ -83,14 +83,14 @@ const text = t('你好世界')
 
 
 ## 3. 初始化命令行配置文件
-在命令行终端输入如下命令，[更多命令](#命令列表)
+在命令行终端输入如下命令，[更多命令](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE_zh-CN.md#命令列表)
 ```bash
 npx i18n init 
 ```
 然后会在当前目录下生成一个 `i18nrc.js` 的文件
 
 ## 4. 调整 `i18nrc.js` 配置
-根据需求自行调整配置文件中的配置项，配置项的[说明](#命令行)
+根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcjs-配置)
 
 ## 5. 执行翻译命令
 

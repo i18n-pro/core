@@ -12,7 +12,7 @@ import {
   TableOfContents,
 } from 'jsx-to-md'
 import { imageObj } from '../constants'
-import { initI18n } from '../utils'
+import { getDocHref, initI18n } from '../utils'
 
 function Install() {
   return (
@@ -106,7 +106,9 @@ function InitConfig() {
       <Break />
       <H2>{`3. ${tr('初始化命令行配置文件')}`}</H2>
       {tr('在命令行终端输入如下命令，')}
-      <Link href={`#${tr('命令列表')}`}>{tr('更多命令')}</Link>
+      <Link href={getDocHref('COMMAND_LINE', tr('命令列表'))}>
+        {tr('更多命令')}
+      </Link>
       <CodeBlock langType="bash" code={`npx i18n init `} />
       {tr('然后会在当前目录下生成一个{0}的文件', ' `i18nrc.js` ')}
     </>
@@ -120,7 +122,16 @@ function ModifyConfig() {
       <H2>{`4. ${tr('调整{0}配置', ' `i18nrc.js` ')}`}</H2>
       {tr(
         '根据需求自行调整配置文件中的配置项，配置项的{0}',
-        render(<Link href={`#${tr('命令行')}`}>{tr('说明')}</Link>),
+        render(
+          <Link
+            href={getDocHref(
+              'COMMAND_LINE',
+              `1. ${tr('{0}配置', ' `i18nrc.js` ')}`,
+            )}
+          >
+            {tr('说明')}
+          </Link>,
+        ),
       )}
     </>
   )

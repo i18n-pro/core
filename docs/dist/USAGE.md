@@ -8,9 +8,9 @@
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
   &emsp;&emsp;&emsp;&emsp;[initialization](#initialization)<br/>
   &emsp;&emsp;&emsp;&emsp;[Project entrance file introduces i18n.js](#project-entrance-file-introduces-i18njs)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Use  `t`  package to translate text](#use-t-package-to-translate-text)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Use  `t`  package to translate text](#use--t--package-to-translate-text)<br/>
   &emsp;&emsp;[3. Initialize command line configuration file](#3-initialize-command-line-configuration-file)<br/>
-  &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust-i18nrcjs-configuration)<br/>
+  &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust--i18nrcjs--configuration)<br/>
   &emsp;&emsp;[5. Execute translation command](#5-execute-translation-command)<br/>
   &emsp;&emsp;[6. Importing language pack files](#6-importing-language-pack-files)<br/>
   &emsp;&emsp;[7. Switch language](#7-switch-language)<br/>
@@ -83,14 +83,14 @@ const text = t('Hello World')
 
 
 ## 3. Initialize command line configuration file
-Enter the following command at the command line terminal, [more commands](#command-list)
+Enter the following command at the command line terminal, [more commands](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md#command-list)
 ```bash
 npx i18n init 
 ```
 Then a  `i18nrc.js`  file will be generated in the current directory
 
 ## 4. Adjust  `i18nrc.js`  configuration
-Adjust the configuration items in the configuration file according to the requirements, [Description](#command-line) of configuration items
+Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md#1--i18nrcjs--configuration) of configuration items
 
 ## 5. Execute translation command
 

@@ -6,7 +6,7 @@
 English | [简体中文](./README_zh-CN.md)
 
 
-  <p style="font-size: 18px;">Lightweight, simple, flexible and automatic-translation tools for internationalization</p>
+  <p style="font-size: 18px;">A lightweight, simple, flexible, automatic translation tool for JavaScript</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
 [![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm")
@@ -39,7 +39,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
    * **Support incremental translation mode**：Only translate the new text, intelligently remove unused text
-   * **Support multi -translation platform**：OpenAI、Google、Microsoft、Tencent、Ali、Have a way、Baidu（You need to register your own account）
+   * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Aliyun、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
 * **keyless**：There is no need to define the key manually, the text to be translated is the key
 
 
@@ -76,7 +76,7 @@ t('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
 // Number Type
 t('The number of users has reached {n0}', 100000000)
 
-// Currency type
+// Currency Type
 t('The selling price is {c0}', 14999)
 
 // Date Type
@@ -85,7 +85,7 @@ t('Today's date is {d0}', new Date())
 // Time Type
 t('Current time: {t0}', new Date())
 
-// Plural type
+// Plural Type
 t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
 **Function API**：Connect the international language package into the project, consisting of  `initI18n` ,  `t` ,  `setI18n`  and  `withI18n` 

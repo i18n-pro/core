@@ -509,7 +509,7 @@ function BaiduConfig() {
 
   return (
     <>
-      <H3>{tr('BaiduConfig')}</H3>
+      <H3>BaiduConfig</H3>
       {tr('百度翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>

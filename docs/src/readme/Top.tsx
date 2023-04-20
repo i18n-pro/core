@@ -48,7 +48,7 @@ export default function Top() {
       <Break />
       {renderLanguage()}
       <p style={{ fontSize: 18 }}>
-        {tr('轻量、简单、灵活、自动翻译的国际化工具')}
+        {tr('适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具')}
       </p>
       <Break />
       <Break />

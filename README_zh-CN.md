@@ -6,7 +6,7 @@
 [English](./README.md) | 简体中文
 
 
-  <p style="font-size: 18px;">轻量、简单、灵活、自动翻译的国际化工具</p>
+  <p style="font-size: 18px;">适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
 [![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm")
@@ -39,7 +39,7 @@
 * **灵活**：支持动态参数、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）
 * **自动翻译**：一个命令即可自动提取文本并翻译生成语言包
    * **支持增量翻译模式**：只翻译新增文本，智能移除未使用文本
-   * **支持多翻译平台**：OpenAI、谷歌、微软、腾讯、阿里、有道、百度（需自行注册账号）
+   * **支持多翻译平台**：谷歌X、OpenAI、谷歌、微软、腾讯、阿里、有道、百度（除谷歌X外，其他平台需自行注册账号）
 * **keyless**：无需手动定义key，待翻译文本即key
 
 

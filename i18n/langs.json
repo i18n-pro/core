@@ -19,7 +19,7 @@
     "翻译有误({0})": "Translation error ({0})",
     "多语言聚合文件({0})": "Multilingual aggregation file ({0})",
     "语言包 {0} 文件({1})": "Language pack {0} file ({1})",
-    "共耗时": "Total time spent:",
+    "共耗时": "Total time spent",
     "当前版本：{0}": "Current version: {0}",
     "命令": "command",
     "参数": "parameter",

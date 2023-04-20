@@ -4,7 +4,7 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[1.  `i18nrc.js`  configuration](#1-i18nrcjs-configuration)<br/>
+  &emsp;&emsp;[1.  `i18nrc.js`  configuration](#1--i18nrcjs--configuration)<br/>
   &emsp;&emsp;&emsp;&emsp;[Basic configuration](#basic-configuration)<br/>
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
   &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>
@@ -30,10 +30,10 @@
 |fileRegExp|RegExp|no| `/.[jt]s$/` |The regular expression that matching filename<br /><br />Used to filter files to be translated|
 |output|[Output](#output)|yes|-|The configuration associated with the output file|
 |translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|no|googlex|Specify the translation platform, default<br /><br />After specifying  `translator` , you need to cooperate with the corresponding configuration file<br />For example,  `translator`  configuration to  `googlex` , then you need to configure  `googlexConfig` |
-|googlexConfig|[GooglexConfig](#googlexconfig)|no|-|谷歌X Translation -related configuration|
+|googlexConfig|[GooglexConfig](#googlexconfig)|no|-|Google x Translation -related configuration|
 |openaiConfig|[OpenaiConfig](#openaiconfig)|no|-|OpenAI Translation -related configuration|
 |baiduConfig|[BaiduConfig](#baiduconfig)|no|-|Baidu Translation -related configuration|
-|youdaoConfig|[YoudaoConfig](#youdaoconfig)|no|-|Have a way Translation -related configuration|
+|youdaoConfig|[YoudaoConfig](#youdaoconfig)|no|-|Youdao Translation -related configuration|
 |tencentConfig|[TencentConfig](#tencentconfig)|no|-|Tencent Translation -related configuration|
 |aliyunConfig|[AliyunConfig](#aliyunconfig)|no|-|阿里云 Translation -related configuration|
 

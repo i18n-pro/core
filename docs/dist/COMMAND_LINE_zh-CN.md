@@ -4,7 +4,7 @@
 <details >
   <summary>目录</summary>
 
-  &emsp;&emsp;[1.  `i18nrc.js` 配置](#1-i18nrcjs-配置)<br/>
+  &emsp;&emsp;[1.  `i18nrc.js` 配置](#1--i18nrcjs-配置)<br/>
   &emsp;&emsp;&emsp;&emsp;[基础配置](#基础配置)<br/>
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
   &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>

@@ -1,7 +1,7 @@
 {
   "name": "i18n-pro",
-  "version": "2.0.0_alpha.0",
-  "description": "Lightweight, simple, flexible and automatic-translation tools for internationalization（轻量、简单、灵活、自动翻译的国际化工具）",
+  "version": "doc",
+  "description": "A lightweight, simple, flexible, automatic translation tool for JavaScript（适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具）",
   "files": [
     "dist/src",
     "template",
@@ -60,7 +60,7 @@
     "eslint-formatter-table": "^7.32.1",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.2",
-    "jsx-to-md": "0.9.1",
+    "jsx-to-md": "0.10.0",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
