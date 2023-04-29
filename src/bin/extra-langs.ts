@@ -42,13 +42,10 @@ export default function extraLangs(
     langs = requireJsonFile<Langs>(dirpath, 'langs')
   } else {
     to.forEach((langCode) => {
-      const lang = requireJsonFile<Record<string, string>>(
-        dirpath,
-        codeLocaleMap[langCode] || langCode,
-      )
+      const locale = codeLocaleMap[langCode] || langCode
+      const lang = requireJsonFile<Record<string, string>>(dirpath, locale)
       if (Object.keys(lang).length > 0) {
-        // NOTE 这里是以语言代码为key
-        langs[langCode] = lang
+        langs[locale] = lang
       }
     })
   }
