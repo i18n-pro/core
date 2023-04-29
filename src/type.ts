@@ -86,12 +86,7 @@ export type BasicBaiduConfig = {
 /**
  * 完整的百度翻译的配置
  */
-export type BaiduConfig = Omit<
-  DefineTranslatorConfig<'baidu', BasicBaiduConfig>,
-  'translator'
-> & {
-  translator?: 'baidu'
-}
+export type BaiduConfig = DefineTranslatorConfig<'baidu', BasicBaiduConfig>
 
 /**
  * 有道翻译的配置
@@ -180,10 +175,12 @@ export type BasicGooglexConfig = {
 /**
  * 完整的谷歌X翻译的配置
  */
-export type GooglexConfig = DefineTranslatorConfig<
-  'googlex',
-  BasicGooglexConfig
->
+export type GooglexConfig = Omit<
+  DefineTranslatorConfig<'googlex', BasicGooglexConfig>,
+  'translator'
+> & {
+  translator?: 'googlex'
+}
 
 /**
  * https-proxy-agent 工具库构建参数

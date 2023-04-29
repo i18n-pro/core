@@ -108,7 +108,7 @@ export function setTranslateConfig(
   configProp: UnionTranslatorConfig,
   innerConfigProp?: InnerConfig,
 ) {
-  const { translator = 'baidu' } = configProp
+  const { translator = 'googlex' } = configProp
 
   if (!Object.keys(translatorImplMap).includes(translator)) {
     logError(

@@ -3,7 +3,7 @@ import fs from 'fs'
 import { logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import chalk from './chalk'
-import { CONFIG_NAME, RELATIVE_PATH } from './constants'
+import { CONFIG_NAME } from './constants'
 
 const configPath = join(process.cwd(), CONFIG_NAME)
 
@@ -16,7 +16,7 @@ export function initConfig(pathProp?: string) {
       ? join(pathProp, CONFIG_NAME)
       : configPath
   })()
-  const sourcePath = join(__dirname, RELATIVE_PATH + 'template/' + CONFIG_NAME)
+  const sourcePath = join(__dirname, 'template/' + CONFIG_NAME)
 
   try {
     fs.copyFileSync(sourcePath, targetPath)

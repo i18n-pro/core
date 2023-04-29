@@ -208,9 +208,7 @@ describe('验证命令行响应命令', () => {
           path: '',
           indentSize: 5,
         },
-        baiduConfig: {
-          appid: '',
-          key: '',
+        googlexConfig: {
           from: 'en',
           to: ['jp'],
         },

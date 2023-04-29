@@ -118,7 +118,7 @@ describe('验证翻译实现', () => {
         // 设置翻译配置
         setTranslateConfig({
           translator,
-          [(translator || 'baidu') + 'Config']: {
+          [(translator || 'googlex') + 'Config']: {
             ...config,
             from: 'zh',
             to,
@@ -175,7 +175,7 @@ describe('验证翻译实现', () => {
         })
         try {
           setTranslateConfig({
-            translator: 'baidu',
+            translator: 'googlex',
           })
         } catch (error) {
           expect(error).toBe('over')
@@ -896,6 +896,7 @@ describe('验证翻译实现', () => {
       // 设置翻译配置
       setTranslateConfig(
         {
+          translator: 'baidu',
           baiduConfig: {
             appid: '',
             key: '',
