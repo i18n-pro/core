@@ -201,6 +201,20 @@ function BasicConfig() {
       description: tr('{0}翻译相关的配置', 'OpenAI'),
     },
     {
+      name: 'googleConfig',
+      type: '[GoogleConfig](#googleconfig)',
+      required: tr('否'),
+      default: '-',
+      description: tr('{0}翻译相关的配置', tr('谷歌')),
+    },
+    {
+      name: 'microsoftConfig',
+      type: '[MicrosoftConfig](#microsoftconfig)',
+      required: tr('否'),
+      default: '-',
+      description: tr('{0}翻译相关的配置', tr('微软')),
+    },
+    {
       name: 'baiduConfig',
       type: '[BaiduConfig](#baiduconfig)',
       required: tr('否'),
@@ -453,6 +467,123 @@ function OpenAIConfig() {
     <>
       <H3>OpenAIConfig</H3>
       {tr('OpenAI翻译的配置')}
+      <Table columns={getCommonTableColumns()} data={data} />
+    </>
+  )
+}
+
+function GoogleConfig() {
+  const data: RecordItem[] = [
+    {
+      name: 'projectId',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: tr(
+        '项目ID，需要{0}申请',
+        `[${tr('注册账号')}](https://cloud.google.com/translate)`,
+      ),
+    },
+    {
+      name: 'location',
+      type: 'string',
+      required: tr('否'),
+      default: '-',
+      description: <>{tr('区域')}</>,
+    },
+    {
+      name: 'from',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: (
+        <>
+          {tr(
+            '被翻译文本的语言代码（例如中文的是{0}，英语的是{1}）',
+            ' `zh-CN`',
+            ' `en`',
+          )}
+          <br />
+          <br />
+          <>
+            {`[${tr(
+              '更多语言',
+            )}](https://cloud.google.com/translate/docs/languages )`}
+          </>
+        </>
+      ),
+    },
+    ...getCommonConfig(),
+  ]
+
+  return (
+    <>
+      <H3>GoogleConfig</H3>
+      {tr('{0}翻译的配置', tr('谷歌'))}
+      <BlockQuote>
+        {tr(
+          '注意：该平台比较特殊，需要在本地环境提供额外的密匙，具体请参考{0}',
+          render(
+            <Link href="https://cloud.google.com/translate/docs/setup?hl=zh-cn#auth">
+              {tr('文档')}
+            </Link>,
+          ),
+        )}
+      </BlockQuote>
+      <Break />
+      <Table columns={getCommonTableColumns()} data={data} />
+    </>
+  )
+}
+
+function MicroConfig() {
+  const data: RecordItem[] = [
+    {
+      name: 'key',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: tr(
+        'Microsoft translator-key，需要{0}申请',
+        `[${tr('注册 Azure 账号')}](https://azure.microsoft.com/)`,
+      ),
+    },
+    {
+      name: 'location',
+      type: 'string',
+      required: tr('否'),
+      default: '-',
+      description: <>{tr('区域')}</>,
+    },
+    {
+      name: 'from',
+      type: 'string',
+      required: tr('是'),
+      default: '-',
+      description: (
+        <>
+          {tr(
+            '被翻译文本的语言代码（例如中文的是{0}，英语的是{1}）',
+            ' `zh-Hans`',
+            ' `en`',
+          )}
+          <br />
+          <br />
+          <>
+            {`[${tr(
+              '更多语言',
+            )}](https://learn.microsoft.com/zh-cn/azure/cognitive-services/translator/language-support)`}
+          </>
+        </>
+      ),
+    },
+    ...getCommonConfig(),
+  ]
+
+  return (
+    <>
+      <H3>MicrosoftConfig</H3>
+      {tr('{0}翻译的配置', tr('微软'))}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
   )
@@ -761,6 +892,8 @@ function Config() {
       <Output />
       <GooglexConfig />
       <OpenAIConfig />
+      <GoogleConfig />
+      <MicroConfig />
       <BaiduConfig />
       <YoudaoConfig />
       <TencentConfig />

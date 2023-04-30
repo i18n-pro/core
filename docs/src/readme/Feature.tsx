@@ -33,7 +33,7 @@ export default function Vision() {
               <Bold>{tr('支持多翻译平台')}</Bold>：
               {`${tr('谷歌X')}、${tr('OpenAI')}、${tr('谷歌')}、${tr(
                 '微软',
-              )}、${tr('腾讯')}、${tr('阿里')}、${tr('有道')}、${tr('百度')}`}
+              )}、${tr('腾讯')}、${tr('阿里云')}、${tr('有道')}、${tr('百度')}`}
               （{tr('除{0}外，其他平台需自行注册账号', tr('谷歌X'))}）
             </ListItem>
           </UnorderedList>

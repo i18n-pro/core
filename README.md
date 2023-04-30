@@ -39,7 +39,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
    * **Support incremental translation mode**：Only translate the new text, intelligently remove unused text
-   * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Aliyun、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
+   * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Ali Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
 * **keyless**：There is no need to define the key manually, the text to be translated is the key
 
 

@@ -9,6 +9,8 @@
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
   &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[OpenAIConfig](#openaiconfig)<br/>
+  &emsp;&emsp;&emsp;&emsp;[GoogleConfig](#googleconfig)<br/>
+  &emsp;&emsp;&emsp;&emsp;[MicrosoftConfig](#microsoftconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[BaiduConfig](#baiduconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[YoudaoConfig](#youdaoconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[TencentConfig](#tencentconfig)<br/>
@@ -32,10 +34,12 @@
 |translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|no|googlex|Specify the translation platform, default<br /><br />After specifying  `translator` , you need to cooperate with the corresponding configuration file<br />For example,  `translator`  configuration to  `googlex` , then you need to configure  `googlexConfig` |
 |googlexConfig|[GooglexConfig](#googlexconfig)|no|-|Google x Translation -related configuration|
 |openaiConfig|[OpenaiConfig](#openaiconfig)|no|-|OpenAI Translation -related configuration|
+|googleConfig|[GoogleConfig](#googleconfig)|no|-|Google Translation -related configuration|
+|microsoftConfig|[MicrosoftConfig](#microsoftconfig)|no|-|Microsoft Translation -related configuration|
 |baiduConfig|[BaiduConfig](#baiduconfig)|no|-|Baidu Translation -related configuration|
 |youdaoConfig|[YoudaoConfig](#youdaoconfig)|no|-|Youdao Translation -related configuration|
 |tencentConfig|[TencentConfig](#tencentconfig)|no|-|Tencent Translation -related configuration|
-|aliyunConfig|[AliyunConfig](#aliyunconfig)|no|-|阿里云 Translation -related configuration|
+|aliyunConfig|[AliyunConfig](#aliyunconfig)|no|-|Ali Cloud Translation -related configuration|
 
 ### Output
 Configuration of output files
@@ -65,6 +69,30 @@ OPENAI translation configuration
 |model|string|yes|gpt-3.5-turbo|Specify model version<br /><br />Use the model, the default is  `gpt-3.5-turbo` , currently only compatible  `Chart`  model|
 |proxy|string|no|-|Configuration proxy service<br /><br />Some countries and regions cannot access the  `OpenAI`  service normally, and need to be configured with agents<br />格式：`protocol://hostname:port`<br />例如：`http://127.0.0.1:8087`|
 |from|string|yes|-|The language of the translation text (for example, Chinese is  `Chinese`, English is  `English`)<br /><br />Special Instructions:Since  `OpenAI`  currently does not launch a pure text translation API, it can only be executed by customized  `Prompt` . The translation language required here must be English|
+|to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
+|codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
+|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+
+### GoogleConfig
+Google Configuration of Translation
+>Note: The platform is relatively special, and additional key needs need to be provided in the local environment. For details, please refer to [Documentation](https://cloud.google.com/translate/docs/setup?hl=zh-cn#auth)
+
+|Name|Type|Required|Default|Description|
+|:-:|:-:|:-:|:-:|:-|
+|projectId|string|yes|-|Project ID, need [Registered account](https://cloud.google.com/translate) application|
+|location|string|no|-|area|
+|from|string|yes|-|Language code of the translated text (for example,  `zh-CN` for Chinese,  `en` for English)<br /><br />[More languages](https://cloud.google.com/translate/docs/languages )|
+|to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
+|codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
+|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+
+### MicrosoftConfig
+Microsoft Configuration of Translation
+|Name|Type|Required|Default|Description|
+|:-:|:-:|:-:|:-:|:-|
+|key|string|yes|-|Microsoft Translator-Key, you need [Register azure account](https://azure.microsoft.com/) to apply|
+|location|string|no|-|area|
+|from|string|yes|-|Language code of the translated text (for example,  `zh-Hans` for Chinese,  `en` for English)<br /><br />[More languages](https://learn.microsoft.com/zh-cn/azure/cognitive-services/translator/language-support)|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
 |delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|

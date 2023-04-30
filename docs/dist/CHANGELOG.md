@@ -7,6 +7,7 @@
   &emsp;&emsp;[[2.0.0] - 2023-0x-xx](#200---2023-0x-xx)<br/>
   &emsp;&emsp;&emsp;&emsp;[Changed](#changed)<br/>
   &emsp;&emsp;&emsp;&emsp;[Added](#added)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Fixed](#fixed)<br/>
   &emsp;&emsp;[[1.3.2] - 2022-09-24](#132---2022-09-24)<br/>
   &emsp;&emsp;&emsp;&emsp;[Fixed](#fixed)<br/>
   &emsp;&emsp;[[1.3.1] - 2022-09-21](#131---2022-09-21)<br/>
@@ -47,6 +48,7 @@
    *  `setI18n`  Function can only modify  `locale`  and  `langs`  dynamically. The other attributes are first called and defined by  `initI18n` .
    * Increase the return parameters, and will return all the configuration status in the current name space
 * Set the command line language defaults to English
+* Adjust the command line to initialize the default configuration template
 
 
 ### Added
@@ -56,13 +58,20 @@
    * New  `namespace`  attribute is used to support naming space
 * After the execution of the new translation, the output content of the console is displayed on the number of different log types
 * Added the following support of the following translation platform
+   * Google x
+   * OpenAI
    * Google
    * Microsoft
-   * Aliyun
+   * Ali Cloud
    * Tencent
    * Youdao
 * Added English documents and set it to the default language documentation
 * Add  `-P` | `--path`  parameter to initialization command and translation command to support flexible specification of configuration file path
+
+
+### Fixed
+
+* Fix when the difference between  `Language code`  and  `locale` , identify the error of the translated language package, and eventually lead to repeated translation
 
 
 ## [1.3.2] - 2022-09-24

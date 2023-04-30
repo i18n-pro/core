@@ -268,7 +268,6 @@
   "新增如下翻译平台的支持": "Added the following support of the following translation platform",
   "谷歌": "Google",
   "微软": "Microsoft",
-  "阿里": "Aliyun",
   "腾讯": "Tencent",
   "有道": "Youdao",
   "新增英文文档，并设置为默认语言文档": "Added English documents and set it to the default language documentation",
@@ -325,5 +324,16 @@
   "Output": "Output",
   "谷歌X": "Google x",
   "除{0}外，其他平台需自行注册账号": "In addition to {0}, other platforms need to register an account by themselves",
-  "适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具": "A lightweight, simple, flexible, automatic translation tool for JavaScript"
+  "适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具": "A lightweight, simple, flexible, automatic translation tool for JavaScript",
+  "调整命令行初始化默认配置模板": "Adjust the command line to initialize the default configuration template",
+  "阿里云": "Ali Cloud",
+  "修复当{0}和{1}不同时，识别已翻译的语言包错误，最终导致重复翻译": "Fix when the difference between {0} and {1}, identify the error of the translated language package, and eventually lead to repeated translation",
+  "语言代码": "Language code",
+  "项目ID，需要{0}申请": "Project ID, need {0} application",
+  "区域": "area",
+  "{0}翻译的配置": "{0} Configuration of Translation",
+  "注意：该平台比较特殊，需要在本地环境提供额外的密匙，具体请参考{0}": "Note: The platform is relatively special, and additional key needs need to be provided in the local environment. For details, please refer to {0}",
+  "文档": "Documentation",
+  "Microsoft translator-key，需要{0}申请": "Microsoft Translator-Key, you need {0} to apply",
+  "注册 Azure 账号": "Register azure account"
 }
