@@ -40,6 +40,7 @@
 * **自动翻译**：一个命令即可自动提取文本并翻译生成语言包
    * **支持增量翻译模式**：只翻译新增文本，智能移除未使用文本
    * **支持多翻译平台**：谷歌X、OpenAI、谷歌、微软、腾讯、阿里云、有道、百度（除谷歌X外，其他平台需自行注册账号）
+   * **支持多种翻译日志**：多种类型翻译日志的输出，便于追踪与定位翻译问题
 * **keyless**：无需手动定义key，待翻译文本即key
 
 
@@ -56,7 +57,7 @@
 
 **命令行工具**：根据指定规则（正则匹配）解析出需要翻译的文本，并通过翻译平台将文本翻译到指定目标语言，最后生成语言包文件
 
-解析文本的 [匹配规则](#匹配规则) 简易示例如下
+解析文本的 [匹配规则](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE_zh-CN.md) 简易示例如下
 ```js
 /** 普通字符串 */
 
@@ -101,7 +102,7 @@ t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3)
 * [命令行](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE_zh-CN.md)
 * [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API_zh-CN.md)
 * [匹配规则](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE_zh-CN.md)
-* [输出日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG_zh-CN.md)
+* [翻译日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG_zh-CN.md)
 * [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A_zh-CN.md)
 * [更新日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG_zh-CN.md)
 

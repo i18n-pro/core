@@ -12,7 +12,7 @@ export default function DocLink() {
           <Link href={getDocHref('COMMAND_LINE')}>{tr('命令行')}</Link>,
           <Link href={getDocHref('API')}>{tr('API')}</Link>,
           <Link href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</Link>,
-          <Link href={getDocHref('OUTPUT_LOG')}>{tr('输出日志')}</Link>,
+          <Link href={getDocHref('OUTPUT_LOG')}>{tr('翻译日志')}</Link>,
           <Link href={getDocHref('Q&A')}>Q&A</Link>,
           <Link href={getDocHref('CHANGELOG')}>{tr('更新日志')}</Link>,
         ]}

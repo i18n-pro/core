@@ -11,8 +11,9 @@ import {
   render,
   TableOfContents,
 } from 'jsx-to-md'
+import { resolve } from 'path'
 import { imageObj } from '../constants'
-import { getDocHref, initI18n } from '../utils'
+import { getDocHref, initI18n, getFileContent } from '../utils'
 
 function Install() {
   return (
@@ -66,8 +67,9 @@ window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
-
-// ${tr('这里导出API是便于其他模块能使用对应API')}
+// ${tr(
+          '不挂在 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API',
+        )}
 return {
   t,
   setI18n,
@@ -89,12 +91,12 @@ return {
       <CodeBlock
         langType="js"
         code={`
-/** 同目录下的 test.js */
-// 如果是挂载全局对象，可以省略下行代码
+/** ${tr('同目录下的 {0}', 'test.js')} */
+// ${tr('如果是挂载 API 到全局对象，可以省略下行代码')}
 import { t } from './i18n.js'
 
 // ${tr('被翻译的文本')}
-const text = t('${tr('你好世界')}')`}
+const text = t('你好世界')`}
       />
     </>
   )
@@ -110,7 +112,13 @@ function InitConfig() {
         {tr('更多命令')}
       </Link>
       <CodeBlock langType="bash" code={`npx i18n init `} />
-      {tr('然后会在当前目录下生成一个{0}的文件', ' `i18nrc.js` ')}
+      {tr(
+        '命令执行成功后会在当前目录下生成一个{0}的文件，默认配置如下：',
+        ' `i18nrc.js` ',
+      )}
+      <CodeBlock
+        code={getFileContent(resolve(__dirname, '../../../template/i18nrc.js'))}
+      />
     </>
   )
 }
@@ -144,6 +152,47 @@ function ExecuteTranslateCommand() {
       <H2>{`5. ${tr('执行翻译命令')}`}</H2>
       <CodeBlock langType="bash" code={`npx i18n t `} />
       {tr('命令执行成功的话，会在指定的目录下生成语言包文件')}
+      <br />
+      <br />
+      {tr(
+        '默认配置下，生成的语言包是每个语言单独文件形式{0}，会生成{1}个语言包：{2}和{3}',
+        "（`output.langType == 'multiple'`）",
+        ' `2` ',
+        ' `en.json` ',
+        ' `jp.json` ',
+      )}
+      <CodeBlock
+        langType="text"
+        code={`// zh-CN.json
+{
+  "Hello world": "你好世界"
+}
+
+// jp.json
+{
+  "Hello world": "こんにちは世界"
+}
+`}
+      />
+      {tr(
+        '如果生成的语言包是聚合的形式{0}，会生成{1}个语言包：{2}',
+        "（`output.langType == 'single'`）",
+        ' `1` ',
+        ' `langs.json` ',
+      )}
+      <CodeBlock
+        langType="text"
+        code={`// langs.json
+{
+  "zh-CN": {
+    "Hello world": "你好世界"
+  },
+  "jp": {
+    "Hello world": "こんにちは世界"
+  }
+}
+`}
+      />
     </>
   )
 }
@@ -161,14 +210,14 @@ function ImportLangs() {
         "（`output.langType == 'multiple'`）",
       )}
       <CodeBlock
-        code={`import en from './i18n/en.json'
+        code={`import zh from './i18n/zh-CN.json'
 import jp from './i18n/jp.json'
 // ... ${tr('其他更多语言')}
 
 setI18n({
   locale: 'en',
   langs:{
-    en,
+    'zh-CN': zh,
     jp,
     // ... ${tr('其他更多语言')}
   },
@@ -253,7 +302,7 @@ function Demo() {
       {tr('通过命令{0}就能看英文版了', ' `npx i18n h -L en` ')}
       <Break />
       <Image {...imageObj['demo']} />
-      <Break />
+      <br />
       {tr('感兴趣的同学，可以看看源码')}
     </>
   )

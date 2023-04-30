@@ -52,8 +52,7 @@ window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
-
-// 这里导出API是便于其他模块能使用对应API
+// 不挂在 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API
 return {
   t,
   setI18n,
@@ -74,7 +73,7 @@ return {
 这一步主要是用 `t` 函数包裹需要被翻译的文本
 ```js
 /** 同目录下的 test.js */
-// 如果是挂载全局对象，可以省略下行代码
+// 如果是挂载 API 到全局对象，可以省略下行代码
 import { t } from './i18n.js'
 
 // 被翻译的文本
@@ -87,7 +86,29 @@ const text = t('你好世界')
 ```bash
 npx i18n init 
 ```
-然后会在当前目录下生成一个 `i18nrc.js` 的文件
+命令执行成功后会在当前目录下生成一个 `i18nrc.js` 的文件，默认配置如下：
+```js
+const { join } = require('path')
+
+module.exports = {
+  funcName: 't',
+  entry: join(__dirname, './src/'),
+  fileRegExp: /\.[jt]s$/,
+  output: {
+    path: join(__dirname, './i18n/'),
+  },
+  translator: 'googlex',
+  googlexConfig: {
+    from: 'en',
+    to: ['zh-CN', 'ja'],
+    codeLocaleMap: {
+      ja: 'jp',
+    },
+    // proxy: 'http://127.0.0.1:1087',
+  },
+}
+```
+
 
 ## 4. 调整 `i18nrc.js` 配置
 根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcjs-配置)
@@ -97,21 +118,45 @@ npx i18n init
 ```bash
 npx i18n t 
 ```
-命令执行成功的话，会在指定的目录下生成语言包文件
+命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `en.json` 和 `jp.json` 
+```text
+// zh-CN.json
+{
+  "Hello world": "你好世界"
+}
+
+// jp.json
+{
+  "Hello world": "こんにちは世界"
+}
+```
+如果生成的语言包是聚合的形式（`output.langType == 'single'`），会生成 `1` 个语言包： `langs.json` 
+```text
+// langs.json
+{
+  "zh-CN": {
+    "Hello world": "你好世界"
+  },
+  "jp": {
+    "Hello world": "こんにちは世界"
+  }
+}
+```
+
 
 ## 6. 引入语言包文件
 语言包已经有了，就需要应用到项目中了
 
 如果生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），操作如下：
 ```js
-import en from './i18n/en.json'
+import zh from './i18n/zh-CN.json'
 import jp from './i18n/jp.json'
 // ... 其他更多语言
 
 setI18n({
   locale: 'en',
   langs:{
-    en,
+    'zh-CN': zh,
     jp,
     // ... 其他更多语言
   },
@@ -157,5 +202,4 @@ function App(){
 哈哈哈，除了上面的 [Live Demo](#live-demo)，当前库 `命令行工具` 的控制台输出也接入了国际化
 
 通过命令 `npx i18n h -L en` 就能看英文版了
-![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")
-感兴趣的同学，可以看看源码
+![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")<br />感兴趣的同学，可以看看源码

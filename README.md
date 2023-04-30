@@ -6,7 +6,7 @@
 English | [简体中文](./README_zh-CN.md)
 
 
-  <p style="font-size: 18px;">A lightweight, simple, flexible, automatic translation tool for JavaScript</p>
+  <p style="font-size: 18px;">Lightweight, simple, flexible, automatic translation internationalization tool for JavaScript</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
 [![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm")
@@ -40,6 +40,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **automatic-translation**：One command can automatically extract the text and translate it into a language pack
    * **Support incremental translation mode**：Only translate the new text, intelligently remove unused text
    * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Ali Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
+   * **Support multiple translation logs**：The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues
 * **keyless**：There is no need to define the key manually, the text to be translated is the key
 
 
@@ -56,7 +57,7 @@ The library is mainly composed of two parts
 
 **Command Line Tool**：Any text that needs to be translated based on the specified rules (regular match), and translates the text to the specified target language through the translation platform, and finally generates a language package file
 
-A simple example of  [Matching Rules](#matching-rules)  for parsing text is as follows
+A simple example of  [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)  for parsing text is as follows
 ```js
 /** Normal string */
 
@@ -101,7 +102,7 @@ Therefore,  `Command Line Tool`  and  `Function API`  work better together. It i
 * [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md)
 * [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API.md)
 * [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)
-* [Output Log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)
+* [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)
 * [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
 * [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG.md)
 

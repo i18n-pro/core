@@ -19,7 +19,7 @@ export default function MatchRule(props) {
         <ListItem>
           {tr(
             '{0}函数第一个参数只能是纯字符串，不能包含变量，或者js语句',
-            '`i18n` ',
+            '`t` ',
           )}
         </ListItem>
         <ListItem>

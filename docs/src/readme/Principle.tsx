@@ -8,6 +8,7 @@ import {
   render,
   CodeBlock,
 } from 'jsx-to-md'
+import { getDocHref } from '../utils'
 
 export default function Principle() {
   return (
@@ -27,7 +28,7 @@ export default function Principle() {
       {tr(
         '解析文本的{0}简易示例如下',
         ` ${render(
-          <Link href={`#${tr('匹配规则')}`}>{tr('匹配规则')}</Link>,
+          <Link href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</Link>,
         )} `,
       )}
       <CodeBlock

@@ -1,7 +1,7 @@
 
 # Matching Rules
 requirement：
-* The first parameter of the `i18n`  function can only be a pure string and cannot contain variables or js statements
+* The first parameter of the `t`  function can only be a pure string and cannot contain variables or js statements
 * Cannot contain special characters such as  `\n` and `\t` 
 * The beginning and end cannot contain spaces
 * If you use the  `Template Strings`  syntax, you cannot wrap lines

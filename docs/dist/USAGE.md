@@ -52,8 +52,7 @@ window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
-
-// The export API here is convenient for other modules to use the corresponding API
+// If you do not hang on the API to the global object, you need to export the API to facilitate the use of other modules to use the corresponding API
 return {
   t,
   setI18n,
@@ -73,12 +72,12 @@ return {
 ### Use  `t`  package to translate text
 This step mainly uses  `t`  function to wrap the text to be translated
 ```js
-/** 同目录下的 test.js */
-// 如果是挂载全局对象，可以省略下行代码
+/** test.js in the same directory */
+// If it is mount API to the global object, you can omit the downward code
 import { t } from './i18n.js'
 
 // Translated text
-const text = t('Hello World')
+const text = t('你好世界')
 ```
 
 
@@ -87,7 +86,29 @@ Enter the following command at the command line terminal, [more commands](https:
 ```bash
 npx i18n init 
 ```
-Then a  `i18nrc.js`  file will be generated in the current directory
+After the command execution is successful, a  `i18nrc.js`  file will be generated in the current directory. The default configuration will be as follows:
+```js
+const { join } = require('path')
+
+module.exports = {
+  funcName: 't',
+  entry: join(__dirname, './src/'),
+  fileRegExp: /\.[jt]s$/,
+  output: {
+    path: join(__dirname, './i18n/'),
+  },
+  translator: 'googlex',
+  googlexConfig: {
+    from: 'en',
+    to: ['zh-CN', 'ja'],
+    codeLocaleMap: {
+      ja: 'jp',
+    },
+    // proxy: 'http://127.0.0.1:1087',
+  },
+}
+```
+
 
 ## 4. Adjust  `i18nrc.js`  configuration
 Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md#1--i18nrcjs--configuration) of configuration items
@@ -97,21 +118,45 @@ Adjust the configuration items in the configuration file according to the requir
 ```bash
 npx i18n t 
 ```
-If the command is executed successfully, the language pack file will be generated in the specified directory
+If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `en.json`  and  `jp.json` 
+```text
+// zh-CN.json
+{
+  "Hello world": "你好世界"
+}
+
+// jp.json
+{
+  "Hello world": "こんにちは世界"
+}
+```
+If the generated language pack is a polymerization form （`output.langType == 'single'`）, it will generate  `1`  language package:  `langs.json` 
+```text
+// langs.json
+{
+  "zh-CN": {
+    "Hello world": "你好世界"
+  },
+  "jp": {
+    "Hello world": "こんにちは世界"
+  }
+}
+```
+
 
 ## 6. Importing language pack files
 The language pack already exists, so it needs to be applied to the project
 
 If the generated language pack is a separate file form （`output.langType == 'multiple'`） for each language, the operation is as follows:
 ```js
-import en from './i18n/en.json'
+import zh from './i18n/zh-CN.json'
 import jp from './i18n/jp.json'
 // ... More languages
 
 setI18n({
   locale: 'en',
   langs:{
-    en,
+    'zh-CN': zh,
     jp,
     // ... More languages
   },
@@ -157,5 +202,4 @@ Therefore, for most scenarios, when switching languages on the page, it is recom
 Hahaha, in addition to the  [Live Demo](#live-demo) above, the console output of the current library  `Command Line Tool`  is also connected to internationalization
 
 You can read the English version through the command  `npx i18n h -L en` 
-![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")
-If you are interested, you can look at the source code
+![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")<br />If you are interested, you can look at the source code
