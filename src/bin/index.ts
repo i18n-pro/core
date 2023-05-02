@@ -240,6 +240,9 @@ export async function execCommand() {
         ${chalk.yellowBright(NON_INCREMENTAL)}              ${t(
         '非增量翻译模式进行翻译，已翻译的文本会完全被覆盖',
       )}
+        ${chalk.yellowBright('-P | --path')}                    ${t(
+        '指定配置文件路径（参数为绝对路径）',
+      )}
           `)
       break
     default:
