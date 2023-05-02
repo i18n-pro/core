@@ -88,7 +88,7 @@ function APIList() {
             <b>beginIndex</b>：
             {tr(
               '设置{0}函数中动态参数起始下标，默认为 0',
-              render(<code> t </code>),
+              ` ${render(<code>t</code>)} `,
             )}
             {renderFormatDesc()}
             <br />
@@ -96,13 +96,13 @@ function APIList() {
             📢📢📢：
             {tr(
               '{0}的值默认跟语言代码相对应，如需自定义，需参考{1}的用法',
-              render(<code>locale</code>),
-              render(<code>codeLocaleMap</code>),
+              ` ${render(<code>locale</code>)} `,
+              ` ${render(<code>codeLocaleMap</code>)} `,
             )}
           </td>
         </tr>
       </table>
-      <span>{tr('以下是核心API')}</span>
+      <span>{tr('以下是核心 API')}</span>
       <table>
         <tr>
           <th>{tr('函数名')}</th>
@@ -125,21 +125,22 @@ function APIList() {
             <br />
             {tr(
               '内部会根据当前语言{0}从语言包{1}中获取{2}对应的翻译文本，未匹配到对应翻译内容会直接显示{3}本身内容',
-              render(<code> locale </code>),
-              render(<code> langs </code>),
-              render(<code> text </code>),
-              render(<code> text </code>),
+              ` ${render(<code>locale</code>)} `,
+              ` ${render(<code>langs</code>)} `,
+              ` ${render(<code>text</code>)} `,
+              ` ${render(<code>text</code>)} `,
             )}
+            <br />
             <br />
             <b>text</b>：{tr('待翻译的文本')}
             <br />
             <b>args</b>：
             {tr(
-              '表示动态参数，没有个数限制，{0}文本中需要以{1}的形式来接收，{2}表示动态参数的位置，从 0 开始（可在{3}中自定义起始值），第1个参数对应 0，对2个参数对应1，以此往复',
-              render(<code> text </code>),
-              render(<code> {'{index}'} </code>),
-              render(<code> index </code>),
-              render(<code> initI18n </code>),
+              '表示动态参数，没有个数限制，{0}文本中需要以{1}的形式来接收，{2}表示动态参数的位置，从 0 开始（可在{3}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
+              ` ${render(<code>text</code>)} `,
+              ` ${render(<code>{'{index}'}</code>)} `,
+              ` ${render(<code>index</code>)} `,
+              ` ${render(<code>initI18n</code>)} `,
             )}
             <br />
             <br />

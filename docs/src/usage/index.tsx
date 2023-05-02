@@ -3,11 +3,9 @@ import {
   H1,
   H2,
   CodeBlock,
-  BlockQuote,
   H3,
   Link,
   Image,
-  H4,
   render,
   TableOfContents,
 } from 'jsx-to-md'
