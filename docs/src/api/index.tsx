@@ -196,7 +196,7 @@ function APIList() {
             </pre>
           </td>
           <td>
-            {tr('获取独立于主程序的{0}函数', render(<code> t </code>))}
+            {tr('获取独立于主程序的{0}函数', ` ${render(<code>t</code>)} `)}
             <br />
             <br />
             {tr('适用于服务端，每个接口响应需要做国际化的处理')}
@@ -218,7 +218,7 @@ function FunctionType() {
         langType="ts"
         code={`type FormatFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
-  payload: string | number | unknow | T, // ${tr('动态参数')}
+  payload: string | number | unknown | T, // ${tr('动态参数')}
 }) => number | string`}
       />
       <H3>FormatDateFunc</H3>
@@ -227,7 +227,7 @@ function FunctionType() {
         langType="ts"
         code={`type FormatDateFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
-  payload: string | number | Date | unknow | T, // ${tr('动态参数')}
+  payload: string | number | Date | unknown | T, // ${tr('动态参数')}
 }) => string`}
       />
       <H3>FormatPluralFunc</H3>
@@ -236,7 +236,7 @@ function FunctionType() {
         langType="ts"
         code={`type FormatPluralFunc = <T>(props:{
   locale: string, // ${tr('当前语言')}
-  payload: string | number | unknow | T, // ${tr('动态参数')}
+  payload: string | number | unknown | T, // ${tr('动态参数')}
   text: string // ${tr(
     '默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性',
   )}

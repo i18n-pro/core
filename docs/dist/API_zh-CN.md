@@ -97,7 +97,7 @@
       </pre>
     </td>
     <td>
-      获取独立于主程序的<code> t </code>函数<br /><br />适用于服务端，每个接口响应需要做国际化的处理
+      获取独立于主程序的 <code>t</code> 函数<br /><br />适用于服务端，每个接口响应需要做国际化的处理
     </td>
   </tr>
 </table>
@@ -109,7 +109,7 @@
 ```ts
 type FormatFunc = <T>(props:{
   locale: string, // 当前语言
-  payload: string | number | unknow | T, // 动态参数
+  payload: string | number | unknown | T, // 动态参数
 }) => number | string
 ```
 
@@ -118,7 +118,7 @@ type FormatFunc = <T>(props:{
 ```ts
 type FormatDateFunc = <T>(props:{
   locale: string, // 当前语言
-  payload: string | number | Date | unknow | T, // 动态参数
+  payload: string | number | Date | unknown | T, // 动态参数
 }) => string
 ```
 
@@ -127,7 +127,7 @@ type FormatDateFunc = <T>(props:{
 ```ts
 type FormatPluralFunc = <T>(props:{
   locale: string, // 当前语言
-  payload: string | number | unknow | T, // 动态参数
+  payload: string | number | unknown | T, // 动态参数
   text: string // 默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性
   keyword: string // 复数关键词
 }) => string

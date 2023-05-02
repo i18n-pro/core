@@ -97,7 +97,7 @@ The following types are expressed in  `TypeScript`  syntax<table>
       </pre>
     </td>
     <td>
-      Get the <code> t </code> function independent of the main program order<br /><br />It is applicable to the server. Each interface response needs to be internationalized
+      Get the  <code>t</code>  function independent of the main program order<br /><br />It is applicable to the server. Each interface response needs to be internationalized
     </td>
   </tr>
 </table>
@@ -109,7 +109,7 @@ Common format callback type
 ```ts
 type FormatFunc = <T>(props:{
   locale: string, // Current language
-  payload: string | number | unknow | T, // dynamic parameters 
+  payload: string | number | unknown | T, // dynamic parameters 
 }) => number | string
 ```
 
@@ -118,7 +118,7 @@ Format callback function type of Date(Time)
 ```ts
 type FormatDateFunc = <T>(props:{
   locale: string, // Current language
-  payload: string | number | Date | unknow | T, // dynamic parameters 
+  payload: string | number | Date | unknown | T, // dynamic parameters 
 }) => string
 ```
 
@@ -127,7 +127,7 @@ Format callback function type of Plural
 ```ts
 type FormatPluralFunc = <T>(props:{
   locale: string, // Current language
-  payload: string | number | unknow | T, // dynamic parameters 
+  payload: string | number | unknown | T, // dynamic parameters 
   text: string // A string that combines quantifiers and nouns by default. Languages that do not require plural processing can return this property directly
   keyword: string // Plural keyword
 }) => string
