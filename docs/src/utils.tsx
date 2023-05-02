@@ -26,9 +26,11 @@ export function getDocHref(filename: string, anchorProp?: string) {
   name = name ? `_${name}` : ''
   const anchor = anchorProp ? getAnchor(anchorProp) : ''
 
-  const res = `https://github.com/eyelly-wu/i18n-pro/blob/v${version}/docs/dist/${filename}${name}.md${anchor}`
-
-  return res
+  if (filename === 'README') {
+    return `https://github.com/eyelly-wu/i18n-pro/tree/v${version}${anchor}`
+  } else {
+    return `https://github.com/eyelly-wu/i18n-pro/blob/v${version}/docs/dist/${filename}${name}.md${anchor}`
+  }
 }
 
 export function getFileContent(filepath: string) {

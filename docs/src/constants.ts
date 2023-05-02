@@ -57,7 +57,7 @@ const images = [
   {
     title: 'demo',
     alt: 'demo',
-    src: 'https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif',
+    src: 'https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif',
   },
   {
     title: 'logo',

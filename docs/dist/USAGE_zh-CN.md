@@ -46,13 +46,13 @@ const {
 })
 
 // 这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API
-// 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户API命名冲突
+// 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户 API 命名冲突
 // 浏览器环境，注意：如果是 Node 环境需要将 window 替换成 global 
 window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
-// 不挂在 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API
+// 不挂载 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API
 return {
   t,
   setI18n,
@@ -77,7 +77,7 @@ return {
 import { t } from './i18n.js'
 
 // 被翻译的文本
-const text = t('你好世界')
+const text = t('hello world')
 ```
 
 
@@ -118,16 +118,16 @@ module.exports = {
 ```bash
 npx i18n t 
 ```
-命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `en.json` 和 `jp.json` 
+命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `zh-CN.json` 和 `jp.json` 
 ```text
 // zh-CN.json
 {
-  "Hello world": "你好世界"
+  "hello world": "你好世界"
 }
 
 // jp.json
 {
-  "Hello world": "こんにちは世界"
+  "hello world": "こんにちは世界"
 }
 ```
 如果生成的语言包是聚合的形式（`output.langType == 'single'`），会生成 `1` 个语言包： `langs.json` 
@@ -135,10 +135,10 @@ npx i18n t
 // langs.json
 {
   "zh-CN": {
-    "Hello world": "你好世界"
+    "hello world": "你好世界"
   },
   "jp": {
-    "Hello world": "こんにちは世界"
+    "hello world": "こんにちは世界"
   }
 }
 ```
@@ -196,10 +196,10 @@ function App(){
   )
 }
 ```
-因此对于大部分的场景，在页面上切换语言时，建议**直接刷新**整个页面（如果还有好的方案请告知🤔）
+如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**直接刷新**整个页面才能看到翻译后的效果
 
 ## 8. DEMO
-哈哈哈，除了上面的 [Live Demo](#live-demo)，当前库 `命令行工具` 的控制台输出也接入了国际化
+真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/eyelly-wu/i18n-pro/tree/vdoc#live-demo) ，当前库 `命令行工具` 的控制台输出也接入了国际化
 
-通过命令 `npx i18n h -L en` 就能看英文版了
-![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")<br />感兴趣的同学，可以看看源码
+通过命令 `npx i18n h -L zh` 就能看中文版了
+![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")<br />感兴趣的同学，可以看看源码

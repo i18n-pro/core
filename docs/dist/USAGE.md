@@ -46,13 +46,13 @@ const {
 })
 
 // Here you can mount the API to the global object.
-// Note: If you are currently using  i18n-pro in a independent third -party library or component, it is not recommended to do this, which may cause your user API naming conflict
+// 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户 API 命名冲突
 // Browser environment, note: if it is  Node  environment, you need to replace  window  with  global 
 window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
-// If you do not hang on the API to the global object, you need to export the API to facilitate the use of other modules to use the corresponding API
+// 不挂载 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API
 return {
   t,
   setI18n,
@@ -77,7 +77,7 @@ This step mainly uses  `t`  function to wrap the text to be translated
 import { t } from './i18n.js'
 
 // Translated text
-const text = t('你好世界')
+const text = t('hello world')
 ```
 
 
@@ -118,16 +118,16 @@ Adjust the configuration items in the configuration file according to the requir
 ```bash
 npx i18n t 
 ```
-If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `en.json`  and  `jp.json` 
+If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `zh-CN.json`  and  `jp.json` 
 ```text
 // zh-CN.json
 {
-  "Hello world": "你好世界"
+  "hello world": "你好世界"
 }
 
 // jp.json
 {
-  "Hello world": "こんにちは世界"
+  "hello world": "こんにちは世界"
 }
 ```
 If the generated language pack is a polymerization form （`output.langType == 'single'`）, it will generate  `1`  language package:  `langs.json` 
@@ -135,10 +135,10 @@ If the generated language pack is a polymerization form （`output.langType == '
 // langs.json
 {
   "zh-CN": {
-    "Hello world": "你好世界"
+    "hello world": "你好世界"
   },
   "jp": {
-    "Hello world": "こんにちは世界"
+    "hello world": "こんにちは世界"
   }
 }
 ```
@@ -196,10 +196,10 @@ function App(){
   )
 }
 ```
-Therefore, for most scenarios, when switching languages on the page, it is recommended to **refresh directly** the whole page (if there is a good solution, please inform 🤔）
+如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**refresh directly**整个页面才能看到翻译后的效果
 
 ## 8. DEMO
-Hahaha, in addition to the  [Live Demo](#live-demo) above, the console output of the current library  `Command Line Tool`  is also connected to internationalization
+真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/eyelly-wu/i18n-pro/tree/vdoc#live-demo) ，当前库 `Command Line Tool` 的控制台输出也接入了国际化
 
-You can read the English version through the command  `npx i18n h -L en` 
-![demo](https://s3.bmp.ovh/imgs/2022/06/25/4412a87c79ba36a8.gif "demo")<br />If you are interested, you can look at the source code
+通过命令 `npx i18n h -L zh` 就能看中文版了
+![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")<br />If you are interested, you can look at the source code

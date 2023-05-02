@@ -54,7 +54,7 @@ const {
           '这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API',
         )}
 // ${tr(
-          '注意：如果当前你是在某个独立的第三方库或者组件中使用{0}，不推荐这样做，可能会造成你的用户API命名冲突',
+          '注意：如果当前你是在某个独立的第三方库或者组件中使用{0}，不推荐这样做，可能会造成你的用户 API 命名冲突',
           ' i18n-pro',
         )}
 // ${tr(
@@ -68,7 +68,7 @@ window.setI18n = setI18n
 window.withI18n = withI18n
 
 // ${tr(
-          '不挂在 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API',
+          '不挂载 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API',
         )}
 return {
   t,
@@ -96,7 +96,7 @@ return {
 import { t } from './i18n.js'
 
 // ${tr('被翻译的文本')}
-const text = t('你好世界')`}
+const text = t('hello world')`}
       />
     </>
   )
@@ -158,19 +158,19 @@ function ExecuteTranslateCommand() {
         '默认配置下，生成的语言包是每个语言单独文件形式{0}，会生成{1}个语言包：{2}和{3}',
         "（`output.langType == 'multiple'`）",
         ' `2` ',
-        ' `en.json` ',
+        ' `zh-CN.json` ',
         ' `jp.json` ',
       )}
       <CodeBlock
         langType="text"
         code={`// zh-CN.json
 {
-  "Hello world": "你好世界"
+  "hello world": "你好世界"
 }
 
 // jp.json
 {
-  "Hello world": "こんにちは世界"
+  "hello world": "こんにちは世界"
 }
 `}
       />
@@ -185,10 +185,10 @@ function ExecuteTranslateCommand() {
         code={`// langs.json
 {
   "zh-CN": {
-    "Hello world": "你好世界"
+    "hello world": "你好世界"
   },
   "jp": {
-    "Hello world": "こんにちは世界"
+    "hello world": "こんにちは世界"
   }
 }
 `}
@@ -280,7 +280,7 @@ function App(){
 }`}
       />
       {tr(
-        '因此对于大部分的场景，在页面上切换语言时，建议{0}整个页面（如果还有好的方案请告知🤔）',
+        '如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过{0}整个页面才能看到翻译后的效果',
         `**${tr('直接刷新')}**`,
       )}
     </>
@@ -293,13 +293,16 @@ function Demo() {
       <Break />
       <H2>8. DEMO</H2>
       {tr(
-        '哈哈哈，除了上面的{0}，当前库{1}的控制台输出也接入了国际化',
-        ' [Live Demo](#live-demo)',
+        '真实代码示例可参考{0}文档中的{1}，当前库{2}的控制台输出也接入了国际化',
+        ' `README` ',
+        ` ${render(
+          <Link href={getDocHref('README', 'Live Demo')}>Live Demo</Link>,
+        )} `,
         ` \`${tr('命令行工具')}\` `,
       )}
       <Break />
       <Break />
-      {tr('通过命令{0}就能看英文版了', ' `npx i18n h -L en` ')}
+      {tr('通过命令{0}就能看中文版了', ' `npx i18n h -L zh` ')}
       <Break />
       <Image {...imageObj['demo']} />
       <br />
