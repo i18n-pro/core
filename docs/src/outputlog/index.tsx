@@ -1,4 +1,4 @@
-import { H1, Table, Column, TableOfContents } from 'jsx-to-md'
+import { H1, Table, TableOfContents } from 'jsx-to-md'
 import { initI18n } from '../utils'
 
 function getColumns() {
@@ -34,7 +34,7 @@ export default function OutputLog(props) {
           {tr('提取到所有不符合要求的翻译文本')}
           <br />
           <br />
-          📢📢📢：{tr('不包含使用变量、js语句等场景')}
+          📢📢📢：{tr('不包含使用变量、{0}语句等场景', ' `JavaScript` ')}
         </>
       ),
     },
@@ -103,7 +103,7 @@ export default function OutputLog(props) {
 
   return (
     <>
-      <H1 skip>{tr('输出日志')}</H1>
+      <H1 skip>{tr('翻译日志')}</H1>
       <TableOfContents text={tr('目录')} open={false} />
       {tr(
         '为了方便追踪与定位问题，整个翻译过程中会有一些必要的日志输出，翻译命令执行完全后会在{0}目录下生成一个{1}的日志目录，所有的日志是以独立文件的形式呈现，包含日志类型如下',

@@ -59,7 +59,7 @@
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh-CN`，英文的是 `en`）<br /><br />[支持语言](https://github.com/AidanWelch/google-translate-api)，需查阅对应文档|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### OpenAIConfig
 OpenAI翻译的配置
@@ -71,7 +71,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言（例如中文是 `Chinese`，英文是 `English`）<br /><br />特殊说明：由于 `OpenAI` 目前没有推出纯文本的翻译API，因此只能通过自定义的 `Prompt` 来执行翻译，这里要求提供的翻译语言必须是英文|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### GoogleConfig
 谷歌翻译的配置
@@ -84,7 +84,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh-CN`，英语的是 `en`）<br /><br />[更多语言](https://cloud.google.com/translate/docs/languages )|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### MicrosoftConfig
 微软翻译的配置
@@ -95,7 +95,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh-Hans`，英语的是 `en`）<br /><br />[更多语言](https://learn.microsoft.com/zh-cn/azure/cognitive-services/translator/language-support)|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### BaiduConfig
 百度翻译的配置
@@ -106,7 +106,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br /><br />[更多语言](http://api.fanyi.baidu.com/doc/21 '搜索"语种列表"')，搜索`语种列表`|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### YoudaoConfig
 有道翻译的配置
@@ -117,7 +117,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh-CHS`，英语的是 `en`）<br /><br />[更多语言](https://ai.youdao.com/DOCSIRMA/html/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%BF%BB%E8%AF%91/API%E6%96%87%E6%A1%A3/%E6%96%87%E6%9C%AC%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1/%E6%96%87%E6%9C%AC%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1-API%E6%96%87%E6%A1%A3.html '搜索"支持语言"')，搜索`支持语言`|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### TencentConfig
 腾讯翻译的配置
@@ -129,7 +129,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br /><br />[更多语言](https://cloud.tencent.com/document/api/551/40566#2.-.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0 '搜索"源语言"')，搜索`源语言`|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### AliyunConfig
 阿里云翻译的配置
@@ -141,7 +141,7 @@ OpenAI翻译的配置
 |from|string|是|-|被翻译文本的语言代码（例如中文的是 `zh`，英语的是 `en`）<br /><br />[更多语言](https://help.aliyun.com/document_detail/215387.html?spm=a2c4g.11186623.0.0.5d572e50TWfreB#Zcs6q '搜索"语言代码列表"')，搜索`语言代码列表`|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
 |codeLocaleMap|Record<string, string>|否|{}|设置语言代码与 `locale` 的映射关系<br /><br />例如目标语言为 `['en']`，想设置 `locale` 的值为 `'en_US'` ，那么需要配置 `codeLocaleMap` 为 `{"en":"en_US"}` ，最终生成的文件名(`output.langType=='multiple'`）也会变成 `en_US.json` |
-|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
+|delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ## 2. 命令
 

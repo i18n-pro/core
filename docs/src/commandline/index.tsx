@@ -101,7 +101,7 @@ function getCommonConfig() {
       default: '0',
       description: (
         <>
-          {tr('单个接口分批次请求时，后续接口请求时间间隔')}
+          {tr('单个接口分批次请求时，后续接口请求时间间隔(单位：秒)')}
           <br />
           <br />
           {tr(

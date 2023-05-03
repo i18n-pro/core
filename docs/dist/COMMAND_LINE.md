@@ -59,7 +59,7 @@ Google X translation configuration
 |from|string|yes|-|The language code of the translation text (for example, Chinese is  `zh-CN`, English is  `en`)<br /><br />[Support language](https://github.com/AidanWelch/google-translate-api)，Need to check the corresponding documentation|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### OpenAIConfig
 OPENAI translation configuration
@@ -71,7 +71,7 @@ OPENAI translation configuration
 |from|string|yes|-|The language of the translation text (for example, Chinese is  `Chinese`, English is  `English`)<br /><br />Special Instructions:Since  `OpenAI`  currently does not launch a pure text translation API, it can only be executed by customized  `Prompt` . The translation language required here must be English|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### GoogleConfig
 Google Configuration of Translation
@@ -84,7 +84,7 @@ Google Configuration of Translation
 |from|string|yes|-|Language code of the translated text (for example,  `zh-CN` for Chinese,  `en` for English)<br /><br />[More languages](https://cloud.google.com/translate/docs/languages )|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### MicrosoftConfig
 Microsoft Configuration of Translation
@@ -95,7 +95,7 @@ Microsoft Configuration of Translation
 |from|string|yes|-|Language code of the translated text (for example,  `zh-Hans` for Chinese,  `en` for English)<br /><br />[More languages](https://learn.microsoft.com/zh-cn/azure/cognitive-services/translator/language-support)|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### BaiduConfig
 Configuration of Baidu-Translation
@@ -106,7 +106,7 @@ Configuration of Baidu-Translation
 |from|string|yes|-|Language code of the translated text (for example,  `zh` for Chinese,  `en` for English)<br /><br />[More languages](http://api.fanyi.baidu.com/doc/21 'Search "语种列表"')，Search `语种列表`|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### YoudaoConfig
 Configuration of Youdao Translation
@@ -117,7 +117,7 @@ Configuration of Youdao Translation
 |from|string|yes|-|Language code of the translated text (for example,  `zh-CHS` for Chinese,  `en` for English)<br /><br />[More languages](https://ai.youdao.com/DOCSIRMA/html/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%BF%BB%E8%AF%91/API%E6%96%87%E6%A1%A3/%E6%96%87%E6%9C%AC%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1/%E6%96%87%E6%9C%AC%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1-API%E6%96%87%E6%A1%A3.html 'Search "支持语言"')，Search `支持语言`|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### TencentConfig
 Configuration of Tencent Translation
@@ -129,7 +129,7 @@ Configuration of Tencent Translation
 |from|string|yes|-|Language code of the translated text (for example,  `zh` for Chinese,  `en` for English)<br /><br />[More languages](https://cloud.tencent.com/document/api/551/40566#2.-.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0 'Search "源语言"')，Search `源语言`|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### AliyunConfig
 Configuration of Alibaba Cloud Translation
@@ -141,7 +141,7 @@ Configuration of Alibaba Cloud Translation
 |from|string|yes|-|Language code of the translated text (for example,  `zh` for Chinese,  `en` for English)<br /><br />[More languages](https://help.aliyun.com/document_detail/215387.html?spm=a2c4g.11186623.0.0.5d572e50TWfreB#Zcs6q 'Search "语言代码列表"')，Search `语言代码列表`|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |
-|delay|number|no|0|When a single interface request in batches, the subsequent interface request time interval<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
+|delay|number|no|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ## 2. Command
 

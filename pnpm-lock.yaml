@@ -70,8 +70,8 @@ devDependencies:
     specifier: ^8.0.2
     version: registry.npmmirror.com/husky@8.0.2
   jsx-to-md:
-    specifier: 0.10.0
-    version: registry.npmmirror.com/jsx-to-md@0.10.0
+    specifier: 0.10.1
+    version: registry.npmmirror.com/jsx-to-md@0.10.1
   lint-staged:
     specifier: ^13.1.0
     version: registry.npmmirror.com/lint-staged@13.1.0
@@ -1298,6 +1298,7 @@ packages:
     resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.11.17.tgz}
     name: '@types/node'
     version: 18.11.17
+    dev: true
 
   registry.npmmirror.com/@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz}
@@ -1323,10 +1324,10 @@ packages:
     version: 15.7.5
     dev: true
 
-  registry.npmmirror.com/@types/react@18.0.37:
-    resolution: {integrity: sha512-4yaZZtkRN3ZIQD3KSEwkfcik8s0SWV+82dlJot1AbGYHCzJkWP3ENBY6wYeDRmKZ6HkrgoGAmR2HqdwYGp6OEw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react/-/react-18.0.37.tgz}
+  registry.npmmirror.com/@types/react@18.2.0:
+    resolution: {integrity: sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react/-/react-18.2.0.tgz}
     name: '@types/react'
-    version: 18.0.37
+    version: 18.2.0
     dependencies:
       '@types/prop-types': registry.npmmirror.com/@types/prop-types@15.7.5
       '@types/scheduler': registry.npmmirror.com/@types/scheduler@0.16.3
@@ -1371,7 +1372,7 @@ packages:
     name: '@types/xml2js'
     version: 0.4.11
     dependencies:
-      '@types/node': registry.npmmirror.com/@types/node@18.11.17
+      '@types/node': registry.npmmirror.com/@types/node@17.0.45
     dev: false
 
   registry.npmmirror.com/@typescript-eslint/eslint-plugin@5.47.0(@typescript-eslint/parser@5.47.0)(eslint@8.30.0)(typescript@4.8.4):
@@ -3760,14 +3761,14 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  registry.npmmirror.com/jsx-to-md@0.10.0:
-    resolution: {integrity: sha512-MW3YQ3yqglyOkhxr6erIdMgGcPQdNTlpnJgZUufr8k19+HjtOSjjmd5+f03OJtXkWIXbDzFECR/10VSB0wz0gA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.10.0.tgz}
+  registry.npmmirror.com/jsx-to-md@0.10.1:
+    resolution: {integrity: sha512-tudv+LWN5ywP4K3LFhTo559y0fJ0ebDURlZOAfLCZAGl9QQHWCkU1/R8WOY2oEFixs4+uHMNABCO6+RC20JvcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.10.1.tgz}
     name: jsx-to-md
-    version: 0.10.0
+    version: 0.10.1
     hasBin: true
     dependencies:
       '@types/node': registry.npmmirror.com/@types/node@18.11.17
-      '@types/react': registry.npmmirror.com/@types/react@18.0.37
+      '@types/react': registry.npmmirror.com/@types/react@18.2.0
       shelljs: registry.npmmirror.com/shelljs@0.8.5
       ts-node-dev: registry.npmmirror.com/ts-node-dev@2.0.0(@types/node@18.11.17)(typescript@4.9.4)
       tsconfig-paths: registry.npmmirror.com/tsconfig-paths@4.2.0

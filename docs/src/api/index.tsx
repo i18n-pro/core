@@ -7,7 +7,7 @@ import {
   CodeBlock,
   TableOfContents,
 } from 'jsx-to-md'
-import { initI18n } from '../utils'
+import { getDocHref, initI18n } from '../utils'
 
 function renderFormatDesc() {
   const formatTypes = [
@@ -132,7 +132,13 @@ function APIList() {
             )}
             <br />
             <br />
-            <b>text</b>：{tr('待翻译的文本')}
+            <b>text</b>：
+            {tr(
+              '待翻译的文本，该文本需满足特定{0}',
+              ` ${render(
+                <a href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</a>,
+              )} `,
+            )}
             <br />
             <b>args</b>：
             {tr(
