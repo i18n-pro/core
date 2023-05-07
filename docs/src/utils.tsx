@@ -37,3 +37,29 @@ export function getFileContent(filepath: string) {
   const res = readFileSync(filepath, { encoding: 'utf-8' })
   return res
 }
+
+export function getIssueText(
+  text: string,
+  props: {
+    issue?: number | number[]
+    by?: string
+  } = {},
+) {
+  const { issue, by } = props
+
+  let showIssue: number[] | string = typeof issue === 'number' ? [issue] : issue
+
+  showIssue =
+    Array.isArray(showIssue) && showIssue.length
+      ? showIssue.reduce((res, item, index) => {
+          res += `${
+            index === 0 ? '' : ' '
+          }[#${item}](https://github.com/eyelly-wu/i18n-pro/issues/${item})`
+          return res
+        }, ' ')
+      : ''
+
+  const showBy = by ? ` by @[${by}](https://github.com/${by})` : ''
+
+  return `${text}${showIssue}${showBy}`
+}

@@ -70,8 +70,8 @@ devDependencies:
     specifier: ^8.0.2
     version: registry.npmmirror.com/husky@8.0.2
   jsx-to-md:
-    specifier: 0.10.1
-    version: registry.npmmirror.com/jsx-to-md@0.10.1
+    specifier: 0.11.0
+    version: registry.npmmirror.com/jsx-to-md@0.11.0
   lint-staged:
     specifier: ^13.1.0
     version: registry.npmmirror.com/lint-staged@13.1.0
@@ -3761,10 +3761,10 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  registry.npmmirror.com/jsx-to-md@0.10.1:
-    resolution: {integrity: sha512-tudv+LWN5ywP4K3LFhTo559y0fJ0ebDURlZOAfLCZAGl9QQHWCkU1/R8WOY2oEFixs4+uHMNABCO6+RC20JvcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.10.1.tgz}
+  registry.npmmirror.com/jsx-to-md@0.11.0:
+    resolution: {integrity: sha512-OjOgLFM3LdNFC2G4tTgSWDoC4mvyI2S3FLg3vm/xVn6CZkjOrPqdpeixykepWlqzcX1Npnv0CCBXpU79hqm40g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.11.0.tgz}
     name: jsx-to-md
-    version: 0.10.1
+    version: 0.11.0
     hasBin: true
     dependencies:
       '@types/node': registry.npmmirror.com/@types/node@18.11.17
