@@ -8,7 +8,7 @@
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
   &emsp;&emsp;&emsp;&emsp;[initialization](#initialization)<br/>
   &emsp;&emsp;&emsp;&emsp;[Project entrance file introduces i18n.js](#project-entrance-file-introduces-i18njs)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Use  `t`  package to translate text](#use--t--package-to-translate-text)<br/>
+  &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹翻译文案](#用-t-包裹翻译文案)<br/>
   &emsp;&emsp;[3. Initialize command line configuration file](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust--i18nrcjs--configuration)<br/>
   &emsp;&emsp;[5. Execute translation command](#5-execute-translation-command)<br/>
@@ -69,14 +69,14 @@ return {
  // The follow -up (rendering) logic of application (rendering)
 ```
 
-### Use  `t`  package to translate text
-This step mainly uses  `t`  function to wrap the text to be translated
+### 用 `t` 包裹翻译文案
+这一步主要是用 `t` 函数包裹需要被翻译的文案
 ```js
 /** test.js in the same directory */
 // If it is mount API to the global object, you can omit the downward code
 import { t } from './i18n.js'
 
-// Translated text
+// 被翻译的文案
 const text = t('hello world')
 ```
 
@@ -173,20 +173,20 @@ setI18n({
 })
 // The application page rendering logic is later
 ```
-So far, the project has been fully internationalized. The  `locale`  above is designated as any of the target languages, and the translated content can be seen on the page. Later, if there is new translation text in the project (you need to wrap it with  `t`  function), you just need to execute the translation command  `npx i18n t`  again to generate the latest language package
+至此，项目已经完全接入了国际化，上面 `locale` 指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的翻译文案（需要用 `t` 函数包裹哟），就仅仅需要再次执行翻译命令 `npx i18n t` 生成最新的语言包就可以了
 
 ## 7. Switch language
-Under normal circumstances, it is OK to execute the following methods, but the rendered content on the page will not be updated. The text in the new language can be displayed only if the  `t`  function for the corresponding text is reexecuted
+正常情况下，执行如下方法就行，但是页面上已渲染的内容不会再更新，只有等对应文案的 `t` 函数重新执行，才有可能显示新语言对应的文案
 ```js
 setI18n({
   locale: 'en', // Set the specified language
 })
 ```
-Although some UI libraries (such as  `React`) can use its  `context`  feature to statically update page content, for translated text content that is not in the component, there will be additional processing costs to statically update it. For example, in the following scenario, the component uses attributes that contain translated content externally
+尽管有的 UI库（例如 `React`）可以利用它的 `context` 特性做到静态更新页面内容，但是对于不在组件内部的翻译文案内容，要做到静态更新也会有额外的处理成本，例如下面的这种场景，组件内使用了外部包含翻译内容的属性
 ```js
 // To achieve static update of this attribute, additional processing is required
 // Here is just to show that this situation exists, not to give a clear solution
-const FOO_TEXT = t('Static Text Attribute')
+const FOO_TEXT = t('静态文案属性')
 
 function App(){
   return (

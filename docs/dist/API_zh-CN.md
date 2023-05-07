@@ -63,7 +63,7 @@
       </pre>
     </td>
     <td>
-      获取国际化文本<br /><br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的翻译文本，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容<br /><br /><b>text</b>：待翻译的文本，该文本需满足特定 <a href="https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> <br /><b>args</b>：表示动态参数，没有个数限制， <code>text</code> 文本中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示动态参数的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复<br /><br />例如：<code>
+      获取国际化文案<br /><br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的翻译文案，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容<br /><br /><b>text</b>：待翻译的文案，该文案需满足特定 <a href="https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> <br /><b>args</b>：表示动态参数，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示动态参数的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复<br /><br />例如：<code>
   t('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
                 '小白')
 </code><br />当前语言（中文:zh）的执行结果是： 这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外<br />百度翻译成英语的结果是：The man's name is 小帅, and he accidentally obtained super power. The woman's name is 小美, and she was accidentally chased by FBI. The child's name is 小白, and she was accidentally hit by an accident

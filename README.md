@@ -37,11 +37,11 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **simple**：Low learning cost and easy to use
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
-* **automatic-translation**：One command can automatically extract the text and translate it into a language pack
-   * **Support incremental translation mode**：Only translate the new text, intelligently remove unused text
+* **automatic-translation**：一个命令即可自动提取文案并翻译生成语言包
+   * **Support incremental translation mode**：只翻译新增文案，智能移除未使用文案
    * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Ali Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
    * **Support multiple translation logs**：The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues
-* **keyless**：There is no need to define the key manually, the text to be translated is the key
+* **keyless**：无需手动定义key，待翻译文案即key
 
 
 # Live Demo
@@ -55,9 +55,9 @@ The library is mainly composed of two parts
 * Command Line Tool
 * Function API
 
-**Command Line Tool**：Any text that needs to be translated based on the specified rules (regular match), and translates the text to the specified target language through the translation platform, and finally generates a language package file
+**Command Line Tool**：根据指定规则（正则匹配）解析出需要翻译的文案，并通过翻译平台将文案翻译到指定目标语言，最后生成语言包文件
 
-A simple example of  [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)  for parsing text is as follows
+解析文案的 [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md) 简易示例如下
 ```js
 /** Normal string */
 
@@ -91,7 +91,7 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 ```
 **Function API**：Connect the international language package into the project, consisting of  `initI18n` ,  `t` ,  `setI18n`  and  `withI18n` 
 * **initI18n**：Used to initialize the fixed configuration, and finally return the objects containing the following 3 APIs
-* **t**：It is used to wrap the translated text to achieve internationalization, and also serves as an identifier for the command line to match the rules of translated text
+* **t**：用于包裹被翻译文案实现国际化，也作为命令行匹配翻译文案规则的标识
 * **setI18n**：Set language and language package
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 

@@ -7,7 +7,7 @@
 * If you use the  `Template Strings`  syntax, you cannot wrap lines
 
 Failure to meet the above conditions may result in
-* Incorrect extraction of translated text
+* 翻译文案提取不正确
 * Incorrect translation result
 
 The following can be matched

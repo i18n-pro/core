@@ -158,7 +158,7 @@
 
 <h4 id="130-command-line-tool-added">Added</h4>
 
-* Add a new log output type: List of incorrectly translated texts
+* 添加新的日志输出类型：翻译有误的文案列表
 
 
 <h4 id="130-command-line-tool-fixed">Fixed</h4>
@@ -204,16 +204,16 @@
 * 新增新的翻译日志类型 `filepaths.json` ：配到的文件路径列表
 * Add  `incremental translation`  mode
    * This mode is enabled by default and can be closed through the command parameter  `--non-incremental` 
-   * Support for translating only untranslated text in the target language
-   * Support intelligent removal of translated but unused text in language pack
+   * 支持只翻译目标语言未翻译过的文案
+   * 支持智能移除语言包中已翻译却未再使用的文案
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
-* New matching rule constraint: the translated text cannot contain the special character  `\t`
+* 新增匹配规则约束：翻译文案中不能包含特殊字符 `\t`
 
 
 <h4 id="120-command-line-tool-fixed">Fixed</h4>
 
-* Fix translation exceptions caused by translation text containing  `\t`  special characters
+* 修复翻译文案包含 `\t` 特殊字符导致翻译异常
 
 
 <h3 id="120-api">API</h3>
@@ -262,7 +262,7 @@
 
 <h4 id="110-command-line-tool-fixed">Fixed</h4>
 
-* Fix the format error of the log file  `translate-success.json`  when the text contains  `.` 
+* 修复日志文件 `translate-success.json` 在文案包含 `.` 的情况下格式错误
 
 
 <h4 id="110-command-line-tool-removed">Removed</h4>

@@ -27,14 +27,14 @@ export default function Vision() {
             render(
               <>
                 <Bold>{tr('自动翻译')}</Bold>：
-                {tr('一个命令即可自动提取文本并翻译生成语言包')}
+                {tr('一个命令即可自动提取文案并翻译生成语言包')}
               </>,
             ),
             [
               'U',
               <>
                 <Bold>{tr('支持增量翻译模式')}</Bold>：
-                {tr('只翻译新增文本，智能移除未使用文本')}
+                {tr('只翻译新增文案，智能移除未使用文案')}
               </>,
               <>
                 <Bold>{tr('支持多翻译平台')}</Bold>：
@@ -52,7 +52,7 @@ export default function Vision() {
             ],
           ],
           <>
-            <Bold>keyless</Bold>：{tr('无需手动定义key，待翻译文本即key')}
+            <Bold>keyless</Bold>：{tr('无需手动定义key，待翻译文案即key')}
           </>,
         ]}
       />

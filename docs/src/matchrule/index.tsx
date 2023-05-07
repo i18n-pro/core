@@ -23,7 +23,7 @@ export default function MatchRule(props) {
         ]}
       />
       {tr('不满足上面条件，可能会导致')}
-      <List items={['U', tr('翻译文本提取不正确'), tr('翻译结果不正确')]} />
+      <List items={['U', tr('翻译文案提取不正确'), tr('翻译结果不正确')]} />
       {tr('以下是可以匹配到的')}
       <CodeBlock
         code={`t('xxx')
