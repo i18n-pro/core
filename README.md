@@ -51,6 +51,9 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 
 # Principle
+
+>以翻译文案作为key是该库所有功能实现的基本原则，如果对此有疑问，[请查看](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
+
 The library is mainly composed of two parts
 * Command Line Tool
 * Function API

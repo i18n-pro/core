@@ -7,6 +7,7 @@ import {
   Bold,
   render,
   CodeBlock,
+  BlockQuote,
 } from 'jsx-to-md'
 import { getDocHref } from '../utils'
 
@@ -14,6 +15,14 @@ export default function Principle() {
   return (
     <>
       <H1>{tr('原理')}</H1>
+      <BlockQuote>
+        {tr(
+          '以翻译文案作为key是该库所有功能实现的基本原则，如果对此有疑问，{0}',
+          render(<Link href={getDocHref('Q&A')}>{tr('请查看')}</Link>),
+        )}
+      </BlockQuote>
+      <Break />
+      <Break />
       {tr('该库主要由两部分构成')}
       <UnorderedList>
         <ListItem>{tr('命令行工具')}</ListItem>

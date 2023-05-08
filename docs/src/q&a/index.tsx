@@ -1,10 +1,94 @@
-import { H1, H2, Break, CodeBlock, TableOfContents, Bold } from 'jsx-to-md'
+import {
+  H1,
+  H2,
+  Break,
+  CodeBlock,
+  TableOfContents,
+  Bold,
+  List,
+} from 'jsx-to-md'
 import { initI18n } from '../utils'
+
+function BasePrinciple() {
+  const extraCopy = tr('自动提取文案')
+
+  return (
+    <>
+      <H2>1. {tr('为什么要以翻译文案作为key呢？')}</H2>
+      <Bold>{tr('为了实现如下目标')}</Bold>
+      <List items={['U', extraCopy, tr('自动翻译'), tr('自动生成语言包')]} />
+      {tr(
+        '以翻译文案作为key才能通过脚本识别出所有需要翻译的文案，从而实现{0}的目标，当然{1}也为后续目标的实现打下了良好的基础',
+        ` \`${extraCopy}\` `,
+        ` \`${extraCopy}\` `,
+      )}
+      <Break />
+      <Break />
+      {tr('通常国际化库都推荐如下形式的写法')}
+      <CodeBlock
+        code={`
+// ${tr('定义一个简单的key')}
+const text1 = t('hello')
+// ${tr('定义一个有分块的key')}
+const text2 = t('module.hello')
+`}
+      />
+      {tr('对应语言包的形式')}
+      <CodeBlock
+        code={`
+// en.json
+{
+  "hello": "hello world",
+  "module": {
+    "hello": "hello xxx",
+  }
+}
+
+// zh-CN.json
+{
+  "hello": "你好世界",
+  "module": {
+    "hello": "你好xxx",
+  }
+}
+`}
+      />
+      <Break />
+      {tr('当前库的写法')}
+      <CodeBlock
+        code={`
+const text1 = t('hello world')
+const text2 = t('hello xxx')
+`}
+      />
+      {tr('对应语言包的形式')}
+      <CodeBlock
+        code={`
+// zh-CN.json
+{
+  "hello world": "你好世界",
+  "hello xxx": "你好xxx",
+}
+`}
+      />
+      {tr('相对于传统的写法，以翻译文案作为key，有如下不足')}
+      <List items={['U', tr('对于一词多译不友好'), tr('生成的语言包较大')]} />
+      {tr('当然也会有如下优点')}
+      <List
+        items={['U', tr('源码可读性强'), tr('源码中文案语言无需生成语言包')]}
+      />
+      {tr(
+        '如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信{0}会带给你非常不错的体验',
+        ' `i18n-pro` ',
+      )}
+    </>
+  )
+}
 
 function NonsupportObjectParamsResolve() {
   return (
     <>
-      <H2>{`1. ${tr('动态参数（插值变量）为什么不支持对象属性解析？')}`}</H2>
+      <H2>{`2. ${tr('动态参数（插值变量）为什么不支持对象属性解析？')}`}</H2>
       {tr('示例代码')}
       <CodeBlock
         code={`// ${tr('对象属性解析')}
@@ -63,7 +147,7 @@ function DateAndTime() {
   return (
     <>
       <H2>
-        {`2. ${tr(
+        {`3. ${tr(
           '动态参数类型{0}和{1}分开有必要吗？',
           `**${tr('日期')}**`,
           `**${tr('时间')}**`,
@@ -82,7 +166,7 @@ function SupportRichText() {
 
   return (
     <>
-      <H2>{`3. ${tr('是否会支持富文本文案？')}`}</H2>
+      <H2>{`4. ${tr('是否会支持富文本文案？')}`}</H2>
       {tr(
         '不会支持，因为自动翻译是该库的核心功能，实现该功能的基本原则就是翻译文案需要为普通的纯文本，支持富文本与现有这一套实现逻辑上会存在冲突',
       )}
@@ -133,6 +217,7 @@ export default function QAndA(props) {
     <>
       <H1 skip>Q&A</H1>
       <TableOfContents text={tr('目录')} open={false} />
+      <BasePrinciple />
       <NonsupportObjectParamsResolve />
       <DateAndTime />
       <SupportRichText />
