@@ -17,7 +17,7 @@ export default function Principle() {
       <H1>{tr('原理')}</H1>
       <BlockQuote>
         {tr(
-          '以翻译文案作为key是该库所有功能实现的基本原则，如果对此有疑问，{0}',
+          '以翻译文案作为key是该库所有功能实现的关键，如果对此有任何疑问，{0}',
           render(<Link href={getDocHref('Q&A')}>{tr('请查看')}</Link>),
         )}
       </BlockQuote>
@@ -45,18 +45,20 @@ export default function Principle() {
         code={`
 /** ${tr('普通字符串')} */
 
-t('xxx')
-t("xxx")
-t(\`xxx\`)
+t('hello world')
+t("hello world")
+t(\`hello world\`)
 
 
 /** ${tr('支持动态参数')} */
 
-t('xxx{0}xxx', param1)
-t('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
+t('hello {0}', '${tr('开发者朋友们')}'),
+t('${tr(
+          '这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持',
+        )}', ' \`i18n-pro\` ', '${tr('使用')}', '${tr('不错')}', ' ⭐️ ')
 
 
-/** ${tr('动态参数类型标记')} */
+/** ${tr('动态参数类型标记，需配合对应的格式化回调')} */
 
 // ${tr('数字类型')}
 t('${tr('用户数达到了{0}', '{n0}')}', 100000000)

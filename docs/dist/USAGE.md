@@ -182,21 +182,7 @@ setI18n({
   locale: 'en', // Set the specified language
 })
 ```
-尽管有的 UI库（例如 `React`）可以利用它的 `context` 特性做到静态更新页面内容，但是对于不在组件内部的翻译文案内容，要做到静态更新也会有额外的处理成本，例如下面的这种场景，组件内使用了外部包含翻译内容的属性
-```js
-// To achieve static update of this attribute, additional processing is required
-// Here is just to show that this situation exists, not to give a clear solution
-const FOO_TEXT = t('静态文案属性')
-
-function App(){
-  return (
-    <>
-      {FOO_TEXT}
-    </>
-  )
-}
-```
-如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**refresh directly**整个页面才能看到翻译后的效果
+如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**refresh directly**整个页面才能看到翻译后的效果，后续会推出 `React`、`Vue`、`SolidJS`、`Svelte` 相关UI库的版本，结合对应库的特性可以做到不刷新页面切换语言，敬请期待
 
 ## 8. DEMO
 真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/eyelly-wu/i18n-pro/tree/vdoc#live-demo) ，当前库 `Command Line Tool` 的控制台输出也接入了国际化

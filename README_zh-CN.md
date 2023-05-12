@@ -52,7 +52,7 @@
 
 # 原理
 
->以翻译文案作为key是该库所有功能实现的基本原则，如果对此有疑问，[请查看](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A_zh-CN.md)
+>以翻译文案作为key是该库所有功能实现的关键，如果对此有任何疑问，[请查看](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A_zh-CN.md)
 
 该库主要由两部分构成
 * 命令行工具
@@ -64,18 +64,18 @@
 ```js
 /** 普通字符串 */
 
-t('xxx')
-t("xxx")
-t(`xxx`)
+t('hello world')
+t("hello world")
+t(`hello world`)
 
 
 /** 支持动态参数 */
 
-t('xxx{0}xxx', param1)
-t('xxx{0}xxx{1}xxx{2}xxx', param1, param2, param3)
+t('hello {0}', '开发者朋友们'),
+t('这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持', ' `i18n-pro` ', '使用', '不错', ' ⭐️ ')
 
 
-/** 动态参数类型标记 */
+/** 动态参数类型标记，需配合对应的格式化回调 */
 
 // 数字类型
 t('用户数达到了{n0}', 100000000)
