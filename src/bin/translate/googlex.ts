@@ -70,6 +70,7 @@ export async function translateByGooglex(props: {
   let errorCode
 
   try {
+    console.log(t('翻译中...'))
     const res = await proxyObject.translate({
       ...props,
       proxy: config.proxy,

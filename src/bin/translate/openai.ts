@@ -46,6 +46,7 @@ export async function translateByOpenAI(props: {
   const text = texts.join('\n')
 
   try {
+    console.log(t('翻译中...'))
     const res: any = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       data: JSON.stringify({

@@ -57,6 +57,7 @@ async function translateImpl(
     errorCode: 'noCode',
   }
   try {
+    console.log(t('翻译中...'))
     response = await translationClient.translateText(request)
     const [{ translations }] = response
     res.translations = translations

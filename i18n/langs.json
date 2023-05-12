@@ -65,6 +65,7 @@
     "已将 {0} 写入到 {1} 中": "{0} has been written to {1}",
     "已翻译文案中缺少动态参数标识：{0}": "The translated text is missing dynamic parameter identifier: {0}",
     "谷歌X": "GoogleX",
-    "指定配置文件路径（参数为绝对路径）": "Specify the configuration file path (the parameter is an absolute path)"
+    "指定配置文件路径（参数为绝对路径）": "Specify the configuration file path (the parameter is an absolute path)",
+    "翻译中...": "translating..."
   }
 }
