@@ -30,8 +30,7 @@
 ### initI18n
 Initialize a fixed configuration to get the core API
 <h4 id="initi18n-type">Type</h4>
-<code>
-  <pre>
+<pre>
 (
   props: {
     namespace: string,
@@ -49,8 +48,7 @@ Initialize a fixed configuration to get the core API
   <a href="#seti18n">setI18n</a>,
   <a href="#withi18n">withI18n</a>,
 })
-  </pre>
-</code>
+</pre>
 
 <h4 id="initi18n-参数说明">参数说明</h4>
 <table>
@@ -115,14 +113,12 @@ Initialize a fixed configuration to get the core API
 ### t
 获取国际化文案<br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的翻译文案，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容
 <h4 id="t-type">Type</h4>
-<code>
-  <pre>
+<pre>
 (
   text: string,
   ...args: Array&lt;string|number|unknown&gt;
 ) =&gt; string
-  </pre>
-</code>
+</pre>
 
 <h4 id="t-参数说明">参数说明</h4>
 <table>
@@ -149,16 +145,14 @@ Initialize a fixed configuration to get the core API
 ### setI18n
 Set language and language package
 <h4 id="seti18n-type">Type</h4>
-<code>
-  <pre>
+<pre>
 (
   props: {
     locale?: string,
     langs?: Record&lt;string, Record&lt;string, string&gt;&gt;,
   }
 ) => <a href="#i18nstate">I18nState</a>
-  </pre>
-</code>
+</pre>
 
 <h4 id="seti18n-参数说明">参数说明</h4>
 <table>
@@ -181,15 +175,13 @@ Set language and language package
 ### withI18n
 Get the  <code>t</code>  function independent of the main program order<br />It is applicable to the server. Each interface response needs to be internationalized
 <h4 id="withi18n-type">Type</h4>
-<code>
-  <pre>
+<pre>
 (
   props:{
     locale: string
   }
 ) => ({ <a href="#t">t</a> })
-  </pre>
-</code>
+</pre>
 
 <h4 id="withi18n-参数说明">参数说明</h4>
 <table>
@@ -209,8 +201,8 @@ Get the  <code>t</code>  function independent of the main program order<br />It 
 ## Function Type
 
 ### I18nState
-命名空间下的状态<code>
-  <pre>
+命名空间下的状态
+<pre>
 type I18nState = {
   namespace: string
   locale?: string
@@ -222,13 +214,12 @@ type I18nState = {
   formatTime?: <a href="#formatdatefunc">FormatDateFunc</a>,
   formatPlural?: <a href="#formatpluralfunc">FormatPluralFunc</a>,
 }
-  </pre>
-</code>
+</pre>
 
 ### FormatFunc
 Common format callback type
 ```ts
-type FormatFunc = <T>(props:{
+type FormatFunc = <T>(props: {
   locale: string, // Current language
   payload: string | number | unknown | T, // dynamic parameters 
 }) => number | string
@@ -237,7 +228,7 @@ type FormatFunc = <T>(props:{
 ### FormatDateFunc
 Format callback function type of Date(Time)
 ```ts
-type FormatDateFunc = <T>(props:{
+type FormatDateFunc = <T>(props: {
   locale: string, // Current language
   payload: string | number | Date | unknown | T, // dynamic parameters 
 }) => string
@@ -246,7 +237,7 @@ type FormatDateFunc = <T>(props:{
 ### FormatPluralFunc
 Format callback function type of Plural
 ```ts
-type FormatPluralFunc = <T>(props:{
+type FormatPluralFunc = <T>(props: {
   locale: string, // Current language
   payload: string | number | unknown | T, // dynamic parameters 
   text: string // A string that combines quantifiers and nouns by default. Languages that do not require plural processing can return this property directly

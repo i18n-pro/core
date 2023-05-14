@@ -174,9 +174,8 @@ function TypeInfo(props: { name: string; desc: string; content: string }) {
     <>
       <H3>{name}</H3>
       {desc}
-      <code>
-        <pre>{content}</pre>
-      </code>
+      <Break />
+      <pre>{content}</pre>
       <Break />
     </>
   )
@@ -202,7 +201,7 @@ ${getFormatTypeString('  ')}
       {tr('通用的格式化回调类型')}
       <CodeBlock
         langType="ts"
-        code={`type FormatFunc = <T>(props:{
+        code={`type FormatFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
   payload: string | number | unknown | T, // ${tr('动态参数')}
 }) => number | string`}
@@ -211,7 +210,7 @@ ${getFormatTypeString('  ')}
       {tr('日期（时间）的格式化回调函数类型')}
       <CodeBlock
         langType="ts"
-        code={`type FormatDateFunc = <T>(props:{
+        code={`type FormatDateFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
   payload: string | number | Date | unknown | T, // ${tr('动态参数')}
 }) => string`}
@@ -220,7 +219,7 @@ ${getFormatTypeString('  ')}
       {tr('复数的格式化回调函数类型')}
       <CodeBlock
         langType="ts"
-        code={`type FormatPluralFunc = <T>(props:{
+        code={`type FormatPluralFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
   payload: string | number | unknown | T, // ${tr('动态参数')}
   text: string // ${tr(

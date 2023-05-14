@@ -30,8 +30,7 @@
 ### initI18n
 初始化固定配置，获取核心 API
 <h4 id="initi18n-类型">类型</h4>
-<code>
-  <pre>
+<pre>
 (
   props: {
     namespace: string,
@@ -49,8 +48,7 @@
   <a href="#seti18n">setI18n</a>,
   <a href="#withi18n">withI18n</a>,
 })
-  </pre>
-</code>
+</pre>
 
 <h4 id="initi18n-参数说明">参数说明</h4>
 <table>
@@ -115,14 +113,12 @@
 ### t
 获取国际化文案<br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的翻译文案，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容
 <h4 id="t-类型">类型</h4>
-<code>
-  <pre>
+<pre>
 (
   text: string,
   ...args: Array&lt;string|number|unknown&gt;
 ) =&gt; string
-  </pre>
-</code>
+</pre>
 
 <h4 id="t-参数说明">参数说明</h4>
 <table>
@@ -149,16 +145,14 @@
 ### setI18n
 设置语言、语言包
 <h4 id="seti18n-类型">类型</h4>
-<code>
-  <pre>
+<pre>
 (
   props: {
     locale?: string,
     langs?: Record&lt;string, Record&lt;string, string&gt;&gt;,
   }
 ) => <a href="#i18nstate">I18nState</a>
-  </pre>
-</code>
+</pre>
 
 <h4 id="seti18n-参数说明">参数说明</h4>
 <table>
@@ -181,15 +175,13 @@
 ### withI18n
 获取独立于主程序的 <code>t</code> 函数<br />适用于服务端，每个接口响应需要做国际化的处理
 <h4 id="withi18n-类型">类型</h4>
-<code>
-  <pre>
+<pre>
 (
   props:{
     locale: string
   }
 ) => ({ <a href="#t">t</a> })
-  </pre>
-</code>
+</pre>
 
 <h4 id="withi18n-参数说明">参数说明</h4>
 <table>
@@ -209,8 +201,8 @@
 ## 函数类型
 
 ### I18nState
-命名空间下的状态<code>
-  <pre>
+命名空间下的状态
+<pre>
 type I18nState = {
   namespace: string
   locale?: string
@@ -222,13 +214,12 @@ type I18nState = {
   formatTime?: <a href="#formatdatefunc">FormatDateFunc</a>,
   formatPlural?: <a href="#formatpluralfunc">FormatPluralFunc</a>,
 }
-  </pre>
-</code>
+</pre>
 
 ### FormatFunc
 通用的格式化回调类型
 ```ts
-type FormatFunc = <T>(props:{
+type FormatFunc = <T>(props: {
   locale: string, // 当前语言
   payload: string | number | unknown | T, // 动态参数
 }) => number | string
@@ -237,7 +228,7 @@ type FormatFunc = <T>(props:{
 ### FormatDateFunc
 日期（时间）的格式化回调函数类型
 ```ts
-type FormatDateFunc = <T>(props:{
+type FormatDateFunc = <T>(props: {
   locale: string, // 当前语言
   payload: string | number | Date | unknown | T, // 动态参数
 }) => string
@@ -246,7 +237,7 @@ type FormatDateFunc = <T>(props:{
 ### FormatPluralFunc
 复数的格式化回调函数类型
 ```ts
-type FormatPluralFunc = <T>(props:{
+type FormatPluralFunc = <T>(props: {
   locale: string, // 当前语言
   payload: string | number | unknown | T, // 动态参数
   text: string // 默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性

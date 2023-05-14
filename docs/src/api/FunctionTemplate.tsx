@@ -10,11 +10,7 @@ export interface FunctionTemplate {
 
 function TypeCode(props: { content: string }) {
   const { content } = props
-  return (
-    <code>
-      <pre>{content}</pre>
-    </code>
-  )
+  return <pre>{content}</pre>
 }
 
 export default function FunctionTemplate(props: FunctionTemplate) {
