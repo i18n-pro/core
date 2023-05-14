@@ -45,7 +45,7 @@ const {
   namespace: 'testI18N',
 })
 
-// 这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API
+// 这里可以挂载 API 到全局对象上，可以避免不同模块都需要通过 import 来引入 API
 // 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户 API 命名冲突
 // 浏览器环境，注意：如果是 Node 环境需要将 window 替换成 global 
 window.t = t
@@ -102,7 +102,7 @@ module.exports = {
     from: 'en',
     to: ['zh-CN', 'ja'],
     codeLocaleMap: {
-      ja: 'jp',
+      'zh-CN': 'zh',
     },
     // proxy: 'http://127.0.0.1:1087',
   },
@@ -118,9 +118,9 @@ module.exports = {
 ```bash
 npx i18n t 
 ```
-命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `zh-CN.json` 和 `jp.json` 
+命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `zh.json` 和 `jp.json` 
 ```text
-// zh-CN.json
+// zh.json
 {
   "hello world": "你好世界"
 }
@@ -134,7 +134,7 @@ npx i18n t
 ```text
 // langs.json
 {
-  "zh-CN": {
+  "zh": {
     "hello world": "你好世界"
   },
   "jp": {
@@ -149,14 +149,14 @@ npx i18n t
 
 如果生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），操作如下：
 ```js
-import zh from './i18n/zh-CN.json'
+import zh from './i18n/zh.json'
 import jp from './i18n/jp.json'
 // ... 其他更多语言
 
 setI18n({
   locale: 'en',
   langs:{
-    'zh-CN': zh,
+    zh,
     jp,
     // ... 其他更多语言
   },

@@ -6,8 +6,12 @@ import {
   H3,
   CodeBlock,
   TableOfContents,
+  getAnchor,
 } from 'jsx-to-md'
 import { getDocHref, initI18n } from '../utils'
+import FunctionTemplate from './FunctionTemplate'
+
+const langsTypeStr = `Record&lt;string, Record&lt;string, string&gt;&gt;`
 
 function renderFormatDesc() {
   const formatTypes = [
@@ -18,110 +22,83 @@ function renderFormatDesc() {
     { type: 'formatPlural', name: tr('复数'), lowTag: 'p', upperTag: 'P' },
   ]
 
-  return (
-    <>
-      {formatTypes.map(({ type, name, lowTag, upperTag }) => {
-        return (
-          <>
-            <br />
-            <b>{type}</b>：
-            {tr(
-              '格式化{0}类型动态参数的回调，对应的类型标记是{1}{2}{3}',
-              render(<b>{name}</b>),
-              render(<b> {lowTag} </b>),
-              tr('或'),
-              render(<b> {upperTag} </b>),
-            )}
-          </>
-        )
-      })}
-    </>
-  )
+  const getDesc = (name: string, lowTag: string, upperTag: string) => {
+    return tr(
+      '格式化{0}类型动态参数的回调，对应的类型标记是{1}{2}{3}',
+      render(<b>{name}</b>),
+      render(<b> {lowTag} </b>),
+      tr('或'),
+      render(<b> {upperTag} </b>),
+    )
+  }
+
+  return formatTypes.reduce((res, { type, name, lowTag, upperTag }) => {
+    res[type] = getDesc(name, lowTag, upperTag)
+    return res
+  }, {})
+}
+
+function getTitleToA(title: string) {
+  return render(<a href={getAnchor(title)}>{title}</a>)
+}
+
+function getFormatTypeString(prefix: '  ' | '    ') {
+  return `${prefix}formatNumber?: ${getTitleToA('FormatFunc')},
+${prefix}formatCurrency?: ${getTitleToA('FormatFunc')},
+${prefix}formatDate?: ${getTitleToA('FormatDateFunc')},
+${prefix}formatTime?: ${getTitleToA('FormatDateFunc')},
+${prefix}formatPlural?: ${getTitleToA('FormatPluralFunc')},`
 }
 
 function APIList() {
   return (
     <>
       <H2>{tr('函数列表')}</H2>
-      {tr('下面的类型是以{0}语法来表示的', ' `TypeScript` ')}
-      <table>
-        <tr>
-          <th>{tr('函数名')}</th>
-          <th>{tr('类型')}</th>
-          <th>{tr('说明')}</th>
-        </tr>
-        <tr>
-          <td>initI18n</td>
-          <td>
-            <pre>
-              {`(
-    props: {
-        namespace: string,
-        locale?: string,
-        langs?: Record<strng, Record<string, string>>,
-        beginIndex?: number,
-        formatNumber?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
-        formatCurrency?: ${render(<a href="#FormatFunc">FormatFunc</a>)},
-        formatDate?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
-        formatTime?: ${render(<a href="#FormatDateFunc">FormatDateFunc</a>)},
-        formatPlural?: ${render(
-          <a href="#FormatPluralFunc">FormatPluralFunc</a>,
-        )},
-    }
+      <FunctionTemplate
+        name="initI18n"
+        description={tr('初始化固定配置，获取核心 API')}
+        type={`(
+  props: {
+    namespace: string,
+    locale?: string,
+    langs?: ${langsTypeStr},
+    beginIndex?: number,
+${getFormatTypeString('    ')}
+  }
 ) => ({
-  setI18n,
-  t,
-  withI18n,
+  ${getTitleToA('t')},
+  ${getTitleToA('setI18n')},
+  ${getTitleToA('withI18n')},
 })`}
-            </pre>
-          </td>
-          <td>
-            {tr('初始化固定配置，获取核心 API')}
-            <br />
-            <br />
-            <b>namespace</b>：{tr('指定命名空间')}
-            <br />
-            <b>locale</b>：{tr('指定当前语言')}
-            <br />
-            <b>langs</b>：{tr('设置当前语言包')}
-            <br />
-            <b>beginIndex</b>：
-            {tr(
-              '设置{0}函数中动态参数起始下标，默认为 0',
-              ` ${render(<code>t</code>)} `,
-            )}
-            {renderFormatDesc()}
-            <br />
-            <br />
-            📢📢📢：
-            {tr(
-              '{0}的值默认跟语言代码相对应，如需自定义，需参考{1}的用法',
-              ` ${render(<code>locale</code>)} `,
-              ` ${render(<code>codeLocaleMap</code>)} `,
-            )}
-          </td>
-        </tr>
-      </table>
-      <span>{tr('以下是核心 API')}</span>
-      <table>
-        <tr>
-          <th>{tr('函数名')}</th>
-          <th>{tr('类型')}</th>
-          <th>{tr('说明')}</th>
-        </tr>
-        <tr>
-          <td>t</td>
-          <td>
-            <pre>
-              {`(
-  text: string,
-  ...args: Array&lt;string|number|unknown&gt;
-) =&gt; string`}
-            </pre>
-          </td>
-          <td>
+        props={{
+          namespace: tr('指定命名空间'),
+          locale: (
+            <>
+              {tr('指定当前语言')}
+              <br />
+              <br />
+              📢📢📢：
+              {tr(
+                '{0}的值默认跟语言代码相对应，如需自定义，需参考{1}的用法',
+                ` ${render(<code>locale</code>)} `,
+                ` ${render(<code>codeLocaleMap</code>)} `,
+              )}
+            </>
+          ),
+          langs: tr('设置当前语言包'),
+          beginIndex: tr(
+            '设置{0}函数中动态参数起始下标，默认为 0',
+            ` ${render(<code>t</code>)} `,
+          ),
+          ...renderFormatDesc(),
+        }}
+      />
+
+      <FunctionTemplate
+        name="t"
+        description={
+          <>
             {tr('获取国际化文案')}
-            <br />
             <br />
             {tr(
               '内部会根据当前语言{0}从语言包{1}中获取{2}对应的翻译文案，未匹配到对应翻译内容会直接显示{3}本身内容',
@@ -130,85 +107,77 @@ function APIList() {
               ` ${render(<code>text</code>)} `,
               ` ${render(<code>text</code>)} `,
             )}
-            <br />
-            <br />
-            <b>text</b>：
-            {tr(
-              '待翻译的文案，该文案需满足特定{0}',
-              ` ${render(
-                <a href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</a>,
-              )} `,
-            )}
-            <br />
-            <b>args</b>：
-            {tr(
-              '表示动态参数，没有个数限制，{0}文案中需要以{1}的形式来接收，{2}表示动态参数的位置，从 0 开始（可在{3}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
-              ` ${render(<code>text</code>)} `,
-              ` ${render(<code>{'{index}'}</code>)} `,
-              ` ${render(<code>index</code>)} `,
-              ` ${render(<code>initI18n</code>)} `,
-            )}
-            <br />
-            <br />
-            {tr('例如')}：
-            {render(
-              <code>
-                {`t('这个男人叫{0}，意外获得了超能力，这个女人叫{1}，意外被{2}追杀，这个小孩叫{3}，意外遭遇了意外', '小帅', '小美', 'FBI',
-                '小白')`}
-              </code>,
-            )}
-            <br />
-            {tr('当前语言（中文:zh）的执行结果是')}：
-            这个男人叫小帅，意外获得了超能力，这个女人叫小美，意外被FBI追杀，这个小孩叫小白，意外遭遇了意外
-            <br />
-            {tr('百度翻译成英语的结果是')}：The man's name is 小帅, and he
-            accidentally obtained super power. The woman's name is 小美, and she
-            was accidentally chased by FBI. The child's name is 小白, and she
-            was accidentally hit by an accident
-          </td>
-        </tr>
-        <tr>
-          <td>setI18n</td>
-          <td>
-            <pre>
-              {`(
-    props: {
-        locale?: string,
-        langs?: Record<string, Record<string, string>>,
-    }
-) => void`}
-            </pre>
-          </td>
-          <td>
-            {tr('设置语言、语言包')}
-            <br />
-            <br />
-            <b>locale</b>：{tr('指定当前语言')}
-            <br />
-            <b>langs</b>：
-            {tr('设置当前语言包，支持增量添加，新增的会覆盖合并到原有的之中')}
-            <br />
-          </td>
-        </tr>
-        <tr>
-          <td>withI18n</td>
-          <td>
-            <pre>
-              {`(
-    props:{
-          locale: string
-    }
-) => ({ t })`}
-            </pre>
-          </td>
-          <td>
+          </>
+        }
+        type={`(
+  text: string,
+  ...args: Array&lt;string|number|unknown&gt;
+) =&gt; string`}
+        props={{
+          text: tr(
+            '待翻译的文案，该文案需满足特定{0}',
+            ` ${render(
+              <a href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</a>,
+            )} `,
+          ),
+          args: tr(
+            '表示动态参数，没有个数限制，{0}文案中需要以{1}的形式来接收，{2}表示动态参数的位置，从 0 开始（可在{3}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
+            ` ${render(<code>text</code>)} `,
+            ` ${render(<code>{'{index}'}</code>)} `,
+            ` ${render(<code>index</code>)} `,
+            ` ${render(<code>initI18n</code>)} `,
+          ),
+        }}
+      />
+
+      <FunctionTemplate
+        name="setI18n"
+        description={tr('设置语言、语言包')}
+        type={`(
+  props: {
+    locale?: string,
+    langs?: ${langsTypeStr},
+  }
+) => ${getTitleToA('I18nState')}`}
+        props={{
+          locale: tr('指定当前语言'),
+          langs: tr(
+            '设置当前语言包，支持增量添加，新增的会覆盖合并到原有的之中',
+          ),
+        }}
+      />
+      <FunctionTemplate
+        name="withI18n"
+        description={
+          <>
             {tr('获取独立于主程序的{0}函数', ` ${render(<code>t</code>)} `)}
             <br />
-            <br />
             {tr('适用于服务端，每个接口响应需要做国际化的处理')}
-          </td>
-        </tr>
-      </table>
+          </>
+        }
+        type={`(
+  props:{
+    locale: string
+  }
+) => ({ ${getTitleToA('t')} })`}
+        props={{
+          locale: tr('指定当前语言'),
+        }}
+      />
+    </>
+  )
+}
+
+function TypeInfo(props: { name: string; desc: string; content: string }) {
+  const { name, desc, content } = props
+  return (
+    <>
+      <H3>{name}</H3>
+      {desc}
+      <code>
+        <pre>{content}</pre>
+      </code>
+      <Break />
     </>
   )
 }
@@ -218,6 +187,17 @@ function FunctionType() {
     <>
       <Break />
       <H2>{tr('函数类型')}</H2>
+      <TypeInfo
+        name="I18nState"
+        desc={tr('命名空间下的状态')}
+        content={`type I18nState = {
+  namespace: string
+  locale?: string
+  langs?: ${langsTypeStr}
+  beginIndex?: number
+${getFormatTypeString('  ')}
+}`}
+      />
       <H3>FormatFunc</H3>
       {tr('通用的格式化回调类型')}
       <CodeBlock

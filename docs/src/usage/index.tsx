@@ -49,7 +49,7 @@ const {
 })
 
 // ${tr(
-          '这里可以挂载 API 到全局对象上，好处出可以避免不同模块都需要通过 import 来引入 API',
+          '这里可以挂载 API 到全局对象上，可以避免不同模块都需要通过 import 来引入 API',
         )}
 // ${tr(
           '注意：如果当前你是在某个独立的第三方库或者组件中使用{0}，不推荐这样做，可能会造成你的用户 API 命名冲突',
@@ -156,12 +156,12 @@ function ExecuteTranslateCommand() {
         '默认配置下，生成的语言包是每个语言单独文件形式{0}，会生成{1}个语言包：{2}和{3}',
         "（`output.langType == 'multiple'`）",
         ' `2` ',
-        ' `zh-CN.json` ',
+        ' `zh.json` ',
         ' `jp.json` ',
       )}
       <CodeBlock
         langType="text"
-        code={`// zh-CN.json
+        code={`// zh.json
 {
   "hello world": "你好世界"
 }
@@ -182,7 +182,7 @@ function ExecuteTranslateCommand() {
         langType="text"
         code={`// langs.json
 {
-  "zh-CN": {
+  "zh": {
     "hello world": "你好世界"
   },
   "jp": {
@@ -208,14 +208,14 @@ function ImportLangs() {
         "（`output.langType == 'multiple'`）",
       )}
       <CodeBlock
-        code={`import zh from './i18n/zh-CN.json'
+        code={`import zh from './i18n/zh.json'
 import jp from './i18n/jp.json'
 // ... ${tr('其他更多语言')}
 
 setI18n({
   locale: 'en',
   langs:{
-    'zh-CN': zh,
+    zh,
     jp,
     // ... ${tr('其他更多语言')}
   },

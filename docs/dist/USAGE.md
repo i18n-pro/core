@@ -45,7 +45,7 @@ const {
   namespace: 'testI18N',
 })
 
-// Here you can mount the API to the global object.
+// 这里可以挂载 API 到全局对象上，可以避免不同模块都需要通过 import 来引入 API
 // 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户 API 命名冲突
 // Browser environment, note: if it is  Node  environment, you need to replace  window  with  global 
 window.t = t
@@ -102,7 +102,7 @@ module.exports = {
     from: 'en',
     to: ['zh-CN', 'ja'],
     codeLocaleMap: {
-      ja: 'jp',
+      'zh-CN': 'zh',
     },
     // proxy: 'http://127.0.0.1:1087',
   },
@@ -118,9 +118,9 @@ Adjust the configuration items in the configuration file according to the requir
 ```bash
 npx i18n t 
 ```
-If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `zh-CN.json`  and  `jp.json` 
+If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `zh.json`  and  `jp.json` 
 ```text
-// zh-CN.json
+// zh.json
 {
   "hello world": "你好世界"
 }
@@ -134,7 +134,7 @@ If the generated language pack is a polymerization form （`output.langType == '
 ```text
 // langs.json
 {
-  "zh-CN": {
+  "zh": {
     "hello world": "你好世界"
   },
   "jp": {
@@ -149,14 +149,14 @@ The language pack already exists, so it needs to be applied to the project
 
 If the generated language pack is a separate file form （`output.langType == 'multiple'`） for each language, the operation is as follows:
 ```js
-import zh from './i18n/zh-CN.json'
+import zh from './i18n/zh.json'
 import jp from './i18n/jp.json'
 // ... More languages
 
 setI18n({
   locale: 'en',
   langs:{
-    'zh-CN': zh,
+    zh,
     jp,
     // ... More languages
   },
