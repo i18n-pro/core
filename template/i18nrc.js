@@ -12,7 +12,7 @@ module.exports = {
     from: 'en',
     to: ['zh-CN', 'ja'],
     codeLocaleMap: {
-      ja: 'jp',
+      'zh-CN': 'zh',
     },
     // proxy: 'http://127.0.0.1:1087',
   },
