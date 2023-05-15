@@ -17,7 +17,7 @@
   &emsp;&emsp;&emsp;&emsp;[withI18n](#withi18n)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[类型](#withi18n-类型)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[参数说明](#withi18n-参数说明)<br/>
-  &emsp;&emsp;[函数类型](#函数类型)<br/>
+  &emsp;&emsp;[其他类型](#其他类型)<br/>
   &emsp;&emsp;&emsp;&emsp;[I18nState](#i18nstate)<br/>
   &emsp;&emsp;&emsp;&emsp;[FormatFunc](#formatfunc)<br/>
   &emsp;&emsp;&emsp;&emsp;[FormatDateFunc](#formatdatefunc)<br/>
@@ -198,8 +198,8 @@
 </table>
 
 
-## 函数类型
-
+## 其他类型
+以下类型是为了方便文档说明，与代码中类型写法上会存在区别，需以实际代码为准
 ### I18nState
 命名空间下的状态
 <pre>

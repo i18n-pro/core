@@ -107,7 +107,7 @@
 
 <h4 id="200-api-added">Added</h4>
 
-* Add support for naming space (non -compatible update)
+* 添加对命名空间的支持
    * New  `initI18n`  function is used to obtain the original core  `t` ,  `setI18n` ,  `withI18n`  function
    * New  `namespace`  attribute is used to support naming space
 

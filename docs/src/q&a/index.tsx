@@ -187,11 +187,6 @@ t('hello {0}world{1}', '<b style="color:red;">', '</b>')
 
 // ${tr('{0}函数执行后返回结果：{1}', 't ', richText1)}`}
       />
-      {tr('渲染效果是：')}
-      <br />
-      {richText1}
-      <br />
-      <br />
       <Bold>{tr('方案二')}</Bold>
       <br />
       <CodeBlock
@@ -200,11 +195,6 @@ t('Hello {0}', \`<b style="color:red;">${"${t('world')}"}</b>\`)
 
 // ${tr('{0}函数执行后返回结果：{1}', 't ', richText1)}`}
       />
-      {tr('渲染效果是：')}
-      <br />
-      {richText2}
-      <br />
-      <br />
       {tr('针对上面两种方案，可以根据实际场景酌情考虑使用')}
     </>
   )

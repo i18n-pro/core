@@ -185,7 +185,10 @@ function FunctionType() {
   return (
     <>
       <Break />
-      <H2>{tr('函数类型')}</H2>
+      <H2>{tr('其他类型')}</H2>
+      {tr(
+        '以下类型是为了方便文档说明，与代码中类型写法上会存在区别，需以实际代码为准',
+      )}
       <TypeInfo
         name="I18nState"
         desc={tr('命名空间下的状态')}

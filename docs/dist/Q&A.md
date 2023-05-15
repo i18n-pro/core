@@ -120,10 +120,10 @@ t('hello {0}world{1}', '<b style="color:red;">', '</b>')
 
 // t 函数执行后返回结果：hello <b style="color:red;">world</b>
 ```
-渲染效果是：<br />hello <b style="color:red;">world</b><br /><br />**方案二**<br />
+**方案二**<br />
 ```js
 t('Hello {0}', `<b style="color:red;">${t('world')}</b>`)
 
 // t 函数执行后返回结果：hello <b style="color:red;">world</b>
 ```
-渲染效果是：<br />hello <b style="color:red;">world</b><br /><br />针对上面两种方案，可以根据实际场景酌情考虑使用
+针对上面两种方案，可以根据实际场景酌情考虑使用
