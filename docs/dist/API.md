@@ -7,17 +7,17 @@
   &emsp;&emsp;[Function List](#function-list)<br/>
   &emsp;&emsp;&emsp;&emsp;[initI18n](#initi18n)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Type](#initi18n-type)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[参数说明](#initi18n-参数说明)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Parameter Description](#initi18n-parameter-description)<br/>
   &emsp;&emsp;&emsp;&emsp;[t](#t)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Type](#t-type)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[参数说明](#t-参数说明)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Parameter Description](#t-parameter-description)<br/>
   &emsp;&emsp;&emsp;&emsp;[setI18n](#seti18n)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Type](#seti18n-type)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[参数说明](#seti18n-参数说明)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Parameter Description](#seti18n-parameter-description)<br/>
   &emsp;&emsp;&emsp;&emsp;[withI18n](#withi18n)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Type](#withi18n-type)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[参数说明](#withi18n-参数说明)<br/>
-  &emsp;&emsp;[其他类型](#其他类型)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Parameter Description](#withi18n-parameter-description)<br/>
+  &emsp;&emsp;[Other Types](#other-types)<br/>
   &emsp;&emsp;&emsp;&emsp;[I18nState](#i18nstate)<br/>
   &emsp;&emsp;&emsp;&emsp;[FormatFunc](#formatfunc)<br/>
   &emsp;&emsp;&emsp;&emsp;[FormatDateFunc](#formatdatefunc)<br/>
@@ -50,7 +50,7 @@ Initialize a fixed configuration to get the core API
 })
 </pre>
 
-<h4 id="initi18n-参数说明">参数说明</h4>
+<h4 id="initi18n-parameter-description">Parameter Description</h4>
 <table>
   <tr>
     <th>Parameter name</th>
@@ -111,7 +111,7 @@ Initialize a fixed configuration to get the core API
 </table>
 
 ### t
-获取国际化文案<br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的翻译文案，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容
+Get Internationalization Text<br />Internally, the translation text corresponding to  <code>text</code>  will be obtained from the language package  <code>langs</code>  based on the current language  <code>locale</code> . If no corresponding translation content is found, the original content of  <code>text</code>  will be displayed directly
 <h4 id="t-type">Type</h4>
 <pre>
 (
@@ -120,7 +120,7 @@ Initialize a fixed configuration to get the core API
 ) =&gt; string
 </pre>
 
-<h4 id="t-参数说明">参数说明</h4>
+<h4 id="t-parameter-description">Parameter Description</h4>
 <table>
   <tr>
     <th>Parameter name</th>
@@ -130,13 +130,13 @@ Initialize a fixed configuration to get the core API
     <tr>
       <td>text</td>
       <td>
-        待翻译的文案，该文案需满足特定 <a href="https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md">Matching Rules</a> 
+        The text to be translated should meet specific  <a href="https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
       </td>
     </tr>
     <tr>
       <td>args</td>
       <td>
-        表示动态参数，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示动态参数的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
+        Represents dynamic parameters, with no limit on the number.  <code>text</code>  in the text should be received in the form of  <code>{index}</code> , and  <code>index</code>  represents the position of the dynamic parameter, starting from 0 (the starting value can be customized in  <code>initI18n</code> ). The first parameter corresponds to 0, and the second parameter corresponds to 1, and so on
       </td>
     </tr>
   </tr>
@@ -154,7 +154,7 @@ Set language and language package
 ) => <a href="#i18nstate">I18nState</a>
 </pre>
 
-<h4 id="seti18n-参数说明">参数说明</h4>
+<h4 id="seti18n-parameter-description">Parameter Description</h4>
 <table>
   <tr>
     <th>Parameter name</th>
@@ -183,7 +183,7 @@ Get the  <code>t</code>  function independent of the main program order<br />It 
 ) => ({ <a href="#t">t</a> })
 </pre>
 
-<h4 id="withi18n-参数说明">参数说明</h4>
+<h4 id="withi18n-parameter-description">Parameter Description</h4>
 <table>
   <tr>
     <th>Parameter name</th>
@@ -198,10 +198,10 @@ Get the  <code>t</code>  function independent of the main program order<br />It 
 </table>
 
 
-## 其他类型
-以下类型是为了方便文档说明，与代码中类型写法上会存在区别，需以实际代码为准
+## Other Types
+The following types are for convenience in document description, and there may be differences in the type writing in the code. Please refer to the actual code for accuracy
 ### I18nState
-命名空间下的状态
+State under the namespace
 <pre>
 type I18nState = {
   namespace: string

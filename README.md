@@ -37,11 +37,11 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **simple**：Low learning cost and easy to use
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
-* **automatic-translation**：一个命令即可自动提取文案并翻译生成语言包
-   * **Support incremental translation mode**：只翻译新增文案，智能移除未使用文案
+* **automatic-translation**：One command can automatically extract text and translate it to generate language packs
+   * **Support incremental translation mode**：Only translate new text and intelligently remove unused text
    * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Ali Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
    * **Support multiple translation logs**：The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues
-* **keyless**：无需手动定义key，待翻译文案即key
+* **keyless**：No need to manually define keys, the text to be translated is the key
 
 
 # Live Demo
@@ -52,15 +52,15 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 # Principle
 
->以翻译文案作为key是该库所有功能实现的关键，如果对此有任何疑问，[请查看](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
+>Using the translated text as the key is the key to all the functions of this library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
 
 The library is mainly composed of two parts
 * Command Line Tool
 * Function API
 
-**Command Line Tool**：根据指定规则（正则匹配）解析出需要翻译的文案，并通过翻译平台将文案翻译到指定目标语言，最后生成语言包文件
+**Command Line Tool**：Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate a language pack file
 
-解析文案的 [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md) 简易示例如下
+An example of parsing text using  [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)  is as follows:
 ```js
 /** Normal string */
 
@@ -71,11 +71,11 @@ t(`hello world`)
 
 /** Support dynamic parameters */
 
-t('hello {0}', '开发者朋友们'),
-t('这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持', ' `i18n-pro` ', '使用', '不错', ' ⭐️ ')
+t('hello {0}', 'Developer friends'),
+t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', 'good', ' ⭐️ ')
 
 
-/** 动态参数类型标记，需配合对应的格式化回调 */
+/** Dynamic parameter type markers, which need to be used with corresponding formatting callbacks */
 
 // Number Type
 t('The number of users has reached {n0}', 100000000)
@@ -94,7 +94,7 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 ```
 **Function API**：Connect the international language package into the project, consisting of  `initI18n` ,  `t` ,  `setI18n`  and  `withI18n` 
 * **initI18n**：Used to initialize the fixed configuration, and finally return the objects containing the following 3 APIs
-* **t**：用于包裹被翻译文案实现国际化，也作为命令行匹配翻译文案规则的标识
+* **t**：Used to wrap translated text for internationalization and as an identifier for command line matching of translation text rules
 * **setI18n**：Set language and language package
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 

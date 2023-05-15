@@ -1,13 +1,13 @@
 
 # Matching Rules
- `t` 函数第一个参数的要求：
-* 只能是纯字符串，不能包含变量，或者 `JavaScript` 语句
+Requirements for the first parameter of  `t`  function：
+* It can only be a pure string, cannot contain variables or  `JavaScript`  statements
 * Cannot contain special characters such as  `\n` and `\t` 
 * The beginning and end cannot contain spaces
 * If you use the  `Template Strings`  syntax, you cannot wrap lines
 
 Failure to meet the above conditions may result in
-* 翻译文案提取不正确
+* Incorrect extraction of translated texts
 * Incorrect translation result
 
 The following can be matched

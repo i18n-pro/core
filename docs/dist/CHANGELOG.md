@@ -101,13 +101,13 @@
    * More concise
       * `i18n` → `t`
 * Adjust  `setI18n`  usage
-   *  `setI18n`  Function can only modify  `locale`  and  `langs`  dynamically. The other attributes are first called and defined by  `initI18n` .
+   *  `setI18n`  Function can only modify  `locale`  and  `langs`  dynamically. The other attributes are first called and defined by  `initI18n` 
    * Increase the return parameters, and will return all the configuration status in the current name space
 
 
 <h4 id="200-api-added">Added</h4>
 
-* 添加对命名空间的支持
+* Added support for namespaces
    * New  `initI18n`  function is used to obtain the original core  `t` ,  `setI18n` ,  `withI18n`  function
    * New  `namespace`  attribute is used to support naming space
 
@@ -116,7 +116,7 @@
 
 <h4 id="200-documentation-changed">Changed</h4>
 
-* 更新 `Changelog` 文档格式，将独立区分 `Command Line Tool` 、 `API` 、 `Documentation` 更新的内容
+* Updated the format of the  `Changelog`  documentation, distinguishing the contents updated independently in  `Command Line Tool` ,  `API` , and  `Documentation` 
 
 
 <h4 id="200-documentation-added">Added</h4>
@@ -126,7 +126,7 @@
 
 <h4 id="200-documentation-fixed">Fixed</h4>
 
-* 修复 `Changelog` 文档中相同标题生成的目录锚点导航异常
+* Fixed the navigation error caused by generating the same anchor point in the  `Changelog`  documentation
 
 
 ## [1.3.2] - 2022-09-24
@@ -158,7 +158,7 @@
 
 <h4 id="130-command-line-tool-added">Added</h4>
 
-* 添加新的日志输出类型：翻译有误的文案列表
+* Added a new log output type: the list of incorrectly translated text
 
 
 <h4 id="130-command-line-tool-fixed">Fixed</h4>
@@ -201,19 +201,19 @@
 <h4 id="120-command-line-tool-added">Added</h4>
 
 * Add time consuming statistics output of translation command execution
-* 新增新的翻译日志类型 `filepaths.json` ：配到的文件路径列表
+* Added a new translation log type  `filepaths.json` : the list of file paths that are matched
 * Add  `incremental translation`  mode
    * This mode is enabled by default and can be closed through the command parameter  `--non-incremental` 
-   * 支持只翻译目标语言未翻译过的文案
-   * 支持智能移除语言包中已翻译却未再使用的文案
+   * Supports translating only the text that has not been translated in the target language
+   * Supports intelligently removing the translated text that has not been used in the language package
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
-* 新增匹配规则约束：翻译文案中不能包含特殊字符 `\t`
+* Added matching rule constraints: the translation text cannot contain special characters  `\t`
 
 
 <h4 id="120-command-line-tool-fixed">Fixed</h4>
 
-* 修复翻译文案包含 `\t` 特殊字符导致翻译异常
+* Fixed translation errors caused by the translation text containing special characters  `\t` 
 
 
 <h3 id="120-api">API</h3>
@@ -232,7 +232,7 @@
 
 <h4 id="120-documentation-added">Added</h4>
 
-* 新增[Translation log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)文档说明
+* Added documentation for [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25
@@ -262,7 +262,7 @@
 
 <h4 id="110-command-line-tool-fixed">Fixed</h4>
 
-* 修复日志文件 `translate-success.json` 在文案包含 `.` 的情况下格式错误
+* Fixed the formatting error in the translation log file  `translate-success.json`  when the text contains  `.` 
 
 
 <h4 id="110-command-line-tool-removed">Removed</h4>

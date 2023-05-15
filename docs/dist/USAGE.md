@@ -8,7 +8,7 @@
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
   &emsp;&emsp;&emsp;&emsp;[initialization](#initialization)<br/>
   &emsp;&emsp;&emsp;&emsp;[Project entrance file introduces i18n.js](#project-entrance-file-introduces-i18njs)<br/>
-  &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹翻译文案](#用-t-包裹翻译文案)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Wrap the translation text with  `t` ](#wrap-the-translation-text-with--t-)<br/>
   &emsp;&emsp;[3. Initialize command line configuration file](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust--i18nrcjs--configuration)<br/>
   &emsp;&emsp;[5. Execute translation command](#5-execute-translation-command)<br/>
@@ -45,14 +45,14 @@ const {
   namespace: 'testI18N',
 })
 
-// 这里可以挂载 API 到全局对象上，可以避免不同模块都需要通过 import 来引入 API
-// 注意：如果当前你是在某个独立的第三方库或者组件中使用 i18n-pro，不推荐这样做，可能会造成你的用户 API 命名冲突
+// Here, API can be mounted on the global object to avoid the need for different modules to import API
+// Note: If you are currently using  i18n-pro in a standalone third-party library or component, it is not recommended to do so as it may cause naming conflicts with your users' API
 // Browser environment, note: if it is  Node  environment, you need to replace  window  with  global 
 window.t = t
 window.setI18n = setI18n
 window.withI18n = withI18n
 
-// 不挂载 API 到全局对象上的话，需要导出 API 以便于其他模块能使用对应 API
+// If API is not mounted on the global object, it needs to be exported so that other modules can use the corresponding API
 return {
   t,
   setI18n,
@@ -69,14 +69,14 @@ return {
  // The follow -up (rendering) logic of application (rendering)
 ```
 
-### 用 `t` 包裹翻译文案
-这一步主要是用 `t` 函数包裹需要被翻译的文案
+### Wrap the translation text with  `t` 
+This step mainly wraps the text to be translated with the  `t`  function
 ```js
 /** test.js in the same directory */
 // If it is mount API to the global object, you can omit the downward code
 import { t } from './i18n.js'
 
-// 被翻译的文案
+// The text to be translated
 const text = t('hello world')
 ```
 
@@ -173,19 +173,19 @@ setI18n({
 })
 // The application page rendering logic is later
 ```
-至此，项目已经完全接入了国际化，上面 `locale` 指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的翻译文案（需要用 `t` 函数包裹哟），就仅仅需要再次执行翻译命令 `npx i18n t` 生成最新的语言包就可以了
+At this point, the project has been fully internationalized, with  `locale`  specified as any target language, and the translated content can be seen on the page. If there are new translation texts in the project (which need to be wrapped with the  `t`  function), just execute the translation command  `npx i18n t`  to generate the latest language pack
 
 ## 7. Switch language
-正常情况下，执行如下方法就行，但是页面上已渲染的内容不会再更新，只有等对应文案的 `t` 函数重新执行，才有可能显示新语言对应的文案
+Normally, just execute the following method, but the content already rendered on the page will not be updated until the  `t`  function corresponding to the text is executed again, which may display the text corresponding to the new language
 ```js
 setI18n({
   locale: 'en', // Set the specified language
 })
 ```
-如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**refresh directly**整个页面才能看到翻译后的效果，后续会推出 `React`、`Vue`、`SolidJS`、`Svelte` 相关UI库的版本，结合对应库的特性可以做到不刷新页面切换语言，敬请期待
+If this library is used directly in a frontend application, when switching languages on the page, only the entire page can see the translated effect through **refresh directly**. A version of  `React`、`Vue`、`SolidJS`、`Svelte`  related UI library will be released later, which can achieve switching languages without refreshing the page by combining with the characteristics of the corresponding library. Stay tuned
 
 ## 8. DEMO
-真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/eyelly-wu/i18n-pro/tree/vdoc#live-demo) ，当前库 `Command Line Tool` 的控制台输出也接入了国际化
+Real code examples can be found in the  [Live Demo](https://github.com/eyelly-wu/i18n-pro/tree/vdoc#live-demo)  section of the  `README`  documentation, and the console output of the current library  `Command Line Tool`  has also been internationalized
 
-通过命令 `npx i18n h -L zh` 就能看中文版了
+You can see the Chinese version by executing the command  `npx i18n h -L zh` 
 ![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")<br />If you are interested, you can look at the source code
