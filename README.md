@@ -39,7 +39,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 * **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
 * **automatic-translation**：One command can automatically extract text and translate it to generate language packs
    * **Support incremental translation mode**：Only translate new text and intelligently remove unused text
-   * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Ali Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
+   * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
    * **Support multiple translation logs**：The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues
 * **keyless**：No need to manually define keys, the text to be translated is the key
 
@@ -75,7 +75,7 @@ t('hello {0}', 'Developer friends'),
 t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', 'good', ' ⭐️ ')
 
 
-/** Dynamic parameter type markers, which need to be used with corresponding formatting callbacks */
+/** Dynamic parameter type tags, which need to be used with corresponding formatting callbacks */
 
 // Number Type
 t('The number of users has reached {n0}', 100000000)
@@ -84,7 +84,7 @@ t('The number of users has reached {n0}', 100000000)
 t('The selling price is {c0}', 14999)
 
 // Date Type
-t('Today's date is {d0}', new Date())
+t(`Today's date is {d0}`, new Date())
 
 // Time Type
 t('Current time: {t0}', new Date())

@@ -157,7 +157,7 @@ function ExecuteTranslateCommand() {
         "（`output.langType == 'multiple'`）",
         ' `2` ',
         ' `zh.json` ',
-        ' `jp.json` ',
+        ' `ja.json` ',
       )}
       <CodeBlock
         langType="text"
@@ -166,7 +166,7 @@ function ExecuteTranslateCommand() {
   "hello world": "你好世界"
 }
 
-// jp.json
+// ja.json
 {
   "hello world": "こんにちは世界"
 }
@@ -185,7 +185,7 @@ function ExecuteTranslateCommand() {
   "zh": {
     "hello world": "你好世界"
   },
-  "jp": {
+  "ja": {
     "hello world": "こんにちは世界"
   }
 }
@@ -199,7 +199,7 @@ function ImportLangs() {
   return (
     <>
       <Break />
-      <H2>{`6. ${tr('引入语言包文件')}`}</H2>
+      <H2>{`6. ${tr('引入语言包')}`}</H2>
       {tr('语言包已经有了，就需要应用到项目中了')}
       <Break />
       <Break />
@@ -209,14 +209,14 @@ function ImportLangs() {
       )}
       <CodeBlock
         code={`import zh from './i18n/zh.json'
-import jp from './i18n/jp.json'
+import ja from './i18n/ja.json'
 // ... ${tr('其他更多语言')}
 
 setI18n({
   locale: 'en',
   langs:{
     zh,
-    jp,
+    ja,
     // ... ${tr('其他更多语言')}
   },
 })

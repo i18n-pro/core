@@ -79,7 +79,7 @@
    * OpenAI
    * Google
    * Microsoft
-   * Ali Cloud
+   * Alibaba Cloud
    * Tencent
    * Youdao
 * Add  `-P` | `--path`  parameter to initialization command and translation command to support flexible specification of configuration file path
@@ -172,7 +172,7 @@
 
 * Add  `withI18N`  function API to support server scenarios
 * Add dynamic parameters type tags and type formatting callback functions
-   * Support dynamic parameters markers of Number, Currency, Date, Time, Plural, etc
+   * Support dynamic parameters tags of Number, Currency, Date, Time, Plural, etc
    * `setI18N`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
 
 

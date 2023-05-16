@@ -12,7 +12,7 @@
   &emsp;&emsp;[3. 初始化命令行配置文件](#3-初始化命令行配置文件)<br/>
   &emsp;&emsp;[4. 调整 `i18nrc.js` 配置](#4-调整-i18nrcjs-配置)<br/>
   &emsp;&emsp;[5. 执行翻译命令](#5-执行翻译命令)<br/>
-  &emsp;&emsp;[6. 引入语言包文件](#6-引入语言包文件)<br/>
+  &emsp;&emsp;[6. 引入语言包](#6-引入语言包)<br/>
   &emsp;&emsp;[7. 切换语言](#7-切换语言)<br/>
   &emsp;&emsp;[8. DEMO](#8-demo)<br/>
 
@@ -118,14 +118,14 @@ module.exports = {
 ```bash
 npx i18n t 
 ```
-命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `zh.json` 和 `jp.json` 
+命令执行成功的话，会在指定的目录下生成语言包文件<br /><br />默认配置下，生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），会生成 `2` 个语言包： `zh.json` 和 `ja.json` 
 ```text
 // zh.json
 {
   "hello world": "你好世界"
 }
 
-// jp.json
+// ja.json
 {
   "hello world": "こんにちは世界"
 }
@@ -137,27 +137,27 @@ npx i18n t
   "zh": {
     "hello world": "你好世界"
   },
-  "jp": {
+  "ja": {
     "hello world": "こんにちは世界"
   }
 }
 ```
 
 
-## 6. 引入语言包文件
+## 6. 引入语言包
 语言包已经有了，就需要应用到项目中了
 
 如果生成的语言包是每个语言单独文件形式（`output.langType == 'multiple'`），操作如下：
 ```js
 import zh from './i18n/zh.json'
-import jp from './i18n/jp.json'
+import ja from './i18n/ja.json'
 // ... 其他更多语言
 
 setI18n({
   locale: 'en',
   langs:{
     zh,
-    jp,
+    ja,
     // ... 其他更多语言
   },
 })

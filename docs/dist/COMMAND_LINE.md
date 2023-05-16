@@ -4,8 +4,8 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[1.  `i18nrc.js`  configuration](#1--i18nrcjs--configuration)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Basic configuration](#basic-configuration)<br/>
+  &emsp;&emsp;[1.  `i18nrc.js`  Configuration](#1--i18nrcjs--configuration)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Basic Configuration](#basic-configuration)<br/>
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
   &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>
   &emsp;&emsp;&emsp;&emsp;[OpenAIConfig](#openaiconfig)<br/>
@@ -21,9 +21,9 @@
 
 </details>
 
-## 1.  `i18nrc.js`  configuration
+## 1.  `i18nrc.js`  Configuration
 
-### Basic configuration
+### Basic Configuration
 
 |Name|Type|Required|Default|Description|
 |:-:|:-:|:-:|:-:|:-|
@@ -31,15 +31,15 @@
 |entry|string|yes|-|Specify the translation file directory (absolute path)|
 |fileRegExp|RegExp|no| `/.[jt]s$/` |The regular expression that matching filename<br /><br />Used to filter files to be translated|
 |output|[Output](#output)|yes|-|The configuration associated with the output file|
-|translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|no|googlex|Specify the translation platform, default<br /><br />After specifying  `translator` , you need to cooperate with the corresponding configuration file<br />For example,  `translator`  configuration to  `googlex` , then you need to configure  `googlexConfig` |
-|googlexConfig|[GooglexConfig](#googlexconfig)|no|-|Google x Translation -related configuration|
-|openaiConfig|[OpenaiConfig](#openaiconfig)|no|-|OpenAI Translation -related configuration|
-|googleConfig|[GoogleConfig](#googleconfig)|no|-|Google Translation -related configuration|
-|microsoftConfig|[MicrosoftConfig](#microsoftconfig)|no|-|Microsoft Translation -related configuration|
-|baiduConfig|[BaiduConfig](#baiduconfig)|no|-|Baidu Translation -related configuration|
-|youdaoConfig|[YoudaoConfig](#youdaoconfig)|no|-|Youdao Translation -related configuration|
-|tencentConfig|[TencentConfig](#tencentconfig)|no|-|Tencent Translation -related configuration|
-|aliyunConfig|[AliyunConfig](#aliyunconfig)|no|-|Ali Cloud Translation -related configuration|
+|translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|no|googlex|Specify the translation platform, default is  `googlex` <br /><br />After specifying  `translator` , you need to cooperate with the corresponding configuration file<br />For example,  `translator`  configuration to  `googlex` , then you need to configure  `googlexConfig` |
+|googlexConfig|[GooglexConfig](#googlexconfig)|no|-|Translation-related configuration for Google x|
+|openaiConfig|[OpenaiConfig](#openaiconfig)|no|-|Translation-related configuration for OpenAI|
+|googleConfig|[GoogleConfig](#googleconfig)|no|-|Translation-related configuration for Google|
+|microsoftConfig|[MicrosoftConfig](#microsoftconfig)|no|-|Translation-related configuration for Microsoft|
+|baiduConfig|[BaiduConfig](#baiduconfig)|no|-|Translation-related configuration for Baidu|
+|youdaoConfig|[YoudaoConfig](#youdaoconfig)|no|-|Translation-related configuration for Youdao|
+|tencentConfig|[TencentConfig](#tencentconfig)|no|-|Translation-related configuration for Tencent|
+|aliyunConfig|[AliyunConfig](#aliyunconfig)|no|-|Translation-related configuration for Alibaba Cloud|
 
 ### Output
 Configuration of output files
@@ -55,7 +55,7 @@ Google X translation configuration
 
 |Name|Type|Required|Default|Description|
 |:-:|:-:|:-:|:-:|:-|
-|proxy|string|no|-|Configuration proxy service<br /><br />Some countries and regions cannot access the  `谷歌`  service normally, and need to be configured with agents<br />格式：`protocol://hostname:port`<br />例如：`http://127.0.0.1:8087`|
+|proxy|string|no|-|Configuration proxy service<br /><br />Some countries and regions cannot access the  `Google`  service normally, and need to be configured with agents<br />Format：`protocol://hostname:port`<br />For example：`http://127.0.0.1:8087`|
 |from|string|yes|-|Language code of the translated text (e.g.  `zh-CN` for Chinese,  `en` for English)<br /><br />[Support language](https://github.com/AidanWelch/google-translate-api)，Need to check the corresponding documentation|
 |to|string[]|yes|-|The target language code for translation, with the same format as above<br /><br />📢📢📢：If the target language is configured as  `['en']`, the generated filename (`output.langType=='multiple'`） is  `en.json`. When setting the language,  `locale`  must also be  `'en'`. If  `locale`  needs to be set as  `'en_US'` , it needs to be used in conjunction with  `codeLocaleMap` |
 |codeLocaleMap|Record<string, string>|no|{}|Set the mapping relationship between language code and  `locale` <br /><br />For example, if the target language is  `['en']` and you want to set the value of  `locale`  to  `'en_US'` , you need to configure  `codeLocaleMap`  to  `{"en":"en_US"}` , and the final generated filename (`output.langType=='multiple'`） will also become  `en_US.json` |

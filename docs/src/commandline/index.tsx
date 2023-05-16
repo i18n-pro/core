@@ -330,12 +330,12 @@ function GooglexConfig() {
           <br />
           {tr(
             '部分国家和地区不能正常访问{0}服务，需要配置代理才行',
-            ' `谷歌` ',
+            ` \`${tr('谷歌')}\` `,
           )}
           <br />
-          格式：`protocol://hostname:port`
+          {tr('格式')}：`protocol://hostname:port`
           <br />
-          例如：`http://127.0.0.1:8087`
+          {tr('例如')}：`http://127.0.0.1:8087`
         </>
       ),
     },

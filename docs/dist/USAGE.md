@@ -6,14 +6,14 @@
 
   &emsp;&emsp;[1. Install](#1-install)<br/>
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
-  &emsp;&emsp;&emsp;&emsp;[initialization](#initialization)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Project entrance file introduces i18n.js](#project-entrance-file-introduces-i18njs)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Wrap the translation text with  `t` ](#wrap-the-translation-text-with--t-)<br/>
-  &emsp;&emsp;[3. Initialize command line configuration file](#3-initialize-command-line-configuration-file)<br/>
-  &emsp;&emsp;[4. Adjust  `i18nrc.js`  configuration](#4-adjust--i18nrcjs--configuration)<br/>
-  &emsp;&emsp;[5. Execute translation command](#5-execute-translation-command)<br/>
-  &emsp;&emsp;[6. Importing language pack files](#6-importing-language-pack-files)<br/>
-  &emsp;&emsp;[7. Switch language](#7-switch-language)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Initialization](#initialization)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Importing i18n.js in the Project Entry File](#importing-i18njs-in-the-project-entry-file)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Wrap the Translation Text with  `t` ](#wrap-the-translation-text-with--t-)<br/>
+  &emsp;&emsp;[3. Initialize Command Line Configuration File](#3-initialize-command-line-configuration-file)<br/>
+  &emsp;&emsp;[4. Adjust  `i18nrc.js`  Configuration](#4-adjust--i18nrcjs--configuration)<br/>
+  &emsp;&emsp;[5. Execute Translation Command](#5-execute-translation-command)<br/>
+  &emsp;&emsp;[6. Importing Language Pack](#6-importing-language-pack)<br/>
+  &emsp;&emsp;[7. Switch Language](#7-switch-language)<br/>
   &emsp;&emsp;[8. DEMO](#8-demo)<br/>
 
 </details>
@@ -30,7 +30,7 @@ pnpm i i18n-pro
 
 ## 2. Access Function API
 
-### initialization
+### Initialization
 
 ```js
 // i18n.js
@@ -60,16 +60,16 @@ return {
 }
 ```
 
-### Project entrance file introduces i18n.js
+### Importing i18n.js in the Project Entry File
 
 ```js
  // App.js
  import './i18n.js'
 
- // The follow -up (rendering) logic of application (rendering)
+ // The subsequent execution (rendering) logic of the application
 ```
 
-### Wrap the translation text with  `t` 
+### Wrap the Translation Text with  `t` 
 This step mainly wraps the text to be translated with the  `t`  function
 ```js
 /** test.js in the same directory */
@@ -81,7 +81,7 @@ const text = t('hello world')
 ```
 
 
-## 3. Initialize command line configuration file
+## 3. Initialize Command Line Configuration File
 Enter the following command at the command line terminal, [more commands](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md#command-list)
 ```bash
 npx i18n init 
@@ -110,22 +110,22 @@ module.exports = {
 ```
 
 
-## 4. Adjust  `i18nrc.js`  configuration
+## 4. Adjust  `i18nrc.js`  Configuration
 Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md#1--i18nrcjs--configuration) of configuration items
 
-## 5. Execute translation command
+## 5. Execute Translation Command
 
 ```bash
 npx i18n t 
 ```
-If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `zh.json`  and  `jp.json` 
+If the command is executed successfully, the language pack file will be generated in the specified directory<br /><br />Under the default configuration, the generated language package is the form of each language separate document （`output.langType == 'multiple'`）, which will generate  `2`  language pack:  `zh.json`  and  `ja.json` 
 ```text
 // zh.json
 {
   "hello world": "你好世界"
 }
 
-// jp.json
+// ja.json
 {
   "hello world": "こんにちは世界"
 }
@@ -137,27 +137,27 @@ If the generated language pack is a polymerization form （`output.langType == '
   "zh": {
     "hello world": "你好世界"
   },
-  "jp": {
+  "ja": {
     "hello world": "こんにちは世界"
   }
 }
 ```
 
 
-## 6. Importing language pack files
+## 6. Importing Language Pack
 The language pack already exists, so it needs to be applied to the project
 
 If the generated language pack is a separate file form （`output.langType == 'multiple'`） for each language, the operation is as follows:
 ```js
 import zh from './i18n/zh.json'
-import jp from './i18n/jp.json'
+import ja from './i18n/ja.json'
 // ... More languages
 
 setI18n({
   locale: 'en',
   langs:{
     zh,
-    jp,
+    ja,
     // ... More languages
   },
 })
@@ -175,7 +175,7 @@ setI18n({
 ```
 At this point, the project has been fully internationalized, with  `locale`  specified as any target language, and the translated content can be seen on the page. If there are new translation texts in the project (which need to be wrapped with the  `t`  function), just execute the translation command  `npx i18n t`  to generate the latest language pack
 
-## 7. Switch language
+## 7. Switch Language
 Normally, just execute the following method, but the content already rendered on the page will not be updated until the  `t`  function corresponding to the text is executed again, which may display the text corresponding to the new language
 ```js
 setI18n({
