@@ -9,7 +9,7 @@ import {
   CodeBlock,
   BlockQuote,
 } from 'jsx-to-md'
-import { getDocHref } from '../utils'
+import { getDocHref, getTranslationText } from '../utils'
 
 export default function Principle() {
   return (
@@ -17,7 +17,8 @@ export default function Principle() {
       <H1>{tr('原理')}</H1>
       <BlockQuote>
         {tr(
-          '以翻译文案作为key是该库所有功能实现的关键，如果对此有任何疑问，{0}',
+          '以{0}作为key是该库所有功能实现的关键，如果对此有任何疑问，{1}',
+          getTranslationText(),
           render(<Link href={getDocHref('Q&A')}>{tr('请查看')}</Link>),
         )}
       </BlockQuote>
@@ -55,7 +56,7 @@ t(\`hello world\`)
 t('hello {0}', '${tr('开发者朋友们')}'),
 t('${tr(
           '这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持',
-        )}', ' \`i18n-pro\` ', '${tr('使用')}', '${tr('不错')}', ' ⭐️ ')
+        )}', ' \`i18n-pro\` ', '${tr('使用')}', \`${tr('不错')}\`, ' ⭐️ ')
 
 
 /** ${tr('动态参数类型标记，需配合对应的格式化回调')} */
@@ -96,7 +97,9 @@ t('${tr(
         <ListItem>
           <Bold>t</Bold>：
           {tr(
-            '用于包裹被翻译文案实现国际化，也作为命令行匹配翻译文案规则的标识',
+            '用于包裹{0}实现国际化，也作为命令行匹配{1}规则的标识',
+            getTranslationText(),
+            getTranslationText(),
           )}
         </ListItem>
         <ListItem>

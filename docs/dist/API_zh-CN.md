@@ -111,7 +111,7 @@
 </table>
 
 ### t
-获取国际化文案<br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的翻译文案，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容
+获取国际化文案<br />内部会根据当前语言 <code>locale</code> 从语言包 <code>langs</code> 中获取 <code>text</code> 对应的 `翻译文案` ，未匹配到对应翻译内容会直接显示 <code>text</code> 本身内容
 <h4 id="t-类型">类型</h4>
 <pre>
 (

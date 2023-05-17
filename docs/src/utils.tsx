@@ -63,3 +63,7 @@ export function getIssueText(
 
   return `${text}${showIssue}${showBy}`
 }
+
+export function getTranslationText() {
+  return ` \`${tr('翻译文案')}\` `
+}

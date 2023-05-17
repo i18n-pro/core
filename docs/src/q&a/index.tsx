@@ -7,18 +7,19 @@ import {
   Bold,
   List,
 } from 'jsx-to-md'
-import { initI18n } from '../utils'
+import { getTranslationText, initI18n } from '../utils'
 
 function BasePrinciple() {
   const extraCopy = tr('自动提取文案')
 
   return (
     <>
-      <H2>1. {tr('为什么要以翻译文案作为key呢？')}</H2>
+      <H2>1. {tr('为什么要以{0}作为key呢？', getTranslationText())}</H2>
       <Bold>{tr('为了实现如下目标')}</Bold>
       <List items={['U', extraCopy, tr('自动翻译'), tr('自动生成语言包')]} />
       {tr(
-        '以翻译文案作为key才能通过脚本识别出所有需要翻译的文案，从而实现{0}的目标，当然{1}也为后续目标的实现打下了良好的基础',
+        '以{0}作为key才能通过脚本识别出所有需要翻译的文案，从而实现{1}的目标，当然{2}也为后续目标的实现打下了良好的基础',
+        getTranslationText(),
         ` \`${extraCopy}\` `,
         ` \`${extraCopy}\` `,
       )}
@@ -71,7 +72,7 @@ const text2 = t('hello xxx')
 }
 `}
       />
-      {tr('相对于传统的写法，以翻译文案作为key，有如下不足')}
+      {tr('相对于传统的写法，以{0}作为key，有如下不足', getTranslationText())}
       <List items={['U', tr('对于一词多译不友好'), tr('生成的语言包较大')]} />
       {tr('当然也会有如下优点')}
       <List
@@ -114,7 +115,7 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
       <Break />
       {tr('对象属性解析的示例')}
       <CodeBlock
-        code={`// ${tr('待翻译文案为中文')}
+        code={`// ${tr('{0}为中文', getTranslationText())}
 const zh = '我叫{name}，今年{age}岁，来自{base}，是一名{job}'
 
 // ${tr('通过百度翻译成英文，看似OK的')}
@@ -127,7 +128,7 @@ const enToZh = '我的名字是｛name｝。我{age}岁。我来自{base}。我�
       />
       {tr('再来看看下标解析的示例')}
       <CodeBlock
-        code={`// ${tr('待翻译文案为中文')}
+        code={`// ${tr('{0}为中文', getTranslationText())}
 const zh = '我叫{0}，今年{1}岁，来自{2}，是一名{3}'
 
 // ${tr('通过百度翻译成英文')}
@@ -168,7 +169,8 @@ function SupportRichText() {
     <>
       <H2>{`4. ${tr('是否会支持富文本文案？')}`}</H2>
       {tr(
-        '不会支持，因为自动翻译是该库的核心功能，实现该功能的基本原则就是翻译文案需要为普通的纯文本，支持富文本与现有这一套实现逻辑上会存在冲突',
+        '不会支持，因为自动翻译是该库的核心功能，实现该功能的基本原则就是{0}需要为普通的纯文本，支持富文本与现有这一套实现逻辑上会存在冲突',
+        getTranslationText(),
       )}
       <br />
       <br />

@@ -208,12 +208,12 @@
    * Supports intelligently removing the translated text that has not been used in the language package
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
-* Added matching rule constraints: the translation text cannot contain special characters  `\t`
+* Newly added rules constraints:  `Translation`  cannot include special characters  `\t`
 
 
 <h4 id="120-command-line-tool-fixed">Fixed</h4>
 
-* Fixed translation errors caused by the translation text containing special characters  `\t` 
+* Fix  `Translation`  contains  `\t`  special characters lead to abnormal translation
 
 
 <h3 id="120-api">API</h3>

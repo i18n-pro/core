@@ -1,5 +1,5 @@
 import { H1, Table, TableOfContents } from 'jsx-to-md'
-import { initI18n } from '../utils'
+import { getTranslationText, initI18n } from '../utils'
 
 function getColumns() {
   return [
@@ -31,7 +31,7 @@ export default function OutputLog(props) {
       filename: 'texts-error.json',
       description: (
         <>
-          {tr('提取到所有不符合要求的翻译文案')}
+          {tr('提取到所有不符合要求的{0}', getTranslationText())}
           <br />
           <br />
           📢📢📢：{tr('不包含使用变量、{0}语句等场景', ' `JavaScript` ')}
@@ -40,7 +40,7 @@ export default function OutputLog(props) {
     },
     {
       filename: 'texts.json',
-      description: tr('提取到所有符合要求的翻译文案'),
+      description: tr('提取到所有符合要求的{0}', getTranslationText()),
     },
     {
       filename: 'translate-fail.json',

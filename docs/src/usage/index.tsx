@@ -11,7 +11,12 @@ import {
 } from 'jsx-to-md'
 import { resolve } from 'path'
 import { imageObj } from '../constants'
-import { getDocHref, initI18n, getFileContent } from '../utils'
+import {
+  getDocHref,
+  initI18n,
+  getFileContent,
+  getTranslationText,
+} from '../utils'
 
 function Install() {
   return (
@@ -84,7 +89,7 @@ return {
  // ${tr('后续是应用的执行（渲染）逻辑')}
 `}
       />
-      <H3>{tr('用{0}包裹翻译文案', ' `t` ')}</H3>
+      <H3>{tr('用{0}包裹{1}', ' `t` ', getTranslationText())}</H3>
       {tr('这一步主要是用{0}函数包裹需要被翻译的文案', ' `t` ')}
       <CodeBlock
         langType="js"
@@ -236,8 +241,9 @@ setI18n({
 // ${tr('后续才是应用的页面渲染逻辑')}`}
       />
       {tr(
-        '至此，项目已经完全接入了国际化，上面{0}指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的翻译文案（需要用{1}函数包裹哟），就仅仅需要再次执行翻译命令{2}生成最新的语言包就可以了',
+        '至此，项目已经完全接入了国际化，上面{0}指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的{1}（需要用{2}函数包裹哟），就仅仅需要再次执行翻译命令{3}生成最新的语言包就可以了',
         ' `locale` ',
+        getTranslationText(),
         ' `t` ',
         ' `npx i18n t` ',
       )}

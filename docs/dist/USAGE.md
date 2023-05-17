@@ -8,7 +8,7 @@
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
   &emsp;&emsp;&emsp;&emsp;[Initialization](#initialization)<br/>
   &emsp;&emsp;&emsp;&emsp;[Importing i18n.js in the Project Entry File](#importing-i18njs-in-the-project-entry-file)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Wrap the Translation Text with  `t` ](#wrap-the-translation-text-with--t-)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Wrap with  `t`   `Translation` ](#wrap-with--t---translation-)<br/>
   &emsp;&emsp;[3. Initialize Command Line Configuration File](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.js`  Configuration](#4-adjust--i18nrcjs--configuration)<br/>
   &emsp;&emsp;[5. Execute Translation Command](#5-execute-translation-command)<br/>
@@ -69,7 +69,7 @@ return {
  // The subsequent execution (rendering) logic of the application
 ```
 
-### Wrap the Translation Text with  `t` 
+### Wrap with  `t`   `Translation` 
 This step mainly wraps the text to be translated with the  `t`  function
 ```js
 /** test.js in the same directory */
@@ -173,7 +173,7 @@ setI18n({
 })
 // The application page rendering logic is later
 ```
-At this point, the project has been fully internationalized, with  `locale`  specified as any target language, and the translated content can be seen on the page. If there are new translation texts in the project (which need to be wrapped with the  `t`  function), just execute the translation command  `npx i18n t`  to generate the latest language pack
+At this point, the project has been completely connected to internationalization. The above  `locale`  specifies any of the target language, and the translated content can be seen on the page. If there are new  `Translation`  (need to be wrapped with  `t`  function) in the subsequent project, you only need to execute the translation command  `npx i18n t`  again to generate the latest language package
 
 ## 7. Switch Language
 Normally, just execute the following method, but the content already rendered on the page will not be updated until the  `t`  function corresponding to the text is executed again, which may display the text corresponding to the new language

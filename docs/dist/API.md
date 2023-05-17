@@ -111,7 +111,7 @@ Initialize a fixed configuration to get the core API
 </table>
 
 ### t
-Get Internationalization Text<br />Internally, the translation text corresponding to  <code>text</code>  will be obtained from the language package  <code>langs</code>  based on the current language  <code>locale</code> . If no corresponding translation content is found, the original content of  <code>text</code>  will be displayed directly
+Get Internationalization Text<br />The internal will obtain  `Translation`  corresponding to  <code>text</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
 <h4 id="t-type">Type</h4>
 <pre>
 (

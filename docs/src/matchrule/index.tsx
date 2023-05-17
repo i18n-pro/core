@@ -1,5 +1,5 @@
 import { H1, CodeBlock, TableOfContents, List } from 'jsx-to-md'
-import { initI18n } from '../utils'
+import { getTranslationText, initI18n } from '../utils'
 
 export default function MatchRule(props) {
   initI18n(props)
@@ -23,7 +23,13 @@ export default function MatchRule(props) {
         ]}
       />
       {tr('不满足上面条件，可能会导致')}
-      <List items={['U', tr('翻译文案提取不正确'), tr('翻译结果不正确')]} />
+      <List
+        items={[
+          'U',
+          tr('{0}提取不正确', getTranslationText()),
+          tr('翻译结果不正确'),
+        ]}
+      />
       {tr('以下是可以匹配到的')}
       <CodeBlock
         code={`t('xxx')

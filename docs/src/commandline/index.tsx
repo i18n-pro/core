@@ -11,7 +11,7 @@ import {
   render,
   Break,
 } from 'jsx-to-md'
-import { initI18n } from '../utils'
+import { getTranslationText, initI18n } from '../utils'
 
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
@@ -127,7 +127,7 @@ function BasicConfig() {
       default: 't',
       description: (
         <>
-          {tr('命令行匹配翻译文案的函数名')}
+          {tr('命令行匹配{0}的函数名', getTranslationText())}
           <br />
           <br />
           {tr(
@@ -347,7 +347,8 @@ function GooglexConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh-CN`',
             ' `en`',
           )}
@@ -445,7 +446,8 @@ function OpenAIConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言（例如中文是{0}，英文是{1}）',
+            '{0}的语言（例如中文是{1}，英文是{2}）',
+            getTranslationText(),
             ' `Chinese`',
             ' `English`',
           )}
@@ -499,7 +501,8 @@ function GoogleConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh-CN`',
             ' `en`',
           )}
@@ -563,7 +566,8 @@ function MicroConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh-Hans`',
             ' `en`',
           )}
@@ -618,7 +622,8 @@ function BaiduConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh`',
             ' `en`',
           )}
@@ -676,7 +681,8 @@ function YoudaoConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh-CHS`',
             ' `en`',
           )}
@@ -763,7 +769,8 @@ function TencentConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh`',
             ' `en`',
           )}
@@ -853,7 +860,8 @@ function AliyunConfig() {
       description: (
         <>
           {tr(
-            '被翻译文案的语言代码（例如中文的是{0}，英文的是{1}）',
+            '{0}的语言代码（例如中文的是{1}，英文的是{2}）',
+            getTranslationText(),
             ' `zh`',
             ' `en`',
           )}
@@ -944,7 +952,7 @@ function CommandList() {
           `npx i18n translate` <br /> `npx i18n t`
         </>
       ),
-      description: tr('提取翻译文案，自动翻译并生成语言包'),
+      description: tr('提取{0}，自动翻译并生成语言包', getTranslationText()),
     },
     {
       command: 'version',

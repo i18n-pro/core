@@ -4,20 +4,20 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[1. Why use translated text as key?](#1-why-use-translated-text-as-key)<br/>
+  &emsp;&emsp;[1. Why use  `Translation`  as key?](#1-why-use--translation--as-key)<br/>
   &emsp;&emsp;[2. Why do dynamic parameters (interpolation variables) not support object attribute resolution?](#2-why-do-dynamic-parameters-interpolation-variables-not-support-object-attribute-resolution)<br/>
   &emsp;&emsp;[3. Is it necessary to separate dynamic parameters types **Date** and **Time**?](#3-is-it-necessary-to-separate-dynamic-parameters-types-date-and-time)<br/>
   &emsp;&emsp;[4. Will rich text be supported?](#4-will-rich-text-be-supported)<br/>
 
 </details>
 
-## 1. Why use translated text as key?
+## 1. Why use  `Translation`  as key?
 **To achieve the following goals**
 * Automatically extract texts
 * automatic-translation
 * Automatically generate language pack
 
-Using translated text as key can enable the script to identify all texts that need to be translated, thus achieving the goal of  `Automatically extract texts` . Of course,  `Automatically extract texts`  also lays a good foundation for the implementation of future goals
+With  `Translation`  as key can we recognize all copywriting that requires translation through the script, so as to achieve the goal of  `Automatically extract texts` . Of course,  `Automatically extract texts`  also laid a good foundation for the realization of subsequent goals
 
 Usually, internationalization libraries recommend the following writing style
 ```js
@@ -58,7 +58,7 @@ Format of corresponding language pack
   "hello xxx": "你好xxx",
 }
 ```
-Compared to traditional methods, using translated text as the key has the following drawbacks:
+Compared to traditional writing,  `Translation`  as key, there are as follows
 * Not friendly to multiple translations of a single word
 * Generates larger language packages
 
@@ -90,7 +90,7 @@ The main reason is that the text contains attribute names, which is not conduciv
 
 Example of object attribute resolution
 ```js
-// The text to be translated is in Chinese
+//  `Translation`  as Chinese
 const zh = '我叫{name}，今年{age}岁，来自{base}，是一名{job}'
 
 // Translated into English through Baidu-Translation, it seems OK
@@ -101,7 +101,7 @@ const enToZh = '我的名字是｛name｝。我{age}岁。我来自{base}。我�
 ```
 Let's take a look at the example of subscript parsing
 ```js
-// The text to be translated is in Chinese
+//  `Translation`  as Chinese
 const zh = '我叫{0}，今年{1}岁，来自{2}，是一名{3}'
 
 // Translated into English through Baidu-Translation
@@ -114,7 +114,7 @@ Although machine translation cannot achieve 100% accuracy, this method can avoid
 ## 3. Is it necessary to separate dynamic parameters types **Date** and **Time**?
 Personally, I don't think it is necessary, but it has been implemented in the design. You can choose to use it flexibly at your discretion. Of course, it is not ruled out that some business scenarios will be more convenient to deal with separately
 ## 4. Will rich text be supported?
-No, because automatic translation is the core function of this library, and the basic principle of implementing this function is that the translated text needs to be plain text. Supporting rich text would conflict with the current implementation logic<br /><br />**In some scenarios, dynamic parameters can be used to achieve the effect of rich text**<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
+It will not be supported, because automatic translation is the core function of the library. The basic principle of achieving this function is  `Translation`  requires ordinary pure texts. Supporting rich texts and existing realizations will be logically conflict.<br /><br />**In some scenarios, dynamic parameters can be used to achieve the effect of rich text**<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
 ```js
 t('hello {0}world{1}', '<b style="color:red;">', '</b>')
 

@@ -8,7 +8,7 @@ import {
   TableOfContents,
   getAnchor,
 } from 'jsx-to-md'
-import { getDocHref, initI18n } from '../utils'
+import { getDocHref, getTranslationText, initI18n } from '../utils'
 import FunctionTemplate from './FunctionTemplate'
 
 const langsTypeStr = `Record&lt;string, Record&lt;string, string&gt;&gt;`
@@ -101,10 +101,11 @@ ${getFormatTypeString('    ')}
             {tr('获取国际化文案')}
             <br />
             {tr(
-              '内部会根据当前语言{0}从语言包{1}中获取{2}对应的翻译文案，未匹配到对应翻译内容会直接显示{3}本身内容',
+              '内部会根据当前语言{0}从语言包{1}中获取{2}对应的{3}，未匹配到对应翻译内容会直接显示{4}本身内容',
               ` ${render(<code>locale</code>)} `,
               ` ${render(<code>langs</code>)} `,
               ` ${render(<code>text</code>)} `,
+              getTranslationText(),
               ` ${render(<code>text</code>)} `,
             )}
           </>

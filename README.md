@@ -41,7 +41,7 @@ To make internationalization easy and enjoyable 😄💪🏻
    * **Support incremental translation mode**：Only translate new text and intelligently remove unused text
    * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
    * **Support multiple translation logs**：The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues
-* **keyless**：No need to manually define keys, the text to be translated is the key
+* **keyless**：No need to manually define key,  `Translation`  is key
 
 
 # Live Demo
@@ -52,13 +52,13 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 # Principle
 
->Using the translated text as the key is the key to all the functions of this library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
+>Taking  `Translation`  as key is the key to all the functions of the library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
 
 The library is mainly composed of two parts
 * Command Line Tool
 * Function API
 
-**Command Line Tool**：Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate a language pack file
+**Command Line Tool**：Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate language pack files
 
 An example of parsing text using  [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)  is as follows:
 ```js
@@ -71,8 +71,8 @@ t(`hello world`)
 
 /** Support dynamic parameters */
 
-t('hello {0}', 'Developer friends'),
-t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', 'good', ' ⭐️ ')
+t('hello {0}', 'developer friends'),
+t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's good`, ' ⭐️ ')
 
 
 /** Dynamic parameter type tags, which need to be used with corresponding formatting callbacks */
@@ -94,7 +94,7 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 ```
 **Function API**：Connect the international language package into the project, consisting of  `initI18n` ,  `t` ,  `setI18n`  and  `withI18n` 
 * **initI18n**：Used to initialize the fixed configuration, and finally return the objects containing the following 3 APIs
-* **t**：Used to wrap translated text for internationalization and as an identifier for command line matching of translation text rules
+* **t**：It is used for wrapping  `Translation`  to achieve internationalization, and it is also used as a logo of the command line to match  `Translation`  rules
 * **setI18n**：Set language and language package
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 

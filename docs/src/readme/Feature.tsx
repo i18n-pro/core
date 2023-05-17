@@ -1,5 +1,6 @@
 import { H1, Link, Image, Bold, List, render } from 'jsx-to-md'
 import { linkObj, imageObj } from '../constants'
+import { getTranslationText } from '../utils'
 
 export default function Vision() {
   return (
@@ -52,7 +53,8 @@ export default function Vision() {
             ],
           ],
           <>
-            <Bold>keyless</Bold>：{tr('无需手动定义key，待翻译文案即key')}
+            <Bold>keyless</Bold>：
+            {tr('无需手动定义key，{0}即key', getTranslationText())}
           </>,
         ]}
       />

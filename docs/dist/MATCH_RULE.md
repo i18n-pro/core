@@ -7,7 +7,7 @@ Requirements for the first parameter of  `t`  function：
 * If you use the  `Template Strings`  syntax, you cannot wrap lines
 
 Failure to meet the above conditions may result in
-* Incorrect extraction of translated texts
+*  `Translation`  Extraction is incorrect
 * Incorrect translation result
 
 The following can be matched

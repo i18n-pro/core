@@ -1,5 +1,10 @@
 import { H1, Link, render, TableOfContents } from 'jsx-to-md'
-import { getDocHref, getIssueText, initI18n } from '../utils'
+import {
+  getDocHref,
+  getIssueText,
+  getTranslationText,
+  initI18n,
+} from '../utils'
 import Template from './ChangeLog'
 
 function V_1_0_0() {
@@ -128,9 +133,20 @@ function V_1_2_0() {
             '新增{0}配置属性，用于设置百度翻译的延迟时间',
             ' `baiduConfig.delay` ',
           ),
-          tr('新增匹配规则约束：翻译文案中不能包含特殊字符{0}', ' `\\t`'),
+          tr(
+            '新增匹配规则约束：{0}中不能包含特殊字符{1}',
+            getTranslationText(),
+            ' `\\t`',
+          ),
         ],
-        fixed: ['U', tr('修复翻译文案包含{0}特殊字符导致翻译异常', ' `\\t` ')],
+        fixed: [
+          'U',
+          tr(
+            '修复{0}包含{1}特殊字符导致翻译异常',
+            getTranslationText(),
+            ' `\\t` ',
+          ),
+        ],
       }}
       api={{
         added: [

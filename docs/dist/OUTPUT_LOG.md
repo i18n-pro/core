@@ -4,8 +4,8 @@ To facilitate tracking and locating problems, there will be some necessary log o
 |Filename|Description|
 |:-|:-|
 |filepaths.json|List of matched file paths|
-|texts-error.json|Extract all translated texts that do not meet the requirements<br /><br />📢📢📢：Does not include scenarios using variables,  `JavaScript`  statements, etc|
-|texts.json|Extract all translated texts that meet the requirements|
+|texts-error.json|Extracted all  `Translation`  that does not meet the requirements<br /><br />📢📢📢：Does not include scenarios using variables,  `JavaScript`  statements, etc|
+|texts.json|Extracted all the requirements  `Translation` |
 |translate-fail.json|List of texts that failed to be translated|
 |translate-error.json|List of texts that were translated incorrectly<br /><br />Currently, we can identify the exceptions lost after dynamic parameters translation|
 |translate-success.json|List of texts that were translated successfully<br /><br />📢📢📢：In incremental translation mode, only the texts translated in this session will be included, and the previously translated texts will not be included|
