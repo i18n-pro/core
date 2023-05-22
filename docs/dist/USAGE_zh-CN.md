@@ -8,7 +8,7 @@
   &emsp;&emsp;[2. 接入函数API](#2-接入函数api)<br/>
   &emsp;&emsp;&emsp;&emsp;[初始化](#初始化)<br/>
   &emsp;&emsp;&emsp;&emsp;[项目入口文件引入 i18n.js](#项目入口文件引入-i18njs)<br/>
-  &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹 `翻译文案` ](#用-t-包裹-`翻译文案`)<br/>
+  &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹 `翻译文案` ](#用-t-包裹-翻译文案-)<br/>
   &emsp;&emsp;[3. 初始化命令行配置文件](#3-初始化命令行配置文件)<br/>
   &emsp;&emsp;[4. 调整 `i18nrc.js` 配置](#4-调整-i18nrcjs-配置)<br/>
   &emsp;&emsp;[5. 执行翻译命令](#5-执行翻译命令)<br/>
