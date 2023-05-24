@@ -171,8 +171,8 @@
 <h4 id="130-api-added">Added</h4>
 
 * 添加 `withI18N` 函数API用于支持服务端场景
-* 添加动态参数类型标记和类型格式化回调函数
-   * 支持 数字、货币、日期、时间、复数 等类型的动态参数标记
+* 添加 `插值变量` 类型标记和类型格式化回调函数
+   * 支持 数字、货币、日期、时间、复数 等类型的 `插值变量` 标记
    * `setI18N` 添加了 `formatNumber`、`formatCurrency`、`formatDate`、`formatTime`、`formatPlural` 等属性
 
 
@@ -220,7 +220,7 @@
 
 <h4 id="120-api-added">Added</h4>
 
-* 新增 `setI18N` 函数参数属性 `beginIndex`，用于指定动态参数的起始下标
+* 新增 `setI18N` 函数参数属性 `beginIndex`，用于指定 `插值变量` 的起始下标
 
 
 <h4 id="120-api-fixed">Fixed</h4>

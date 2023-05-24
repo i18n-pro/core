@@ -5,8 +5,8 @@
   <summary>Table of Contents</summary>
 
   &emsp;&emsp;[1. Why use  `Translation`  as key?](#1-why-use--translation--as-key)<br/>
-  &emsp;&emsp;[2. 动态参数（变量插值）为什么不支持对象属性解析？](#2-动态参数变量插值为什么不支持对象属性解析)<br/>
-  &emsp;&emsp;[3. Is it necessary to separate dynamic parameters types **Date** and **Time**?](#3-is-it-necessary-to-separate-dynamic-parameters-types-date-and-time)<br/>
+  &emsp;&emsp;[2.  `变量插值` 为什么不支持对象属性解析？](#2-变量插值-为什么不支持对象属性解析)<br/>
+  &emsp;&emsp;[3.  `插值变量` 类型**Date**和**Time**分开有必要吗？](#3-插值变量-类型date和time分开有必要吗)<br/>
   &emsp;&emsp;[4. Will rich text be supported?](#4-will-rich-text-be-supported)<br/>
 
 </details>
@@ -67,7 +67,7 @@ However, it also has the following advantages:
 *  `Translation` 本身语言无需生成语言包
 
 如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信 `i18n-pro` 会带给你非常不错的开发体验
-## 2. 动态参数（变量插值）为什么不支持对象属性解析？
+## 2.  `变量插值` 为什么不支持对象属性解析？
 Sample code
 ```js
 // Object attribute resolution
@@ -86,7 +86,7 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
   '码农',
 )
 ```
-The main reason is that the text contains attribute names, which is not conducive to translation through third-party platforms. The example above is still okay to translate from Chinese to English, but if it is translated from English to Chinese or other languages, the attribute names in the dynamic parameters will also be translated, which is the problem
+主要原因是文案中包含属性名，不利于通过第三方平台翻译，上面的示例从中文翻译到英文还OK，如果是英文翻译到中文或其他语言， `插值变量` 中的属性名也会被翻译，这就是问题所在
 
 Example of object attribute resolution
 ```js
@@ -111,10 +111,10 @@ const zhToEn = `My name is {0}. I'm {1} years old. I'm from {2}. I'm a {3}`
 const enToZh = '我的名字是｛0｝。我是｛1｝岁。我来自｛2｝。我是｛3｝'
 ```
 Although machine translation cannot achieve 100% accuracy, this method can avoid unnecessary errors as much as possible
-## 3. Is it necessary to separate dynamic parameters types **Date** and **Time**?
+## 3.  `插值变量` 类型**Date**和**Time**分开有必要吗？
 Personally, I don't think it is necessary, but it has been implemented in the design. You can choose to use it flexibly at your discretion. Of course, it is not ruled out that some business scenarios will be more convenient to deal with separately
 ## 4. Will rich text be supported?
-It will not be supported, because automatic translation is the core function of the library. The basic principle of achieving this function is  `Translation`  requires ordinary pure texts. Supporting rich texts and existing realizations will be logically conflict.<br /><br />**In some scenarios, dynamic parameters can be used to achieve the effect of rich text**<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
+It will not be supported, because automatic translation is the core function of the library. The basic principle of achieving this function is  `Translation`  requires ordinary pure texts. Supporting rich texts and existing realizations will be logically conflict.<br /><br />**某些场景下，可以利用 `变量插值` 来实现富文本的效果**<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
 ```js
 t('hello {0}world{1}', '<b style="color:red;">', '</b>')
 

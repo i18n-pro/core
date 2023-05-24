@@ -43,7 +43,7 @@ x
 x
 `)
 ```
-If string splicing is required, dynamic parameters can be used
+如果需要拼接字符串，可以用 `变量插值` 
 ```js
 t('My name is {0}, I am {1} years old this year, from {2}, and I am a {3}', 'Wang Nima', 35, 'Mars', 'coder')
 ```

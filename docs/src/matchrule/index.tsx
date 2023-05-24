@@ -1,5 +1,9 @@
 import { H1, CodeBlock, TableOfContents, List } from 'jsx-to-md'
-import { getTranslationText, initI18n } from '../utils'
+import {
+  getTranslationText,
+  getVariableInterpolation,
+  initI18n,
+} from '../utils'
 
 export default function MatchRule(props) {
   initI18n(props)
@@ -63,7 +67,7 @@ x
 x
 \`)`}
       />
-      {tr('如果需要拼接字符串，可以用动态参数')}
+      {tr('如果需要拼接字符串，可以用{0}', getVariableInterpolation())}
       <CodeBlock
         code={`t('${tr('我叫{0}，今年{1}岁，来自{2}，是一名{3}')}', '${tr(
           '王尼玛',

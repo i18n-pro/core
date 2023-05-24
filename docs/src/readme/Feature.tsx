@@ -1,6 +1,6 @@
 import { H1, Link, Image, Bold, List, render } from 'jsx-to-md'
 import { linkObj, imageObj } from '../constants'
-import { getTranslationText } from '../utils'
+import { getTranslationText, getVariableInterpolation } from '../utils'
 
 export default function Vision() {
   return (
@@ -21,7 +21,8 @@ export default function Vision() {
           <>
             <Bold>{tr('灵活')}</Bold>：
             {tr(
-              '支持动态参数、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）',
+              '支持{0}、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）',
+              getVariableInterpolation(),
             )}
           </>,
           [

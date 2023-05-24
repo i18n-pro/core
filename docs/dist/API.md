@@ -74,37 +74,37 @@ Initialize a fixed configuration to get the core API
     <tr>
       <td>beginIndex</td>
       <td>
-        Set the dynamic parameters in the  <code>t</code>  function to start the bidding, the default is 0
+        设置 <code>t</code> 函数中<code> 插值变量 </code>起始下标，默认为 0
       </td>
     </tr>
     <tr>
       <td>formatNumber</td>
       <td>
-        A callback to format dynamic parameters of type <b>Number</b>, with the corresponding type tag <b> n </b> or <b> N </b>
+        格式化<b> Number </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> n </b>or<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-        A callback to format dynamic parameters of type <b>Currency</b>, with the corresponding type tag <b> c </b> or <b> C </b>
+        格式化<b> Currency </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> c </b>or<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-        A callback to format dynamic parameters of type <b>Date</b>, with the corresponding type tag <b> d </b> or <b> D </b>
+        格式化<b> Date </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> d </b>or<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-        A callback to format dynamic parameters of type <b>Time</b>, with the corresponding type tag <b> t </b> or <b> T </b>
+        格式化<b> Time </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> t </b>or<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-        A callback to format dynamic parameters of type <b>Plural</b>, with the corresponding type tag <b> p </b> or <b> P </b>
+        格式化<b> Plural </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> p </b>or<b> P </b>
       </td>
     </tr>
   </tr>
@@ -136,7 +136,7 @@ Get Internationalization Text<br />The internal will obtain  `Translation`  corr
     <tr>
       <td>args</td>
       <td>
-        Represents dynamic parameters, with no limit on the number.  <code>text</code>  in the text should be received in the form of  <code>{index}</code> , and  <code>index</code>  represents the position of the dynamic parameter, starting from 0 (the starting value can be customized in  <code>initI18n</code> ). The first parameter corresponds to 0, and the second parameter corresponds to 1, and so on
+        表示<code> 插值变量 </code>，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示<code> 插值变量 </code>的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
       </td>
     </tr>
   </tr>
@@ -221,7 +221,7 @@ Common format callback type
 ```ts
 type FormatFunc = <T>(props: {
   locale: string, // Current language
-  payload: string | number | unknown | T, // dynamic parameters 
+  payload: string | number | unknown | T, // 插值变量
 }) => number | string
 ```
 
@@ -230,7 +230,7 @@ Format callback function type of Date(Time)
 ```ts
 type FormatDateFunc = <T>(props: {
   locale: string, // Current language
-  payload: string | number | Date | unknown | T, // dynamic parameters 
+  payload: string | number | Date | unknown | T, // 插值变量
 }) => string
 ```
 
@@ -239,7 +239,7 @@ Format callback function type of Plural
 ```ts
 type FormatPluralFunc = <T>(props: {
   locale: string, // Current language
-  payload: string | number | unknown | T, // dynamic parameters 
+  payload: string | number | unknown | T, // 插值变量
   text: string // A string that combines quantifiers and nouns by default. Languages that do not require plural processing can return this property directly
   keyword: string // Plural keyword
 }) => string

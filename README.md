@@ -36,7 +36,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 * **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **simple**：Low learning cost and easy to use
-* **flexible**：Support dynamic parameters, unique type tags and formatted callbacks (Number, Currency, Date, Time, Plural)
+* **flexible**：支持 `变量插值` 、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）
 * **automatic-translation**：One command can automatically extract text and translate it to generate language packs
    * **Support incremental translation mode**：Only translate new text and intelligently remove unused text
    * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
@@ -69,13 +69,13 @@ t("hello world")
 t(`hello world`)
 
 
-/** Support dynamic parameters */
+/** 支持变量插值 */
 
 t('hello {0}', 'developer friends'),
 t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's good`, ' ⭐️ ')
 
 
-/** Dynamic parameter type tags, which need to be used with corresponding formatting callbacks */
+/** 插值变量类型标记，需配合对应的格式化回调 */
 
 // Number Type
 t('The number of users has reached {n0}', 100000000)

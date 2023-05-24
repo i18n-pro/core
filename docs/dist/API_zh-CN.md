@@ -74,37 +74,37 @@
     <tr>
       <td>beginIndex</td>
       <td>
-        设置 <code>t</code> 函数中动态参数起始下标，默认为 0
+        设置 <code>t</code> 函数中<code> 插值变量 </code>起始下标，默认为 0
       </td>
     </tr>
     <tr>
       <td>formatNumber</td>
       <td>
-        格式化<b>数字</b>类型动态参数的回调，对应的类型标记是<b> n </b>或<b> N </b>
+        格式化<b> 数字 </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> n </b>或<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-        格式化<b>货币</b>类型动态参数的回调，对应的类型标记是<b> c </b>或<b> C </b>
+        格式化<b> 货币 </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> c </b>或<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-        格式化<b>日期</b>类型动态参数的回调，对应的类型标记是<b> d </b>或<b> D </b>
+        格式化<b> 日期 </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> d </b>或<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-        格式化<b>时间</b>类型动态参数的回调，对应的类型标记是<b> t </b>或<b> T </b>
+        格式化<b> 时间 </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> t </b>或<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-        格式化<b>复数</b>类型动态参数的回调，对应的类型标记是<b> p </b>或<b> P </b>
+        格式化<b> 复数 </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> p </b>或<b> P </b>
       </td>
     </tr>
   </tr>
@@ -136,7 +136,7 @@
     <tr>
       <td>args</td>
       <td>
-        表示动态参数，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示动态参数的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
+        表示<code> 插值变量 </code>，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示<code> 插值变量 </code>的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
       </td>
     </tr>
   </tr>
@@ -221,7 +221,7 @@ type I18nState = {
 ```ts
 type FormatFunc = <T>(props: {
   locale: string, // 当前语言
-  payload: string | number | unknown | T, // 动态参数
+  payload: string | number | unknown | T, // 插值变量
 }) => number | string
 ```
 
@@ -230,7 +230,7 @@ type FormatFunc = <T>(props: {
 ```ts
 type FormatDateFunc = <T>(props: {
   locale: string, // 当前语言
-  payload: string | number | Date | unknown | T, // 动态参数
+  payload: string | number | Date | unknown | T, // 插值变量
 }) => string
 ```
 
@@ -239,7 +239,7 @@ type FormatDateFunc = <T>(props: {
 ```ts
 type FormatPluralFunc = <T>(props: {
   locale: string, // 当前语言
-  payload: string | number | unknown | T, // 动态参数
+  payload: string | number | unknown | T, // 插值变量
   text: string // 默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性
   keyword: string // 复数关键词
 }) => string

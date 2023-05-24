@@ -1,6 +1,7 @@
 import { H1, Link, render, TableOfContents } from 'jsx-to-md'
 import {
   getDocHref,
+  getInterpolationVariable,
   getIssueText,
   getTranslationText,
   initI18n,
@@ -152,9 +153,10 @@ function V_1_2_0() {
         added: [
           'U',
           tr(
-            '新增{0}函数参数属性{1}，用于指定动态参数的起始下标',
+            '新增{0}函数参数属性{1}，用于指定{2}的起始下标',
             ' `setI18N` ',
             ' `beginIndex`',
+            getInterpolationVariable(),
           ),
         ],
         fixed: [
@@ -220,10 +222,16 @@ function V_1_3_0() {
           'U',
           tr('添加{0}函数API用于支持服务端场景', ' `withI18N` '),
           [
-            tr('添加动态参数类型标记和类型格式化回调函数'),
+            tr(
+              '添加{0}类型标记和类型格式化回调函数',
+              getInterpolationVariable(),
+            ),
             [
               'U',
-              tr('支持 数字、货币、日期、时间、复数 等类型的动态参数标记'),
+              tr(
+                '支持 数字、货币、日期、时间、复数 等类型的{0}标记',
+                getInterpolationVariable(),
+              ),
               tr(
                 '{0}添加了{1}、{2}、{3}、{4}、{5}等属性',
                 '`setI18N` ',

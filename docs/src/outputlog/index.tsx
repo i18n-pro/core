@@ -1,5 +1,9 @@
 import { H1, Table, TableOfContents } from 'jsx-to-md'
-import { getTranslationText, initI18n } from '../utils'
+import {
+  getInterpolationVariable,
+  getTranslationText,
+  initI18n,
+} from '../utils'
 
 function getColumns() {
   return [
@@ -53,7 +57,7 @@ export default function OutputLog(props) {
           {tr('翻译有误的文案列表')}
           <br />
           <br />
-          {tr('当前可以识别出动态参数翻译后丢失的异常')}
+          {tr('当前可以识别出{0}翻译后丢失的异常', getInterpolationVariable())}
         </>
       ),
     },

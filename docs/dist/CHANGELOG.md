@@ -171,8 +171,8 @@
 <h4 id="130-api-added">Added</h4>
 
 * Add  `withI18N`  function API to support server scenarios
-* Add dynamic parameters type tags and type formatting callback functions
-   * Support dynamic parameters tags of Number, Currency, Date, Time, Plural, etc
+* 添加 `插值变量` 类型标记和类型格式化回调函数
+   * 支持 数字、货币、日期、时间、复数 等类型的 `插值变量` 标记
    * `setI18N`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
 
 
@@ -220,7 +220,7 @@
 
 <h4 id="120-api-added">Added</h4>
 
-* Add the  `setI18N`  function parameters attribute  `beginIndex` to specify the starting subscript of the dynamic parameters
+* 新增 `setI18N` 函数参数属性 `beginIndex`，用于指定 `插值变量` 的起始下标
 
 
 <h4 id="120-api-fixed">Fixed</h4>

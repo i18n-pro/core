@@ -9,7 +9,12 @@ import {
   CodeBlock,
   BlockQuote,
 } from 'jsx-to-md'
-import { getDocHref, getTranslationText } from '../utils'
+import {
+  getDocHref,
+  getInterpolationVariable,
+  getTranslationText,
+  getVariableInterpolation,
+} from '../utils'
 
 export default function Principle() {
   return (
@@ -51,7 +56,7 @@ t("hello world")
 t(\`hello world\`)
 
 
-/** ${tr('支持动态参数')} */
+/** ${tr('支持{0}', getVariableInterpolation(true))} */
 
 t('hello {0}', '${tr('开发者朋友们')}'),
 t('${tr(
@@ -59,7 +64,10 @@ t('${tr(
         )}', ' \`i18n-pro\` ', '${tr('使用')}', \`${tr('不错')}\`, ' ⭐️ ')
 
 
-/** ${tr('动态参数类型标记，需配合对应的格式化回调')} */
+/** ${tr(
+          '{0}类型标记，需配合对应的格式化回调',
+          getInterpolationVariable(true),
+        )} */
 
 // ${tr('数字类型')}
 t('${tr('用户数达到了{0}', '{n0}')}', 100000000)

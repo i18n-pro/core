@@ -7,7 +7,12 @@ import {
   Bold,
   List,
 } from 'jsx-to-md'
-import { getTranslationText, initI18n } from '../utils'
+import {
+  getInterpolationVariable,
+  getTranslationText,
+  getVariableInterpolation,
+  initI18n,
+} from '../utils'
 
 function BasePrinciple() {
   const extraCopy = tr('自动提取文案')
@@ -93,7 +98,10 @@ const text2 = t('hello xxx')
 function NonsupportObjectParamsResolve() {
   return (
     <>
-      <H2>{`2. ${tr('动态参数（变量插值）为什么不支持对象属性解析？')}`}</H2>
+      <H2>{`2. ${tr(
+        '{0}为什么不支持对象属性解析？',
+        getVariableInterpolation(),
+      )}`}</H2>
       {tr('示例代码')}
       <CodeBlock
         code={`// ${tr('对象属性解析')}
@@ -113,7 +121,8 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
 )`}
       />
       {tr(
-        '主要原因是文案中包含属性名，不利于通过第三方平台翻译，上面的示例从中文翻译到英文还OK，如果是英文翻译到中文或其他语言，动态参数中的属性名也会被翻译，这就是问题所在',
+        '主要原因是文案中包含属性名，不利于通过第三方平台翻译，上面的示例从中文翻译到英文还OK，如果是英文翻译到中文或其他语言，{0}中的属性名也会被翻译，这就是问题所在',
+        getInterpolationVariable(),
       )}
       <Break />
       <Break />
@@ -153,7 +162,8 @@ function DateAndTime() {
     <>
       <H2>
         {`3. ${tr(
-          '动态参数类型{0}和{1}分开有必要吗？',
+          '{0}类型{1}和{2}分开有必要吗？',
+          getInterpolationVariable(),
           `**${tr('日期')}**`,
           `**${tr('时间')}**`,
         )}`}
@@ -178,7 +188,12 @@ function SupportRichText() {
       )}
       <br />
       <br />
-      <Bold>{tr('某些场景下，可以利用动态参数来实现富文本的效果')}</Bold>
+      <Bold>
+        {tr(
+          '某些场景下，可以利用{0}来实现富文本的效果',
+          getVariableInterpolation(),
+        )}
+      </Bold>
       <br />
       {tr(
         '例如这里的文案是{0}，页面上需要将{1}显示为红色粗体的样式',

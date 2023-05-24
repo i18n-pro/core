@@ -8,7 +8,13 @@ import {
   TableOfContents,
   getAnchor,
 } from 'jsx-to-md'
-import { getDocHref, getTranslationText, initI18n } from '../utils'
+import {
+  getDocHref,
+  getInterpolationVariable,
+  getTranslationText,
+  getVariableInterpolation,
+  initI18n,
+} from '../utils'
 import FunctionTemplate from './FunctionTemplate'
 
 const langsTypeStr = `Record&lt;string, Record&lt;string, string&gt;&gt;`
@@ -24,8 +30,9 @@ function renderFormatDesc() {
 
   const getDesc = (name: string, lowTag: string, upperTag: string) => {
     return tr(
-      '格式化{0}类型动态参数的回调，对应的类型标记是{1}{2}{3}',
-      render(<b>{name}</b>),
+      '格式化{0}类型{1}的回调，对应的类型标记是{2}{3}{4}',
+      render(<b> {name} </b>),
+      render(<code> {getInterpolationVariable(true)} </code>),
       render(<b> {lowTag} </b>),
       tr('或'),
       render(<b> {upperTag} </b>),
@@ -87,8 +94,9 @@ ${getFormatTypeString('    ')}
           ),
           langs: tr('设置当前语言包'),
           beginIndex: tr(
-            '设置{0}函数中动态参数起始下标，默认为 0',
+            '设置{0}函数中{1}起始下标，默认为 0',
             ` ${render(<code>t</code>)} `,
+            render(<code> {getInterpolationVariable(true)} </code>),
           ),
           ...renderFormatDesc(),
         }}
@@ -122,10 +130,12 @@ ${getFormatTypeString('    ')}
             )} `,
           ),
           args: tr(
-            '表示动态参数，没有个数限制，{0}文案中需要以{1}的形式来接收，{2}表示动态参数的位置，从 0 开始（可在{3}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
+            '表示{0}，没有个数限制，{1}文案中需要以{2}的形式来接收，{3}表示{4}的位置，从 0 开始（可在{5}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
+            render(<code> {getInterpolationVariable(true)} </code>),
             ` ${render(<code>text</code>)} `,
             ` ${render(<code>{'{index}'}</code>)} `,
             ` ${render(<code>index</code>)} `,
+            render(<code> {getInterpolationVariable(true)} </code>),
             ` ${render(<code>initI18n</code>)} `,
           ),
         }}
@@ -207,7 +217,7 @@ ${getFormatTypeString('  ')}
         langType="ts"
         code={`type FormatFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
-  payload: string | number | unknown | T, // ${tr('动态参数')}
+  payload: string | number | unknown | T, // ${getInterpolationVariable(true)}
 }) => number | string`}
       />
       <H3>FormatDateFunc</H3>
@@ -216,7 +226,9 @@ ${getFormatTypeString('  ')}
         langType="ts"
         code={`type FormatDateFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
-  payload: string | number | Date | unknown | T, // ${tr('动态参数')}
+  payload: string | number | Date | unknown | T, // ${getInterpolationVariable(
+    true,
+  )}
 }) => string`}
       />
       <H3>FormatPluralFunc</H3>
@@ -225,7 +237,7 @@ ${getFormatTypeString('  ')}
         langType="ts"
         code={`type FormatPluralFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
-  payload: string | number | unknown | T, // ${tr('动态参数')}
+  payload: string | number | unknown | T, // ${getInterpolationVariable(true)}
   text: string // ${tr(
     '默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性',
   )}
