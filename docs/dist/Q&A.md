@@ -5,7 +5,7 @@
   <summary>Table of Contents</summary>
 
   &emsp;&emsp;[1. Why use  `Translation`  as key?](#1-why-use--translation--as-key)<br/>
-  &emsp;&emsp;[2. Why do dynamic parameters (interpolation variables) not support object attribute resolution?](#2-why-do-dynamic-parameters-interpolation-variables-not-support-object-attribute-resolution)<br/>
+  &emsp;&emsp;[2. 动态参数（变量插值）为什么不支持对象属性解析？](#2-动态参数变量插值为什么不支持对象属性解析)<br/>
   &emsp;&emsp;[3. Is it necessary to separate dynamic parameters types **Date** and **Time**?](#3-is-it-necessary-to-separate-dynamic-parameters-types-date-and-time)<br/>
   &emsp;&emsp;[4. Will rich text be supported?](#4-will-rich-text-be-supported)<br/>
 
@@ -64,10 +64,10 @@ Compared to traditional writing,  `Translation`  as key, there are as follows
 
 However, it also has the following advantages:
 * Strong readability of source code
-* No need to generate language packages for texts in the source code
+*  `Translation` 本身语言无需生成语言包
 
-If you cannot accept the above drawbacks, then other internationalization solutions may be more suitable for you. If you can accept the above drawbacks, then I believe that  `i18n-pro`  will bring you a very good experience
-## 2. Why do dynamic parameters (interpolation variables) not support object attribute resolution?
+如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信 `i18n-pro` 会带给你非常不错的开发体验
+## 2. 动态参数（变量插值）为什么不支持对象属性解析？
 Sample code
 ```js
 // Object attribute resolution

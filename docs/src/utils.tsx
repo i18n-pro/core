@@ -21,15 +21,18 @@ export function initI18n({ locale }) {
 
 export function getDocHref(filename: string, anchorProp?: string) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { version, codeNameMap } = packageInfo as any
-  let name = codeNameMap[global.docLocale]
+  const { version, codeNameMap, homepage } = packageInfo
+  const locale = global.docLocale
+  let name = codeNameMap[locale]
   name = name ? `_${name}` : ''
   const anchor = anchorProp ? getAnchor(anchorProp) : ''
 
   if (filename === 'README') {
-    return `https://github.com/eyelly-wu/i18n-pro/tree/v${version}${anchor}`
+    return locale === 'en'
+      ? `${homepage}/tree/v${version}${anchor}`
+      : `${homepage}/blob/v${version}/${filename}${name}.md${anchor}`
   } else {
-    return `https://github.com/eyelly-wu/i18n-pro/blob/v${version}/docs/dist/${filename}${name}.md${anchor}`
+    return `${homepage}/blob/v${version}/docs/dist/${filename}${name}.md${anchor}`
   }
 }
 
@@ -52,9 +55,9 @@ export function getIssueText(
   showIssue =
     Array.isArray(showIssue) && showIssue.length
       ? showIssue.reduce((res, item, index) => {
-          res += `${
-            index === 0 ? '' : ' '
-          }[#${item}](https://github.com/eyelly-wu/i18n-pro/issues/${item})`
+          res += `${index === 0 ? '' : ' '}[#${item}](${
+            packageInfo.bugs.url
+          }/${item})`
           return res
         }, ' ')
       : ''

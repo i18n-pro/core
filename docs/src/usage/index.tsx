@@ -292,8 +292,6 @@ function Demo() {
       {tr('通过命令{0}就能看中文版了', ' `npx i18n h -L zh` ')}
       <Break />
       <Image {...imageObj['demo']} />
-      <br />
-      {tr('感兴趣的同学，可以看看源码')}
     </>
   )
 }

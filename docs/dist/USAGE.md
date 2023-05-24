@@ -188,4 +188,4 @@ If this library is used directly in a frontend application, when switching langu
 Real code examples can be found in the  [Live Demo](https://github.com/eyelly-wu/i18n-pro/tree/vdoc#live-demo)  section of the  `README`  documentation, and the console output of the current library  `Command Line Tool`  has also been internationalized
 
 You can see the Chinese version by executing the command  `npx i18n h -L zh` 
-![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")<br />If you are interested, you can look at the source code
+![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")
