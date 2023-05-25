@@ -43,7 +43,6 @@ export async function translateByOpenAI(props: {
   const textErrorMsg: Record<string, string[]> = {}
 
   let errorCode
-  const text = texts.join('\n')
 
   try {
     console.log(t('翻译中...'))
@@ -54,7 +53,9 @@ export async function translateByOpenAI(props: {
         messages: [
           {
             role: 'user',
-            content: `Translate those texts from ${from} to ${to}, keep the original newline format\n${text}`,
+            content: `Translate the following JSON from ${from} to ${to} while preserving the array format: ${JSON.stringify(
+              texts,
+            )}`,
           },
         ],
         temperature: 0,
@@ -83,7 +84,7 @@ export async function translateByOpenAI(props: {
     }
 
     const transText = res.choices[0].message.content.replace(/^\n\n/, '')
-    const transTexts = transText.split('\n')
+    const transTexts = JSON.parse(transText)
 
     const srcDistMap = transTexts.reduce?.((res, item, index) => {
       res[texts[index]] = item
