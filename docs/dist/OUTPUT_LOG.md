@@ -7,7 +7,7 @@ To facilitate tracking and locating problems, there will be some necessary log o
 |texts-error.json|Extracted all  `Translation`  that does not meet the requirements<br /><br />📢📢📢：Does not include scenarios using variables,  `JavaScript`  statements, etc|
 |texts.json|Extracted all the requirements  `Translation` |
 |translate-fail.json|List of texts that failed to be translated|
-|translate-error.json|List of texts that were translated incorrectly<br /><br />Currently, we can identify the exceptions lost after dynamic parameters translation|
+|translate-error.json|List of texts that were translated incorrectly<br /><br />当前可以识别出 `插值变量` 翻译后丢失的异常|
 |translate-success.json|List of texts that were translated successfully<br /><br />📢📢📢：In incremental translation mode, only the texts translated in this session will be included, and the previously translated texts will not be included|
 |langCode.json|An independent language pack for a target language<br /><br />When  `output.langType == 'single'` , a single language pack of target language will be generated in the log directory|
 |langs.json|Aggregated language pack<br /><br />When  `output.langType == 'multiple'` , the aggregated language pack will be generated in the log directory|

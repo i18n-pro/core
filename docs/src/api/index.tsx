@@ -32,7 +32,7 @@ function renderFormatDesc() {
     return tr(
       '格式化{0}类型{1}的回调，对应的类型标记是{2}{3}{4}',
       render(<b> {name} </b>),
-      render(<code> {getInterpolationVariable(true)} </code>),
+      ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
       render(<b> {lowTag} </b>),
       tr('或'),
       render(<b> {upperTag} </b>),
@@ -96,7 +96,7 @@ ${getFormatTypeString('    ')}
           beginIndex: tr(
             '设置{0}函数中{1}起始下标，默认为 0',
             ` ${render(<code>t</code>)} `,
-            render(<code> {getInterpolationVariable(true)} </code>),
+            ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
           ),
           ...renderFormatDesc(),
         }}
@@ -131,11 +131,11 @@ ${getFormatTypeString('    ')}
           ),
           args: tr(
             '表示{0}，没有个数限制，{1}文案中需要以{2}的形式来接收，{3}表示{4}的位置，从 0 开始（可在{5}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
-            render(<code> {getInterpolationVariable(true)} </code>),
+            ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
             ` ${render(<code>text</code>)} `,
             ` ${render(<code>{'{index}'}</code>)} `,
             ` ${render(<code>index</code>)} `,
-            render(<code> {getInterpolationVariable(true)} </code>),
+            ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
             ` ${render(<code>initI18n</code>)} `,
           ),
         }}

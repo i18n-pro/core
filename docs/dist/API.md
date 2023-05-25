@@ -74,37 +74,37 @@ Initialize a fixed configuration to get the core API
     <tr>
       <td>beginIndex</td>
       <td>
-        设置 <code>t</code> 函数中<code> 插值变量 </code>起始下标，默认为 0
+        设置 <code>t</code> 函数中 <code>插值变量</code> 起始下标，默认为 0
       </td>
     </tr>
     <tr>
       <td>formatNumber</td>
       <td>
-        格式化<b> Number </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> n </b>or<b> N </b>
+        格式化<b> Number </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> n </b>or<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-        格式化<b> Currency </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> c </b>or<b> C </b>
+        格式化<b> Currency </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> c </b>or<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-        格式化<b> Date </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> d </b>or<b> D </b>
+        格式化<b> Date </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> d </b>or<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-        格式化<b> Time </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> t </b>or<b> T </b>
+        格式化<b> Time </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> t </b>or<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-        格式化<b> Plural </b>类型<code> 插值变量 </code>的回调，对应的类型标记是<b> p </b>or<b> P </b>
+        格式化<b> Plural </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> p </b>or<b> P </b>
       </td>
     </tr>
   </tr>
@@ -136,7 +136,7 @@ Get Internationalization Text<br />The internal will obtain  `Translation`  corr
     <tr>
       <td>args</td>
       <td>
-        表示<code> 插值变量 </code>，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示<code> 插值变量 </code>的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
+        表示 <code>插值变量</code> ，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示 <code>插值变量</code> 的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
       </td>
     </tr>
   </tr>

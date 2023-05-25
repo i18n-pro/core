@@ -5,9 +5,10 @@
   <summary>Table of Contents</summary>
 
   &emsp;&emsp;[1. Why use  `Translation`  as key?](#1-why-use--translation--as-key)<br/>
-  &emsp;&emsp;[2.  `变量插值` 为什么不支持对象属性解析？](#2-变量插值-为什么不支持对象属性解析)<br/>
-  &emsp;&emsp;[3.  `插值变量` 类型**Date**和**Time**分开有必要吗？](#3-插值变量-类型date和time分开有必要吗)<br/>
-  &emsp;&emsp;[4. Will rich text be supported?](#4-will-rich-text-be-supported)<br/>
+  &emsp;&emsp;[2.  `变量插值` 与 `插值变量` 有何不同？](#2-变量插值-与-插值变量-有何不同)<br/>
+  &emsp;&emsp;[3.  `变量插值` 为什么不支持对象属性解析？](#3-变量插值-为什么不支持对象属性解析)<br/>
+  &emsp;&emsp;[4.  `插值变量` 类型**Date**和**Time**分开有必要吗？](#4-插值变量-类型date和time分开有必要吗)<br/>
+  &emsp;&emsp;[5. Will rich text be supported?](#5-will-rich-text-be-supported)<br/>
 
 </details>
 
@@ -67,7 +68,32 @@ However, it also has the following advantages:
 *  `Translation` 本身语言无需生成语言包
 
 如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信 `i18n-pro` 会带给你非常不错的开发体验
-## 2.  `变量插值` 为什么不支持对象属性解析？
+## 2.  `变量插值` 与 `插值变量` 有何不同？
+
+```js
+// Number Type
+t('The number of users has reached {n0}', 100000000)
+
+// Currency Type
+t('The selling price is {c0}', 14999)
+
+// Date Type
+t(`Today's date is {d0}`, new Date())
+
+// Time Type
+t('Current time: {t0}', new Date())
+
+// Plural Type
+t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
+```
+**变量插值**：指『 `Translation` 后面的变量在 `t` 函数执行后可以插入到文案中』这个功能点<br />**插值变量**：指插入到文案中的变量<br />例如上面示例代码中的 `100000000` 、 `14999` 和 `newDate()` 等
+*  `插值变量` 插入位置
+   * 类似于{0}、{1}、{2}等
+*  `插值变量` 类型标记
+   * 类似于{n0}、{c1}、{t2}、{d3}、{p4个苹果}等
+
+
+## 3.  `变量插值` 为什么不支持对象属性解析？
 Sample code
 ```js
 // Object attribute resolution
@@ -90,7 +116,7 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
 
 Example of object attribute resolution
 ```js
-//  `Translation`  as Chinese
+// Translation as Chinese
 const zh = '我叫{name}，今年{age}岁，来自{base}，是一名{job}'
 
 // Translated into English through Baidu-Translation, it seems OK
@@ -101,7 +127,7 @@ const enToZh = '我的名字是｛name｝。我{age}岁。我来自{base}。我�
 ```
 Let's take a look at the example of subscript parsing
 ```js
-//  `Translation`  as Chinese
+// Translation as Chinese
 const zh = '我叫{0}，今年{1}岁，来自{2}，是一名{3}'
 
 // Translated into English through Baidu-Translation
@@ -111,9 +137,9 @@ const zhToEn = `My name is {0}. I'm {1} years old. I'm from {2}. I'm a {3}`
 const enToZh = '我的名字是｛0｝。我是｛1｝岁。我来自｛2｝。我是｛3｝'
 ```
 Although machine translation cannot achieve 100% accuracy, this method can avoid unnecessary errors as much as possible
-## 3.  `插值变量` 类型**Date**和**Time**分开有必要吗？
+## 4.  `插值变量` 类型**Date**和**Time**分开有必要吗？
 Personally, I don't think it is necessary, but it has been implemented in the design. You can choose to use it flexibly at your discretion. Of course, it is not ruled out that some business scenarios will be more convenient to deal with separately
-## 4. Will rich text be supported?
+## 5. Will rich text be supported?
 It will not be supported, because automatic translation is the core function of the library. The basic principle of achieving this function is  `Translation`  requires ordinary pure texts. Supporting rich texts and existing realizations will be logically conflict.<br /><br />**某些场景下，可以利用 `变量插值` 来实现富文本的效果**<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
 ```js
 t('hello {0}world{1}', '<b style="color:red;">', '</b>')

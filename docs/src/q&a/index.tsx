@@ -10,16 +10,33 @@ import {
 import {
   getInterpolationVariable,
   getTranslationText,
+  getTypeTagCode,
   getVariableInterpolation,
   initI18n,
 } from '../utils'
 
-function BasePrinciple() {
+type Q = {
+  order: string
+}
+
+function Title(props: { order: string; title: string }) {
+  const { order, title } = props
+  return (
+    <H2>
+      {order}. {title}
+    </H2>
+  )
+}
+
+function BasePrinciple(props: Q) {
+  const { order } = props
   const extraCopy = tr('自动提取文案')
 
   return (
     <>
-      <H2>1. {tr('为什么要以{0}作为key呢？', getTranslationText())}</H2>
+      <H2>
+        {order}. {tr('为什么要以{0}作为key呢？', getTranslationText())}
+      </H2>
       <Bold>{tr('为了实现如下目标')}</Bold>
       <List items={['U', extraCopy, tr('自动翻译'), tr('自动生成语言包')]} />
       {tr(
@@ -95,10 +112,63 @@ const text2 = t('hello xxx')
   )
 }
 
-function NonsupportObjectParamsResolve() {
+function VariableInterpolationAndInterpolationVariable(props: Q) {
+  const { order } = props
   return (
     <>
-      <H2>{`2. ${tr(
+      <Title
+        order={order}
+        title={tr(
+          '{0}与{1}有何不同？',
+          getVariableInterpolation(),
+          getInterpolationVariable(),
+        )}
+      />
+      <CodeBlock code={getTypeTagCode()} />
+      <Bold>{getVariableInterpolation(true)}</Bold>：
+      {tr(
+        '指『{0}』这个功能点',
+        tr(
+          '{0}后面的变量在{1}函数执行后可以插入到文案中',
+          getTranslationText(),
+        ),
+        ' `t` ',
+      )}
+      <br />
+      <Bold>{getInterpolationVariable(true)}</Bold>：
+      {tr('指插入到文案中的变量')}
+      <br />
+      {tr(
+        '例如上面示例代码中的{0}、{1}和{2}等',
+        ' `100000000` ',
+        ' `14999` ',
+        ' `newDate()` ',
+      )}
+      <List
+        items={[
+          'U',
+          [
+            tr('{0}插入位置', getInterpolationVariable()),
+            ['U', tr('类似于{0}等', `{0}、{1}、{2}`)],
+          ],
+          [
+            tr('{0}类型标记', getInterpolationVariable()),
+            [
+              'U',
+              tr('类似于{0}等', `{n0}、{c1}、{t2}、{d3}、{p4${tr('个苹果')}}`),
+            ],
+          ],
+        ]}
+      />
+    </>
+  )
+}
+
+function NonsupportObjectParamsResolve(props: Q) {
+  const { order } = props
+  return (
+    <>
+      <H2>{`${order}. ${tr(
         '{0}为什么不支持对象属性解析？',
         getVariableInterpolation(),
       )}`}</H2>
@@ -128,7 +198,7 @@ i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
       <Break />
       {tr('对象属性解析的示例')}
       <CodeBlock
-        code={`// ${tr('{0}为中文', getTranslationText())}
+        code={`// ${tr('{0}为中文', getTranslationText(true))}
 const zh = '我叫{name}，今年{age}岁，来自{base}，是一名{job}'
 
 // ${tr('通过百度翻译成英文，看似OK的')}
@@ -141,7 +211,7 @@ const enToZh = '我的名字是｛name｝。我{age}岁。我来自{base}。我�
       />
       {tr('再来看看下标解析的示例')}
       <CodeBlock
-        code={`// ${tr('{0}为中文', getTranslationText())}
+        code={`// ${tr('{0}为中文', getTranslationText(true))}
 const zh = '我叫{0}，今年{1}岁，来自{2}，是一名{3}'
 
 // ${tr('通过百度翻译成英文')}
@@ -157,17 +227,19 @@ const enToZh = '我的名字是｛0｝。我是｛1｝岁。我来自｛2｝。�
   )
 }
 
-function DateAndTime() {
+function DateAndTime(props: Q) {
+  const { order } = props
   return (
     <>
-      <H2>
-        {`3. ${tr(
+      <Title
+        order={order}
+        title={tr(
           '{0}类型{1}和{2}分开有必要吗？',
           getInterpolationVariable(),
           `**${tr('日期')}**`,
           `**${tr('时间')}**`,
-        )}`}
-      </H2>
+        )}
+      />
       {tr(
         '个人感觉其实是没有必要的，只是设计上已经实现了，大家可以酌情灵活选择使用，当然不排除有的业务场景这样分开处理会更方便',
       )}
@@ -175,13 +247,13 @@ function DateAndTime() {
   )
 }
 
-function SupportRichText() {
+function SupportRichText(props: Q) {
+  const { order } = props
   const richText1 = tr('hello {0}world{1}', '<b style="color:red;">', '</b>')
-  const richText2 = tr('hello {0}', `<b style="color:red;">${tr('world')}</b>`)
 
   return (
     <>
-      <H2>{`4. ${tr('是否会支持富文本文案？')}`}</H2>
+      <Title order={order} title={tr('是否会支持富文本文案？')} />
       {tr(
         '不会支持，因为自动翻译是该库的核心功能，实现该功能的基本原则就是{0}需要为普通的纯文本，支持富文本与现有这一套实现逻辑上会存在冲突',
         getTranslationText(),
@@ -228,10 +300,11 @@ export default function QAndA(props) {
     <>
       <H1 skip>Q&A</H1>
       <TableOfContents text={tr('目录')} open={false} />
-      <BasePrinciple />
-      <NonsupportObjectParamsResolve />
-      <DateAndTime />
-      <SupportRichText />
+      <BasePrinciple order="1" />
+      <VariableInterpolationAndInterpolationVariable order="2" />
+      <NonsupportObjectParamsResolve order="3" />
+      <DateAndTime order="4" />
+      <SupportRichText order="5" />
     </>
   )
 }
