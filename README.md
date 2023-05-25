@@ -36,12 +36,12 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 * **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **simple**：Low learning cost and easy to use
-* **flexible**：支持 `变量插值` 、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）
+* **flexible**：Support  `Variable Interpolation` , as well as unique type tag and formatting callbacks (numbers, currency, dates, times, plurals)
 * **automatic-translation**：One command can automatically extract text and translate it to generate language packs
    * **Support incremental translation mode**：Only translate new text and intelligently remove unused text
    * **Support multi -translation platform**：Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu（In addition to Google x, other platforms need to register an account by themselves）
    * **Support multiple translation logs**：The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues
-* **keyless**：No need to manually define key,  `Translation`  is key
+* **keyless**：No need to manually define key,  `Translation Text`  is key
 
 
 # Live Demo
@@ -52,7 +52,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 # Principle
 
->Taking  `Translation`  as key is the key to all the functions of the library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
+>Taking  `Translation Text`  as key is the key to all the functions of the library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
 
 The library is mainly composed of two parts
 * Command Line Tool
@@ -69,13 +69,13 @@ t("hello world")
 t(`hello world`)
 
 
-/** 支持变量插值 */
+/** Support Variable Interpolation */
 
 t('hello {0}', 'developer friends'),
 t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's good`, ' ⭐️ ')
 
 
-/** 插值变量类型标记，需配合对应的格式化回调 */
+/** Interpolation Variable type tag need to be used with corresponding formatting callbacks */
 
 // Number Type
 t('The number of users has reached {n0}', 100000000)
@@ -94,7 +94,7 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 ```
 **Function API**：Connect the international language package into the project, consisting of  `initI18n` ,  `t` ,  `setI18n`  and  `withI18n` 
 * **initI18n**：Used to initialize the fixed configuration, and finally return the objects containing the following 3 APIs
-* **t**：It is used for wrapping  `Translation`  to achieve internationalization, and it is also used as a logo of the command line to match  `Translation`  rules
+* **t**：It is used for wrapping  `Translation Text`  to achieve internationalization, and it is also used as a logo of the command line to match  `Translation Text`  rules
 * **setI18n**：Set language and language package
 * **withI18n**：It is applicable to the server. Each interface response needs to be internationalized
 

@@ -7,7 +7,7 @@ Requirements for the first parameter of  `t`  function：
 * If you use the  `Template Strings`  syntax, you cannot wrap lines
 
 Failure to meet the above conditions may result in
-*  `Translation`  Extraction is incorrect
+*  `Translation Text`  Extraction is incorrect
 * Incorrect translation result
 
 The following can be matched
@@ -43,7 +43,7 @@ x
 x
 `)
 ```
-如果需要拼接字符串，可以用 `变量插值` 
+If you need to concatenate strings, you can use  `Variable Interpolation` 
 ```js
 t('My name is {0}, I am {1} years old this year, from {2}, and I am a {3}', 'Wang Nima', 35, 'Mars', 'coder')
 ```

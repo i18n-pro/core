@@ -74,44 +74,44 @@ Initialize a fixed configuration to get the core API
     <tr>
       <td>beginIndex</td>
       <td>
-        设置 <code>t</code> 函数中 <code>插值变量</code> 起始下标，默认为 0
+        Set the starting index of  <code>Interpolation Variable</code>  in the  <code>t</code>  function, default is 0
       </td>
     </tr>
     <tr>
       <td>formatNumber</td>
       <td>
-        格式化<b> Number </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> n </b>or<b> N </b>
+        Format the callback of type <b> Number </b>, corresponding to the type tag <b> n </b>or<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-        格式化<b> Currency </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> c </b>or<b> C </b>
+        Format the callback of type <b> Currency </b>, corresponding to the type tag <b> c </b>or<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-        格式化<b> Date </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> d </b>or<b> D </b>
+        Format the callback of type <b> Date </b>, corresponding to the type tag <b> d </b>or<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-        格式化<b> Time </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> t </b>or<b> T </b>
+        Format the callback of type <b> Time </b>, corresponding to the type tag <b> t </b>or<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-        格式化<b> Plural </b>类型 <code>插值变量</code> 的回调，对应的类型标记是<b> p </b>or<b> P </b>
+        Format the callback of type <b> Plural </b>, corresponding to the type tag <b> p </b>or<b> P </b>
       </td>
     </tr>
   </tr>
 </table>
 
 ### t
-Get Internationalization Text<br />The internal will obtain  `Translation`  corresponding to  <code>text</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
+Get Internationalization Text<br />The internal will obtain  `Translation Text`  corresponding to  <code>text</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
 <h4 id="t-type">Type</h4>
 <pre>
 (
@@ -136,7 +136,7 @@ Get Internationalization Text<br />The internal will obtain  `Translation`  corr
     <tr>
       <td>args</td>
       <td>
-        表示 <code>插值变量</code> ，没有个数限制， <code>text</code> 文案中需要以 <code>{index}</code> 的形式来接收， <code>index</code> 表示 <code>插值变量</code> 的位置，从 0 开始（可在 <code>initI18n</code> 中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复
+        Represents  <code>Interpolation Variable</code> , with no limit on the number.  <code>text</code>  needs to be received in the form of  <code>{index}</code>  in the text,  <code>index</code>  represents the position of  <code>Interpolation Variable</code> , starting from 0 (can be customized in  <code>initI18n</code> ). The first parameter corresponds to 0, and 2 parameters correspond to 1, and so on
       </td>
     </tr>
   </tr>
@@ -221,7 +221,7 @@ Common format callback type
 ```ts
 type FormatFunc = <T>(props: {
   locale: string, // Current language
-  payload: string | number | unknown | T, // 插值变量
+  payload: string | number | unknown | T, // Interpolation Variable
 }) => number | string
 ```
 
@@ -230,7 +230,7 @@ Format callback function type of Date(Time)
 ```ts
 type FormatDateFunc = <T>(props: {
   locale: string, // Current language
-  payload: string | number | Date | unknown | T, // 插值变量
+  payload: string | number | Date | unknown | T, // Interpolation Variable
 }) => string
 ```
 
@@ -239,7 +239,7 @@ Format callback function type of Plural
 ```ts
 type FormatPluralFunc = <T>(props: {
   locale: string, // Current language
-  payload: string | number | unknown | T, // 插值变量
+  payload: string | number | unknown | T, // Interpolation Variable
   text: string // A string that combines quantifiers and nouns by default. Languages that do not require plural processing can return this property directly
   keyword: string // Plural keyword
 }) => string

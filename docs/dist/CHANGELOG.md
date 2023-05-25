@@ -171,8 +171,8 @@
 <h4 id="130-api-added">Added</h4>
 
 * Add  `withI18N`  function API to support server scenarios
-* 添加 `插值变量` 类型标记和类型格式化回调函数
-   * 支持 数字、货币、日期、时间、复数 等类型的 `插值变量` 标记
+* Add  `Interpolation Variable`  type tag and type formatting callback function
+   * Supports numeric, currency, date, time, plural, and other types of  `Interpolation Variable`  tags
    * `setI18N`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
 
 
@@ -208,19 +208,19 @@
    * Supports intelligently removing the translated text that has not been used in the language package
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
-* Newly added rules constraints:  `Translation`  cannot include special characters  `\t`
+* Newly added rules constraints:  `Translation Text`  cannot include special characters  `\t`
 
 
 <h4 id="120-command-line-tool-fixed">Fixed</h4>
 
-* Fix  `Translation`  contains  `\t`  special characters lead to abnormal translation
+* Fix  `Translation Text`  contains  `\t`  special characters lead to abnormal translation
 
 
 <h3 id="120-api">API</h3>
 
 <h4 id="120-api-added">Added</h4>
 
-* 新增 `setI18N` 函数参数属性 `beginIndex`，用于指定 `插值变量` 的起始下标
+* Add the  `beginIndex` function parameter attribute  `setI18N`  to specify the starting index of  `Interpolation Variable` 
 
 
 <h4 id="120-api-fixed">Fixed</h4>
