@@ -127,12 +127,8 @@ function VariableInterpolationAndInterpolationVariable(props: Q) {
       <CodeBlock code={getTypeTagCode()} />
       <Bold>{getVariableInterpolation(true)}</Bold>：
       {tr(
-        '指『{0}』这个功能点',
-        tr(
-          '{0}后面的变量在{1}函数执行后可以插入到文案中',
-          getTranslationText(),
-        ),
-        ' `t` ',
+        '指{0}这个功能的实现',
+        tr(` \`t('hello {0}', 'world')\` → \`'hello world'\` `),
       )}
       <br />
       <Bold>{getInterpolationVariable(true)}</Bold>：
