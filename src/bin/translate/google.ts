@@ -1,7 +1,7 @@
 import { TranslationServiceClient } from '@google-cloud/translate'
 import { BasicGoogleConfig } from '../../type'
 import chalk from '../chalk'
-import { collectRes, handleTranslateFail } from './utils'
+import { collectRes, getTranslatorName, handleTranslateFail } from './utils'
 
 const config: BasicGoogleConfig = {
   projectId: '',
@@ -9,8 +9,6 @@ const config: BasicGoogleConfig = {
   from: '',
   to: [],
 }
-
-const TRANSLATOR_NAME = t('谷歌')
 
 const ERROR_CODE_TIP_MAP = {
   '5 NOT_FOUND': t('projectId 配置不正确'),
@@ -88,6 +86,7 @@ export async function translateByGoogle(props: {
   const { texts, from, to } = props
   const { projectId, location } = config
 
+  const TRANSLATOR_NAME = getTranslatorName('google')
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
   const textErrorMsg: Record<string, string[]> = {}

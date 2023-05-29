@@ -6,6 +6,7 @@ import {
   getURLStringFromObj,
   handleTranslateFail,
   throwErrorByErrorCode,
+  getTranslatorName,
 } from './utils'
 
 const config: BasicYoudaoConfig = {
@@ -14,8 +15,6 @@ const config: BasicYoudaoConfig = {
   from: '',
   to: [],
 }
-
-const TRANSLATOR_NAME = t('有道')
 
 const ERROR_CODE_TIP_MAP = {
   102: t('不支持的语言类型'),
@@ -52,6 +51,7 @@ export async function translateByYoudao(props: {
   const { texts, from, to } = props
   const { appKey, key } = config
 
+  const TRANSLATOR_NAME = getTranslatorName('youdao')
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
   const textErrorMsg: Record<string, string[]> = {}

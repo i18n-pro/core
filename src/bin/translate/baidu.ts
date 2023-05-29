@@ -7,6 +7,7 @@ import {
   collectRes,
   handleTranslateFail,
   throwErrorByErrorCode,
+  getTranslatorName,
 } from './utils'
 
 const config: BasicBaiduConfig = {
@@ -16,8 +17,6 @@ const config: BasicBaiduConfig = {
   to: [],
   delay: 0,
 }
-
-const TRANSLATOR_NAME = t('百度')
 
 const ERROR_CODE_TIP_MAP = {
   52003: t('appid 配置不正确'),
@@ -51,6 +50,7 @@ export async function translateByBaidu(props: {
   const { texts, from, to } = props
   const { appid, key } = config
 
+  const TRANSLATOR_NAME = getTranslatorName('baidu')
   const translateText = texts.join(SEPARATOR_STR)
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}

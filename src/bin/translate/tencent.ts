@@ -6,6 +6,7 @@ import {
   collectRes,
   handleTranslateFail,
   throwErrorByErrorCode,
+  getTranslatorName,
 } from './utils'
 
 const config: BasicTencentConfig = {
@@ -16,8 +17,6 @@ const config: BasicTencentConfig = {
   from: '',
   to: [],
 }
-
-const TRANSLATOR_NAME = t('腾讯')
 
 const ERROR_CODE_TIP_MAP = {
   'AuthFailure.SignatureFailure': t('secretId 或者 secretKey 配置不正确'),
@@ -171,6 +170,7 @@ export async function translateByTencent(props: {
     language = 'zh-CN',
   } = config
 
+  const TRANSLATOR_NAME = getTranslatorName('tencent')
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
   const textErrorMsg: Record<string, string[]> = {}

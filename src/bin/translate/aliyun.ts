@@ -2,7 +2,12 @@ import { Config as OpenApiConfig } from '@alicloud/openapi-client'
 import alimt, { GetBatchTranslateRequest } from '@alicloud/alimt20181012'
 import { RuntimeOptions } from '@alicloud/tea-util'
 import type { BasicAliyunConfig } from '../../type'
-import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
+import {
+  collectRes,
+  getTranslatorName,
+  handleTranslateFail,
+  throwErrorByErrorCode,
+} from './utils'
 import type Client from '@alicloud/alimt20181012'
 
 const config: BasicAliyunConfig = {
@@ -11,8 +16,6 @@ const config: BasicAliyunConfig = {
   from: '',
   to: [],
 }
-
-const TRANSLATOR_NAME = t('阿里云')
 
 const ERROR_CODE_TIP_MAP = {
   MissingAccessKeyId: t('accessKeyId 或者 accessKeySecret 配置不正确'),
@@ -112,6 +115,7 @@ export async function translateByAliyun(props: {
   from: string // 被翻译内容的默认语言
   to: string // 需要翻译到其他语言
 }) {
+  const TRANSLATOR_NAME = getTranslatorName('aliyun')
   const { texts, from, to } = props
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}

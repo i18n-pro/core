@@ -1,6 +1,11 @@
 import { BasicMicrosoftConfig } from '../../type'
 import fetch from '../fetch'
-import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
+import {
+  collectRes,
+  getTranslatorName,
+  handleTranslateFail,
+  throwErrorByErrorCode,
+} from './utils'
 
 const config: BasicMicrosoftConfig = {
   key: '',
@@ -8,8 +13,6 @@ const config: BasicMicrosoftConfig = {
   from: '',
   to: [],
 }
-
-const TRANSLATOR_NAME = t('微软')
 
 const ERROR_CODE_TIP_MAP = {
   401000: t('key 或者 location 配置不正确'),
@@ -38,6 +41,7 @@ export async function translateByMicrosoft(props: {
   const { texts, from, to } = props
   const { key, location } = config
 
+  const TRANSLATOR_NAME = getTranslatorName('microsoft')
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
   const textErrorMsg: Record<string, string[]> = {}

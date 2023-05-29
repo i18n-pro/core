@@ -1,14 +1,12 @@
 import translate, { googleTranslateApi } from 'google-translate-api-x'
 import { BasicGooglexConfig } from '../../type'
-import { collectRes, handleTranslateFail } from './utils'
+import { collectRes, getTranslatorName, handleTranslateFail } from './utils'
 import fetch from 'node-fetch'
 
 const config: BasicGooglexConfig = {
   from: '',
   to: [],
 }
-
-const TRANSLATOR_NAME = t('谷歌X')
 
 const ERROR_CODE_TIP_MAP = {}
 
@@ -63,6 +61,7 @@ export async function translateByGooglex(props: {
 }) {
   const { texts, from, to } = props
 
+  const TRANSLATOR_NAME = getTranslatorName('googlex')
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
   const textErrorMsg: Record<string, string[]> = {}

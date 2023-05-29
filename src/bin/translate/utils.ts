@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { Translator } from 'src/type'
 import chalk, { STYLE_EOF } from '../chalk'
 import { TRANSLATE_ERROR_TEXT } from '../constants'
 import {
@@ -165,4 +166,19 @@ export function handleTranslateFail(
   texts.forEach((text) => {
     error[text] = currentErrorText
   })
+}
+
+export function getTranslatorName(translator: Translator) {
+  const translatorTextMap: Record<Translator, string> = {
+    aliyun: t('阿里云'),
+    baidu: t('百度'),
+    youdao: t('有道'),
+    tencent: t('腾讯'),
+    microsoft: t('微软'),
+    google: t('谷歌'),
+    googlex: t('谷歌X'),
+    openai: 'OpenAI',
+  }
+
+  return translatorTextMap[translator]
 }

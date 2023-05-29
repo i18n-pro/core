@@ -1,6 +1,11 @@
 import { BasicOpenAIConfig } from '../../type'
 import fetch from '../fetch'
-import { collectRes, handleTranslateFail, throwErrorByErrorCode } from './utils'
+import {
+  collectRes,
+  getTranslatorName,
+  handleTranslateFail,
+  throwErrorByErrorCode,
+} from './utils'
 
 const config: BasicOpenAIConfig = {
   key: '',
@@ -9,8 +14,6 @@ const config: BasicOpenAIConfig = {
   to: [],
   delay: 0,
 }
-
-const TRANSLATOR_NAME = 'OpenAI'
 
 const ERROR_CODE_TIP_MAP = {}
 
@@ -38,6 +41,7 @@ export async function translateByOpenAI(props: {
   const { texts, from, to, tokens } = props
   const { key, proxy, model = 'gpt-3.5-turbo' } = config
 
+  const TRANSLATOR_NAME = getTranslatorName('openai')
   const success: Record<string, string> = {}
   const error: Record<string, string> = {}
   const textErrorMsg: Record<string, string[]> = {}
