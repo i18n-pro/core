@@ -1,20 +1,19 @@
 import { Image, Link, Break } from 'jsx-to-md'
 import { linkObj, imageObj, langs } from '../constants'
+import { homepage, version } from '../../../package.json'
 
 const separator = ' | '
 
 function renderLanguage() {
   const res = langs.reduce((res, item, index) => {
     const { code, locale, name } = item
+    const EN_URL = `${homepage}/tree/v${version}#readme`
+    const OTHER_URL = `${homepage}/blob/v${version}/README_${locale}.md`
 
     if (global.docLocale == code) {
       res.push(name)
     } else {
-      res.push(
-        <Link href={`./README${code != 'en' ? '_' + locale : ''}.md`}>
-          {name}
-        </Link>,
-      )
+      res.push(<Link href={code === 'en' ? EN_URL : OTHER_URL}>{name}</Link>)
     }
 
     if (index != langs.length - 1) {

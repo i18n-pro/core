@@ -232,7 +232,7 @@
 
 <h4 id="120-文档-added">Added</h4>
 
-* 新增[翻译日志](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
+* 新增[翻译日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
 
 
 ## [1.1.1] - 2022-06-25

@@ -3,7 +3,7 @@
 [![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png "logo")](https://github.com/eyelly-wu/i18n-pro "github")
 
 
-English | [简体中文](./README_zh-CN.md)
+English | [简体中文](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/README_zh-CN.md)
 
 
   <p style="font-size: 18px;">Lightweight, simple, flexible, automatic translation internationalization tool for JavaScript</p>
@@ -52,7 +52,7 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 # Principle
 
->Taking  `Translation Text`  as key is the key to all the functions of the library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
+>Taking  `Translation Text`  as key is the key to all the functions of the library. If you have any questions about this, [Please see](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/Q&A.md)
 
 The library is mainly composed of two parts
 * Command Line Tool
@@ -60,7 +60,7 @@ The library is mainly composed of two parts
 
 **Command Line Tool**：Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate language pack files
 
-An example of parsing text using  [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)  is as follows:
+An example of parsing text using  [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/MATCH_RULE.md)  is as follows:
 ```js
 /** Normal string */
 
@@ -101,13 +101,13 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 Therefore,  `Command Line Tool`  and  `Function API`  work better together. It is precisely because of this structural design that  `i18n-pro`  library can be easily integrated into any  `JavaScript`  project
 # Help Document
 
-* [Quick Start](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/USAGE.md)
-* [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/COMMAND_LINE.md)
-* [API](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/API.md)
-* [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/MATCH_RULE.md)
-* [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/OUTPUT_LOG.md)
-* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/Q&A.md)
-* [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/vdoc/docs/dist/CHANGELOG.md)
+* [Quick Start](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/USAGE.md)
+* [Command Line](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/COMMAND_LINE.md)
+* [API](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/API.md)
+* [Matching Rules](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/MATCH_RULE.md)
+* [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/OUTPUT_LOG.md)
+* [Q&A](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/Q&A.md)
+* [Changelog](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.2/docs/dist/CHANGELOG.md)
 
 
 # License
