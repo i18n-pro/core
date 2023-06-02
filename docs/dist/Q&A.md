@@ -86,7 +86,7 @@ t('Current time: {t0}', new Date())
 // Plural Type
 t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
 ```
-**Variable Interpolation**：指 `t('hello {0}', 'world')` → `'hello world'` 这个功能的实现<br />**Interpolation Variable**：Refers to the variable inserted into the text<br />For example,  `100000000` ,  `14999` , and  `newDate()`  in the sample code above
+**Variable Interpolation**：Refers to the realization of  `t('hello {0}', 'world')` → `'hello world'`  this feature<br />**Interpolation Variable**：Refers to the variable inserted into the text<br />For example,  `100000000` ,  `14999` , and  `newDate()`  in the sample code above
 * Insertion position of  `Interpolation Variable` 
    * Similar to {0}、{1}、{2}, etc
 *  `Interpolation Variable`  type tag

@@ -131,7 +131,6 @@
   "修复初始化命令在 Windows 系统中报异常": "Fix initialization command reporting an exception in Windows system",
   "修复在 Windows 系统中执行翻译命令后会意外生成类{0}文件夹": "Fix unexpected generation of similar to {0} folder after executing translation command in Windows system",
   "更新日志": "Changelog",
-  "指定配置文件路径（参数为绝对路径）": "Specify the configuration file path (the parameter is an absolute path)",
   "只需要指定路径名，配置文件名默认为{0}": "You only need to specify the path name. The default configuration filename is {0}",
   "不能包含{0}、{1}等特殊字符": "Cannot contain special characters such as {0} and {1}",
   "开始和结尾不能包含空格": "The beginning and end cannot contain spaces",
@@ -366,8 +365,6 @@
   "{0}本身语言无需生成语言包": "{0} language itself does not need to generate language packs",
   "如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信{0}会带给你非常不错的开发体验": "If you cannot accept the above shortcomings, then other internationalization solutions are more suitable for you; if you can accept the above shortcomings, then I believe {0} will bring you a very good development experience",
   "{0}与{1}有何不同？": "What is the difference between {0} and {1}?",
-  "指『{0}』这个功能点": "Refers to the feature point of '{0}'",
-  "{0}后面的变量在{1}函数执行后可以插入到文案中": "The variable after {0} can be inserted into the text after the execution of the {1} function",
   "指插入到文案中的变量": "Refers to the variable inserted into the text",
   "例如上面示例代码中的{0}、{1}和{2}等": "For example, {0}, {1}, and {2} in the sample code above",
   "{0}插入位置": "Insertion position of {0}",
@@ -380,5 +377,7 @@
   "某些场景下，可以利用{0}来实现富文本的效果": "In some scenarios, {0} can be used to achieve rich text effects",
   "支持{0}、以及独特的类型标记和格式化回调（数字、货币、日期、时间、复数）": "Support {0}, as well as unique type tag and formatting callbacks (numbers, currency, dates, times, plurals)",
   "支持{0}": "Support {0}",
-  "{0}类型标记，需配合对应的格式化回调": "{0} type tag need to be used with corresponding formatting callbacks"
+  "{0}类型标记，需配合对应的格式化回调": "{0} type tag need to be used with corresponding formatting callbacks",
+  "指定配置文件路径（参数为相对路径）": "Specify the configuration file path (parameter is relative path)",
+  "指{0}这个功能的实现": "Refers to the realization of {0} this feature"
 }
