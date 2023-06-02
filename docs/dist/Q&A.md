@@ -6,7 +6,7 @@
 
   &emsp;&emsp;[1. Why use  `Translation Text`  as key?](#1-why-use--translation-text--as-key)<br/>
   &emsp;&emsp;[2. What is the difference between  `Variable Interpolation`  and  `Interpolation Variable` ?](#2-what-is-the-difference-between--variable-interpolation--and--interpolation-variable-)<br/>
-  &emsp;&emsp;[3. Why doesn't  `Variable Interpolation`  support object property parsing?](#3-why-doesn't--variable-interpolation--support-object-property-parsing)<br/>
+  &emsp;&emsp;[3. Why doesn't  `Variable Interpolation`  support object property parsing?](#3-why-doesnt--variable-interpolation--support-object-property-parsing)<br/>
   &emsp;&emsp;[4. Is it necessary to separate **Date** and **Time** for  `Interpolation Variable`  type?](#4-is-it-necessary-to-separate-date-and-time-for--interpolation-variable--type)<br/>
   &emsp;&emsp;[5. Will rich text be supported?](#5-will-rich-text-be-supported)<br/>
 

@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
   '@alicloud/alimt20181012':
@@ -70,8 +74,8 @@ devDependencies:
     specifier: ^8.0.2
     version: registry.npmmirror.com/husky@8.0.2
   jsx-to-md:
-    specifier: 0.11.2
-    version: registry.npmmirror.com/jsx-to-md@0.11.2
+    specifier: 0.11.3
+    version: registry.npmmirror.com/jsx-to-md@0.11.3
   lint-staged:
     specifier: ^13.1.0
     version: registry.npmmirror.com/lint-staged@13.1.0
@@ -1324,10 +1328,10 @@ packages:
     version: 15.7.5
     dev: true
 
-  registry.npmmirror.com/@types/react@18.2.0:
-    resolution: {integrity: sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react/-/react-18.2.0.tgz}
+  registry.npmmirror.com/@types/react@18.2.8:
+    resolution: {integrity: sha512-lTyWUNrd8ntVkqycEEplasWy2OxNlShj3zqS0LuB1ENUGis5HodmhM7DtCoUGbxj3VW/WsGA0DUhpG6XrM7gPA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react/-/react-18.2.8.tgz}
     name: '@types/react'
-    version: 18.2.0
+    version: 18.2.8
     dependencies:
       '@types/prop-types': registry.npmmirror.com/@types/prop-types@15.7.5
       '@types/scheduler': registry.npmmirror.com/@types/scheduler@0.16.3
@@ -3468,6 +3472,14 @@ packages:
       has: registry.npmmirror.com/has@1.0.3
     dev: true
 
+  registry.npmmirror.com/is-core-module@2.12.1:
+    resolution: {integrity: sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-core-module/-/is-core-module-2.12.1.tgz}
+    name: is-core-module
+    version: 2.12.1
+    dependencies:
+      has: registry.npmmirror.com/has@1.0.3
+    dev: true
+
   registry.npmmirror.com/is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-extglob/-/is-extglob-2.1.1.tgz}
     name: is-extglob
@@ -3744,6 +3756,14 @@ packages:
     hasBin: true
     dev: true
 
+  registry.npmmirror.com/json5@2.2.3:
+    resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/json5/-/json5-2.2.3.tgz}
+    name: json5
+    version: 2.2.3
+    engines: {node: '>=6'}
+    hasBin: true
+    dev: true
+
   registry.npmmirror.com/jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsonfile/-/jsonfile-6.1.0.tgz}
     name: jsonfile
@@ -3761,14 +3781,14 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  registry.npmmirror.com/jsx-to-md@0.11.2:
-    resolution: {integrity: sha512-JCaYtT55HLS5TgI5S9Hj9wEtQRa3W7duYuks8AVKFN+lbZELlLU8eqCqoVLUXIBI/K5DhdVHjuOU66oy2UnLew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.11.2.tgz}
+  registry.npmmirror.com/jsx-to-md@0.11.3:
+    resolution: {integrity: sha512-KfiO22VucGBPPo6rsQ4cXKzDUUrYz63LM2Gu8M8UDS06Yhwt1X8sVMg5faukh4IycVm3tq7VCXIOeZqM0FEVFQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsx-to-md/-/jsx-to-md-0.11.3.tgz}
     name: jsx-to-md
-    version: 0.11.2
+    version: 0.11.3
     hasBin: true
     dependencies:
       '@types/node': registry.npmmirror.com/@types/node@18.11.17
-      '@types/react': registry.npmmirror.com/@types/react@18.2.0
+      '@types/react': registry.npmmirror.com/@types/react@18.2.8
       shelljs: registry.npmmirror.com/shelljs@0.8.5
       ts-node-dev: registry.npmmirror.com/ts-node-dev@2.0.0(@types/node@18.11.17)(typescript@4.9.4)
       tsconfig-paths: registry.npmmirror.com/tsconfig-paths@4.2.0
@@ -4775,7 +4795,7 @@ packages:
     version: 0.6.2
     engines: {node: '>= 0.10'}
     dependencies:
-      resolve: registry.npmmirror.com/resolve@1.22.1
+      resolve: registry.npmmirror.com/resolve@1.22.2
     dev: true
 
   registry.npmmirror.com/redent@3.0.0:
@@ -4846,6 +4866,17 @@ packages:
     hasBin: true
     dependencies:
       is-core-module: registry.npmmirror.com/is-core-module@2.11.0
+      path-parse: registry.npmmirror.com/path-parse@1.0.7
+      supports-preserve-symlinks-flag: registry.npmmirror.com/supports-preserve-symlinks-flag@1.0.0
+    dev: true
+
+  registry.npmmirror.com/resolve@1.22.2:
+    resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/resolve/-/resolve-1.22.2.tgz}
+    name: resolve
+    version: 1.22.2
+    hasBin: true
+    dependencies:
+      is-core-module: registry.npmmirror.com/is-core-module@2.12.1
       path-parse: registry.npmmirror.com/path-parse@1.0.7
       supports-preserve-symlinks-flag: registry.npmmirror.com/supports-preserve-symlinks-flag@1.0.0
     dev: true
@@ -5493,7 +5524,7 @@ packages:
       dynamic-dedupe: registry.npmmirror.com/dynamic-dedupe@0.3.0
       minimist: registry.npmmirror.com/minimist@1.2.8
       mkdirp: registry.npmmirror.com/mkdirp@1.0.4
-      resolve: registry.npmmirror.com/resolve@1.22.1
+      resolve: registry.npmmirror.com/resolve@1.22.2
       rimraf: registry.npmmirror.com/rimraf@2.7.1
       source-map-support: registry.npmmirror.com/source-map-support@0.5.21
       tree-kill: registry.npmmirror.com/tree-kill@1.2.2
@@ -5580,7 +5611,7 @@ packages:
     version: 4.2.0
     engines: {node: '>=6'}
     dependencies:
-      json5: registry.npmmirror.com/json5@2.2.2
+      json5: registry.npmmirror.com/json5@2.2.3
       minimist: registry.npmmirror.com/minimist@1.2.8
       strip-bom: registry.npmmirror.com/strip-bom@3.0.0
     dev: true

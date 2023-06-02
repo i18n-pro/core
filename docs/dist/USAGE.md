@@ -8,7 +8,7 @@
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
   &emsp;&emsp;&emsp;&emsp;[Initialization](#initialization)<br/>
   &emsp;&emsp;&emsp;&emsp;[Importing i18n.js in the Project Entry File](#importing-i18njs-in-the-project-entry-file)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Wrap with  `t`   `Translation Text` ](#wrap-with--t---translation-text-)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Wrap with  `t`   `Translation Text` ](#wrap-with--t---translation-text)<br/>
   &emsp;&emsp;[3. Initialize Command Line Configuration File](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.js`  Configuration](#4-adjust--i18nrcjs--configuration)<br/>
   &emsp;&emsp;[5. Execute Translation Command](#5-execute-translation-command)<br/>
