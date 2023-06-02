@@ -13,7 +13,7 @@ const configPath = join(process.cwd(), CONFIG_NAME)
 export function initConfig(pathProp?: string) {
   const targetPath = (() => {
     return typeof pathProp === 'string'
-      ? join(pathProp, CONFIG_NAME)
+      ? join(process.cwd(), pathProp, CONFIG_NAME)
       : configPath
   })()
   const sourcePath = join(__dirname, RELATIVE_PATH + 'template/' + CONFIG_NAME)

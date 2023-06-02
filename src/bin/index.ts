@@ -22,6 +22,7 @@ import { t, setI18n } from './i18n'
 import { initConfig, readConfig } from './config'
 import chalk from './chalk'
 import extraLangs from './extra-langs'
+import { join } from 'node:path'
 
 const path = require('path')
 const langs = (() => {
@@ -52,7 +53,7 @@ async function translateController({
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     ...restTranslatorConfig
   } = readConfig({
-    path: configPath,
+    path: join(process.cwd(), configPath),
   })
 
   setTranslateConfig(restTranslatorConfig)
