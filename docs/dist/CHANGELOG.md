@@ -232,7 +232,7 @@
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.3/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.4/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25

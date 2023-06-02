@@ -130,7 +130,7 @@ Get Internationalization Text<br />The internal will obtain  `Translation Text` 
     <tr>
       <td>text</td>
       <td>
-        The text to be translated should meet specific  <a href="https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.3/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
+        The text to be translated should meet specific  <a href="https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.4/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
       </td>
     </tr>
     <tr>
