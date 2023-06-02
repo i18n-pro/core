@@ -53,7 +53,7 @@ async function translateController({
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     ...restTranslatorConfig
   } = readConfig({
-    path: join(process.cwd(), configPath),
+    path: configPath ? join(process.cwd(), configPath) : undefined,
   })
 
   setTranslateConfig(restTranslatorConfig)

@@ -17,9 +17,18 @@ export function openaiMockRequestImpl(props: MockRequestProps) {
             data: {},
             getResData(requestData: { [key: string]: '' }) {
               let texts = []
+              let mockTranslateTexts
               try {
                 const body = JSON.parse(Object.keys(requestData)[0])
-                texts = body.messages[0].content.split('\n').slice(1)
+                texts = body.messages[0].content
+                  .split('while preserving the array format: ')
+                  .slice(1)
+                texts = JSON.parse(texts)
+                mockTranslateTexts = texts.reduce((res, text) => {
+                  // 这里需要模拟部分字段未翻译
+                  res.push(currentLang?.[text] || '')
+                  return res
+                }, [] as string[])
               } catch (error) {
                 console.error(error)
               }
@@ -27,11 +36,7 @@ export function openaiMockRequestImpl(props: MockRequestProps) {
                 choices: [
                   {
                     message: {
-                      content: texts.reduce((res, text) => {
-                        // 这里需要模拟部分字段未翻译
-                        res += (currentLang?.[text] || '') + '\n'
-                        return res
-                      }, '\n\n'),
+                      content: `\n\n${JSON.stringify(mockTranslateTexts)}`,
                     },
                   },
                 ],
