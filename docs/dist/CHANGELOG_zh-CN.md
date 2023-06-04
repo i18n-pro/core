@@ -110,6 +110,7 @@
 * 添加对命名空间的支持
    * 新增 `initI18n` 函数用于获取原有的核心的 `t` 、 `setI18n` 、 `withI18n` 函数
    * 新增 `namespace` 属性用于支持命名空间
+   *  `变量插值` 的格式化回调中添加 `t` 参数
 
 
 <h3 id="200-文档">文档</h3>
@@ -232,7 +233,7 @@
 
 <h4 id="120-文档-added">Added</h4>
 
-* 新增[翻译日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.4/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
+* 新增[翻译日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.5/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
 
 
 ## [1.1.1] - 2022-06-25

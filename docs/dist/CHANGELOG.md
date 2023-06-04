@@ -110,6 +110,7 @@
 * Added support for namespaces
    * New  `initI18n`  function is used to obtain the original core  `t` ,  `setI18n` ,  `withI18n`  function
    * New  `namespace`  attribute is used to support naming space
+   * The format callback of  `Variable Interpolation`  add  `t`  parameter
 
 
 <h3 id="200-documentation">Documentation</h3>
@@ -232,7 +233,7 @@
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.4/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.5/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25

@@ -130,7 +130,7 @@
     <tr>
       <td>text</td>
       <td>
-        待翻译的文案，该文案需满足特定 <a href="https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.4/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> 
+        待翻译的文案，该文案需满足特定 <a href="https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.5/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> 
       </td>
     </tr>
     <tr>
@@ -218,29 +218,32 @@ type I18nState = {
 
 ### FormatFunc
 通用的格式化回调类型
-```ts
+<pre>
 type FormatFunc = <T>(props: {
   locale: string, // 当前语言
   payload: string | number | unknown | T, // 插值变量
+  t: <a href="#t">t</a>, // t 函数
 }) => number | string
-```
+</pre>
 
 ### FormatDateFunc
 日期（时间）的格式化回调函数类型
-```ts
+<pre>
 type FormatDateFunc = <T>(props: {
   locale: string, // 当前语言
   payload: string | number | Date | unknown | T, // 插值变量
+  t: <a href="#t">t</a>, // t 函数
 }) => string
-```
+</pre>
 
 ### FormatPluralFunc
 复数的格式化回调函数类型
-```ts
+<pre>
 type FormatPluralFunc = <T>(props: {
   locale: string, // 当前语言
   payload: string | number | unknown | T, // 插值变量
   text: string // 默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性
   keyword: string // 复数关键词
-}) => string
-```
+  t: <a href="#t">t</a>, // t 函数
+ }) => string
+</pre>

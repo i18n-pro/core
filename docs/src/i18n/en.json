@@ -354,7 +354,7 @@
   "用于包裹{0}实现国际化，也作为命令行匹配{1}规则的标识": "It is used for wrapping {0} to achieve internationalization, and it is also used as a logo of the command line to match {1} rules",
   "用{0}包裹{1}": "Wrap with {0} {1}",
   "至此，项目已经完全接入了国际化，上面{0}指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的{1}（需要用{2}函数包裹哟），就仅仅需要再次执行翻译命令{3}生成最新的语言包就可以了": "At this point, the project has been completely connected to internationalization. The above {0} specifies any of the target language, and the translated content can be seen on the page. If there are new {1} (need to be wrapped with {2} function) in the subsequent project, you only need to execute the translation command {3} again to generate the latest language package",
-  "格式化{0}类型{1}的回调，对应的类型标记是{2}{3}{4}": "Format the callback of type {0}, corresponding to the type tag {2}{3}{4}",
+  "格式化{0}类型{1}的回调，对应的类型标记是{2}{3}{4}": "The format callback of type {0}, corresponding to the type tag {2}{3}{4}",
   "设置{0}函数中{1}起始下标，默认为 0": "Set the starting index of {1} in the {0} function, default is 0",
   "表示{0}，没有个数限制，{1}文案中需要以{2}的形式来接收，{3}表示{4}的位置，从 0 开始（可在{5}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复": "Represents {0}, with no limit on the number. {1} needs to be received in the form of {2} in the text, {3} represents the position of {4}, starting from 0 (can be customized in {5}). The first parameter corresponds to 0, and 2 parameters correspond to 1, and so on",
   "新增{0}函数参数属性{1}，用于指定{2}的起始下标": "Add the {1} function parameter attribute {0} to specify the starting index of {2}",
@@ -379,5 +379,7 @@
   "支持{0}": "Support {0}",
   "{0}类型标记，需配合对应的格式化回调": "{0} type tag need to be used with corresponding formatting callbacks",
   "指定配置文件路径（参数为相对路径）": "Specify the configuration file path (parameter is relative path)",
-  "指{0}这个功能的实现": "Refers to the realization of {0} this feature"
+  "指{0}这个功能的实现": "Refers to the realization of {0} this feature",
+  "{0}函数": "{0} function",
+  "{0}的格式化回调中添加{1}参数": "The format callback of {0} add {1} parameter"
 }

@@ -350,8 +350,10 @@ describe('格式化数字', () => {
   })
 
   it('正确配置 formatNumber', () => {
-    const formatNumber = vi.fn(({ payload, locale }) => {
+    const formatNumber = vi.fn(({ payload, locale, t }) => {
       expect(locale).toBeUndefined()
+      expect(t).toBeInstanceOf(Function)
+      expect(t('你好{0}', '世界')).toBe('你好世界')
       return payload
     })
 
@@ -457,8 +459,10 @@ describe('格式化货币', () => {
   })
 
   it('正确配置 formatCurrency', () => {
-    const formatCurrency = vi.fn(({ payload, locale }) => {
+    const formatCurrency = vi.fn(({ payload, locale, t }) => {
       expect(locale).toBeUndefined()
+      expect(t).toBeInstanceOf(Function)
+      expect(t('你好{0}', '世界')).toBe('你好世界')
       return payload + '万'
     })
 
@@ -639,7 +643,9 @@ describe('格式化日期', () => {
   })
 
   it('正确配置 formatDate', () => {
-    const formatDate = vi.fn(({ payload, locale }) => {
+    const formatDate = vi.fn(({ payload, locale, t }) => {
+      expect(t).toBeInstanceOf(Function)
+      expect(t('你好{0}', '世界')).toBe('你好世界')
       return formatDateByLocale(payload, locale)
     })
 
@@ -786,7 +792,9 @@ describe('格式化时间', () => {
   })
 
   it('正确配置 formatTime', () => {
-    const formatTime = vi.fn(({ payload, locale }) => {
+    const formatTime = vi.fn(({ payload, locale, t }) => {
+      expect(t).toBeInstanceOf(Function)
+      expect(t('你好{0}', '世界')).toBe('你好世界')
       return formatTimeByLocale(payload, locale)
     })
 
@@ -887,7 +895,9 @@ describe('格式化复数', () => {
   const trEnTextWithLocaleAndCountZero = `I have no apple, no banana and no pear`
   const trEnTextWithLocaleAndCountOne = `I have one apple, one banana and one pear`
 
-  function formatPlural({ payload, locale, keyword, text }) {
+  function formatPlural({ payload, locale, keyword, text, t }) {
+    expect(t).toBeInstanceOf(Function)
+    expect(t('你好{0}', '世界')).toBe('你好世界')
     let resText = ''
     switch (locale) {
       case 'en':

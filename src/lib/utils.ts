@@ -58,6 +58,7 @@ export function getTextFromFormatter(props: {
     const content = formatter({
       locale,
       payload: arg,
+      t: translateImpl.bind(null, state),
       ...(() => {
         let res = {}
         if (type === 'plural') {

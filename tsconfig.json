@@ -13,10 +13,14 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "declaration": true,
-    "types": ["vitest/globals"],
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-to-md"
   },
-  "include": ["src/", "global.d.ts", "docs/src"]
+  "include": [
+    "src/",
+    "global.d.ts",
+    "docs/src",
+    "node_modules/vitest/globals.d.ts"
+  ]
 }

@@ -4,6 +4,7 @@ import {
   getInterpolationVariable,
   getIssueText,
   getTranslationText,
+  getVariableInterpolation,
   initI18n,
 } from '../utils'
 import Template from './ChangeLog'
@@ -373,6 +374,11 @@ function V_2_0_0() {
                 ' `withI18n` ',
               ),
               tr('新增{0}属性用于支持命名空间', ' `namespace` '),
+              tr(
+                '{0}的格式化回调中添加{1}参数',
+                getVariableInterpolation(),
+                ' `t` ',
+              ),
             ],
           ],
         ],

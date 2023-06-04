@@ -80,31 +80,31 @@ Initialize a fixed configuration to get the core API
     <tr>
       <td>formatNumber</td>
       <td>
-        Format the callback of type <b> Number </b>, corresponding to the type tag <b> n </b>or<b> N </b>
+        The format callback of type <b> Number </b>, corresponding to the type tag <b> n </b>or<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-        Format the callback of type <b> Currency </b>, corresponding to the type tag <b> c </b>or<b> C </b>
+        The format callback of type <b> Currency </b>, corresponding to the type tag <b> c </b>or<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-        Format the callback of type <b> Date </b>, corresponding to the type tag <b> d </b>or<b> D </b>
+        The format callback of type <b> Date </b>, corresponding to the type tag <b> d </b>or<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-        Format the callback of type <b> Time </b>, corresponding to the type tag <b> t </b>or<b> T </b>
+        The format callback of type <b> Time </b>, corresponding to the type tag <b> t </b>or<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-        Format the callback of type <b> Plural </b>, corresponding to the type tag <b> p </b>or<b> P </b>
+        The format callback of type <b> Plural </b>, corresponding to the type tag <b> p </b>or<b> P </b>
       </td>
     </tr>
   </tr>
@@ -130,7 +130,7 @@ Get Internationalization Text<br />The internal will obtain  `Translation Text` 
     <tr>
       <td>text</td>
       <td>
-        The text to be translated should meet specific  <a href="https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.4/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
+        The text to be translated should meet specific  <a href="https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.5/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
       </td>
     </tr>
     <tr>
@@ -218,29 +218,32 @@ type I18nState = {
 
 ### FormatFunc
 Common format callback type
-```ts
+<pre>
 type FormatFunc = <T>(props: {
   locale: string, // Current language
   payload: string | number | unknown | T, // Interpolation Variable
+  t: <a href="#t">t</a>, // t  function
 }) => number | string
-```
+</pre>
 
 ### FormatDateFunc
 Format callback function type of Date(Time)
-```ts
+<pre>
 type FormatDateFunc = <T>(props: {
   locale: string, // Current language
   payload: string | number | Date | unknown | T, // Interpolation Variable
+  t: <a href="#t">t</a>, // t  function
 }) => string
-```
+</pre>
 
 ### FormatPluralFunc
 Format callback function type of Plural
-```ts
+<pre>
 type FormatPluralFunc = <T>(props: {
   locale: string, // Current language
   payload: string | number | unknown | T, // Interpolation Variable
   text: string // A string that combines quantifiers and nouns by default. Languages that do not require plural processing can return this property directly
   keyword: string // Plural keyword
-}) => string
-```
+  t: <a href="#t">t</a>, // t  function
+ }) => string
+</pre>

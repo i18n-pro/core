@@ -3,40 +3,44 @@ export { Langs } from '../type'
 
 type BaseFormatProps<T> = {
   /**
-   * 当前语言
+   * current locale
    */
   locale: string
   /**
-   * 动态参数的值
+   * the value of Interpolation Variable
    */
   payload: number | string | unknown | T
+  /**
+   * the function of `t`
+   */
+  t: Translate
 }
 
 type DateFormatProps<T> = BaseFormatProps<T> & {
   /**
-   * 动态参数的值
+   * the value of Interpolation Variable
    */
   payload: BaseFormatProps<T>['payload'] | Date
 }
 
 /**
- * 国际化内部保存状态
+ * the state of i18n
  */
 export type I18nState = {
   /**
-   * 命名空间
+   * namespace
    */
   namespace: string
   /**
-   * 当前语言
+   * current locale
    */
   locale?: string
   /**
-   * 语言包
+   * language packs
    */
   langs?: Langs
   /**
-   * 动态参数的起始位置，默认从0开始
+   * the position of Interpolation Variable，default starting from 0
    */
   beginIndex?: number
   /**
@@ -45,7 +49,7 @@ export type I18nState = {
    * 要求必须要配置该回调
    *
    * 例如：
-   * i18n('我有{n0}个苹果，{n1}个香蕉和{n2}个梨')
+   * t('我有{n0}个苹果，{n1}个香蕉和{n2}个梨')
    */
   formatNumber?: <T>(props: BaseFormatProps<T>) => string | number
   /**
@@ -54,7 +58,7 @@ export type I18nState = {
    * 要求必须要配置该回调
    *
    * 例如：
-   * i18n('张三买房花了{d0}')
+   * t('张三买房花了{d0}')
    */
   formatCurrency?: <T>(props: BaseFormatProps<T>) => string | number
   /**
@@ -63,7 +67,7 @@ export type I18nState = {
    * 要求必须要配置该回调
    *
    * 例如：
-   * i18n('今天的日期是{d0}')
+   * t('今天的日期是{d0}')
    */
   formatDate?: <T>(props: DateFormatProps<T>) => string
   /**
@@ -72,7 +76,7 @@ export type I18nState = {
    * 要求必须要配置该回调
    *
    * 例如：
-   * i18n('当前时间是{t0}')
+   * t('当前时间是{t0}')
    */
   formatTime?: <T>(props: DateFormatProps<T>) => string
   /**
@@ -81,7 +85,7 @@ export type I18nState = {
    * 要求必须要配置该回调
    *
    * 例如：
-   * i18n('我有{p0个苹果}，{p1个香蕉}和{p2个梨}')
+   * t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}')
    */
   formatPlural?: <T>(
     props: BaseFormatProps<T> & {

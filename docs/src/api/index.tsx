@@ -4,7 +4,6 @@ import {
   H2,
   render,
   H3,
-  CodeBlock,
   TableOfContents,
   getAnchor,
 } from 'jsx-to-md'
@@ -12,7 +11,6 @@ import {
   getDocHref,
   getInterpolationVariable,
   getTranslationText,
-  getVariableInterpolation,
   initI18n,
 } from '../utils'
 import FunctionTemplate from './FunctionTemplate'
@@ -211,38 +209,38 @@ function FunctionType() {
 ${getFormatTypeString('  ')}
 }`}
       />
-      <H3>FormatFunc</H3>
-      {tr('通用的格式化回调类型')}
-      <CodeBlock
-        langType="ts"
-        code={`type FormatFunc = <T>(props: {
+      <TypeInfo
+        name="FormatFunc"
+        desc={tr('通用的格式化回调类型')}
+        content={`type FormatFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
   payload: string | number | unknown | T, // ${getInterpolationVariable(true)}
+  t: ${getTitleToA('t')}, // ${tr('{0}函数', 't ')}
 }) => number | string`}
       />
-      <H3>FormatDateFunc</H3>
-      {tr('日期（时间）的格式化回调函数类型')}
-      <CodeBlock
-        langType="ts"
-        code={`type FormatDateFunc = <T>(props: {
+      <TypeInfo
+        name="FormatDateFunc"
+        desc={tr('日期（时间）的格式化回调函数类型')}
+        content={`type FormatDateFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
   payload: string | number | Date | unknown | T, // ${getInterpolationVariable(
     true,
   )}
+  t: ${getTitleToA('t')}, // ${tr('{0}函数', 't ')}
 }) => string`}
       />
-      <H3>FormatPluralFunc</H3>
-      {tr('复数的格式化回调函数类型')}
-      <CodeBlock
-        langType="ts"
-        code={`type FormatPluralFunc = <T>(props: {
+      <TypeInfo
+        name="FormatPluralFunc"
+        desc={tr('复数的格式化回调函数类型')}
+        content={`type FormatPluralFunc = <T>(props: {
   locale: string, // ${tr('当前语言')}
   payload: string | number | unknown | T, // ${getInterpolationVariable(true)}
   text: string // ${tr(
     '默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性',
   )}
   keyword: string // ${tr('复数关键词')}
-}) => string`}
+  t: ${getTitleToA('t')}, // ${tr('{0}函数', 't ')}
+ }) => string`}
       />
     </>
   )
