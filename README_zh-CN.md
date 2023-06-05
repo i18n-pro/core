@@ -16,6 +16,8 @@
 [![github-issues](https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro "github-issues")](https://github.com/eyelly-wu/i18n-pro/issues "github-issues")
 [![codecov](https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/eyelly-wu/i18n-pro "codecov")
 
+![demo](https://s3.bmp.ovh/imgs/2023/06/06/c3261b545825fc71.gif)
+
 </div>
 <details >
   <summary>目录</summary>
