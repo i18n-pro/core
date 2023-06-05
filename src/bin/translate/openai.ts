@@ -50,6 +50,9 @@ export async function translateByOpenAI(props: {
 
   try {
     console.log(t('翻译中...'))
+    const content = `Translate the following JSON from ${from} to ${to} and return the translated JSON array only: ${JSON.stringify(
+      texts,
+    )}`
     const res: any = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       data: JSON.stringify({
@@ -57,9 +60,7 @@ export async function translateByOpenAI(props: {
         messages: [
           {
             role: 'user',
-            content: `Translate the following JSON from ${from} to ${to} while preserving the array format: ${JSON.stringify(
-              texts,
-            )}`,
+            content: content,
           },
         ],
         temperature: 0,
