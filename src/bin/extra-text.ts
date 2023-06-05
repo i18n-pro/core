@@ -16,7 +16,7 @@ export function extraText(
   error: string[] // 错误的列表
 } {
   const regexp = new RegExp(
-    /\WfuncName\(\n*[ ]*((['"`])(.+?)\2)(,\W|\))/.source.replace(
+    /\WfuncName\(\n*[ ]*((['"`])(.+?)\2)(,|\))/.source.replace(
       'funcName',
       funcName,
     ),

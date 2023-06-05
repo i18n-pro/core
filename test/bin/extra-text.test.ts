@@ -14,6 +14,8 @@ describe('验证翻译文本提取功能', () => {
     '普通文本',
     '普通文本{0}',
     '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+    'a',
+    'b',
   ]
 
   const errrorTexts = [
@@ -26,24 +28,24 @@ describe('验证翻译文本提取功能', () => {
 
   describe('验证规范文本提取', () => {
     it('默认提取', () => {
-      const texts = extraText(content, 'i18n')
+      const texts = extraText(content, 't')
       expect(texts.success).toEqual(successTexts)
     })
 
-    it('自定义函数名（i18n -> t）', () => {
-      const texts = extraText(content.replaceAll('i18n', 't'), 't')
+    it('自定义函数名（t -> i18n）', () => {
+      const texts = extraText(content.replaceAll('t(', 'i18n('), 'i18n')
       expect(texts.success).toEqual(successTexts)
     })
   })
 
   describe('验证不规范文本提取', () => {
     it('默认提取', () => {
-      const texts = extraText(content, 'i18n')
+      const texts = extraText(content, 't')
       expect(texts.error[1]).toBe(errrorTexts[1])
     })
 
-    it('未知匹配函数名t', () => {
-      const texts = extraText(content, 't')
+    it('未知匹配函数名i18n', () => {
+      const texts = extraText(content, 'i18n')
       expect(texts.success).toEqual([])
     })
   })
