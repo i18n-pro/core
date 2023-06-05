@@ -1,6 +1,6 @@
 {
   "name": "i18n-pro",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "Lightweight, simple, flexible, automatic translation internationalization tool for JavaScript（适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具）",
   "files": [
     "dist/src",

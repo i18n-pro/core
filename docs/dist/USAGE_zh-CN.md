@@ -82,7 +82,7 @@ const text = t('hello world')
 
 
 ## 3. 初始化命令行配置文件
-在命令行终端输入如下命令，[更多命令](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.6/docs/dist/COMMAND_LINE_zh-CN.md#命令列表)
+在命令行终端输入如下命令，[更多命令](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.7/docs/dist/COMMAND_LINE_zh-CN.md#命令列表)
 ```bash
 npx i18n init 
 ```
@@ -111,7 +111,7 @@ module.exports = {
 
 
 ## 4. 调整 `i18nrc.js` 配置
-根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.6/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcjs-配置)
+根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.7/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcjs-配置)
 
 ## 5. 执行翻译命令
 
@@ -185,7 +185,7 @@ setI18n({
 如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**直接刷新**整个页面才能看到翻译后的效果，后续会推出 `React`、`Vue`、`SolidJS`、`Svelte` 相关UI库的版本，结合对应库的特性可以做到不刷新页面切换语言，敬请期待
 
 ## 8. DEMO
-真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.6/README_zh-CN.md#live-demo) ，当前库 `命令行工具` 的控制台输出也接入了国际化
+真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.7/README_zh-CN.md#live-demo) ，当前库 `命令行工具` 的控制台输出也接入了国际化
 
 通过命令 `npx i18n h -L zh` 就能看中文版了
 ![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")
