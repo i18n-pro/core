@@ -98,7 +98,7 @@ async function translateController({
     filepath: path.join(outputPath, logDirname, 'texts.json'),
     fileContent: trTextRes.success,
     showName: t(
-      '提取的国际化文本({0})',
+      '提取的翻译文案({0})',
       chalk.greenBright(trTextRes.success.length),
     ),
     indentSize,
@@ -108,7 +108,7 @@ async function translateController({
     filepath: path.join(outputPath, logDirname, 'texts-error.json'),
     fileContent: trTextRes.error,
     showName: t(
-      '提取的编写不规范的国际化文本({0})',
+      '提取的编写不规范的翻译文案({0})',
       chalk.redBright(trTextRes.error.length),
     ),
     indentSize,
@@ -222,7 +222,7 @@ export async function execCommand() {
         '初始化配置文件',
       )}
   i18n  ${chalk.greenBright('t | translate')}                  ${t(
-        '提取翻译文本，自动翻译并生成语言包',
+        '提取翻译文案，自动翻译并生成语言包',
       )}
   i18n  ${chalk.greenBright('v | version')}                    ${t(
         '显示版本信息',
@@ -239,7 +239,7 @@ export async function execCommand() {
         'en',
       )}
         ${chalk.yellowBright(NON_INCREMENTAL)}              ${t(
-        '非增量翻译模式进行翻译，已翻译的文本会完全被覆盖',
+        '非增量翻译模式进行翻译，已翻译的文案会完全被覆盖',
       )}
         ${chalk.yellowBright('-P | --path')}                    ${t(
         '指定配置文件路径（参数为相对路径）',

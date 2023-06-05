@@ -203,7 +203,7 @@ async function translateTextsToLang(props: {
         maxLengthType === 'strLengthAndArrLength' &&
         text.length > maxLength
       ) {
-        error[text] = t('当前文本超出最大字符数限制：{0}', maxLength)
+        error[text] = t('当前文案超出最大字符数限制：{0}', maxLength)
         continue
       }
 

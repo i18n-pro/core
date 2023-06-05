@@ -128,7 +128,7 @@ export function collectRes(props: {
         ),
       )
     } else {
-      error[text] = t('当前文本【{0}】未被翻译', text)
+      error[text] = t('当前文案【{0}】未被翻译', text)
     }
   })
 }

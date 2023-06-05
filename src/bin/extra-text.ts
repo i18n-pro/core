@@ -76,14 +76,8 @@ export default function extraTexts(
   success = Array.from(new Set(success))
   error = Array.from(new Set(error))
 
-  logSuccess(
-    chalk.greenBright(t('解析符合要求的国际化文本数:')),
-    success.length,
-  )
-  logSuccess(
-    chalk.greenBright(t('解析不符合要求的国际化文本数:')),
-    error.length,
-  )
+  logSuccess(chalk.greenBright(t('解析符合要求的翻译文案数:')), success.length)
+  logSuccess(chalk.greenBright(t('解析不符合要求的翻译文案数:')), error.length)
 
   return {
     success,
