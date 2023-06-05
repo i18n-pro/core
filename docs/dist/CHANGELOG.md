@@ -88,6 +88,13 @@
 <h4 id="200-command-line-tool-fixed">Fixed</h4>
 
 * Fix when the difference between  `Language code`  and  `locale` , identify the error of the translated language package, and eventually lead to repeated translation
+* Fix as the following scene extraction  `Translation Text`  abnormal
+ 
+```js
+    // Can't extract 'b'
+    const text = t('a', t('b'))
+```
+
 
 
 <h3 id="200-api">API</h3>

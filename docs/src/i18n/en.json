@@ -328,7 +328,7 @@
   "根据指定规则（正则匹配）解析出需要翻译的文案，并通过翻译平台将文案翻译到指定目标语言，最后生成语言包文件": "Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate language pack files",
   "解析文案的{0}简易示例如下": "An example of parsing text using {0} is as follows:",
   "开发者朋友们": "developer friends",
-  "这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持": "This is {0}, welcome {1}. If you think {2}, please give {3} your support",
+  "这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持": "This is {0}, welcome to {1}. If you think {2}, please give {3} your support",
   "使用": "use",
   "不错": "it's good",
   "hello {0}world{1}": "hello {0}world{1}",
@@ -381,5 +381,7 @@
   "指定配置文件路径（参数为相对路径）": "Specify the configuration file path (parameter is relative path)",
   "指{0}这个功能的实现": "Refers to the realization of {0} this feature",
   "{0}函数": "{0} function",
-  "{0}的格式化回调中添加{1}参数": "The format callback of {0} add {1} parameter"
+  "{0}的格式化回调中添加{1}参数": "The format callback of {0} add {1} parameter",
+  "修复如下场景提取{0}异常": "Fix as the following scene extraction {0} abnormal",
+  "不能正常提取{0}": "Can't extract {0}"
 }

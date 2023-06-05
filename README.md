@@ -72,7 +72,7 @@ t(`hello world`)
 /** Support Variable Interpolation */
 
 t('hello {0}', 'developer friends'),
-t('This is {0}, welcome {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's good`, ' ⭐️ ')
+t('This is {0}, welcome to {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's good`, ' ⭐️ ')
 
 
 /** Interpolation Variable type tag need to be used with corresponding formatting callbacks */

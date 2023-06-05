@@ -1,4 +1,4 @@
-import { H1, Link, render, TableOfContents } from 'jsx-to-md'
+import { CodeBlock, H1, Link, render, TableOfContents } from 'jsx-to-md'
 import {
   getDocHref,
   getInterpolationVariable,
@@ -329,6 +329,12 @@ function V_2_0_0() {
             ' `' + tr('语言代码') + '` ',
             ' `locale` ',
           ),
+          `${tr('修复如下场景提取{0}异常', getTranslationText())}\n ${render(
+            <CodeBlock
+              code={`    // ${tr('不能正常提取{0}', `'b'`)}
+    const text = t('a', t('b'))`}
+            />,
+          )}`,
         ],
       }}
       api={{
