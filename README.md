@@ -48,8 +48,8 @@ To make internationalization easy and enjoyable 😄💪🏻
 
 # Live Demo
 
-* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-react-demo/main?file=README.md)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/edit/i18n-pro-react-demo?file=README.md)
+* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/main?file=README.md)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo?file=README.md)
 
 
 # Principle
