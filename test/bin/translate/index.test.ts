@@ -88,7 +88,7 @@ describe('验证翻译实现', () => {
     const commonItem: [string, string[], string[], Langs][] = [
       ['所有内容已翻译过', texts, ['en'], langs],
       ['未配置目标语言', texts, [], {}],
-      ['没有需要翻译的文本内容', [], ['en'], { en: {} }],
+      ['没有需要翻译的文案内容', [], ['en'], { en: {} }],
     ]
 
     const matrix: Item[] = Object.entries(translatorConfigMap).reduce(
@@ -528,7 +528,7 @@ describe('验证翻译实现', () => {
     ]
 
     it.each(matrix)(
-      '%s: 存在部分文本未被翻译的情况',
+      '%s: 存在部分文案未被翻译的情况',
       async (translator, config) => {
         const to = 'en'
         const langs = require(LANGS_PATH)
@@ -604,7 +604,7 @@ describe('验证翻译实现', () => {
         expect(res.error).toEqual(
           lostTexts.reduce((res, item) => {
             res[item] = {
-              en: expect.stringContaining(`当前文本【${item}】未被翻译`),
+              en: expect.stringContaining(`当前文案【${item}】未被翻译`),
             }
             return res
           }, {}),
@@ -822,7 +822,7 @@ describe('验证翻译实现', () => {
             texts.forEach((text, i) => {
               if (text.length > maxLength) {
                 errorText[text] = {
-                  en: `当前文本超出最大字符数限制：${maxLength}`,
+                  en: `当前文案超出最大字符数限制：${maxLength}`,
                 }
               } else if (
                 arrCount == (maxArrayLength as number) ||

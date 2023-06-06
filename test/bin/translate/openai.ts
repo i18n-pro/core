@@ -21,7 +21,7 @@ export function openaiMockRequestImpl(props: MockRequestProps) {
               try {
                 const body = JSON.parse(Object.keys(requestData)[0])
                 texts = body.messages[0].content
-                  .split('while preserving the array format: ')
+                  .split('return the translated JSON array only: ')
                   .slice(1)
                 texts = JSON.parse(texts)
                 mockTranslateTexts = texts.reduce((res, text) => {
