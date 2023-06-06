@@ -78,11 +78,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eyelly-wu/i18n-pro.git"
+    "url": "git+https://github.com/i18n-pro/core.git"
   },
-  "homepage": "https://github.com/eyelly-wu/i18n-pro",
+  "homepage": "https://github.com/i18n-pro/core",
   "bugs": {
-    "url": "https://github.com/eyelly-wu/i18n-pro/issues"
+    "url": "https://github.com/i18n-pro/core/issues"
   },
   "dependencies": {
     "@alicloud/alimt20181012": "^1.0.4",

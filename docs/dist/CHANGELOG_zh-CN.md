@@ -143,7 +143,7 @@
 
 <h4 id="132-命令行工具-fixed">Fixed</h4>
 
-* 修复在 Windows 系统中执行翻译命令后会意外生成类 `xxx.jso` 文件夹 [#2](https://github.com/eyelly-wu/i18n-pro/issues/2)
+* 修复在 Windows 系统中执行翻译命令后会意外生成类 `xxx.jso` 文件夹 [#2](https://github.com/i18n-pro/core/issues/2)
 
 
 ## [1.3.1] - 2022-09-21
@@ -152,7 +152,7 @@
 
 <h4 id="131-命令行工具-fixed">Fixed</h4>
 
-* 修复初始化命令在 Windows 系统中报异常 [#1](https://github.com/eyelly-wu/i18n-pro/issues/1)
+* 修复初始化命令在 Windows 系统中报异常 [#1](https://github.com/i18n-pro/core/issues/1)
 
 
 ## [1.3.0] - 2022-09-13
@@ -240,7 +240,7 @@
 
 <h4 id="120-文档-added">Added</h4>
 
-* 新增[翻译日志](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
+* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
 
 
 ## [1.1.1] - 2022-06-25

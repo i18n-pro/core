@@ -143,7 +143,7 @@
 
 <h4 id="132-command-line-tool-fixed">Fixed</h4>
 
-* Fix unexpected generation of similar to  `xxx.jso`  folder after executing translation command in Windows system [#2](https://github.com/eyelly-wu/i18n-pro/issues/2)
+* Fix unexpected generation of similar to  `xxx.jso`  folder after executing translation command in Windows system [#2](https://github.com/i18n-pro/core/issues/2)
 
 
 ## [1.3.1] - 2022-09-21
@@ -152,7 +152,7 @@
 
 <h4 id="131-command-line-tool-fixed">Fixed</h4>
 
-* Fix initialization command reporting an exception in Windows system [#1](https://github.com/eyelly-wu/i18n-pro/issues/1)
+* Fix initialization command reporting an exception in Windows system [#1](https://github.com/i18n-pro/core/issues/1)
 
 
 ## [1.3.0] - 2022-09-13
@@ -240,7 +240,7 @@
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation log](https://github.com/eyelly-wu/i18n-pro/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation log](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25

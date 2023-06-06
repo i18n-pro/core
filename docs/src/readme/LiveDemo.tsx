@@ -15,7 +15,7 @@ export default function LiveDemo() {
       <UnorderedList>
         <ListItem>
           <Link
-            href={`https://codesandbox.io/p/github/eyelly-wu/i18n-pro-react-demo/main?file=${filename}`}
+            href={`https://codesandbox.io/p/github/i18n-pro/core-react-demo/main?file=${filename}`}
           >
             Open in CodeSandbox
           </Link>

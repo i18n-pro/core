@@ -20,7 +20,7 @@ const links = [
   },
   {
     title: 'github',
-    href: 'https://github.com/eyelly-wu/i18n-pro',
+    href: 'https://github.com/i18n-pro/core',
   },
   {
     title: 'bundlesize',
@@ -28,19 +28,19 @@ const links = [
   },
   {
     title: 'github-stars',
-    href: 'https://github.com/eyelly-wu/i18n-pro/stargazers',
+    href: 'https://github.com/i18n-pro/core/stargazers',
   },
   {
     title: 'last-commit',
-    href: 'https://github.com/eyelly-wu/i18n-pro/commits/dev',
+    href: 'https://github.com/i18n-pro/core/commits/dev',
   },
   {
     title: 'github-issues',
-    href: 'https://github.com/eyelly-wu/i18n-pro/issues',
+    href: 'https://github.com/i18n-pro/core/issues',
   },
   {
     title: 'codecov',
-    href: 'https://codecov.io/gh/eyelly-wu/i18n-pro',
+    href: 'https://codecov.io/gh/i18n-pro/core',
   },
 ] as const
 
@@ -82,17 +82,17 @@ const images = [
   {
     title: 'github-stars',
     alt: 'github-stars',
-    src: 'https://img.shields.io/github/stars/eyelly-wu/i18n-pro?style=social',
+    src: 'https://img.shields.io/github/stars/i18n-pro/core?style=social',
   },
   {
     title: 'last-commit',
     alt: 'last-commit',
-    src: 'https://img.shields.io/github/last-commit/eyelly-wu/i18n-pro/dev',
+    src: 'https://img.shields.io/github/last-commit/i18n-pro/core/dev',
   },
   {
     title: 'github-issues',
     alt: 'github-issues',
-    src: 'https://img.shields.io/github/issues-raw/eyelly-wu/i18n-pro',
+    src: 'https://img.shields.io/github/issues-raw/i18n-pro/core',
   },
   {
     title: 'baidu-api-type',
@@ -102,7 +102,7 @@ const images = [
   {
     title: 'codecov',
     alt: 'codecov',
-    src: 'https://codecov.io/gh/eyelly-wu/i18n-pro/branch/main/graph/badge.svg?token=758C46SIE7',
+    src: 'https://codecov.io/gh/i18n-pro/core/branch/main/graph/badge.svg?token=758C46SIE7',
   },
 ] as const
 
