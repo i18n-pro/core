@@ -240,7 +240,7 @@
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation log](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation log](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.8/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25
