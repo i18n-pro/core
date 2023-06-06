@@ -383,5 +383,9 @@
   "{0}函数": "{0} function",
   "{0}的格式化回调中添加{1}参数": "The format callback of {0} add {1} parameter",
   "修复如下场景提取{0}异常": "Fix as the following scene extraction {0} abnormal",
-  "不能正常提取{0}": "Can't extract {0}"
+  "不能正常提取{0}": "Can't extract {0}",
+  "贡献指南": "Contribution Guidelines",
+  "首先，对各位想要参与到本项目来表示热烈欢迎{0}": "First of all, a warm welcome to those who want to participate in this project {0}",
+  "但是抱歉的是，当前文档还在规划完善中...（也许可以从该文档开始）": "But sorry, the current document is still being planned and improved... (maybe you can start from this document)",
+  "最后，请不要丢失你的热情，请持续保持关注！": "Finally, please don't lose your enthusiasm, please continue to pay attention!"
 }

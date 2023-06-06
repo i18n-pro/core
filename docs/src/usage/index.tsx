@@ -278,7 +278,7 @@ function Demo() {
   return (
     <>
       <Break />
-      <H2>8. DEMO</H2>
+      <H2>8. Demo</H2>
       {tr(
         '真实代码示例可参考{0}文档中的{1}，当前库{2}的控制台输出也接入了国际化',
         ' `README` ',

@@ -109,6 +109,7 @@ t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3)
 * [匹配规则](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/MATCH_RULE_zh-CN.md)
 * [翻译日志](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG_zh-CN.md)
 * [Q&A](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/Q&A_zh-CN.md)
+* [贡献指南](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES_zh-CN.md)
 * [更新日志](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/CHANGELOG_zh-CN.md)
 
 

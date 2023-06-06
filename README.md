@@ -109,6 +109,7 @@ Therefore,  `Command Line Tool`  and  `Function API`  work better together. It i
 * [Matching Rules](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/MATCH_RULE.md)
 * [Translation log](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/OUTPUT_LOG.md)
 * [Q&A](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/Q&A.md)
+* [Contribution Guidelines](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES.md)
 * [Changelog](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/docs/dist/CHANGELOG.md)
 
 

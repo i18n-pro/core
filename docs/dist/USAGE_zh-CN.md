@@ -14,7 +14,7 @@
   &emsp;&emsp;[5. 执行翻译命令](#5-执行翻译命令)<br/>
   &emsp;&emsp;[6. 引入语言包](#6-引入语言包)<br/>
   &emsp;&emsp;[7. 切换语言](#7-切换语言)<br/>
-  &emsp;&emsp;[8. DEMO](#8-demo)<br/>
+  &emsp;&emsp;[8. Demo](#8-demo)<br/>
 
 </details>
 
@@ -184,7 +184,7 @@ setI18n({
 ```
 如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过**直接刷新**整个页面才能看到翻译后的效果，后续会推出 `React`、`Vue`、`SolidJS`、`Svelte` 相关UI库的版本，结合对应库的特性可以做到不刷新页面切换语言，敬请期待
 
-## 8. DEMO
+## 8. Demo
 真实代码示例可参考 `README` 文档中的 [Live Demo](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.7/README_zh-CN.md#live-demo) ，当前库 `命令行工具` 的控制台输出也接入了国际化
 
 通过命令 `npx i18n h -L zh` 就能看中文版了

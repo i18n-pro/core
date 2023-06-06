@@ -14,6 +14,9 @@ export default function DocLink() {
           <Link href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</Link>,
           <Link href={getDocHref('OUTPUT_LOG')}>{tr('翻译日志')}</Link>,
           <Link href={getDocHref('Q&A')}>Q&A</Link>,
+          <Link href={getDocHref('CONTRIBUTION_GUIDELINES')}>
+            {tr('贡献指南')}
+          </Link>,
           <Link href={getDocHref('CHANGELOG')}>{tr('更新日志')}</Link>,
         ]}
       />

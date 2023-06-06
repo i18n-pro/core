@@ -14,7 +14,7 @@
   &emsp;&emsp;[5. Execute Translation Command](#5-execute-translation-command)<br/>
   &emsp;&emsp;[6. Importing Language Pack](#6-importing-language-pack)<br/>
   &emsp;&emsp;[7. Switch Language](#7-switch-language)<br/>
-  &emsp;&emsp;[8. DEMO](#8-demo)<br/>
+  &emsp;&emsp;[8. Demo](#8-demo)<br/>
 
 </details>
 
@@ -184,7 +184,7 @@ setI18n({
 ```
 If this library is used directly in a frontend application, when switching languages on the page, only the entire page can see the translated effect through **refresh directly**. A version of  `React`、`Vue`、`SolidJS`、`Svelte`  related UI library will be released later, which can achieve switching languages without refreshing the page by combining with the characteristics of the corresponding library. Stay tuned
 
-## 8. DEMO
+## 8. Demo
 Real code examples can be found in the  [Live Demo](https://github.com/i18n-pro/core/tree/v2.0.0-alpha.7#live-demo)  section of the  `README`  documentation, and the console output of the current library  `Command Line Tool`  has also been internationalized
 
 You can see the Chinese version by executing the command  `npx i18n h -L zh` 

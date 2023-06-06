@@ -52,6 +52,12 @@ const changeLog = {
   name: 'CHANGELOG',
 }
 
+const contributionGuidelines = {
+  entry: 'docs/src/contribution-guidelines',
+  out: 'docs/dist/',
+  name: 'CONTRIBUTION_GUIDELINES',
+}
+
 function getSource({ entry, out, name }) {
   const source = Object.entries(codeNameMap).reduce(
     (res, [locale, langName]) => {
@@ -84,6 +90,7 @@ module.exports = {
     ...getSource(matchRule),
     ...getSource(outputLog),
     ...getSource(qAndA),
+    ...getSource(contributionGuidelines),
     ...getSource(changeLog),
   ],
 }
