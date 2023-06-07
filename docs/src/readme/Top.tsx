@@ -1,37 +1,6 @@
 import { Image, Link, Break } from 'jsx-to-md'
-import { linkObj, imageObj, langs } from '../constants'
-import { homepage, version } from '../../../package.json'
-
-const separator = ' | '
-
-function renderLanguage() {
-  const res = langs.reduce((res, item, index) => {
-    const { code, locale, name } = item
-    const EN_URL = `${homepage}/tree/v${version}#readme`
-    const OTHER_URL = `${homepage}/blob/v${version}/README_${locale}.md`
-
-    if (global.docLocale == code) {
-      res.push(name)
-    } else {
-      res.push(<Link href={code === 'en' ? EN_URL : OTHER_URL}>{name}</Link>)
-    }
-
-    if (index != langs.length - 1) {
-      res.push(separator)
-    }
-
-    return res
-  }, [])
-  return (
-    <>
-      <Break />
-      <Break />
-      {res}
-      <Break />
-      <Break />
-    </>
-  )
-}
+import { linkObj, imageObj } from '../constants'
+import { renderLanguage } from '../utils'
 
 export default function Top() {
   const props = {
@@ -45,7 +14,7 @@ export default function Top() {
         <Image {...imageObj['logo']} />
       </Link>
       <Break />
-      {renderLanguage()}
+      {renderLanguage('README')}
       <p style={{ fontSize: 18 }}>
         {tr('适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具')}
       </p>

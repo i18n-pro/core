@@ -330,7 +330,6 @@
   "开发者朋友们": "developer friends",
   "这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持": "This is {0}, welcome to {1}. If you think {2}, please give {3} your support",
   "使用": "use",
-  "不错": "it's good",
   "hello {0}world{1}": "hello {0}world{1}",
   "格式": "Format",
   "例如": "For example",
@@ -386,6 +385,7 @@
   "不能正常提取{0}": "Can't extract {0}",
   "贡献指南": "Contribution Guidelines",
   "首先，对各位想要参与到本项目来表示热烈欢迎{0}": "First of all, a warm welcome to those who want to participate in this project {0}",
-  "但是抱歉的是，当前文档还在规划完善中...（也许可以从该文档开始）": "But sorry, the current document is still being planned and improved... (maybe you can start from this document)",
-  "最后，请不要丢失你的热情，请持续保持关注！": "Finally, please don't lose your enthusiasm, please continue to pay attention!"
+  "最后，请不要丢失你的热情，请持续保持关注！": "Finally, please don't lose your enthusiasm, please continue to pay attention!",
+  "但是抱歉的是，当前文档还在规划完善中...（也许你可以从该文档开始，写文档绝不是一件容易的事😂）": "But sorry, the current document is still being planned and improved... (Maybe you can start from this document, writing documents is not an easy task 😂)",
+  "对你有帮助": "it's helpful for you"
 }

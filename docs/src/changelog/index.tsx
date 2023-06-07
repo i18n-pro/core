@@ -6,6 +6,7 @@ import {
   getTranslationText,
   getVariableInterpolation,
   initI18n,
+  renderLanguage,
 } from '../utils'
 import Template from './ChangeLog'
 
@@ -294,7 +295,7 @@ function V_2_0_0() {
   return (
     <Template
       version="2.0.0"
-      date="2023-0x-xx"
+      date="2023-06-07"
       commandLine={{
         changed: [
           'U',
@@ -416,6 +417,7 @@ export default function ChangeLog(props) {
   return (
     <>
       <H1 skip>{tr('更新日志')}</H1>
+      {renderLanguage('CHANGELOG')}
       <TableOfContents text={tr('目录')} open={false} />
       <V_2_0_0 />
       <V_1_3_2 />

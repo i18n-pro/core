@@ -1,10 +1,14 @@
 
 # 更新日志
 
+
+[English](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.8/docs/dist/CHANGELOG.md) | 简体中文
+
+
 <details >
   <summary>目录</summary>
 
-  &emsp;&emsp;[[2.0.0] - 2023-0x-xx](#200---2023-0x-xx)<br/>
+  &emsp;&emsp;[[2.0.0] - 2023-06-07](#200---2023-06-07)<br/>
   &emsp;&emsp;&emsp;&emsp;[命令行工具](#200-命令行工具)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Changed](#200-命令行工具-changed)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#200-命令行工具-added)<br/>
@@ -61,7 +65,7 @@
 
 </details>
 
-## [2.0.0] - 2023-0x-xx
+## [2.0.0] - 2023-06-07
 
 <h3 id="200-命令行工具">命令行工具</h3>
 

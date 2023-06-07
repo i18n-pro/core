@@ -1,8 +1,9 @@
-import { getAnchor } from 'jsx-to-md'
+import { Break, getAnchor, Link } from 'jsx-to-md'
 import { initI18n as originInitI18n } from '@lib'
 import { readFileSync } from 'fs'
 import en from './i18n/en.json'
 import packageInfo from '../../package.json'
+import { langs } from './constants'
 
 const { t, setI18n } = originInitI18n({ namespace: 'default' })
 
@@ -19,10 +20,14 @@ export function initI18n({ locale }) {
   global.docLocale = locale
 }
 
-export function getDocHref(filename: string, anchorProp?: string) {
+export function getDocHref(
+  filename: string,
+  anchorProp?: string,
+  localeProp?: string,
+) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { version: originVersion, codeNameMap, homepage } = packageInfo
-  const locale = global.docLocale
+  const locale = localeProp || global.docLocale
   let name = codeNameMap[locale]
   name = name ? `_${name}` : ''
   const anchor = anchorProp ? getAnchor(anchorProp) : ''
@@ -37,7 +42,7 @@ export function getDocHref(filename: string, anchorProp?: string) {
 
   if (filename === 'README') {
     return locale === 'en'
-      ? `${homepage}/tree/${version}${anchor}`
+      ? `${homepage}/tree/${version}${anchor || '#readme'}`
       : `${homepage}/blob/${version}/${filename}${name}.md${anchor}`
   } else {
     return `${homepage}/blob/${version}/docs/dist/${filename}${name}.md${anchor}`
@@ -117,4 +122,33 @@ t('${tr(
     `{${tr('p2个梨')}}`,
   )}', 5, 4, 3) `
   return text
+}
+
+export function renderLanguage(filename: string) {
+  const separator = ' | '
+
+  const res = langs.reduce((res, item, index) => {
+    const { code, name } = item
+
+    if (global.docLocale == code) {
+      res.push(name)
+    } else {
+      res.push(<Link href={getDocHref(filename, undefined, code)}>{name}</Link>)
+    }
+
+    if (index != langs.length - 1) {
+      res.push(separator)
+    }
+
+    return res
+  }, [])
+  return (
+    <>
+      <Break />
+      <Break />
+      {res}
+      <Break />
+      <Break />
+    </>
+  )
 }
