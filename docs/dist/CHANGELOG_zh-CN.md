@@ -2,7 +2,7 @@
 # 更新日志
 
 
-[English](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.8/docs/dist/CHANGELOG.md) | 简体中文
+[English](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/CHANGELOG.md) | 简体中文
 
 
 <details >
@@ -244,7 +244,7 @@
 
 <h4 id="120-文档-added">Added</h4>
 
-* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v2.0.0-alpha.8/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
+* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
 
 
 ## [1.1.1] - 2022-06-25
