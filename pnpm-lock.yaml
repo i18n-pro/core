@@ -27,8 +27,8 @@ dependencies:
     specifier: ^5.0.1
     version: registry.npmmirror.com/https-proxy-agent@5.0.1
   node-fetch:
-    specifier: '2'
-    version: registry.npmmirror.com/node-fetch@2.6.9
+    specifier: ^2.6.11
+    version: registry.npmmirror.com/node-fetch@2.6.11
 
 devDependencies:
   '@commitlint/cli':
@@ -3035,7 +3035,7 @@ packages:
       extend: registry.npmmirror.com/extend@3.0.2
       https-proxy-agent: registry.npmmirror.com/https-proxy-agent@5.0.1
       is-stream: registry.npmmirror.com/is-stream@2.0.1
-      node-fetch: registry.npmmirror.com/node-fetch@2.6.9
+      node-fetch: registry.npmmirror.com/node-fetch@2.6.11
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -3212,7 +3212,7 @@ packages:
       fast-text-encoding: registry.npmmirror.com/fast-text-encoding@1.0.6
       google-auth-library: registry.npmmirror.com/google-auth-library@8.7.0
       is-stream-ended: registry.npmmirror.com/is-stream-ended@0.1.4
-      node-fetch: registry.npmmirror.com/node-fetch@2.6.9
+      node-fetch: registry.npmmirror.com/node-fetch@2.6.11
       object-hash: registry.npmmirror.com/object-hash@3.0.0
       proto3-json-serializer: registry.npmmirror.com/proto3-json-serializer@1.1.0
       protobufjs: registry.npmmirror.com/protobufjs@7.2.2
@@ -4327,10 +4327,10 @@ packages:
     version: 1.4.0
     dev: true
 
-  registry.npmmirror.com/node-fetch@2.6.9:
-    resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/node-fetch/-/node-fetch-2.6.9.tgz}
+  registry.npmmirror.com/node-fetch@2.6.11:
+    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/node-fetch/-/node-fetch-2.6.11.tgz}
     name: node-fetch
-    version: 2.6.9
+    version: 2.6.11
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0
@@ -5382,7 +5382,7 @@ packages:
     dependencies:
       http-proxy-agent: registry.npmmirror.com/http-proxy-agent@5.0.0
       https-proxy-agent: registry.npmmirror.com/https-proxy-agent@5.0.1
-      node-fetch: registry.npmmirror.com/node-fetch@2.6.9
+      node-fetch: registry.npmmirror.com/node-fetch@2.6.11
       stream-events: registry.npmmirror.com/stream-events@1.0.5
       uuid: registry.npmmirror.com/uuid@9.0.0
     transitivePeerDependencies:
