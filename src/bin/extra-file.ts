@@ -1,6 +1,6 @@
-import { logSuccess } from './utils'
+import { logError, logSuccess } from './utils'
 import chalk from './chalk'
-
+import glob from 'fast-glob'
 const path = require('path')
 const fs = require('fs')
 
@@ -34,10 +34,46 @@ function extraFileSyncImpl(dirpath: string, fileRegExp: RegExp) {
  * @param fileRegExp 文件匹配正则
  * @returns
  */
-export default function extraFileSync(dirpath: string, fileRegExp: RegExp) {
+function extraFileSyncLegacy(dirpath: string, fileRegExp: RegExp) {
   console.log(chalk.greenBright(t('开始解析路径：')), dirpath)
+  if (!dirpath || !fileRegExp) {
+    logError(
+      t('未正确配置{0},{1},{2}等属性', ' entry ', ' fileRegExp ', ' glob '),
+    )
+    return []
+  }
 
   const filepaths = extraFileSyncImpl(dirpath, fileRegExp)
+
+  return filepaths
+}
+
+/**
+ * extra files by Glob pattern
+ * @param globPattern
+ * @returns
+ */
+function extraFileByGlob(globPattern: string | string[]) {
+  console.log(chalk.greenBright(t('开始解析 Glob 语法：')), globPattern)
+  const filepaths = glob.sync(globPattern, {
+    onlyFiles: true,
+  })
+  return filepaths
+}
+
+export default function extraFileSync(props: {
+  entry?: string
+  fileRegExp?: RegExp
+  input?: string | string[]
+}) {
+  let filepaths = []
+  const { entry, fileRegExp, input } = props
+
+  if (typeof input !== 'undefined') {
+    filepaths = extraFileByGlob(input)
+  } else {
+    filepaths = extraFileSyncLegacy(entry, fileRegExp)
+  }
 
   logSuccess(
     chalk.greenBright(t('解析符合要求的文件路径数:')),

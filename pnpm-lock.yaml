@@ -70,6 +70,9 @@ devDependencies:
   eslint-plugin-prettier:
     specifier: ^4.2.1
     version: registry.npmmirror.com/eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.5.0)(eslint@8.30.0)(prettier@2.8.1)
+  fast-glob:
+    specifier: ^3.3.1
+    version: registry.npmmirror.com/fast-glob@3.3.1
   husky:
     specifier: ^8.0.2
     version: registry.npmmirror.com/husky@8.0.2
@@ -2891,10 +2894,10 @@ packages:
     version: 1.2.0
     dev: true
 
-  registry.npmmirror.com/fast-glob@3.2.12:
-    resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fast-glob/-/fast-glob-3.2.12.tgz}
+  registry.npmmirror.com/fast-glob@3.3.1:
+    resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fast-glob/-/fast-glob-3.3.1.tgz}
     name: fast-glob
-    version: 3.2.12
+    version: 3.3.1
     engines: {node: '>=8.6.0'}
     dependencies:
       '@nodelib/fs.stat': registry.npmmirror.com/@nodelib/fs.stat@2.0.5
@@ -3170,7 +3173,7 @@ packages:
     dependencies:
       array-union: registry.npmmirror.com/array-union@2.1.0
       dir-glob: registry.npmmirror.com/dir-glob@3.0.1
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.1
       ignore: registry.npmmirror.com/ignore@5.2.4
       merge2: registry.npmmirror.com/merge2@1.4.1
       slash: registry.npmmirror.com/slash@3.0.0

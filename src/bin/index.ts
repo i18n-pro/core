@@ -50,6 +50,7 @@ async function translateController({
     funcName = 't',
     entry,
     fileRegExp = /\.[jt]s$/,
+    input,
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     ...restTranslatorConfig
   } = readConfig({
@@ -58,7 +59,11 @@ async function translateController({
 
   setTranslateConfig(restTranslatorConfig)
 
-  const filepaths = extraFileSync(entry, fileRegExp)
+  const filepaths = extraFileSync({
+    entry,
+    fileRegExp,
+    input,
+  })
 
   if (filepaths.length === 0) {
     console.log(t('未解析到需要翻译的文件，本次操作已结束'))

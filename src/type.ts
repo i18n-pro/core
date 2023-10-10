@@ -28,8 +28,10 @@ export type Translator =
  */
 type BasicConfig = {
   funcName: string // 自定义函数名，默认为 i18n
-  entry: string // 入口文件
-  fileRegExp: RegExp // 匹配文件名的正则表达式
+  entry?: string // 入口文件
+  fileRegExp?: RegExp // 匹配文件名的正则表达式
+  /** 通过 Glob 语法来过滤文件 */
+  input?: string | string[]
   /**
    * 语言包文件输出配置
    */

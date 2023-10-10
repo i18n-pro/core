@@ -66,6 +66,8 @@
     "已翻译文案中缺少动态参数标识：{0}": "The translated text is missing dynamic parameter identifier: {0}",
     "谷歌X": "GoogleX",
     "翻译中...": "translating...",
-    "指定配置文件路径（参数为相对路径）": "Specify the configuration file path (parameter is relative path)"
+    "指定配置文件路径（参数为相对路径）": "Specify the configuration file path (parameter is relative path)",
+    "未正确配置{0},{1},{2}等属性": "Not correctly configure {0}, {1}, {2} and other attributes",
+    "开始解析 Glob 语法：": "Start parsing GLOB syntax:"
   }
 }
