@@ -4,6 +4,10 @@ import glob from 'fast-glob'
 const path = require('path')
 const fs = require('fs')
 
+function logPath(path: string) {
+  console.log(chalk.greenBright(t('已录入')), path)
+}
+
 /**
  * 提取文件路径入口
  * @param dirpath 文件目录路径
@@ -21,7 +25,7 @@ function extraFileSyncImpl(dirpath: string, fileRegExp: RegExp) {
     } else {
       if (fileRegExp.test(filename)) {
         filepaths.push(filepath)
-        console.log(chalk.greenBright(t('已录入')), filepath)
+        logPath(filepath)
       }
     }
   })
@@ -57,7 +61,11 @@ function extraFileByGlob(globPattern: string | string[]) {
   console.log(chalk.greenBright(t('开始解析 Glob 语法：')), globPattern)
   const filepaths = glob.sync(globPattern, {
     onlyFiles: true,
+    absolute: true,
   })
+
+  filepaths.forEach((path) => logPath(path))
+
   return filepaths
 }
 
