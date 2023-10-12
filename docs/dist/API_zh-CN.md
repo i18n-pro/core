@@ -130,7 +130,7 @@
     <tr>
       <td>text</td>
       <td>
-        待翻译的文案，该文案需满足特定 <a href="https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> 
+        待翻译的文案，该文案需满足特定 <a href="https://github.com/i18n-pro/core/blob/v2.1.0-alpha.1/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> 
       </td>
     </tr>
     <tr>
