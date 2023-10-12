@@ -10,6 +10,7 @@ import {
   Link,
   render,
   Break,
+  CodeBlock,
 } from 'jsx-to-md'
 import { getTranslationText, initI18n } from '../utils'
 
@@ -140,7 +141,7 @@ function BasicConfig() {
     {
       name: 'entry',
       type: 'string',
-      required: tr('是'),
+      required: tr('否'),
       default: '-',
       description: tr('指定翻译文件目录（绝对路径）'),
     },
@@ -155,6 +156,24 @@ function BasicConfig() {
           <br />
           <br />
           {tr('用于筛选需要被翻译的文件')}
+        </>
+      ),
+    },
+    {
+      name: 'input',
+      type: 'string \\| string[]',
+      required: tr('否'),
+      default: '-',
+      description: (
+        <>
+          {tr('可以通过{0}语法来筛选需要被翻译的文件', ' `glob` ')}
+          <br />
+          <br />
+          {tr(
+            '配置该属性后，{0}和{1}将会失效，可根据应用场景决定使用哪种方式',
+            ' `entry` ',
+            ' `fileRegExp` ',
+          )}
         </>
       ),
     },

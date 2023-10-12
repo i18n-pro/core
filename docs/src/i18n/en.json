@@ -387,5 +387,8 @@
   "首先，对各位想要参与到本项目来表示热烈欢迎{0}": "First of all, a warm welcome to those who want to participate in this project {0}",
   "最后，请不要丢失你的热情，请持续保持关注！": "Finally, please don't lose your enthusiasm, please continue to pay attention!",
   "但是抱歉的是，当前文档还在规划完善中...（也许你可以从该文档开始，写文档绝不是一件容易的事😂）": "But sorry, the current document is still being planned and improved... (Maybe you can start from this document, writing documents is not an easy task 😂)",
-  "对你有帮助": "it's helpful for you"
+  "对你有帮助": "it's helpful for you",
+  "可以通过{0}语法来筛选需要被翻译的文件": "Files that need translation can be filtered using {0} syntax",
+  "配置该属性后，{0}和{1}将会失效，可根据应用场景决定使用哪种方式": "Once this property is configured, {0} and {1} will no longer apply, so decide which approach makes sense for your use case",
+  "命令行配置添加{0}配置，支持通过{1}语法来筛选文件": "The command line configuration adds {0} config, which supports filtering files using {1} syntax"
 }

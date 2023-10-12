@@ -8,6 +8,9 @@
 <details >
   <summary>目录</summary>
 
+  &emsp;&emsp;[[2.1.0] - 2022-10-1x](#210---2022-10-1x)<br/>
+  &emsp;&emsp;&emsp;&emsp;[命令行工具](#210-命令行工具)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-命令行工具-added)<br/>
   &emsp;&emsp;[[2.0.0] - 2023-06-07](#200---2023-06-07)<br/>
   &emsp;&emsp;&emsp;&emsp;[命令行工具](#200-命令行工具)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Changed](#200-命令行工具-changed)<br/>
@@ -64,6 +67,15 @@
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#100-api-added)<br/>
 
 </details>
+
+## [2.1.0] - 2022-10-1x
+
+<h3 id="210-命令行工具">命令行工具</h3>
+
+<h4 id="210-命令行工具-added">Added</h4>
+
+* 命令行配置添加 `input` 配置，支持通过 `glob` 语法来筛选文件 [#4](https://github.com/i18n-pro/core/issues/4)
+
 
 ## [2.0.0] - 2023-06-07
 

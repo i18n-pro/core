@@ -411,6 +411,30 @@ function V_2_0_0() {
   )
 }
 
+function V_2_1_0() {
+  return (
+    <Template
+      version="2.1.0"
+      date="2022-10-1x"
+      commandLine={{
+        added: [
+          'U',
+          getIssueText(
+            tr(
+              '命令行配置添加{0}配置，支持通过{1}语法来筛选文件',
+              ' `input` ',
+              ' `glob` ',
+            ),
+            {
+              issue: 4,
+            },
+          ),
+        ],
+      }}
+    />
+  )
+}
+
 export default function ChangeLog(props) {
   initI18n(props)
 
@@ -419,6 +443,7 @@ export default function ChangeLog(props) {
       <H1 skip>{tr('更新日志')}</H1>
       {renderLanguage('CHANGELOG')}
       <TableOfContents text={tr('目录')} open={false} />
+      <V_2_1_0 />
       <V_2_0_0 />
       <V_1_3_2 />
       <V_1_3_1 />

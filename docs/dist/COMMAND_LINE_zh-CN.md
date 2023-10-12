@@ -28,8 +28,9 @@
 |名称|类型|是否必设|默认值|说明|
 |:-:|:-:|:-:|:-:|:-|
 |funcName|string|否|t|命令行匹配 `翻译文案` 的函数名<br /><br />如果在使用 `t` 函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名|
-|entry|string|是|-|指定翻译文件目录（绝对路径）|
+|entry|string|否|-|指定翻译文件目录（绝对路径）|
 |fileRegExp|RegExp|否| `/.[jt]s$/` |匹配文件名的正则表达式<br /><br />用于筛选需要被翻译的文件|
+|input|string \| string[]|否|-|可以通过 `glob` 语法来筛选需要被翻译的文件<br /><br />配置该属性后， `entry` 和 `fileRegExp` 将会失效，可根据应用场景决定使用哪种方式|
 |output|[Output](#output)|是|-|输出文件相关的配置|
 |translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|否|googlex|指定翻译平台，默认为 `googlex` <br /><br />指定好 `translator` 后，还需配合对应的配置文件<br />例如 `translator` 配置为 `googlex` , 则还需要配置 `googlexConfig` |
 |googlexConfig|[GooglexConfig](#googlexconfig)|否|-|谷歌X翻译相关的配置|

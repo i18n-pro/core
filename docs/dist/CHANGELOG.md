@@ -8,6 +8,9 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/
 <details >
   <summary>Table of Contents</summary>
 
+  &emsp;&emsp;[[2.1.0] - 2022-10-1x](#210---2022-10-1x)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#210-command-line-tool)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-command-line-tool-added)<br/>
   &emsp;&emsp;[[2.0.0] - 2023-06-07](#200---2023-06-07)<br/>
   &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#200-command-line-tool)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Changed](#200-command-line-tool-changed)<br/>
@@ -64,6 +67,15 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#100-api-added)<br/>
 
 </details>
+
+## [2.1.0] - 2022-10-1x
+
+<h3 id="210-command-line-tool">Command Line Tool</h3>
+
+<h4 id="210-command-line-tool-added">Added</h4>
+
+* The command line configuration adds  `input`  config, which supports filtering files using  `glob`  syntax [#4](https://github.com/i18n-pro/core/issues/4)
+
 
 ## [2.0.0] - 2023-06-07
 

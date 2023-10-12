@@ -128,7 +128,7 @@ function VariableInterpolationAndInterpolationVariable(props: Q) {
       <Bold>{getVariableInterpolation(true)}</Bold>：
       {tr(
         '指{0}这个功能的实现',
-        tr(` \`t('hello {0}', 'world')\` → \`'hello world'\` `),
+        ` \`t('hello {0}', 'world')\` → \`'hello world'\` `,
       )}
       <br />
       <Bold>{getInterpolationVariable(true)}</Bold>：

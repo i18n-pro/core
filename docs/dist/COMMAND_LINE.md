@@ -28,8 +28,9 @@
 |Name|Type|Required|Default|Description|
 |:-:|:-:|:-:|:-:|:-|
 |funcName|string|no|t|The function name of the command line matches  `Translation Text` <br /><br />If the  `t`  function is not renamed, it does not need to be adjusted here; otherwise, it is configured as the function name after renaming|
-|entry|string|yes|-|Specify the translation file directory (absolute path)|
+|entry|string|no|-|Specify the translation file directory (absolute path)|
 |fileRegExp|RegExp|no| `/.[jt]s$/` |The regular expression that matching filename<br /><br />Used to filter files to be translated|
+|input|string \| string[]|no|-|Files that need translation can be filtered using  `glob`  syntax<br /><br />Once this property is configured,  `entry`  and  `fileRegExp`  will no longer apply, so decide which approach makes sense for your use case|
 |output|[Output](#output)|yes|-|The configuration associated with the output file|
 |translator| `googlex` <br/> `openai` <br/> `google` <br/> `microsoft` <br/> `aliyun` <br/> `tencent` <br/> `youdao` <br/> `baidu`|no|googlex|Specify the translation platform, default is  `googlex` <br /><br />After specifying  `translator` , you need to cooperate with the corresponding configuration file<br />For example,  `translator`  configuration to  `googlex` , then you need to configure  `googlexConfig` |
 |googlexConfig|[GooglexConfig](#googlexconfig)|no|-|Translation-related configuration for Google x|
