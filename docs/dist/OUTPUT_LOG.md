@@ -1,5 +1,5 @@
 
-# Translation log
+# Translation Log
 To facilitate tracking and locating problems, there will be some necessary log output during the whole translation process. After the translation command is executed completely, a  `.log`  log directory will be generated under the  `output.path`  directory. All logs are presented in the form of independent files, including the following log types：
 |Filename|Description|
 |:-|:-|

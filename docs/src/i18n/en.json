@@ -263,7 +263,7 @@
   "注册 Azure 账号": "Register azure account",
   "支持多种翻译日志": "Support multiple translation logs",
   "多种类型翻译日志的输出，便于追踪与定位翻译问题": "The output of a variety of types of translation logs, which is convenient for tracking and positioning translation issues",
-  "翻译日志": "Translation log",
+  "翻译日志": "Translation Log",
   "同目录下的 {0}": "{0} in the same directory",
   "如果是挂载 API 到全局对象，可以省略下行代码": "If it is mount API to the global object, you can omit the downward code",
   "命令执行成功后会在当前目录下生成一个{0}的文件，默认配置如下：": "After the command execution is successful, a {0} file will be generated in the current directory. The default configuration will be as follows:",

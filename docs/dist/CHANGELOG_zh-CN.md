@@ -2,13 +2,13 @@
 # 更新日志
 
 
-[English](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/CHANGELOG.md) | 简体中文
+[English](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/CHANGELOG.md) | 简体中文
 
 
 <details >
   <summary>目录</summary>
 
-  &emsp;&emsp;[[2.1.0] - 2022-10-1x](#210---2022-10-1x)<br/>
+  &emsp;&emsp;[[2.1.0] - 2023-10-12](#210---2023-10-12)<br/>
   &emsp;&emsp;&emsp;&emsp;[命令行工具](#210-命令行工具)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-命令行工具-added)<br/>
   &emsp;&emsp;[[2.0.0] - 2023-06-07](#200---2023-06-07)<br/>
@@ -68,7 +68,7 @@
 
 </details>
 
-## [2.1.0] - 2022-10-1x
+## [2.1.0] - 2023-10-12
 
 <h3 id="210-命令行工具">命令行工具</h3>
 
@@ -256,7 +256,7 @@
 
 <h4 id="120-文档-added">Added</h4>
 
-* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
+* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
 
 
 ## [1.1.1] - 2022-06-25

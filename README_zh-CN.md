@@ -3,7 +3,7 @@
 [![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png "logo")](https://github.com/i18n-pro/core "github")
 
 
-[English](https://github.com/i18n-pro/core/tree/v2.0.0#readme) | 简体中文
+[English](https://github.com/i18n-pro/core/tree/v2.1.0#readme) | 简体中文
 
 
   <p style="font-size: 18px;">适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具</p>
@@ -54,7 +54,7 @@
 
 # 原理
 
->以 `翻译文案` 作为key是该库所有功能实现的关键，如果对此有任何疑问，[请查看](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/Q&A_zh-CN.md)
+>以 `翻译文案` 作为key是该库所有功能实现的关键，如果对此有任何疑问，[请查看](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/Q&A_zh-CN.md)
 
 该库主要由两部分构成
 * 命令行工具
@@ -62,7 +62,7 @@
 
 **命令行工具**：根据指定规则（正则匹配）解析出需要翻译的文案，并通过翻译平台将文案翻译到指定目标语言，最后生成语言包文件
 
-解析文案的 [匹配规则](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/MATCH_RULE_zh-CN.md) 简易示例如下
+解析文案的 [匹配规则](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/MATCH_RULE_zh-CN.md) 简易示例如下
 ```js
 /** 普通字符串 */
 
@@ -103,14 +103,14 @@ t('我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3)
 所以 `命令行工具` 和 `函数API` 这两者搭配使用效果更佳，也正是由于这样的结构设计，使得 `i18n-pro` 库可以很方便集成到任何的 `JavaScript` 项目中
 # 帮助文档
 
-* [快速上手](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/USAGE_zh-CN.md)
-* [命令行](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/COMMAND_LINE_zh-CN.md)
-* [API](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/API_zh-CN.md)
-* [匹配规则](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/MATCH_RULE_zh-CN.md)
-* [翻译日志](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/OUTPUT_LOG_zh-CN.md)
-* [Q&A](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/Q&A_zh-CN.md)
+* [快速上手](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/USAGE_zh-CN.md)
+* [命令行](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE_zh-CN.md)
+* [API](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/API_zh-CN.md)
+* [匹配规则](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/MATCH_RULE_zh-CN.md)
+* [翻译日志](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/OUTPUT_LOG_zh-CN.md)
+* [Q&A](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/Q&A_zh-CN.md)
 * [贡献指南](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES_zh-CN.md)
-* [更新日志](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/CHANGELOG_zh-CN.md)
+* [更新日志](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/CHANGELOG_zh-CN.md)
 
 
 # License

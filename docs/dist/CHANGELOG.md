@@ -2,13 +2,13 @@
 # Changelog
 
 
-English | [简体中文](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/CHANGELOG_zh-CN.md)
+English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/CHANGELOG_zh-CN.md)
 
 
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[[2.1.0] - 2022-10-1x](#210---2022-10-1x)<br/>
+  &emsp;&emsp;[[2.1.0] - 2023-10-12](#210---2023-10-12)<br/>
   &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#210-command-line-tool)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-command-line-tool-added)<br/>
   &emsp;&emsp;[[2.0.0] - 2023-06-07](#200---2023-06-07)<br/>
@@ -68,7 +68,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/
 
 </details>
 
-## [2.1.0] - 2022-10-1x
+## [2.1.0] - 2023-10-12
 
 <h3 id="210-command-line-tool">Command Line Tool</h3>
 
@@ -256,7 +256,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation log](https://github.com/i18n-pro/core/blob/v2.0.0/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation Log](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25
