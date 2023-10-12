@@ -4,6 +4,7 @@ module.exports = {
   funcName: 't',
   entry: join(__dirname, './src/'),
   fileRegExp: /\.[jt]s$/,
+  // input: 'src/**/*.{js,ts}',
   output: {
     path: join(__dirname, './i18n/'),
   },
