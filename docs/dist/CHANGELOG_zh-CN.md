@@ -8,6 +8,9 @@
 <details >
   <summary>目录</summary>
 
+  &emsp;&emsp;[[2.2.0] - 2024-04-xx](#220---2024-04-xx)<br/>
+  &emsp;&emsp;&emsp;&emsp;[命令行工具](#220-命令行工具)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#220-命令行工具-added)<br/>
   &emsp;&emsp;[[2.1.0] - 2023-10-12](#210---2023-10-12)<br/>
   &emsp;&emsp;&emsp;&emsp;[命令行工具](#210-命令行工具)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-命令行工具-added)<br/>
@@ -67,6 +70,15 @@
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#100-api-added)<br/>
 
 </details>
+
+## [2.2.0] - 2024-04-xx
+
+<h3 id="220-命令行工具">命令行工具</h3>
+
+<h4 id="220-命令行工具-added">Added</h4>
+
+* 命令行配置文件支持用 `TypeScript` 来编写，从版本 `v2.2.0` 开始，初始化命令执行生成的配置文件默认是 `i18nrc.ts` ，但老版的 `i18nrc.js` 依旧是兼容的
+
 
 ## [2.1.0] - 2023-10-12
 

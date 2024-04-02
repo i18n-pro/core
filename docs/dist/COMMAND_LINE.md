@@ -4,7 +4,7 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[1.  `i18nrc.js`  Configuration](#1--i18nrcjs--configuration)<br/>
+  &emsp;&emsp;[1.  `i18nrc.ts`  Configuration](#1--i18nrcts--configuration)<br/>
   &emsp;&emsp;&emsp;&emsp;[Basic Configuration](#basic-configuration)<br/>
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
   &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>
@@ -21,7 +21,7 @@
 
 </details>
 
-## 1.  `i18nrc.js`  Configuration
+## 1.  `i18nrc.ts`  Configuration
 
 ### Basic Configuration
 
@@ -161,4 +161,4 @@ Configuration of Alibaba Cloud Translation
 |:-:|:-:|:-:|:-|:-|:-|
 |--locale|-L|`en` \| `zh`|ALL|`npx i18n h -L en`<br />`npx i18n h --locale en`|Specify the command line display language<br /><br />The available languages are Chinese (zh)/English (en). The default is English (en)|
 |--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|Turn off incremental translation mode<br /><br />⚠️⚠️⚠️: After turning off incremental translation mode, all texts will be re-translated, which may cause the loss of non-platform translated texts (**Manual translation**). Please use with caution!!!|
-|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|Specify the configuration file path (parameter is relative path)<br /><br />You only need to specify the path name. The default configuration filename is  `i18nrc.js`|
+|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|Specify the configuration file path (parameter is relative path)<br /><br />You only need to specify the path name. The default configuration filename is  `i18nrc.ts`|

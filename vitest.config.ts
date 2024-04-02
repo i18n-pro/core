@@ -7,5 +7,6 @@ export default defineConfig({
       provider: 'istanbul',
       reporter: ['json', 'html', 'text-summary', 'text'],
     },
+    // include: ['**/test/bin/config.test.[jt]s'],
   },
 })

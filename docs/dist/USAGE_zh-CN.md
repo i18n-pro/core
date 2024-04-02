@@ -10,7 +10,7 @@
   &emsp;&emsp;&emsp;&emsp;[项目入口文件引入 i18n.js](#项目入口文件引入-i18njs)<br/>
   &emsp;&emsp;&emsp;&emsp;[用 `t` 包裹 `翻译文案` ](#用-t-包裹-翻译文案)<br/>
   &emsp;&emsp;[3. 初始化命令行配置文件](#3-初始化命令行配置文件)<br/>
-  &emsp;&emsp;[4. 调整 `i18nrc.js` 配置](#4-调整-i18nrcjs-配置)<br/>
+  &emsp;&emsp;[4. 调整 `i18nrc.ts` 配置](#4-调整-i18nrcts-配置)<br/>
   &emsp;&emsp;[5. 执行翻译命令](#5-执行翻译命令)<br/>
   &emsp;&emsp;[6. 引入语言包](#6-引入语言包)<br/>
   &emsp;&emsp;[7. 切换语言](#7-切换语言)<br/>
@@ -86,11 +86,12 @@ const text = t('hello world')
 ```bash
 npx i18n init 
 ```
-命令执行成功后会在当前目录下生成一个 `i18nrc.js` 的文件，默认配置如下：
+命令执行成功后会在当前目录下生成一个 `i18nrc.ts` 的文件，默认配置如下：
 ```js
-const { join } = require('path')
+import { join } from 'path'
+import { Config } from 'i18n-pro'
 
-module.exports = {
+export default {
   funcName: 't',
   entry: join(__dirname, './src/'),
   fileRegExp: /\.[jt]s$/,
@@ -107,12 +108,12 @@ module.exports = {
     },
     // proxy: 'http://127.0.0.1:1087',
   },
-}
+} as Config
 ```
 
 
-## 4. 调整 `i18nrc.js` 配置
-根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcjs-配置)
+## 4. 调整 `i18nrc.ts` 配置
+根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcts-配置)
 
 ## 5. 执行翻译命令
 

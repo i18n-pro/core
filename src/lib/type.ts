@@ -1,5 +1,5 @@
 import { Langs } from '../type'
-export { Langs } from '../type'
+export { Langs, Config } from '../type'
 
 type BaseFormatProps<T> = {
   /**

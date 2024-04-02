@@ -4,7 +4,7 @@
 <details >
   <summary>目录</summary>
 
-  &emsp;&emsp;[1.  `i18nrc.js` 配置](#1--i18nrcjs-配置)<br/>
+  &emsp;&emsp;[1.  `i18nrc.ts` 配置](#1--i18nrcts-配置)<br/>
   &emsp;&emsp;&emsp;&emsp;[基础配置](#基础配置)<br/>
   &emsp;&emsp;&emsp;&emsp;[Output](#output)<br/>
   &emsp;&emsp;&emsp;&emsp;[GooglexConfig](#googlexconfig)<br/>
@@ -21,7 +21,7 @@
 
 </details>
 
-## 1.  `i18nrc.js` 配置
+## 1.  `i18nrc.ts` 配置
 
 ### 基础配置
 
@@ -161,4 +161,4 @@ OpenAI翻译的配置
 |:-:|:-:|:-:|:-|:-|:-|
 |--locale|-L|`en` \| `zh`|ALL|`npx i18n h -L en`<br />`npx i18n h --locale en`|指定命令行显示语言<br /><br />可选语言有中文（zh）/ 英文（en）， 默认为英文（en）|
 |--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|关闭增量翻译模式<br /><br />⚠️⚠️⚠️：关闭增量翻译模式后，所有的文案会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文案丢失，需慎重考虑使用！！！|
-|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|指定配置文件路径（参数为相对路径）<br /><br />只需要指定路径名，配置文件名默认为 `i18nrc.js`|
+|--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|指定配置文件路径（参数为相对路径）<br /><br />只需要指定路径名，配置文件名默认为 `i18nrc.ts`|

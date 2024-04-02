@@ -435,6 +435,27 @@ function V_2_1_0() {
   )
 }
 
+function V_2_2_0() {
+  return (
+    <Template
+      version="2.2.0"
+      date="2024-04-xx"
+      commandLine={{
+        added: [
+          'U',
+          tr(
+            '命令行配置文件支持用{0}来编写，从版本{1}开始，初始化命令执行生成的配置文件默认是{2}，但老版的{3}依旧是兼容的',
+            ' `TypeScript` ',
+            ' `v2.2.0` ',
+            ' `i18nrc.ts` ',
+            ' `i18nrc.js` ',
+          ),
+        ],
+      }}
+    />
+  )
+}
+
 export default function ChangeLog(props) {
   initI18n(props)
 
@@ -443,6 +464,7 @@ export default function ChangeLog(props) {
       <H1 skip>{tr('更新日志')}</H1>
       {renderLanguage('CHANGELOG')}
       <TableOfContents text={tr('目录')} open={false} />
+      <V_2_2_0 />
       <V_2_1_0 />
       <V_2_0_0 />
       <V_1_3_2 />

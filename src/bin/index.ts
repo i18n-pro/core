@@ -191,7 +191,7 @@ export async function execCommand() {
 
   switch (command) {
     case 'init':
-      initConfig(configPath)
+      initConfig('ts', configPath)
       break
     case 'translate':
     case 't':

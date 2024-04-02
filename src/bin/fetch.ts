@@ -1,7 +1,6 @@
 import https from 'node:https'
 import type { IncomingMessage, RequestOptions } from 'node:http'
 import createHttpsProxyAgent from 'https-proxy-agent'
-import { HttpsProxyAgentOptions } from '../type'
 
 /**
  * 基于内置 http封装请求方法
@@ -13,7 +12,7 @@ export default function fetch(
   url: string,
   options: {
     data: Record<string, unknown> | unknown // 请求数据
-    proxy?: HttpsProxyAgentOptions
+    proxy?: string
   } & RequestOptions,
 ): Promise<unknown> {
   const { data, proxy, ...restOptions } = options

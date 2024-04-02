@@ -22,7 +22,11 @@ export const TRANSLATE_ERROR_TEXT = t('翻译失败')
 export const NON_INCREMENTAL = '--non-incremental'
 
 // 配置文件名
-export const CONFIG_NAME = 'i18nrc.js'
+export const JS_CONFIG_NAME = 'i18nrc.js'
+export const TS_CONFIG_NAME = 'i18nrc.ts'
 
 // 相对定位的公共前缀
 export const RELATIVE_PATH = __filename.endsWith('js') ? '../../../' : '../../'
+
+// 文件编码
+export const FILE_ENCODING = 'utf-8'

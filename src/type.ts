@@ -1,5 +1,3 @@
-import type { HttpsProxyAgentOptions as OriginHttpsProxyAgentOptions } from 'https-proxy-agent'
-
 /**
  * 公共的翻译配置类型，适用于所有的翻译平台
  */
@@ -60,8 +58,8 @@ type BasicConfig = {
      *   "xxx":"xxx"
      * }
      */
-    langType: 'single' | 'multiple'
-    indentSize: number // 输出文件的缩进大小，默认为 2
+    langType?: 'single' | 'multiple'
+    indentSize?: number // 输出文件的缩进大小，默认为 2
   }
   /**
    * 指定翻译平台，默认为【百度】
@@ -171,7 +169,7 @@ export type GoogleConfig = DefineTranslatorConfig<'google', BasicGoogleConfig>
  * 谷歌翻译X的配置
  */
 export type BasicGooglexConfig = {
-  proxy?: HttpsProxyAgentOptions // 代理配置
+  proxy?: string // 代理配置
 } & TranslatorConfig
 
 /**
@@ -185,17 +183,12 @@ export type GooglexConfig = Omit<
 }
 
 /**
- * https-proxy-agent 工具库构建参数
- */
-export type HttpsProxyAgentOptions = OriginHttpsProxyAgentOptions
-
-/**
  * OpenAI翻译的配置
  */
 export type BasicOpenAIConfig = {
   key: string // OpenAI API Key
   model?: string // 使用模型，默认为 gpt-3.5-turbo，当前只兼容Chart模型
-  proxy?: HttpsProxyAgentOptions // 代理配置
+  proxy?: string // 代理配置
 } & TranslatorConfig
 
 /**

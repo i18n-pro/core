@@ -10,7 +10,7 @@
   &emsp;&emsp;&emsp;&emsp;[Importing i18n.js in the Project Entry File](#importing-i18njs-in-the-project-entry-file)<br/>
   &emsp;&emsp;&emsp;&emsp;[Wrap with  `t`   `Translation Text` ](#wrap-with--t---translation-text)<br/>
   &emsp;&emsp;[3. Initialize Command Line Configuration File](#3-initialize-command-line-configuration-file)<br/>
-  &emsp;&emsp;[4. Adjust  `i18nrc.js`  Configuration](#4-adjust--i18nrcjs--configuration)<br/>
+  &emsp;&emsp;[4. Adjust  `i18nrc.ts`  Configuration](#4-adjust--i18nrcts--configuration)<br/>
   &emsp;&emsp;[5. Execute Translation Command](#5-execute-translation-command)<br/>
   &emsp;&emsp;[6. Importing Language Pack](#6-importing-language-pack)<br/>
   &emsp;&emsp;[7. Switch Language](#7-switch-language)<br/>
@@ -86,11 +86,12 @@ Enter the following command at the command line terminal, [more commands](https:
 ```bash
 npx i18n init 
 ```
-After the command execution is successful, a  `i18nrc.js`  file will be generated in the current directory. The default configuration will be as follows:
+After the command execution is successful, a  `i18nrc.ts`  file will be generated in the current directory. The default configuration will be as follows:
 ```js
-const { join } = require('path')
+import { join } from 'path'
+import { Config } from 'i18n-pro'
 
-module.exports = {
+export default {
   funcName: 't',
   entry: join(__dirname, './src/'),
   fileRegExp: /\.[jt]s$/,
@@ -107,12 +108,12 @@ module.exports = {
     },
     // proxy: 'http://127.0.0.1:1087',
   },
-}
+} as Config
 ```
 
 
-## 4. Adjust  `i18nrc.js`  Configuration
-Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE.md#1--i18nrcjs--configuration) of configuration items
+## 4. Adjust  `i18nrc.ts`  Configuration
+Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE.md#1--i18nrcts--configuration) of configuration items
 
 ## 5. Execute Translation Command
 

@@ -914,7 +914,7 @@ function AliyunConfig() {
 function Config() {
   return (
     <>
-      <H2>1. {tr('{0}配置', ' `i18nrc.js` ')}</H2>
+      <H2>1. {tr('{0}配置', ' `i18nrc.ts` ')}</H2>
       <BasicConfig />
       <Output />
       <GooglexConfig />
@@ -1114,7 +1114,7 @@ function CommandProp() {
           {tr('指定配置文件路径（参数为相对路径）')}
           <br />
           <br />
-          {tr('只需要指定路径名，配置文件名默认为{0}', ' `i18nrc.js`')}
+          {tr('只需要指定路径名，配置文件名默认为{0}', ' `i18nrc.ts`')}
         </>
       ),
     },
