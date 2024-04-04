@@ -9,9 +9,6 @@ import {
   RELATIVE_PATH,
   FILE_ENCODING,
 } from './constants'
-const tsNode = require('ts-node')
-
-tsNode.register()
 
 const configPath = join(process.cwd(), JS_CONFIG_NAME)
 const tsConfigPath = join(process.cwd(), TS_CONFIG_NAME)
@@ -59,6 +56,7 @@ function parseTsConfig(props?: {
     // 验证文件是否存在
     const isExist = fs.existsSync(currentConfigPath)
     if (!isExist) return false
+    require('ts-node').register()
     // 通过 ts-node 可以直接加载 .ts 文件
     let res = require(currentConfigPath)
     if (res.default) {
