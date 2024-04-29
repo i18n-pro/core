@@ -116,10 +116,17 @@ export type SetI18n = (
  * @param text Original text
  * @param args Dynamic parameter
  */
-export type Translate = (
-  text: string,
-  ...args: Array<string | number | unknown>
-) => string
+export interface Translate {
+  (text: string, ...args: Array<string | number | unknown>): string
+  t: (
+    /** Custom key */
+    key: string,
+    /** Default language translation text */
+    text: string,
+    /**  Dynamic parameter */
+    ...args: Array<string | number | unknown>
+  ) => string
+}
 
 /**
  * Gets the i18n function independent of the main program

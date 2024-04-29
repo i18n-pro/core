@@ -4,7 +4,7 @@ import {
   invalidPluralFormatterRegex,
   tagFormatterNameMap,
 } from './constants'
-import { I18nState } from './type'
+import { I18nState, Translate } from './type'
 
 /**
  * 获取目标正则
@@ -17,6 +17,16 @@ export function getTargetRegExp(regExp: RegExp, index: number) {
     regExp.source.replace('number', index + ''),
     'i', // NOTE 标记忽略大小写
   )
+}
+
+export function defineT(t: Translate, state: I18nState): Translate {
+  Object.defineProperty(t, 't', {
+    get() {
+      return translateImpl.bind(null, state)
+    },
+  })
+
+  return t
 }
 
 /**
@@ -58,7 +68,7 @@ export function getTextFromFormatter(props: {
     const content = formatter({
       locale,
       payload: arg,
-      t: translateImpl.bind(null, state),
+      t: defineT(translateImpl.bind(null, state, null), state),
       ...(() => {
         let res = {}
         if (type === 'plural') {
@@ -86,21 +96,25 @@ export function getTextFromFormatter(props: {
 /**
  * translate 函数API的具体实现
  * @param i18nState 当前i18n所有状态
+ * @param key key
  * @param text Original text
  * @param args Dynamic parameter
  * @returns
  */
 export function translateImpl(
   i18nState: I18nState,
-  text,
+  key: null | string = null,
+  text: string,
   ...args: Array<string | number | unknown>
 ) {
   const { locale, langs, beginIndex = 0 } = i18nState
   const lang = langs?.[locale]
   let originText = text
 
-  if (lang && lang[text]) {
-    text = lang[text]
+  key = key === null ? text : key
+
+  if (lang?.[key]) {
+    text = lang[key]
     originText = text
   }
 

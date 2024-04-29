@@ -1,4 +1,4 @@
-import { translateImpl } from './utils'
+import { translateImpl, defineT } from './utils'
 import { I18nState, SetI18n, Translate, WithI18n } from './type'
 export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
 
@@ -69,10 +69,11 @@ function setI18n(namespace: string, stateProp: Parameters<SetI18n>[0]) {
  */
 function translate(
   namespace: string,
+  key: null | string,
   text: string,
   ...args: Array<string | number | unknown>
 ): string {
-  return translateImpl(getCurrentState(namespace), text, ...args)
+  return translateImpl(getCurrentState(namespace), key, text, ...args)
 }
 
 /**
@@ -84,11 +85,12 @@ function translate(
  * @returns
  */
 function withI18n(namespace: string, locale: string): { t: Translate } {
+  const state = {
+    ...getCurrentState(namespace),
+    locale,
+  }
   return {
-    t: translateImpl.bind(null, {
-      ...getCurrentState(namespace),
-      locale,
-    }),
+    t: defineT(translateImpl.bind(null, state, null), state),
   }
 }
 
@@ -125,7 +127,10 @@ export function initI18n(stateProp: I18nState) {
 
   return {
     setI18n: setI18n.bind(null, namespace) as SetI18n,
-    t: translate.bind(null, namespace) as Translate,
+    t: defineT(
+      translate.bind(null, namespace, null),
+      getCurrentState(namespace),
+    ),
     withI18n: withI18n.bind(null, namespace) as WithI18n,
   }
 }
