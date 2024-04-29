@@ -60,11 +60,6 @@ const images = [
     src: 'https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif',
   },
   {
-    title: 'logo',
-    alt: 'logo',
-    src: 'https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png',
-  },
-  {
     title: 'npm-version',
     alt: 'npm-version',
     src: 'https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square',

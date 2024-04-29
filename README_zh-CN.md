@@ -1,12 +1,9 @@
 <div align="center">
-  
-[![logo](https://s3.bmp.ovh/imgs/2022/06/25/3a1c742f283cf28e.png "logo")](https://github.com/i18n-pro/core "github")
+  <p style="font-size: 18px;">适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具</p>
 
 
 [English](https://github.com/i18n-pro/core/tree/v2.1.0#readme) | 简体中文
 
-
-  <p style="font-size: 18px;">适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具</p>
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
 [![npm-download](https://img.shields.io/npm/dm/i18n-pro "npm-download")](https://www.npmjs.com/package/i18n-pro "npm")
