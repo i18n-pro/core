@@ -80,17 +80,10 @@ function translate(
  *
  * Applicable to the server side, each interface response needs to do international processing
  * @param namespace Current namespace
- * @param props Specify configuration attributes
+ * @param locale current language
  * @returns
  */
-function withI18n(
-  namespace: string,
-  props: {
-    locale: string // 独立于主程序的语言
-  },
-): { t: Translate } {
-  const { locale } = props
-
+function withI18n(namespace: string, locale: string): { t: Translate } {
   return {
     t: translateImpl.bind(null, {
       ...getCurrentState(namespace),

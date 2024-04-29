@@ -126,13 +126,7 @@ export type Translate = (
  *
  * Applicable to the server side, each interface response needs to do international processing
  *
- * @param props Specify configuration attributes
+ * @param locale current language
  * @returns
  */
-export type WithI18n = (props: {
-  /**
-   * Language independent of the main program
-   */
-
-  locale: string
-}) => { t: Translate }
+export type WithI18n = (locale: string) => { t: Translate }

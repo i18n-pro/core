@@ -1,4 +1,12 @@
-import { CodeBlock, H1, Link, render, TableOfContents } from 'jsx-to-md'
+import {
+  Break,
+  CodeBlock,
+  H1,
+  InlineCode,
+  Link,
+  render,
+  TableOfContents,
+} from 'jsx-to-md'
 import {
   getDocHref,
   getInterpolationVariable,
@@ -435,11 +443,11 @@ function V_2_1_0() {
   )
 }
 
-function V_2_2_0() {
+function V_3_0_0() {
   return (
     <Template
-      version="2.2.0"
-      date="2024-04-xx"
+      version="3.0.0"
+      date="2024-05-xx"
       commandLine={{
         added: [
           'U',
@@ -450,6 +458,25 @@ function V_2_2_0() {
             ' `i18nrc.ts` ',
             ' `i18nrc.js` ',
           ),
+        ],
+      }}
+      api={{
+        changed: [
+          'U',
+          <>
+            {tr('调整{0}参数结构', ' `withI18n` ')}
+            <Break />
+            <CodeBlock
+              langType="diff"
+              code={`
+- function withI18n(props:{
+-   locale: string
+- }): { t }
+
++ function withI18n(locale: string): { t }
+`}
+            />
+          </>,
         ],
       }}
     />
@@ -464,7 +491,7 @@ export default function ChangeLog(props) {
       <H1 skip>{tr('更新日志')}</H1>
       {renderLanguage('CHANGELOG')}
       <TableOfContents text={tr('目录')} open={false} />
-      <V_2_2_0 />
+      <V_3_0_0 />
       <V_2_1_0 />
       <V_2_0_0 />
       <V_1_3_2 />

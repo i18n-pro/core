@@ -177,9 +177,7 @@ Get the  <code>t</code>  function independent of the main program order<br />It 
 <h4 id="withi18n-type">Type</h4>
 <pre>
 (
-  props:{
-    locale: string
-  }
+  locale: string
 ) => ({ <a href="#t">t</a> })
 </pre>
 

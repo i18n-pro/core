@@ -177,9 +177,7 @@
 <h4 id="withi18n-类型">类型</h4>
 <pre>
 (
-  props:{
-    locale: string
-  }
+  locale: string
 ) => ({ <a href="#t">t</a> })
 </pre>
 

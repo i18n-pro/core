@@ -1111,9 +1111,7 @@ it('模拟服务端，验证 withI18n', () => {
   })
 
   const serverResponse = vi.fn((locale: string, reqLocale: string) => {
-    const { t: _i18n } = withI18n({
-      locale: reqLocale,
-    })
+    const { t: _i18n } = withI18n(reqLocale)
 
     // 主程序
     expect(t(text)).toBe(langs[locale]?.[text] || text)

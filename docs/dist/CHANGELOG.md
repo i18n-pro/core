@@ -8,9 +8,11 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[[2.2.0] - 2024-04-xx](#220---2024-04-xx)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#220-command-line-tool)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#220-command-line-tool-added)<br/>
+  &emsp;&emsp;[[3.0.0] - 2024-05-xx](#300---2024-05-xx)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#300-command-line-tool)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#300-command-line-tool-added)<br/>
+  &emsp;&emsp;&emsp;&emsp;[API](#300-api)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Changed](#300-api-changed)<br/>
   &emsp;&emsp;[[2.1.0] - 2023-10-12](#210---2023-10-12)<br/>
   &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#210-command-line-tool)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-command-line-tool-added)<br/>
@@ -71,13 +73,29 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/
 
 </details>
 
-## [2.2.0] - 2024-04-xx
+## [3.0.0] - 2024-05-xx
 
-<h3 id="220-command-line-tool">Command Line Tool</h3>
+<h3 id="300-command-line-tool">Command Line Tool</h3>
 
-<h4 id="220-command-line-tool-added">Added</h4>
+<h4 id="300-command-line-tool-added">Added</h4>
 
 * 命令行配置文件支持用 `TypeScript` 来编写，从版本 `v2.2.0` 开始，初始化命令执行生成的配置文件默认是 `i18nrc.ts` ，但老版的 `i18nrc.js` 依旧是兼容的
+
+
+<h3 id="300-api">API</h3>
+
+<h4 id="300-api-changed">Changed</h4>
+
+* 调整 `withI18n` 参数结构
+
+```diff
+- function withI18n(props:{
+-   locale: string
+- }): { t }
+
++ function withI18n(locale: string): { t }
+```
+
 
 
 ## [2.1.0] - 2023-10-12

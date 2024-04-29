@@ -165,9 +165,7 @@ ${getFormatTypeString('    ')}
           </>
         }
         type={`(
-  props:{
-    locale: string
-  }
+  locale: string
 ) => ({ ${getTitleToA('t')} })`}
         props={{
           locale: tr('指定当前语言'),
