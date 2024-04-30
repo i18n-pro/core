@@ -1,12 +1,6 @@
-import { translateImpl, defineT } from './utils'
+import { state, getCurrentState, translateImpl, defineT } from './utils'
 import { I18nState, SetI18n, Translate, WithI18n } from './type'
 export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
-
-let state = {} as I18nState
-
-function getCurrentState(namespace: string) {
-  return state[namespace] || {}
-}
 
 /**
  * Sets or updates the internationalization state
@@ -53,10 +47,7 @@ function setI18n(namespace: string, stateProp: Parameters<SetI18n>[0]) {
     ...newState,
   }
 
-  state = {
-    ...state,
-    [namespace]: newCurrentState,
-  }
+  state[namespace] = newCurrentState
 
   return newCurrentState
 }
@@ -90,7 +81,7 @@ function withI18n(namespace: string, locale: string): { t: Translate } {
     locale,
   }
   return {
-    t: defineT(translateImpl.bind(null, state, null), state),
+    t: defineT(translateImpl.bind(null, state, null), false, namespace, locale),
   }
 }
 
@@ -118,19 +109,13 @@ export function initI18n(stateProp: I18nState) {
     delete stateProp.beginIndex
   }
 
-  state = {
-    ...state,
-    [namespace]: {
-      ...(stateProp || {}),
-    },
+  state[namespace] = {
+    ...(stateProp || {}),
   }
 
   return {
     setI18n: setI18n.bind(null, namespace) as SetI18n,
-    t: defineT(
-      translate.bind(null, namespace, null),
-      getCurrentState(namespace),
-    ),
+    t: defineT(translate.bind(null, namespace, null), true, namespace),
     withI18n: withI18n.bind(null, namespace) as WithI18n,
   }
 }

@@ -6,6 +6,12 @@ import {
 } from './constants'
 import { I18nState, Translate } from './type'
 
+export const state = {}
+
+export function getCurrentState(namespace: string) {
+  return state[namespace] || {}
+}
+
 /**
  * 获取目标正则
  * @param regExp 基础正则
@@ -19,12 +25,35 @@ export function getTargetRegExp(regExp: RegExp, index: number) {
   )
 }
 
-export function defineT(t: Translate, state: I18nState): Translate {
+export function defineT(
+  t: Translate,
+  defineBind: boolean,
+  namespace: string,
+  locale?: string,
+): Translate {
   Object.defineProperty(t, 't', {
     get() {
-      return translateImpl.bind(null, state)
+      const state = getCurrentState(namespace)
+      return translateImpl.bind(
+        null,
+        typeof locale === 'string' ? { ...state, locale } : state,
+      )
     },
   })
+
+  if (defineBind) {
+    Object.defineProperty(t, 'bind', {
+      get() {
+        return () => {
+          const state = getCurrentState(namespace)
+          const newT = (...args) =>
+            translateImpl.bind(null, state, null, ...args)
+          defineT(newT as Translate, false, namespace)
+          return newT
+        }
+      },
+    })
+  }
 
   return t
 }
@@ -68,7 +97,7 @@ export function getTextFromFormatter(props: {
     const content = formatter({
       locale,
       payload: arg,
-      t: defineT(translateImpl.bind(null, state, null), state),
+      t: defineT(translateImpl.bind(null, state, null), false, state.namespace),
       ...(() => {
         let res = {}
         if (type === 'plural') {
