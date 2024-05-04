@@ -1,5 +1,5 @@
 import { state, getCurrentState, translateImpl, defineT } from './utils'
-import { I18nState, SetI18n, Translate, WithI18n } from './type'
+import { Condition, I18nState, SetI18n, Translate, WithI18n } from './type'
 export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
 
 /**
@@ -53,21 +53,6 @@ function setI18n(namespace: string, stateProp: Parameters<SetI18n>[0]) {
 }
 
 /**
- * Get the internationalized text based on the Original text
- * @param namespace Current namespace
- * @param text Original text
- * @param args Dynamic parameter
- */
-function translate(
-  namespace: string,
-  key: null | string,
-  text: string,
-  ...args: Array<string | number | unknown>
-): string {
-  return translateImpl(getCurrentState(namespace), key, text, ...args)
-}
-
-/**
  * Gets the i18n function independent of the main program
  *
  * Applicable to the server side, each interface response needs to do international processing
@@ -76,12 +61,13 @@ function translate(
  * @returns
  */
 function withI18n(namespace: string, locale: string): { t: Translate } {
-  const state = {
-    ...getCurrentState(namespace),
+  const condition = {
+    namespace,
     locale,
   }
+
   return {
-    t: defineT(translateImpl.bind(null, state, null), false, namespace, locale),
+    t: defineT(translateImpl.bind(null, condition, null), condition),
   }
 }
 
@@ -113,9 +99,14 @@ export function initI18n(stateProp: I18nState) {
     ...(stateProp || {}),
   }
 
+  const condition: Condition = {
+    namespace,
+    locale: null,
+  }
+
   return {
     setI18n: setI18n.bind(null, namespace) as SetI18n,
-    t: defineT(translate.bind(null, namespace, null), true, namespace),
+    t: defineT(translateImpl.bind(null, condition, null), condition),
     withI18n: withI18n.bind(null, namespace) as WithI18n,
   }
 }

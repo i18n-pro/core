@@ -4,7 +4,7 @@ import {
   invalidPluralFormatterRegex,
   tagFormatterNameMap,
 } from './constants'
-import { I18nState, Translate } from './type'
+import { Condition, I18nState, Translate } from './type'
 
 export const state = {}
 
@@ -25,36 +25,23 @@ export function getTargetRegExp(regExp: RegExp, index: number) {
   )
 }
 
-export function defineT(
-  t: Translate,
-  defineBind: boolean,
-  namespace: string,
-  locale?: string,
-): Translate {
-  Object.defineProperty(t, 't', {
-    get() {
-      const state = getCurrentState(namespace)
-      return translateImpl.bind(
-        null,
-        typeof locale === 'string' ? { ...state, locale } : state,
-      )
+export function defineT(t: Translate, condition: Condition): Translate {
+  Object.defineProperties(t, {
+    t: {
+      get() {
+        return translateImpl.bind(null, condition)
+      },
     },
-  })
-
-  if (defineBind) {
-    Object.defineProperty(t, 'bind', {
+    bind: {
       get() {
         return () => {
-          const state = getCurrentState(namespace)
-          const newT = (...args) =>
-            translateImpl.bind(null, state, null, ...args)
-          defineT(newT as Translate, false, namespace)
+          const newT = translateImpl.bind(null, condition, null)
+          defineT(newT as Translate, condition)
           return newT
         }
       },
-    })
-  }
-
+    },
+  })
   return t
 }
 
@@ -71,9 +58,19 @@ export function getTextFromFormatter(props: {
   arg: unknown // 动态参数值
   text: string // 待处理的文案
   state: I18nState // Internationalization state
+  condition: Condition
 }): string {
-  const { type, originText, matchTagRes, arg, text: textProp, state } = props
-  const { locale } = state
+  const {
+    type,
+    originText,
+    matchTagRes,
+    arg,
+    text: textProp,
+    state,
+    condition,
+  } = props
+  const { locale: locale_ } = state
+  const locale = condition.locale || locale_
   const [, matchTemplate, f, keyword = ''] = matchTagRes
   const formatterName = tagFormatterNameMap[f?.toLocaleLowerCase()]
   const formatter = state[formatterName]
@@ -97,7 +94,7 @@ export function getTextFromFormatter(props: {
     const content = formatter({
       locale,
       payload: arg,
-      t: defineT(translateImpl.bind(null, state, null), false, state.namespace),
+      t: defineT(translateImpl.bind(null, condition, null), condition),
       ...(() => {
         let res = {}
         if (type === 'plural') {
@@ -131,12 +128,14 @@ export function getTextFromFormatter(props: {
  * @returns
  */
 export function translateImpl(
-  i18nState: I18nState,
+  condition: Condition,
   key: null | string = null,
   text: string,
   ...args: Array<string | number | unknown>
 ) {
-  const { locale, langs, beginIndex = 0 } = i18nState
+  const i18nState = getCurrentState(condition.namespace)
+  const { locale: locale_, langs, beginIndex = 0 } = i18nState
+  const locale = condition.locale || locale_
   const lang = langs?.[locale]
   let originText = text
 
@@ -188,6 +187,7 @@ export function translateImpl(
       arg,
       text,
       state: i18nState,
+      condition,
     })
   })
 

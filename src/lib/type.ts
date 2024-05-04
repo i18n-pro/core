@@ -137,3 +137,8 @@ export interface Translate {
  * @returns
  */
 export type WithI18n = (locale: string) => { t: Translate }
+
+export type Condition = {
+  namespace: string
+  locale: null | string
+}
