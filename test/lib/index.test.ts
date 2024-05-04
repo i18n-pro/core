@@ -1,4 +1,6 @@
 import { lib } from '../utils'
+import { I18nState } from '../../src/lib'
+import { expect } from 'vitest'
 
 const { initI18n } = lib
 
@@ -212,6 +214,7 @@ describe('动态参数验证', () => {
   const { t } = initI18n({ namespace: 'dynamic-parameter' })
 
   it('基本功能', () => {
+    /** t */
     expect(t('你好{0}', '世界')).toBe('你好世界')
 
     expect(t('你好{0}，我是{1}', '张三', '李四')).toBe('你好张三，我是李四')
@@ -219,9 +222,28 @@ describe('动态参数验证', () => {
     expect(
       t('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', 22, '火星', '码农'),
     ).toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
+
+    /** t.t */
+    expect(t.t('xxx', '你好{0}', '世界')).toBe('你好世界')
+
+    expect(t.t('xxx', '你好{0}，我是{1}', '张三', '李四')).toBe(
+      '你好张三，我是李四',
+    )
+
+    expect(
+      t.t(
+        'xxx',
+        '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+        '王尼玛',
+        22,
+        '火星',
+        '码农',
+      ),
+    ).toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
   })
 
   it('字符串中参数多于真实参数，动态参数的模板会原样输出', () => {
+    /** t */
     expect(t('你好{0}')).toBe('你好{0}')
 
     expect(t('你好{0}，我是{1}', '张三')).toBe('你好张三，我是{1}')
@@ -229,9 +251,19 @@ describe('动态参数验证', () => {
     expect(t('我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', 22)).toBe(
       '我叫王尼玛，今年22岁，来自{2}，是一名{3}',
     )
+
+    /** t.t */
+    expect(t.t('xxx', '你好{0}')).toBe('你好{0}')
+
+    expect(t.t('xxx', '你好{0}，我是{1}', '张三')).toBe('你好张三，我是{1}')
+
+    expect(
+      t.t('xxx', '我叫{0}，今年{1}岁，来自{2}，是一名{3}', '王尼玛', 22),
+    ).toBe('我叫王尼玛，今年22岁，来自{2}，是一名{3}')
   })
 
   it('字符串中参数少于真实参数，多余的参数不会被输出', () => {
+    /** t */
     expect(t('你好{0}', '世界', '!')).toBe('你好世界')
 
     expect(t('你好{0}，我是{1}', '张三', '李四', '!', '!')).toBe(
@@ -240,6 +272,31 @@ describe('动态参数验证', () => {
 
     expect(
       t(
+        '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+        '王尼玛',
+        22,
+        '火星',
+        '码农',
+        '!',
+        '!',
+        '!',
+        '!',
+        '!',
+        '!',
+        '!',
+      ),
+    ).toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
+
+    /** t.t */
+    expect(t.t('xxx', '你好{0}', '世界', '!')).toBe('你好世界')
+
+    expect(t.t('xxx', '你好{0}，我是{1}', '张三', '李四', '!', '!')).toBe(
+      '你好张三，我是李四',
+    )
+
+    expect(
+      t.t(
+        'xxx',
         '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
         '王尼玛',
         22,
@@ -264,6 +321,7 @@ describe('动态参数验证', () => {
         beginIndex: '1' as any,
       })
       expect(t('你好{0}', '世界')).toBe('你好世界')
+      expect(t.t('xxx', '你好{0}', '世界')).toBe('你好世界')
     })
 
     it('数字1', () => {
@@ -271,8 +329,13 @@ describe('动态参数验证', () => {
         namespace: 'beginIndex-1',
         beginIndex: 1,
       })
+      /** t */
       expect(t('你好{0}', '世界')).not.toBe('你好世界')
       expect(t('你好{1}', '世界')).toBe('你好世界')
+
+      /** t.t */
+      expect(t.t('xxx', '你好{0}', '世界')).not.toBe('你好世界')
+      expect(t.t('xxx', '你好{1}', '世界')).toBe('你好世界')
     })
 
     it('数字2', () => {
@@ -280,10 +343,22 @@ describe('动态参数验证', () => {
         namespace: 'beginIndex-2',
         beginIndex: 2,
       })
+
+      /** t */
       expect(t('你好{0}，我是{1}', '张三', '李四')).not.toBe(
         '你好张三，我是李四',
       )
+
       expect(t('你好{2}，我是{3}', '张三', '李四')).toBe('你好张三，我是李四')
+
+      /** t.t */
+      expect(t.t('xxx', '你好{0}，我是{1}', '张三', '李四')).not.toBe(
+        '你好张三，我是李四',
+      )
+
+      expect(t.t('xxx', '你好{2}，我是{3}', '张三', '李四')).toBe(
+        '你好张三，我是李四',
+      )
     })
 
     it('数字10', () => {
@@ -292,6 +367,7 @@ describe('动态参数验证', () => {
         beginIndex: 10,
       })
 
+      /** t */
       expect(
         t(
           '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
@@ -321,6 +397,39 @@ describe('动态参数验证', () => {
           '码农',
         ),
       ).toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
+      /** t.t */
+      expect(
+        t.t(
+          'xxx',
+          '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+          '王尼玛',
+          22,
+          '火星',
+          '码农',
+        ),
+      ).not.toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
+
+      expect(
+        t.t(
+          'xxx',
+          '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+          '王尼玛',
+          22,
+          '火星',
+          '码农',
+        ),
+      ).toBe('我叫{0}，今年{1}岁，来自{2}，是一名{3}')
+
+      expect(
+        t.t(
+          'xxx',
+          '我叫{10}，今年{11}岁，来自{12}，是一名{13}',
+          '王尼玛',
+          22,
+          '火星',
+          '码农',
+        ),
+      ).toBe('我叫王尼玛，今年22岁，来自火星，是一名码农')
     })
   })
 })
@@ -339,8 +448,21 @@ describe('格式化数字', () => {
     const lastWarnMsg = getNoFormatterWarn(text1, 'n2', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
+
     // 未配置时，默认走正常的匹配逻辑
     expect(t(text1, 5, 4, 3)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
+
+    // 3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 未配置时，默认走正常的匹配逻辑
+    expect(t.t('xxx', text1, 5, 4, 3)).toBe(trText1)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
@@ -366,6 +488,8 @@ describe('格式化数字', () => {
     const trText2 = '我有15个苹果，14个香蕉和13个梨'
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
+
     // 根据格式化回调的值返回
     expect(t(text1, 5, 4, 3)).toBe(trText1)
 
@@ -376,6 +500,19 @@ describe('格式化数字', () => {
 
     // 未配置locale有3次警告输出
     expect(spyWarn).toHaveBeenCalledTimes(3)
+
+    /** t.t */
+
+    // 根据格式化回调的值返回
+    expect(t.t('xxx', text1, 5, 4, 3)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      getNoLocaleFormatterWarn(formatterName),
+    )
+
+    // 未配置locale有6次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(6)
 
     formatNumber.mockImplementation(({ payload, locale }) => {
       expect(locale).toBe('zh')
@@ -391,6 +528,7 @@ describe('格式化数字', () => {
 
     // 根据格式化回调的值返回
     expect(t(text1, 5, 4, 3)).toBe(trText2)
+    expect(t.t('xxx', text1, 5, 4, 3)).toBe(trText2)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -415,8 +553,28 @@ describe('格式化数字', () => {
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
+    /** t */
+
     // 如果formatter出错，还是走原有的匹配逻辑
     expect(t(text1, 5, 4, 3)).toBe(trText1)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有三次错误输出
+    expect(spyError).toHaveBeenCalledTimes(3)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      ...getFormatterRunError(text1, 'n12', formatterName, errMsg),
+    )
+
+    /** t.t */
+    spyWarn.mockClear()
+    spyError.mockClear()
+
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(t.t('xxx', text1, 5, 4, 3)).toBe(trText1)
 
     // 没有警告输出
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -448,8 +606,23 @@ describe('格式化货币', () => {
     const lastWarnMsg = getNoFormatterWarn(text1, 'c0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
+
     // 未配置时，默认走正常的匹配逻辑
     expect(t(text1, 200)).toBe(trText1)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    /** t.t */
+
+    spyWarn.mockClear()
+
+    // 未配置时，默认走正常的匹配逻辑
+    expect(t.t('xxx', text1, 200)).toBe(trText1)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
@@ -463,6 +636,7 @@ describe('格式化货币', () => {
       expect(locale).toBeUndefined()
       expect(t).toBeInstanceOf(Function)
       expect(t('你好{0}', '世界')).toBe('你好世界')
+      expect(t.t('xxx', '你好{0}', '世界')).toBe('你好世界')
       return payload + '万'
     })
 
@@ -480,6 +654,7 @@ describe('格式化货币', () => {
 
     // 根据格式化回调的值返回
     expect(t(text1, 200)).toBe(trText1)
+    expect(t.t('xxx', text1, 200)).toBe(trText1)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
@@ -487,7 +662,7 @@ describe('格式化货币', () => {
     )
 
     // 未配置locale有1次警告输出
-    expect(spyWarn).toHaveBeenCalledTimes(1)
+    expect(spyWarn).toHaveBeenCalledTimes(2)
 
     type Payload = {
       money: number // 货币
@@ -529,6 +704,11 @@ describe('格式化货币', () => {
         money: 200,
       }),
     ).toBe(trText2)
+    expect(
+      t.t('xxx', text1, {
+        money: 200,
+      }),
+    ).toBe(trText2)
 
     // 根据格式化回调的值返回
     expect(
@@ -537,10 +717,23 @@ describe('格式化货币', () => {
         show: 'withUnitAndSymbol',
       }),
     ).toBe(trText3)
+    expect(
+      t.t('xxx', text1, {
+        money: 200,
+        show: 'withUnitAndSymbol',
+      }),
+    ).toBe(trText3)
 
     // 根据格式化回调的值返回
     expect(
       t('他买电脑花了{c0}', {
+        money: 15,
+        base: 1000,
+        show: 'withUnitAndSymbol',
+      }),
+    ).toBe('他买电脑花了￥15K')
+    expect(
+      t.t('xxx', '他买电脑花了{c0}', {
         money: 15,
         base: 1000,
         show: 'withUnitAndSymbol',
@@ -569,8 +762,26 @@ describe('格式化货币', () => {
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
+    /** t */
     // 如果formatter出错，还是走原有的匹配逻辑
     expect(t(text1, 200)).toBe(trText1)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有1次错误输出
+    expect(spyError).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      ...getFormatterRunError(text1, 'c0', formatterName, errMsg),
+    )
+
+    /** t.t */
+    spyWarn.mockClear()
+    spyError.mockClear()
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(t.t('xxx', text1, 200)).toBe(trText1)
 
     // 没有警告输出
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -591,6 +802,7 @@ describe('格式化日期', () => {
   const langs = {
     en: {
       [text]: `Today's date is {d0}`,
+      xxx: `Today's date is {d0}`,
     },
   }
   const date = new Date()
@@ -632,8 +844,20 @@ describe('格式化日期', () => {
     const lastWarnMsg = getNoFormatterWarn(text, 'd0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
     // 未配置时，默认走正常的匹配逻辑
     expect(t(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 未配置时，默认走正常的匹配逻辑
+    expect(t.t('xxx', text, date)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
@@ -657,8 +881,22 @@ describe('格式化日期', () => {
     })
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
     // 根据格式化回调的值返回
     expect(t(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      getNoLocaleFormatterWarn(formatterName),
+    )
+
+    // 未配置locale有1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 根据格式化回调的值返回
+    expect(t.t('xxx', text, date)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
@@ -677,6 +915,7 @@ describe('格式化日期', () => {
 
     // 根据格式化回调的值返回
     expect(t(text, date)).toBe(trZhTextWithLocale)
+    expect(t.t('xxx', text, date)).toBe(trZhTextWithLocale)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -690,6 +929,7 @@ describe('格式化日期', () => {
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, date)).toBe(trEnTextWithLocale)
+    expect(t.t('xxx', text, date)).toBe(trEnTextWithLocale)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -711,8 +951,26 @@ describe('格式化日期', () => {
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
+    /** t */
     // 如果formatter出错，还是走原有的匹配逻辑
     expect(t(text, date)).toBe(trZhText)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有1次错误输出
+    expect(spyError).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      ...getFormatterRunError(text, 'd0', formatterName, errMsg),
+    )
+
+    /** t.t */
+    spyWarn.mockClear()
+    spyError.mockClear()
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(t.t('xxx', text, date)).toBe(trZhText)
 
     // 没有警告输出
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -733,6 +991,7 @@ describe('格式化时间', () => {
   const langs = {
     en: {
       [text]: `The current time is {t0}`,
+      xxx: `The current time is {t0}`,
     },
   }
   const date = new Date()
@@ -781,8 +1040,20 @@ describe('格式化时间', () => {
     const lastWarnMsg = getNoFormatterWarn(text, 't0', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
     // 未配置时，默认走正常的匹配逻辑
     expect(t(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 未配置时，默认走正常的匹配逻辑
+    expect(t.t('xxx', text, date)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
@@ -808,8 +1079,22 @@ describe('格式化时间', () => {
 
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
     // 根据格式化回调的值返回
     expect(t(text, date)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      getNoLocaleFormatterWarn(formatterName),
+    )
+
+    // 未配置locale有1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 根据格式化回调的值返回
+    expect(t.t('xxx', text, date)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
@@ -828,6 +1113,7 @@ describe('格式化时间', () => {
 
     // 根据格式化回调的值返回
     expect(t(text, date)).toBe(trZhTextWithLocale)
+    expect(t.t('xxx', text, date)).toBe(trZhTextWithLocale)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -841,6 +1127,7 @@ describe('格式化时间', () => {
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, date)).toBe(trEnTextWithLocale)
+    expect(t.t('xxx', text, date)).toBe(trEnTextWithLocale)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -864,8 +1151,26 @@ describe('格式化时间', () => {
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
+    /** t */
     // 如果formatter出错，还是走原有的匹配逻辑
     expect(t(text, date)).toBe(trZhText)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有1次错误输出
+    expect(spyError).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      ...getFormatterRunError(text, 't0', formatterName, errMsg),
+    )
+
+    /** t.t */
+    spyWarn.mockClear()
+    spyError.mockClear()
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(t.t('xxx', text, date)).toBe(trZhText)
 
     // 没有警告输出
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -887,7 +1192,9 @@ describe('格式化复数', () => {
   const langs = {
     en: {
       [text]: `I have {P0 apples}, {P1 bananas} and {P2 pears}`,
+      xxx: `I have {P0 apples}, {P1 bananas} and {P2 pears}`,
       [text2]: `I have {P0} apples`,
+      xxx2: `I have {P0} apples`,
     },
   }
   const trZhText = '我有5个苹果，4个香蕉和3个梨'
@@ -957,8 +1264,20 @@ describe('格式化复数', () => {
     const lastWarnMsg = getNoFormatterWarn(text, 'p2个梨', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
     // 未配置时，默认走正常的匹配逻辑
     expect(t(text, 5, 4, 3)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
+
+    // 3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 未配置时，默认走正常的匹配逻辑
+    expect(t.t('xxx', text, 5, 4, 3)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
@@ -977,6 +1296,20 @@ describe('格式化复数', () => {
     })
     const spyWarn = vi.spyOn(console, 'warn')
 
+    /** t */
+    // 根据格式化回调的值返回
+    expect(t(text, 5, 4, 3)).toBe(trZhText)
+
+    // 最后一次输出内容匹配
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      getNoLocaleFormatterWarn(formatterName),
+    )
+
+    // 未配置locale有3次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(3)
+
+    /** t.t */
+    spyWarn.mockClear()
     // 根据格式化回调的值返回
     expect(t(text, 5, 4, 3)).toBe(trZhText)
 
@@ -997,6 +1330,7 @@ describe('格式化复数', () => {
 
     // 根据格式化回调的值返回
     expect(t(text, 5, 4, 3)).toBe(trZhText)
+    expect(t.t('xxx', text, 5, 4, 3)).toBe(trZhText)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -1010,6 +1344,7 @@ describe('格式化复数', () => {
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, 5, 4, 3)).toBe(trEnTextWithLocale)
+    expect(t.t('xxx', text, 5, 4, 3)).toBe(trEnTextWithLocale)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -1018,6 +1353,7 @@ describe('格式化复数', () => {
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, 0, 0, 0)).toBe(trEnTextWithLocaleAndCountZero)
+    expect(t.t('xxx', text, 0, 0, 0)).toBe(trEnTextWithLocaleAndCountZero)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -1026,6 +1362,7 @@ describe('格式化复数', () => {
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, 1, 1, 1)).toBe(trEnTextWithLocaleAndCountOne)
+    expect(t.t('xxx', text, 1, 1, 1)).toBe(trEnTextWithLocaleAndCountOne)
 
     // 现在不应该有警告
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -1048,8 +1385,26 @@ describe('格式化复数', () => {
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
+    /** t */
     // 如果formatter出错，还是走原有的匹配逻辑
     expect(t(text, 5, 4, 3)).toBe(trZhText)
+
+    // 没有警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(0)
+
+    // 会有3次错误输出
+    expect(spyError).toHaveBeenCalledTimes(3)
+
+    // 正确输出错误信息
+    expect(spyError).toHaveBeenLastCalledWith(
+      ...getFormatterRunError(text, 'p2个梨', formatterName, errMsg),
+    )
+
+    /** t */
+    spyWarn.mockClear()
+    spyError.mockClear()
+    // 如果formatter出错，还是走原有的匹配逻辑
+    expect(t.t('xxx', text, 5, 4, 3)).toBe(trZhText)
 
     // 没有警告输出
     expect(spyWarn).toHaveBeenCalledTimes(0)
@@ -1074,8 +1429,25 @@ describe('格式化复数', () => {
     const spyWarn = vi.spyOn(console, 'warn')
     const spyError = vi.spyOn(console, 'error')
 
+    /** t */
     // 如果错误配置格式化标记，那么i18n函数将原样返回
     expect(t(text2, 5)).toBe(langs.en[text2])
+
+    // 会有0次错误输出
+    expect(spyError).toHaveBeenCalledTimes(0)
+
+    // 1次警告输出
+    expect(spyWarn).toHaveBeenCalledTimes(1)
+
+    // 正确输出错误信息
+    expect(spyWarn).toHaveBeenLastCalledWith(
+      getInvalidPluralWarn(langs.en[text2], 'P0'),
+    )
+
+    /** t.t */
+    spyWarn.mockClear()
+    // 如果错误配置格式化标记，那么i18n函数将原样返回
+    expect(t.t('xxx2', text2, 5)).toBe(langs.en[text2])
 
     // 会有0次错误输出
     expect(spyError).toHaveBeenCalledTimes(0)
@@ -1140,4 +1512,115 @@ it('模拟服务端，验证 withI18n', () => {
 
   // 当前主程序语言为en，接口为en
   check('en', 'en')
+})
+
+describe('t.t', () => {
+  const state: I18nState = {
+    langs: {
+      en: {
+        测试: 'test',
+        xxx: 'test2',
+      },
+    },
+  }
+
+  describe('initI18n t', () => {
+    const { t, setI18n } = initI18n({
+      ...state,
+      locale: 'en',
+      namespace: 'initI18n t',
+      formatNumber({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testCurrency', '测试金额{c0}', 1000)).toBe('测试金额1000')
+        return payload
+      },
+      formatCurrency({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testDate', '测试日期{d0}', 1000)).toBe('测试日期1000')
+        return payload
+      },
+      formatDate({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testTime', '测试时间{t0}', 1000)).toBe('测试时间1000')
+        return payload
+      },
+      formatTime({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testPlural', '测试复数{p0个苹果}', 10000)).toBe(
+          '测试复数10000个苹果',
+        )
+        return payload
+      },
+      formatPlural({ locale, t, payload, text }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        return text
+      },
+    })
+
+    it('验证 t.t 基本属性', () => {
+      expect(typeof t.t).toBe('function')
+      expect(t.t('xxx', '')).toBe('test2')
+    })
+
+    it('验证 t.bind 基本属性', () => {
+      const newT = t.bind(null)
+      expect(newT('测试')).toBe('test')
+      expect(newT.t('xxx', '')).toBe('test2')
+    })
+
+    it('验证 formatXXX 中的t.t', () => {
+      expect(t('数字是{n0}', 10000)).toBe('数字是10000')
+    })
+  })
+
+  describe('withI18n t', () => {
+    const { withI18n, setI18n } = initI18n({
+      ...state,
+      namespace: 'withI18n t',
+      formatNumber({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testCurrency', '测试金额{c0}', 1000)).toBe('测试金额1000')
+        return payload
+      },
+      formatCurrency({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testDate', '测试日期{d0}', 1000)).toBe('测试日期1000')
+        return payload
+      },
+      formatDate({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testTime', '测试时间{t0}', 1000)).toBe('测试时间1000')
+        return payload
+      },
+      formatTime({ locale, t, payload }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        expect(t.t('testPlural', '测试复数{p0个苹果}', 10000)).toBe(
+          '测试复数10000个苹果',
+        )
+        return payload
+      },
+      formatPlural({ locale, t, payload, text }) {
+        expect(t.t('xxx', '')).toBe('test2')
+        return text
+      },
+    })
+
+    const { t } = withI18n('en')
+    setI18n(undefined)
+
+    it('验证 t.t 基本属性', () => {
+      expect(typeof t.t).toBe('function')
+      expect(t.t('xxx', '')).toBe('test2')
+    })
+
+    it('验证 t.bind 基本属性', () => {
+      const newT = t.bind(null)
+      expect(newT('测试')).toBe('test')
+      expect(newT.t('xxx', '')).toBe('test2')
+    })
+
+    it('验证 formatXXX 中的t.t', () => {
+      expect(t('数字是{n0}', 10000)).toBe('数字是10000')
+    })
+  })
 })
