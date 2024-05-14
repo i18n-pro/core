@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 import { binExtraText } from '../utils'
 
-const { extraText } = binExtraText
+const { extraTextFromT } = binExtraText
 
 describe('验证翻译文本提取功能', () => {
   const content = readFileSync(join(__dirname, '../i18n/text.ts'), {
@@ -28,25 +28,33 @@ describe('验证翻译文本提取功能', () => {
 
   describe('验证规范文本提取', () => {
     it('默认提取', () => {
-      const texts = extraText(content, 't')
-      expect(texts.success).toEqual(successTexts)
+      const success = []
+      const error = []
+      extraTextFromT(content, 't', success, error)
+      expect(success).toEqual(successTexts)
     })
 
     it('自定义函数名（t -> i18n）', () => {
-      const texts = extraText(content.replaceAll('t(', 'i18n('), 'i18n')
-      expect(texts.success).toEqual(successTexts)
+      const success = []
+      const error = []
+      extraTextFromT(content.replaceAll('t(', 'i18n('), 'i18n', success, error)
+      expect(success).toEqual(successTexts)
     })
   })
 
   describe('验证不规范文本提取', () => {
     it('默认提取', () => {
-      const texts = extraText(content, 't')
-      expect(texts.error[1]).toBe(errrorTexts[1])
+      const success = []
+      const error = []
+      const texts = extraTextFromT(content, 't', success, error)
+      expect(error[1]).toBe(errrorTexts[1])
     })
 
     it('未知匹配函数名i18n', () => {
-      const texts = extraText(content, 'i18n')
-      expect(texts.success).toEqual([])
+      const success = []
+      const error = []
+      const texts = extraTextFromT(content, 'i18n', success, error)
+      expect(success).toEqual([])
     })
   })
 })

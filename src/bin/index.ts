@@ -82,7 +82,7 @@ async function translateController({
   })
 
   const translateRes = await translateTextsToLangsImpl(
-    trTextRes.success,
+    trTextRes.textSuccess,
     sourceLangs,
     incrementalMode,
   )
@@ -101,20 +101,20 @@ async function translateController({
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts.json'),
-    fileContent: trTextRes.success,
+    fileContent: trTextRes.textSuccess,
     showName: t(
       '提取的翻译文案({0})',
-      chalk.greenBright(trTextRes.success.length),
+      chalk.greenBright(trTextRes.textSuccess.length),
     ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts-error.json'),
-    fileContent: trTextRes.error,
+    fileContent: trTextRes.textError,
     showName: t(
       '提取的编写不规范的翻译文案({0})',
-      chalk.redBright(trTextRes.error.length),
+      chalk.redBright(trTextRes.textError.length),
     ),
     indentSize,
   })
