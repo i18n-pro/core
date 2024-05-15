@@ -105,16 +105,16 @@ export function extraTextFromTDotT(
     if (textValidate) {
       textSuccess.push(textContent)
     } else {
-      textError.push(textLabel)
+      textError.push(textContent)
     }
 
     // 自定义key和文案都有效
     if (keyValidate && textValidate) {
       const text = keyTextMap[keyContent]
-      if (text && text != text) {
+      if (text && text != textContent) {
         textError.push(
           t(
-            '当前自定义key={0}，配置了不一样的文案（{1}和{2}），应该满足key与文案一对一的关系',
+            '当前自定义 key=`{0}`，配置了不一样的文案（`{1}` 和 `{2}`），应该满足 key 与文案一对一的关系',
             keyContent,
             text,
             textContent,
@@ -122,12 +122,11 @@ export function extraTextFromTDotT(
         )
       } else if (!text) {
         keyTextMap[keyContent] = textContent
-      }
-
-      const keys = textKeyMap[textContent] || []
-      if (!keys.includes(keyContent)) {
-        keys.push(keyContent)
-        textKeyMap[textContent] = keys
+        const keys = textKeyMap[textContent] || []
+        if (!keys.includes(keyContent)) {
+          keys.push(keyContent)
+          textKeyMap[textContent] = keys
+        }
       }
     }
   }
