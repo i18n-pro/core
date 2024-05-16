@@ -38,7 +38,7 @@ export function extraTextFromT(
   error: string[],
 ) {
   const regexp = new RegExp(
-    /\WfuncName\(\n*[ ]*((['"`])(.+?)\2)(,|\))/.source.replace(
+    /[^.A-z]funcName\(\n*[ ]*((['"`])(.+?)\2)(,|\))/.source.replace(
       'funcName',
       funcName,
     ),
