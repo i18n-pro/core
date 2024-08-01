@@ -390,5 +390,7 @@
   "对你有帮助": "it's helpful for you",
   "可以通过{0}语法来筛选需要被翻译的文件": "Files that need translation can be filtered using {0} syntax",
   "配置该属性后，{0}和{1}将会失效，可根据应用场景决定使用哪种方式": "Once this property is configured, {0} and {1} will no longer apply, so decide which approach makes sense for your use case",
-  "命令行配置添加{0}配置，支持通过{1}语法来筛选文件": "The command line configuration adds {0} config, which supports filtering files using {1} syntax"
+  "命令行配置添加{0}配置，支持通过{1}语法来筛选文件": "The command line configuration adds {0} config, which supports filtering files using {1} syntax",
+  "修复{0}类型中关键字存在空格时解析{1}不正确": "Fix the issue where {1} are incorrectly parsed when there are spaces in keywords of the {0} type",
+  "类似如下": "Similar to the following"
 }

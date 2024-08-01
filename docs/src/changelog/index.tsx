@@ -443,18 +443,44 @@ function V_2_1_0() {
   )
 }
 
+function V_2_1_1() {
+  return (
+    <Template
+      version="2.1.1"
+      date="2024-08-01"
+      api={{
+        fixed: [
+          'U',
+          <>
+            {tr(
+              '修复{0}类型中关键字存在空格时解析{1}不正确',
+              ` \`${tr('复数')}\` `,
+              getInterpolationVariable(),
+            )}
+            <CodeBlock
+              code={`
+ // ${tr('类似如下')}
+ t('there have {p0 Country or Region} in the list', 100)`}
+            />
+          </>,
+        ],
+      }}
+    />
+  )
+}
+
 function V_3_0_0() {
   return (
     <Template
       version="3.0.0"
-      date="2024-05-xx"
+      date="2025-05-xx"
       commandLine={{
         added: [
           'U',
           tr(
             '命令行配置文件支持用{0}来编写，从版本{1}开始，初始化命令执行生成的配置文件默认是{2}，但老版的{3}依旧是兼容的',
             ' `TypeScript` ',
-            ' `v2.2.0` ',
+            ' `v3.0.0` ',
             ' `i18nrc.ts` ',
             ' `i18nrc.js` ',
           ),
@@ -492,6 +518,7 @@ export default function ChangeLog(props) {
       {renderLanguage('CHANGELOG')}
       <TableOfContents text={tr('目录')} open={false} />
       <V_3_0_0 />
+      <V_2_1_1 />
       <V_2_1_0 />
       <V_2_0_0 />
       <V_1_3_2 />

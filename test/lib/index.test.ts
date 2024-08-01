@@ -1189,12 +1189,15 @@ describe('格式化复数', () => {
   const formatterName = 'formatPlural'
   const text = '我有{p0个苹果}，{p1个香蕉}和{p2个梨}'
   const text2 = '我有{p0}个苹果'
+  const text3 = '列表中有{p0个国家或地区}'
+
   const langs = {
     en: {
       [text]: `I have {P0 apples}, {P1 bananas} and {P2 pears}`,
       xxx: `I have {P0 apples}, {P1 bananas} and {P2 pears}`,
       [text2]: `I have {P0} apples`,
       xxx2: `I have {P0} apples`,
+      xxx3: 'there have {p0 Country or Region} in the list',
     },
   }
   const trZhText = '我有5个苹果，4个香蕉和3个梨'
@@ -1239,6 +1242,14 @@ describe('格式化复数', () => {
               resText = `no pear`
             }
             break
+          case 'Country or Region':
+            resText =
+              payload === 0
+                ? `no Country or Region`
+                : payload > 1
+                ? `${payload} Countries or Regions`
+                : `${payload} Country or Region`
+            break
         }
         break
       case 'zh':
@@ -1266,24 +1277,28 @@ describe('格式化复数', () => {
 
     /** t */
     // 未配置时，默认走正常的匹配逻辑
+    expect(t('测试{p0 a b }存在空格的场景', 1)).toBe('测试1 a b 存在空格的场景')
     expect(t(text, 5, 4, 3)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 3次警告输出
-    expect(spyWarn).toHaveBeenCalledTimes(3)
+    expect(spyWarn).toHaveBeenCalledTimes(4)
 
     /** t.t */
     spyWarn.mockClear()
     // 未配置时，默认走正常的匹配逻辑
+    expect(t.t('xxx', '测试{p0 a b }存在空格的场景', 1)).toBe(
+      '测试1 a b 存在空格的场景',
+    )
     expect(t.t('xxx', text, 5, 4, 3)).toBe(trZhText)
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 3次警告输出
-    expect(spyWarn).toHaveBeenCalledTimes(3)
+    expect(spyWarn).toHaveBeenCalledTimes(4)
   })
 
   it('正确配置 formatPlural', () => {
@@ -1299,6 +1314,7 @@ describe('格式化复数', () => {
     /** t */
     // 根据格式化回调的值返回
     expect(t(text, 5, 4, 3)).toBe(trZhText)
+    expect(t('测试{p0 a b }存在空格的场景', 1)).toBe('测试1 a b 存在空格的场景')
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
@@ -1306,12 +1322,15 @@ describe('格式化复数', () => {
     )
 
     // 未配置locale有3次警告输出
-    expect(spyWarn).toHaveBeenCalledTimes(3)
+    expect(spyWarn).toHaveBeenCalledTimes(4)
 
     /** t.t */
     spyWarn.mockClear()
     // 根据格式化回调的值返回
-    expect(t(text, 5, 4, 3)).toBe(trZhText)
+    expect(t.t('xxx', text, 5, 4, 3)).toBe(trZhText)
+    expect(t.t('xxx', '测试{p0 a b }存在空格的场景', 1)).toBe(
+      '测试1 a b 存在空格的场景',
+    )
 
     // 最后一次输出内容匹配
     expect(spyWarn).toHaveBeenLastCalledWith(
@@ -1319,7 +1338,7 @@ describe('格式化复数', () => {
     )
 
     // 未配置locale有3次警告输出
-    expect(spyWarn).toHaveBeenCalledTimes(3)
+    expect(spyWarn).toHaveBeenCalledTimes(4)
 
     setI18n({
       locale: 'zh',
@@ -1341,6 +1360,23 @@ describe('格式化复数', () => {
 
     // 清除之前的记录
     spyWarn.mockClear()
+
+    expect(t('xxx3', 100)).toBe(
+      'there have 100 Countries or Regions in the list',
+    )
+    expect(t.t('xxx3', text3, 100)).toBe(
+      'there have 100 Countries or Regions in the list',
+    )
+
+    expect(t('xxx3', 1)).toBe('there have 1 Country or Region in the list')
+    expect(t.t('xxx3', text3, 1)).toBe(
+      'there have 1 Country or Region in the list',
+    )
+
+    expect(t('xxx3', 0)).toBe('there have no Country or Region in the list')
+    expect(t.t('xxx3', text3, 0)).toBe(
+      'there have no Country or Region in the list',
+    )
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, 5, 4, 3)).toBe(trEnTextWithLocale)
