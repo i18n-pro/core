@@ -435,6 +435,32 @@ function V_2_1_0() {
   )
 }
 
+function V_2_1_1() {
+  return (
+    <Template
+      version="2.1.1"
+      date="2024-08-01"
+      api={{
+        fixed: [
+          'U',
+          <>
+            {tr(
+              '修复{0}类型中关键字存在空格时解析{1}不正确',
+              ` \`${tr('复数')}\` `,
+              getInterpolationVariable(),
+            )}
+            <CodeBlock
+              code={`
+ // ${tr('类似如下')}
+ t('there have {p0 Country or Region} in the list', 100)`}
+            />
+          </>,
+        ],
+      }}
+    />
+  )
+}
+
 export default function ChangeLog(props) {
   initI18n(props)
 
@@ -443,6 +469,7 @@ export default function ChangeLog(props) {
       <H1 skip>{tr('更新日志')}</H1>
       {renderLanguage('CHANGELOG')}
       <TableOfContents text={tr('目录')} open={false} />
+      <V_2_1_1 />
       <V_2_1_0 />
       <V_2_0_0 />
       <V_1_3_2 />

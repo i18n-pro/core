@@ -932,6 +932,14 @@ describe('格式化复数', () => {
               resText = `no pear`
             }
             break
+          case 'Country or Region':
+            resText =
+              payload === 0
+                ? `no Country or Region`
+                : payload > 1
+                ? `${payload} Countries or Regions`
+                : `${payload} Country or Region`
+            break
         }
         break
       case 'zh':
@@ -957,6 +965,8 @@ describe('格式化复数', () => {
     const lastWarnMsg = getNoFormatterWarn(text, 'p2个梨', formatterName)
     const spyWarn = vi.spyOn(console, 'warn')
 
+    expect(t('测试{p0 a b }存在空格的场景', 1)).toBe('测试1 a b 存在空格的场景')
+
     // 未配置时，默认走正常的匹配逻辑
     expect(t(text, 5, 4, 3)).toBe(trZhText)
 
@@ -964,7 +974,7 @@ describe('格式化复数', () => {
     expect(spyWarn).toHaveBeenLastCalledWith(lastWarnMsg)
 
     // 3次警告输出
-    expect(spyWarn).toHaveBeenCalledTimes(3)
+    expect(spyWarn).toHaveBeenCalledTimes(4)
   })
 
   it('正确配置 formatPlural', () => {
@@ -1007,6 +1017,18 @@ describe('格式化复数', () => {
 
     // 清除之前的记录
     spyWarn.mockClear()
+
+    expect(t('there have {p0 Country or Region} in the list', 100)).toBe(
+      'there have 100 Countries or Regions in the list',
+    )
+
+    expect(t('there have {p0 Country or Region} in the list', 1)).toBe(
+      'there have 1 Country or Region in the list',
+    )
+
+    expect(t('there have {p0 Country or Region} in the list', 0)).toBe(
+      'there have no Country or Region in the list',
+    )
 
     // 根据格式化回调的值返回，这里匹配英文对应的文案
     expect(t(text, 5, 4, 3)).toBe(trEnTextWithLocale)

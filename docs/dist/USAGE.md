@@ -82,7 +82,7 @@ const text = t('hello world')
 
 
 ## 3. Initialize Command Line Configuration File
-Enter the following command at the command line terminal, [more commands](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE.md#command-list)
+Enter the following command at the command line terminal, [more commands](https://github.com/i18n-pro/core/blob/v2.1.1/docs/dist/COMMAND_LINE.md#command-list)
 ```bash
 npx i18n init 
 ```
@@ -112,7 +112,7 @@ module.exports = {
 
 
 ## 4. Adjust  `i18nrc.js`  Configuration
-Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/COMMAND_LINE.md#1--i18nrcjs--configuration) of configuration items
+Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v2.1.1/docs/dist/COMMAND_LINE.md#1--i18nrcjs--configuration) of configuration items
 
 ## 5. Execute Translation Command
 
@@ -186,7 +186,7 @@ setI18n({
 If this library is used directly in a frontend application, when switching languages on the page, only the entire page can see the translated effect through **refresh directly**. A version of  `React`、`Vue`、`SolidJS`、`Svelte`  related UI library will be released later, which can achieve switching languages without refreshing the page by combining with the characteristics of the corresponding library. Stay tuned
 
 ## 8. Demo
-Real code examples can be found in the  [Live Demo](https://github.com/i18n-pro/core/tree/v2.1.0#live-demo)  section of the  `README`  documentation, and the console output of the current library  `Command Line Tool`  has also been internationalized
+Real code examples can be found in the  [Live Demo](https://github.com/i18n-pro/core/tree/v2.1.1#live-demo)  section of the  `README`  documentation, and the console output of the current library  `Command Line Tool`  has also been internationalized
 
 You can see the Chinese version by executing the command  `npx i18n h -L zh` 
 ![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")
