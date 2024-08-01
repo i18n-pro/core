@@ -2,12 +2,15 @@
 # Changelog
 
 
-English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/CHANGELOG_zh-CN.md)
+English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.1/docs/dist/CHANGELOG_zh-CN.md)
 
 
 <details >
   <summary>Table of Contents</summary>
 
+  &emsp;&emsp;[[2.1.1] - 2024-08-01](#211---2024-08-01)<br/>
+  &emsp;&emsp;&emsp;&emsp;[API](#211-api)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Fixed](#211-api-fixed)<br/>
   &emsp;&emsp;[[2.1.0] - 2023-10-12](#210---2023-10-12)<br/>
   &emsp;&emsp;&emsp;&emsp;[Command Line Tool](#210-command-line-tool)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-command-line-tool-added)<br/>
@@ -67,6 +70,20 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#100-api-added)<br/>
 
 </details>
+
+## [2.1.1] - 2024-08-01
+
+<h3 id="211-api">API</h3>
+
+<h4 id="211-api-fixed">Fixed</h4>
+
+* Fix the issue where  `Interpolation Variable`  are incorrectly parsed when there are spaces in keywords of the  `Plural`  type
+```js
+ // Similar to the following
+ t('there have {p0 Country or Region} in the list', 100)
+```
+
+
 
 ## [2.1.0] - 2023-10-12
 
@@ -256,7 +273,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation Log](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation Log](https://github.com/i18n-pro/core/blob/v2.1.1/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25
