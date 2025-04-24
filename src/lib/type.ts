@@ -118,6 +118,13 @@ export type SetI18n = (
  */
 export interface Translate {
   (text: string, ...args: Array<string | number | unknown>): string
+  /**
+   * Get the internationalized text based on the custom key
+   * @param key custom key
+   * @param text default text
+   * @param args Dynamic parameter
+   * @returns
+   */
   t: (
     /** Custom key */
     key: string,
@@ -126,6 +133,11 @@ export interface Translate {
     /**  Dynamic parameter */
     ...args: Array<string | number | unknown>
   ) => string
+  /**
+   * get a new t
+   * @returns
+   */
+  bind: () => Translate
 }
 
 /**

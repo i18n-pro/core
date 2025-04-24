@@ -1,4 +1,4 @@
-import { state, getCurrentState, translateImpl, defineT } from './utils'
+import { state, getCurrentState, generateTranslate } from './utils'
 import { Condition, I18nState, SetI18n, Translate, WithI18n } from './type'
 export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
 
@@ -67,7 +67,7 @@ function withI18n(namespace: string, locale: string): { t: Translate } {
   }
 
   return {
-    t: defineT(translateImpl.bind(null, condition, null), condition),
+    t: generateTranslate(condition),
   }
 }
 
@@ -106,7 +106,7 @@ export function initI18n(stateProp: I18nState) {
 
   return {
     setI18n: setI18n.bind(null, namespace) as SetI18n,
-    t: defineT(translateImpl.bind(null, condition, null), condition),
+    t: generateTranslate(condition) as Translate,
     withI18n: withI18n.bind(null, namespace) as WithI18n,
   }
 }

@@ -25,23 +25,45 @@ export function getTargetRegExp(regExp: RegExp, index: number) {
   )
 }
 
-export function defineT(t: Translate, condition: Condition): Translate {
+/**
+ * 定义 t 函数的属性
+ * @param t
+ * @param condition
+ * @returns
+ */
+export function defineTranslateProperties(
+  t: Translate,
+  condition: Condition,
+): Translate {
   Object.defineProperties(t, {
     t: {
-      get() {
-        return translateImpl.bind(null, condition)
-      },
+      get: () => generateTranslate(condition, true),
     },
+    /**
+     * 自定义 bind 函数，为了让调用 t.bind 后，t.t 属性还存在
+     */
     bind: {
-      get() {
-        return () => {
-          const newT = translateImpl.bind(null, condition, null)
-          defineT(newT as Translate, condition)
-          return newT
-        }
-      },
+      get: () => () => generateTranslate(condition),
     },
   })
+  return t
+}
+
+/**
+ * 生成 t 函数
+ * @param condition
+ * @param isDotT 是否是 t.t 场景
+ * @returns
+ */
+export function generateTranslate(condition: Condition, isDotT = false) {
+  const t = isDotT
+    ? translateImpl.bind(null, condition)
+    : translateImpl.bind(null, condition, null)
+
+  if (!isDotT) {
+    defineTranslateProperties(t, condition)
+  }
+
   return t
 }
 
@@ -94,7 +116,7 @@ export function getTextFromFormatter(props: {
     const content = formatter({
       locale,
       payload: arg,
-      t: defineT(translateImpl.bind(null, condition, null), condition),
+      t: generateTranslate(condition),
       ...(() => {
         let res = {}
         if (type === 'plural') {
