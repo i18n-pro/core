@@ -38,7 +38,7 @@ export function extraTextFromT(
   error: string[],
 ) {
   const regexp = new RegExp(
-    /[^.A-z]funcName\(\n*[ ]*((['"`])(.+?)\2)(,|\))/.source.replace(
+    /[^a-zA-Z.]funcName\(\s*((['"`])(.+?)\2)(?:,|\))/.source.replace(
       'funcName',
       funcName,
     ),
@@ -79,7 +79,7 @@ export function extraTextFromTDotT(
   keyError: string[],
 ) {
   const regexp = new RegExp(
-    /\WfuncName\.t\(\n*[ ]*((['"`])(.+?)\2),\n*[ ]*((['"`])(.+?)\5)(,|\))/.source.replace(
+    /\WfuncName\.t\(\s*((['"`])(.+?)\2),\s*((['"`])(.+?)\5)(?:,|\))/.source.replace(
       'funcName',
       funcName,
     ),
