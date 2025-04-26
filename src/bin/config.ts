@@ -2,7 +2,7 @@ import { join, resolve } from 'path'
 import fs, { unlinkSync } from 'fs'
 import { build } from 'esbuild'
 import { pathToFileURL } from 'url'
-import { checkIsInTest, logError, logSuccess } from './utils'
+import { checkIsInPkg, checkIsInTest, logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import chalk from './chalk'
 import {
@@ -30,6 +30,16 @@ async function loadTsEsmConfig(tsPath: string) {
   const outputPath = join(process.cwd(), `i18nrc.mjs`)
   const url = pathToFileURL(resolve(outputPath)).href
   const isTest = checkIsInTest()
+  const isPkg = checkIsInPkg()
+
+  /**
+   * 这里比较特殊，因为需要编译ts文件才能正常加载
+   * 但是在测试中，不能使用 esbuild 来编译 ts 文件
+   * 否则会导致测试失败
+   */
+  if (isTest && isPkg) {
+    return undefined
+  }
 
   if (isTest) {
     const res = await import(tsPath)
@@ -106,6 +116,7 @@ async function parseTsConfig(props?: {
       ? path
       : join(path, TS_CONFIG_NAME)
     : tsConfigPath
+  const isTest = checkIsInTest()
 
   try {
     console.log(chalk.greenBright(t('读取配置文件')), currentConfigPath)
@@ -122,7 +133,9 @@ async function parseTsConfig(props?: {
     return res
   } catch (error) {
     logError(error?.message || error)
-    process.exit(0)
+    if (!isTest) {
+      process.exit(0)
+    }
   }
 }
 
@@ -139,6 +152,7 @@ export function parseJsConfig(props?: {
       ? path
       : join(path, JS_CONFIG_NAME)
     : configPath
+  const isTest = checkIsInTest()
 
   try {
     console.log(chalk.greenBright(t('读取配置文件')), currentConfigPath)
@@ -151,7 +165,9 @@ export function parseJsConfig(props?: {
     return res
   } catch (error) {
     logError(error?.message || error)
-    process.exit(0)
+    if (!isTest) {
+      process.exit(0)
+    }
   }
 }
 
@@ -163,7 +179,11 @@ export async function readConfig(props?: {
   isFile?: boolean
 }): Promise<Config> {
   const { path, isFile = false } = props || {}
-  if (isFile && path && !path.endsWith('.ts')) return parseJsConfig(props)
+  if (isFile && path) {
+    return path.endsWith('.ts')
+      ? (parseTsConfig(props) as Promise<Config>)
+      : parseJsConfig(props)
+  }
   let config
   // 尝试解析 ts 文件
   config = await parseTsConfig(props)

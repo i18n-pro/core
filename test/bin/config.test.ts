@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { binConfig } from '../utils'
+import { binConfig, checkIsInPkg } from '../utils'
 
 const { initConfig, readConfig } = binConfig
 
@@ -32,14 +32,17 @@ describe('验证配置文件', () => {
       })
 
       it('指定文件夹路径默认读取 i18nrc.ts', async () => {
+        const isPkg = checkIsInPkg()
         const config = await readConfig({
           path: path.resolve(__dirname, '../../template/'),
         })
         expect(spyLog).toHaveBeenLastCalledWith(
           expect.stringContaining(''),
-          expect.stringContaining('i18nrc.ts'),
+          // 这里如果是打包测试，读取的文件是 i18nrc.js
+          // 如果是源码测试，读取的文件是 i18nrc.ts
+          expect.stringContaining(isPkg ? 'i18nrc.js' : 'i18nrc.ts'),
         )
-        expect(spyLog).toHaveBeenCalledTimes(1)
+        expect(spyLog).toHaveBeenCalledTimes(isPkg ? 3 : 1)
         // 这里返回的 config 是普通的js对象，因此和 i18nrc.js 是一样的
         expect(config).toEqual(require('../../template/i18nrc.js'))
       })
@@ -59,17 +62,21 @@ describe('验证配置文件', () => {
       })
 
       it('指定ts文件路径路径', async () => {
+        const isPkg = checkIsInPkg()
         const config = await readConfig({
           path: path.resolve(__dirname, '../../template/i18nrc.ts'),
           isFile: true,
         })
         expect(spyLog).toHaveBeenLastCalledWith(
           expect.stringContaining(''),
-          expect.stringContaining('i18nrc.ts'),
+          expect.stringContaining(isPkg ? '配置文件不是有效配置' : 'i18nrc.ts'),
         )
-        expect(spyLog).toHaveBeenCalledTimes(1)
+        expect(spyLog).toHaveBeenCalledTimes(isPkg ? 2 : 1)
         // 这里返回的 config 是普通的js对象，因此和 i18nrc.js 是一样的
-        expect(config).toEqual(require('../../template/i18nrc.js'))
+        // 这里如果是打包测试，不能正常读取文件
+        expect(config).toEqual(
+          isPkg ? undefined : require('../../template/i18nrc.js'),
+        )
       })
     })
 
@@ -107,6 +114,7 @@ describe('验证配置文件', () => {
       })
 
       it('配置文件是空对象', async () => {
+        const isPkg = checkIsInPkg()
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
@@ -116,7 +124,9 @@ describe('验证配置文件', () => {
         })
         expect(spyLogo).toHaveBeenLastCalledWith(
           '❌',
-          expect.stringMatching('配置文件为空'),
+          expect.stringMatching(
+            isPkg ? '配置文件不是有效配置' : '配置文件为空',
+          ),
         )
       })
     })

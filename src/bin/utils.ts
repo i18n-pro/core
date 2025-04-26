@@ -229,3 +229,10 @@ export function getTransResultLength(
 export function checkIsInTest() {
   return process.env.VITEST === 'true'
 }
+
+/**
+ * check if in pkg
+ */
+export function checkIsInPkg() {
+  return process.env.NODE_ENV === 'pkg'
+}

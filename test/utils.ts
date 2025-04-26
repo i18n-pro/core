@@ -16,6 +16,11 @@ import * as BinAliyunTranslate from '../src/bin/translate/aliyun'
 import * as BinGoogleTranslate from '../src/bin/translate/google'
 import * as BinGooglexTranslate from '../src/bin/translate/googlex'
 
+export function checkIsInPkg() {
+  const isPkg = process.env.NODE_ENV === 'pkg'
+  return isPkg
+}
+
 /**
  * 获取当前指定路径模块的导出内容
  * 可用于分别测试源码及打包后的模块
