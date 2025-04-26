@@ -3,9 +3,9 @@ import { Config } from '../src/type'
 
 export default {
   funcName: 't',
-  entry: join(__dirname, './src/'),
-  fileRegExp: /\.[jt]s$/,
-  // input: 'src/**/*.{js,ts}',
+  // entry: join(__dirname, './src/'),
+  // fileRegExp: /\.[jt]s$/,
+  input: 'src/**/*.{js,ts}',
   output: {
     path: join(__dirname, './i18n/'),
   },
