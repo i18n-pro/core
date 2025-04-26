@@ -1,6 +1,8 @@
-import { join } from 'path'
-import fs from 'fs'
-import { logError, logSuccess } from './utils'
+import { join, resolve } from 'path'
+import fs, { unlinkSync } from 'fs'
+import { build } from 'esbuild'
+import { pathToFileURL } from 'url'
+import { checkIsInTest, logError, logSuccess } from './utils'
 import type { Config } from '../type'
 import chalk from './chalk'
 import {
@@ -12,6 +14,55 @@ import {
 
 const configPath = join(process.cwd(), JS_CONFIG_NAME)
 const tsConfigPath = join(process.cwd(), TS_CONFIG_NAME)
+
+/**
+ * 动态加载 esm 模块
+ * 当前代码编译后是 commonjs 模块，为了避免 import 会被编译为 require
+ * 导致报错：require() of ES Module xxxx\i18nrc.mjs not supported.
+ * 这里使用了 new Function('path', 'return import(path)') 的方式来动态加载 esm 模块
+ * 但是这样会导致在 windows 下使用时，路径需要使用 file:// 协议
+ * 这里使用了 pathToFileURL 来转换路径
+ * 这样就可以在 windows 下使用了
+ */
+const dynamicImport = new Function('path', 'return import(path)')
+
+async function loadTsEsmConfig(tsPath: string) {
+  const outputPath = join(process.cwd(), `i18nrc.mjs`)
+  const url = pathToFileURL(resolve(outputPath)).href
+  const isTest = checkIsInTest()
+
+  if (isTest) {
+    const res = await import(tsPath)
+    if (typeof res?.default != 'undefined') {
+      return res?.default
+    }
+
+    return res
+  }
+
+  /**
+   * esbuild 编译 ts 文件为 esm 模块，然后动态加载
+   * 因为目前 ts 本身不支持 esm 模块，所以这里使用 esbuild 来编译
+   */
+  await build({
+    entryPoints: [tsPath],
+    outfile: outputPath,
+    bundle: true,
+    format: 'esm',
+    platform: 'node',
+    logLevel: 'silent',
+  })
+
+  let config = undefined
+  try {
+    config = await dynamicImport(url)
+  } catch (error) {
+    logError(error)
+  } finally {
+    unlinkSync(outputPath)
+  }
+  return config.default || config
+}
 
 /**
  * 生成配置文件
@@ -40,10 +91,15 @@ export function initConfig(type: 'js' | 'ts' = 'ts', pathProp?: string) {
   }
 }
 
-function parseTsConfig(props?: {
+/**
+ * 解析ts配置文件
+ * @param props
+ * @returns
+ */
+async function parseTsConfig(props?: {
   path: string
   isFile?: boolean
-}): Config | false {
+}): Promise<Config | false> {
   const { path, isFile } = props || {}
   const currentConfigPath = path
     ? isFile
@@ -56,12 +112,8 @@ function parseTsConfig(props?: {
     // 验证文件是否存在
     const isExist = fs.existsSync(currentConfigPath)
     if (!isExist) return false
-    require('ts-node').register()
-    // 通过 ts-node 可以直接加载 .ts 文件
-    let res = require(currentConfigPath)
-    if (res.default) {
-      res = res.default
-    }
+    const res = await loadTsEsmConfig(currentConfigPath)
+
     if (typeof res !== 'object') {
       throw new Error(t('配置文件不是有效配置'))
     } else if (Object.keys(res).length === 0) {
@@ -75,7 +127,7 @@ function parseTsConfig(props?: {
 }
 
 /**
- * 解析配置文件
+ * 解析js配置文件
  */
 export function parseJsConfig(props?: {
   path: string
@@ -106,12 +158,15 @@ export function parseJsConfig(props?: {
 /**
  * 解析配置文件
  */
-export function readConfig(props?: { path: string; isFile?: boolean }): Config {
+export async function readConfig(props?: {
+  path: string
+  isFile?: boolean
+}): Promise<Config> {
   const { path, isFile = false } = props || {}
   if (isFile && path && !path.endsWith('.ts')) return parseJsConfig(props)
   let config
   // 尝试解析 ts 文件
-  config = parseTsConfig(props)
+  config = await parseTsConfig(props)
   if (config) return config
   // 解析 js 文件
   config = parseJsConfig(props)

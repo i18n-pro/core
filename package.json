@@ -69,7 +69,6 @@
     "rollup-plugin-prettier": "^2.3.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.33.0",
-    "ts-node": "^10.9.2",
     "tslib": "^2.4.1",
     "typescript": "4.8.4",
     "vitest": "^0.22.1"
@@ -90,6 +89,7 @@
     "@alicloud/openapi-client": "^0.4.4",
     "@alicloud/tea-util": "^1.4.5",
     "@google-cloud/translate": "7",
+    "esbuild": "^0.25.3",
     "fast-glob": "^3.3.1",
     "google-translate-api-x": "^10.6.1",
     "gpt-3-encoder": "^1.1.4",

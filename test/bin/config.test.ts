@@ -15,8 +15,8 @@ describe('验证配置文件', () => {
         vi.clearAllMocks()
       })
 
-      it('未指定路径，无 i18nrc.ts 默认读取 i18nrc.js', () => {
-        const config = readConfig()
+      it('未指定路径，无 i18nrc.ts 默认读取 i18nrc.js', async () => {
+        const config = await readConfig()
         expect(spyLog).toHaveBeenNthCalledWith(
           1,
           expect.stringContaining(''),
@@ -31,8 +31,8 @@ describe('验证配置文件', () => {
         expect(config).toEqual(require('../../i18nrc'))
       })
 
-      it('指定文件夹路径默认读取 i18nrc.ts', () => {
-        const config = readConfig({
+      it('指定文件夹路径默认读取 i18nrc.ts', async () => {
+        const config = await readConfig({
           path: path.resolve(__dirname, '../../template/'),
         })
         expect(spyLog).toHaveBeenLastCalledWith(
@@ -44,8 +44,8 @@ describe('验证配置文件', () => {
         expect(config).toEqual(require('../../template/i18nrc.js'))
       })
 
-      it('指定js文件路径路径', () => {
-        const config = readConfig({
+      it('指定js文件路径路径', async () => {
+        const config = await readConfig({
           path: path.resolve(__dirname, '../../template/i18nrc.js'),
           isFile: true,
         })
@@ -58,8 +58,8 @@ describe('验证配置文件', () => {
         expect(config).toEqual(require('../../template/i18nrc.js'))
       })
 
-      it('指定ts文件路径路径', () => {
-        const config = readConfig({
+      it('指定ts文件路径路径', async () => {
+        const config = await readConfig({
           path: path.resolve(__dirname, '../../template/i18nrc.ts'),
           isFile: true,
         })
@@ -78,11 +78,11 @@ describe('验证配置文件', () => {
         vi.clearAllMocks()
       })
 
-      it('配置文件不存在', () => {
+      it('配置文件不存在', async () => {
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
-        readConfig({
+        await readConfig({
           path: './abc.js',
           isFile: true,
         })
@@ -92,11 +92,11 @@ describe('验证配置文件', () => {
         )
       })
 
-      it('配置文件不是对象格式', () => {
+      it('配置文件不是对象格式', async () => {
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
-        readConfig({
+        await readConfig({
           path: path.join(__dirname, '../i18n/non_object_config.ts'),
           isFile: true,
         })
@@ -106,11 +106,11 @@ describe('验证配置文件', () => {
         )
       })
 
-      it('配置文件是空对象', () => {
+      it('配置文件是空对象', async () => {
         const spyExit = vi.spyOn(process, 'exit')
         const spyLogo = vi.spyOn(console, 'log')
         spyExit.mockImplementation(() => Promise.resolve(undefined as never))
-        readConfig({
+        await readConfig({
           path: path.join(__dirname, '../i18n/empty_object_config.ts'),
           isFile: true,
         })

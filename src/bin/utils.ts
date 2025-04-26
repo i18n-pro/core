@@ -222,3 +222,10 @@ export function getTransResultLength(
 
   return length
 }
+
+/**
+ * check if in test env
+ */
+export function checkIsInTest() {
+  return process.env.VITEST === 'true'
+}
