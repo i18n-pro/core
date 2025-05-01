@@ -40,10 +40,16 @@ export function defineTranslateProperties(
       get: () => generateTranslate(condition, true),
     },
     /**
-     * 自定义 bind 函数，为了让调用 t.bind 后，t.t 属性还存在
+     * 绑定 locale 返回新的 t 方法
+     * t.t 属性还存在，同时也适用于服务端场景
      */
-    bind: {
-      get: () => () => generateTranslate(condition),
+    withLocale: {
+      get: () => (locale?: string) =>
+        generateTranslate({
+          ...condition,
+          // 未设置 locale 需要保持之前的状态
+          locale: locale || condition.locale,
+        }),
     },
   })
   return t
@@ -55,7 +61,10 @@ export function defineTranslateProperties(
  * @param isDotT 是否是 t.t 场景
  * @returns
  */
-export function generateTranslate(condition: Condition, isDotT = false) {
+export function generateTranslate(
+  condition: Condition,
+  isDotT = false,
+): Translate {
   const t = isDotT
     ? translateImpl.bind(null, condition)
     : translateImpl.bind(null, condition, null)

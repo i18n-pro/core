@@ -1562,7 +1562,7 @@ describe('格式化复数', () => {
   })
 })
 
-it('模拟服务端，验证 withI18n', () => {
+it('模拟服务端，验证 t.withLocale', () => {
   const text = '服务器异常，请稍后再试'
 
   const langs = {
@@ -1571,7 +1571,7 @@ it('模拟服务端，验证 withI18n', () => {
     },
   }
 
-  const { setI18n, t, withI18n } = initI18n({
+  const { setI18n, t } = initI18n({
     namespace: 'withI18n',
     beginIndex: 0,
     locale: 'en',
@@ -1583,7 +1583,7 @@ it('模拟服务端，验证 withI18n', () => {
   })
 
   const serverResponse = vi.fn((locale: string, reqLocale: string) => {
-    const { t: _i18n } = withI18n(reqLocale)
+    const _i18n = t.withLocale(reqLocale)
 
     // 主程序
     expect(t(text)).toBe(langs[locale]?.[text] || text)
@@ -1662,8 +1662,8 @@ describe('t.t', () => {
       expect(t.t('xxx', '')).toBe('test2')
     })
 
-    it('验证 t.bind 基本属性', () => {
-      const newT = t.bind(null)
+    it('验证 t.withLocale 基本属性', () => {
+      const newT = t.withLocale()
       expect(newT('测试')).toBe('test')
       expect(newT.t('xxx', '')).toBe('test2')
     })
@@ -1674,7 +1674,7 @@ describe('t.t', () => {
   })
 
   describe('withI18n t', () => {
-    const { withI18n, setI18n } = initI18n({
+    const { setI18n, t: originT } = initI18n({
       ...state,
       namespace: 'withI18n t',
       formatNumber({ locale, t, payload }) {
@@ -1705,7 +1705,7 @@ describe('t.t', () => {
       },
     })
 
-    const { t } = withI18n('en')
+    const t = originT.withLocale('en')
     setI18n(undefined)
 
     it('验证 t.t 基本属性', () => {
@@ -1713,8 +1713,8 @@ describe('t.t', () => {
       expect(t.t('xxx', '')).toBe('test2')
     })
 
-    it('验证 t.bind 基本属性', () => {
-      const newT = t.bind(null)
+    it('验证 t.withLocale 基本属性', () => {
+      const newT = t.withLocale()
       expect(newT('测试')).toBe('test')
       expect(newT.t('xxx', '')).toBe('test2')
     })

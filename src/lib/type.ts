@@ -1,5 +1,5 @@
 import { LangPack, Langs } from '../type'
-export { Langs, Config } from '../type'
+export { Langs, Config, LangPack } from '../type'
 
 type BaseFormatProps<T> = {
   /**
@@ -115,7 +115,7 @@ export type SetI18n = (stateProp?: {
   /**
    * language packs
    */
-  langs?: Partial<Record<string, LangPack>>
+  langs?: Partial<Langs>
 }) => Promise<Readonly<I18nState>>
 
 /**
@@ -127,35 +127,29 @@ export interface Translate {
   (text: string, ...args: Array<string | number | unknown>): string
   /**
    * Get the internationalized text based on the custom key
-   * @param key custom key
-   * @param text default text
+   * @param key Custom key
+   * @param text Default language translation text
    * @param args Dynamic parameter
-   * @returns
+   * @returns Translated string
    */
   t: (
-    /** Custom key */
     key: string,
-    /** Default language translation text */
     text: string,
-    /**  Dynamic parameter */
     ...args: Array<string | number | unknown>
   ) => string
   /**
-   * get a new t
-   * @returns
+   * Returns a new translation function bound with the specified locale.
+   *
+   * This method allows you to switch the locale context for translations.
+   * The returned Translate function will use the provided locale for translation,
+   * enabling you to format messages according to the new locale settings.
+   * If no locale is provided, the current locale remains in effect.
+   *
+   * @param locale Optional new locale identifier (e.g., "en", "zh").
+   * @returns A new instance of the Translate function bound with the specified locale.
    */
-  bind: () => Translate
+  withLocale: (locale?: string) => Translate
 }
-
-/**
- * Gets the i18n function independent of the main program
- *
- * Applicable to the server side, each interface response needs to do international processing
- *
- * @param locale current language
- * @returns
- */
-export type WithI18n = (locale: string) => { t: Translate }
 
 export type Condition = {
   namespace: string

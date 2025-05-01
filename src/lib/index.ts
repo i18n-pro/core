@@ -1,6 +1,6 @@
 import { state, getCurrentState, generateTranslate, isObject } from './utils'
-import { Condition, I18nState, SetI18n, Translate, WithI18n } from './type'
-export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
+import { Condition, I18nState, SetI18n } from './type'
+export { LangPack, Langs, I18nState, SetI18n, Translate, Config } from './type'
 
 /**
  * Sets or updates the internationalization state
@@ -64,25 +64,6 @@ async function setI18n(
 }
 
 /**
- * Gets the i18n function independent of the main program
- *
- * Applicable to the server side, each interface response needs to do international processing
- * @param namespace Current namespace
- * @param locale current language
- * @returns
- */
-function withI18n(namespace: string, locale: string): { t: Translate } {
-  const condition = {
-    namespace,
-    locale,
-  }
-
-  return {
-    t: generateTranslate(condition),
-  }
-}
-
-/**
  * Initialize the internationalization state
  * @param state Internationalization state
  */
@@ -117,7 +98,6 @@ export function initI18n(stateProp: I18nState) {
 
   return {
     setI18n: setI18n.bind(null, namespace) as SetI18n,
-    t: generateTranslate(condition) as Translate,
-    withI18n: withI18n.bind(null, namespace) as WithI18n,
+    t: generateTranslate(condition),
   }
 }
