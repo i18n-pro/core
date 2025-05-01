@@ -26,7 +26,10 @@ async function setI18n(
       if (isObject(loadedLang)) {
         newState.langs = { ...currentLangs, [locale]: loadedLang }
       } else {
-        console.warn(`Failed to load language pack for '${locale}'`, loadedLang)
+        console.error(
+          `Failed to load language pack for \`${locale}\``,
+          loadedLang,
+        )
       }
     }
   }
@@ -53,14 +56,14 @@ export function initI18n(stateProp: I18nState) {
   const namespace = stateProp.namespace || 'default'
 
   if (state[namespace]) {
-    console.error(`Namespace '${namespace}' already exists.`)
+    console.error(`Namespace \`${namespace}\` already exists.`)
   }
 
   if (
     typeof stateProp.beginIndex != 'undefined' &&
     typeof stateProp.beginIndex !== 'number'
   ) {
-    console.error('beginIndex must be a number.')
+    console.error('`beginIndex` must be a number.')
     delete stateProp.beginIndex
   }
 

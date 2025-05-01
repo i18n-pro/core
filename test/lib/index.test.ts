@@ -62,11 +62,11 @@ describe('initI18n', () => {
   it('相同namespace提示错误', () => {
     const spyError = vi.spyOn(console, 'error')
     spyError.mockClear()
-    initI18n({ namespace: 'default' })
+    initI18n({})
     initI18n({ namespace: 'default' })
     expect(spyError).toHaveBeenCalledTimes(1)
     expect(spyError).toHaveBeenLastCalledWith(
-      `Namespace 'default' already exists.`,
+      'Namespace `default` already exists.',
     )
   })
 })
@@ -204,20 +204,18 @@ describe('setI18n', () => {
     })
   })
 
-  it('异步加载的 setI18n', async () => {
+  it('异步加载的 setI18n，加载正常', async () => {
     const namespace = 'async setI18n'
     const zh = {
       'hello world': '你好世界',
     }
-    const en = {
-      'hello world': 'hello world',
-    }
+    let dynamicEn = {}
 
     const getEn = () =>
-      new Promise<Record<string, string>>((resolve) => {
-        setTimeout(() => {
-          resolve(en)
-        }, 1000)
+      import('../../i18n/langs.json').then((res) => {
+        dynamicEn = res.en
+
+        return dynamicEn
       })
 
     const { setI18n } = initI18n({
@@ -246,7 +244,7 @@ describe('setI18n', () => {
       namespace,
       locale: 'en',
       langs: {
-        en: { ...en, ...langs.en },
+        en: { ...dynamicEn, ...langs.en },
         zh,
         jp: langs.jp,
       },
@@ -258,11 +256,65 @@ describe('setI18n', () => {
       namespace,
       locale: 'zh',
       langs: {
-        en: { ...en, ...langs.en },
+        en: { ...dynamicEn, ...langs.en },
         zh,
         jp: langs.jp,
       },
     })
+  })
+
+  it('异步加载的 setI18n，加载异常', async () => {
+    const namespace = 'async setI18n'
+    const zh = {
+      'hello world': '你好世界',
+    }
+    const en = null
+
+    const getEn = () =>
+      new Promise<Record<string, string>>((resolve) => {
+        setTimeout(() => {
+          resolve(en)
+        }, 1000)
+      })
+
+    const { setI18n } = initI18n({
+      namespace,
+      langs: {
+        en: getEn,
+        zh,
+      },
+    })
+    const langs = {
+      en: {
+        3: 'en_3',
+      },
+      jp: {
+        1: 'jp_1',
+      },
+    }
+    const spyError = vi.spyOn(console, 'error')
+
+    // 空状态
+    let state = await setI18n({})
+    expect(state).toEqual({ namespace, langs: { en: getEn, zh } })
+
+    // 异步加载语言包，并扩展语言包
+    state = await setI18n({ locale: 'en', langs })
+    // 这里原有的en语言包会被替换
+    expect(state).toEqual({
+      namespace,
+      locale: 'en',
+      langs: { en: getEn, zh, ...langs },
+    })
+
+    // 最后一次输出内容匹配
+    expect(spyError).toHaveBeenLastCalledWith(
+      `Failed to load language pack for \`en\``,
+      en,
+    )
+
+    // 1次错误输出,未正确加载语音包
+    expect(spyError).toHaveBeenCalledTimes(1)
   })
 })
 
@@ -371,6 +423,7 @@ describe('动态参数验证', () => {
 
   describe('设置起始下标', () => {
     it('非数字', () => {
+      const spyError = vi.spyOn(console, 'error')
       const { t } = initI18n({
         namespace: 'beginIndex-no-number',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -378,6 +431,12 @@ describe('动态参数验证', () => {
       })
       expect(t('你好{0}', '世界')).toBe('你好世界')
       expect(t.t('xxx', '你好{0}', '世界')).toBe('你好世界')
+      // 最后一次输出内容匹配
+      expect(spyError).toHaveBeenLastCalledWith(
+        '`beginIndex` must be a number.',
+      )
+      // 1次错误输出
+      expect(spyError).toHaveBeenCalledTimes(1)
     })
 
     it('数字1', () => {
