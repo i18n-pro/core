@@ -16,7 +16,7 @@ function getNoFormatterWarn(
   template: string,
   formatterName: string,
 ) {
-  return `The dynamic parameter {${template}} in the translated text ${text} is not configured with the corresponding format callback ${formatterName}`
+  return `Missing formatter \`${formatterName}\` for \`{${template}}\` in \`${text}\`.`
 }
 
 /**
@@ -25,7 +25,7 @@ function getNoFormatterWarn(
  * @returns
  */
 function getNoLocaleFormatterWarn(formatterName: string) {
-  return `The locale is not currently configured and may affect the logic in the format callback ${formatterName}`
+  return `The locale is not configured and may affect the logic in formatter \`${formatterName}\`.`
 }
 
 /**
@@ -43,7 +43,7 @@ function getFormatterRunError(
   errorMsg: string | Error,
 ) {
   return [
-    `An error occurred in calling the corresponding format callback ${formatterName} for dynamic parameter {${template}} in translated text ${text}. The callback logic needs to be checked. The error message is as follows: `,
+    `Error in formatter \`${formatterName}\` for \`{${template}}\` in \`${text}\`:`,
     errorMsg,
   ]
 }
@@ -55,26 +55,18 @@ function getFormatterRunError(
  * @returns
  */
 function getInvalidPluralWarn(text: string, template: string) {
-  return `The plural dynamic parameter {${template}} in the translated text ${text} does not contain the text that needs to be plural, for example: t('I have {p0 apple}')`
+  return `Invalid plural parameter \`{${template}}\` in \`${text}\`.`
 }
 
 describe('initI18n', () => {
-  it('未设置namespace提示警告', () => {
-    const spyWarn = vi.spyOn(console, 'warn')
-    initI18n({})
-    expect(spyWarn).toHaveBeenCalledTimes(1)
-    expect(spyWarn).toHaveBeenLastCalledWith(
-      'No namespace is set, and using with other libraries can cause bugs',
-    )
-  })
-
   it('相同namespace提示错误', () => {
     const spyError = vi.spyOn(console, 'error')
     spyError.mockClear()
     initI18n({ namespace: 'default' })
+    initI18n({ namespace: 'default' })
     expect(spyError).toHaveBeenCalledTimes(1)
     expect(spyError).toHaveBeenLastCalledWith(
-      "A configuration with the same namespace 'default' already exists, so you may need to redefine one",
+      `Namespace 'default' already exists.`,
     )
   })
 })

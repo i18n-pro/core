@@ -13,54 +13,36 @@ async function setI18n(
   stateProp: Parameters<SetI18n>[0] = {},
 ) {
   const currentState = getCurrentState(namespace)
-  const newState: Pick<I18nState, 'langs' | 'locale'> = {}
   const { locale, langs } = stateProp
+  const newState: Partial<I18nState> = { ...currentState }
 
-  if (typeof locale === 'string') {
+  if (locale) {
     newState.locale = locale
-    const currentLangs = currentState['langs']
-    let currentLang = currentLangs?.[locale]
+    const currentLangs = currentState?.langs || {}
+    const currentLang = currentLangs?.[locale]
 
     if (typeof currentLang === 'function') {
-      currentLang = await currentLang()
-
-      if (isObject(currentLang)) {
-        newState.langs = {
-          ...(currentLangs || {}),
-          [locale]: currentLang,
-        }
+      const loadedLang = await currentLang()
+      if (isObject(loadedLang)) {
+        newState.langs = { ...currentLangs, [locale]: loadedLang }
       } else {
-        console.warn(
-          `Failed to load language pack asynchronously for ${locale}`,
-          currentLang,
-        )
+        console.warn(`Failed to load language pack for '${locale}'`, loadedLang)
       }
     }
   }
 
-  if (typeof langs !== 'undefined') {
-    const currentLangs = newState.langs || currentState.langs || {}
-    const mergeLangs = Object.entries(langs).reduce((res, [langCode, lang]) => {
-      res[langCode] = {
-        ...(currentLangs[langCode] || {}),
-        ...lang,
-      }
-      return res
-    }, {})
+  if (langs) {
     newState.langs = {
-      ...currentLangs,
-      ...mergeLangs,
+      ...(newState.langs || {}),
+      ...Object.entries(langs).reduce((res, [langCode, lang]) => {
+        res[langCode] = { ...(newState.langs?.[langCode] || {}), ...lang }
+        return res
+      }, {}),
     }
   }
 
-  const newCurrentState = {
-    ...currentState,
-    ...newState,
-  }
-
-  state[namespace] = newCurrentState
-
-  return Object.freeze(newCurrentState)
+  state[namespace] = Object.freeze(newState)
+  return newState
 }
 
 /**
@@ -68,33 +50,22 @@ async function setI18n(
  * @param state Internationalization state
  */
 export function initI18n(stateProp: I18nState) {
-  const { namespace = 'default' } = stateProp
+  const namespace = stateProp.namespace || 'default'
 
-  if (typeof stateProp.namespace == 'undefined') {
-    console.warn(
-      'No namespace is set, and using with other libraries can cause bugs',
-    )
+  if (state[namespace]) {
+    console.error(`Namespace '${namespace}' already exists.`)
   }
 
-  if (typeof state[namespace] != 'undefined') {
-    console.error(
-      `A configuration with the same namespace '${namespace}' already exists, so you may need to redefine one`,
-    )
-  }
-
-  if (stateProp?.beginIndex && typeof stateProp.beginIndex !== 'number') {
-    console.error('beginIndex must be a number')
+  if (
+    typeof stateProp.beginIndex != 'undefined' &&
+    typeof stateProp.beginIndex !== 'number'
+  ) {
+    console.error('beginIndex must be a number.')
     delete stateProp.beginIndex
   }
 
-  state[namespace] = {
-    ...(stateProp || {}),
-  }
-
-  const condition: Condition = {
-    namespace,
-    locale: null,
-  }
+  state[namespace] = { ...stateProp }
+  const condition: Condition = { namespace, locale: null }
 
   return {
     setI18n: setI18n.bind(null, namespace) as SetI18n,

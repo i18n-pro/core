@@ -103,21 +103,20 @@ export function getTextFromFormatter(props: {
   const { locale: locale_ } = state
   const locale = condition.locale || locale_
   const [, matchTemplate, f, keyword = ''] = matchTagRes
-  const formatterName = tagFormatterNameMap[f?.toLocaleLowerCase()]
+  const formatterName = tagFormatterNameMap[f?.toLowerCase()]
   const formatter = state[formatterName]
   let text = textProp
 
   if (typeof formatter !== 'function') {
     console.warn(
-      `The dynamic parameter ${matchTemplate} in the translated text ${originText} is not configured with the corresponding format callback ${formatterName}`,
+      `Missing formatter \`${formatterName}\` for \`${matchTemplate}\` in \`${originText}\`.`,
     )
-
     return text.replace(matchTemplate, `${arg}${keyword}`)
   }
 
   if (typeof locale === 'undefined') {
     console.warn(
-      `The locale is not currently configured and may affect the logic in the format callback ${formatterName}`,
+      `The locale is not configured and may affect the logic in formatter \`${formatterName}\`.`,
     )
   }
 
@@ -126,25 +125,17 @@ export function getTextFromFormatter(props: {
       locale,
       payload: arg,
       t: generateTranslate(condition),
-      ...(() => {
-        let res = {}
-        if (type === 'plural') {
-          const newKeyword = keyword?.trim?.()
-          res = {
-            keyword: newKeyword,
-            text: `${arg}${keyword}`,
-          }
-        }
-        return res
-      })(),
+      ...(type === 'plural'
+        ? { keyword: keyword.trim(), text: `${arg}${keyword}` }
+        : {}),
     })
     text = text.replace(matchTemplate, content)
   } catch (error) {
-    text = text.replace(matchTemplate, `${arg}${keyword}`)
     console.error(
-      `An error occurred in calling the corresponding format callback ${formatterName} for dynamic parameter ${matchTemplate} in translated text ${originText}. The callback logic needs to be checked. The error message is as follows: `,
+      `Error in formatter \`${formatterName}\` for \`${matchTemplate}\` in \`${originText}\`:`,
       error,
     )
+    text = text.replace(matchTemplate, `${arg}${keyword}`)
   }
 
   return text
@@ -189,7 +180,7 @@ export function translateImpl(
 
     if (invalidPluralMatchTagRes) {
       console.warn(
-        `The plural dynamic parameter ${invalidPluralMatchTagRes[1]} in the translated text ${originText} does not contain the text that needs to be plural, for example: t('I have {p0 apple}')`,
+        `Invalid plural parameter \`${invalidPluralMatchTagRes[1]}\` in \`${originText}\`.`,
       )
       return
     }
@@ -226,6 +217,5 @@ export function translateImpl(
 }
 
 export function isObject(object?: object) {
-  if (typeof object === 'object' && object != null) return true
-  return false
+  return typeof object === 'object' && object !== null
 }
