@@ -64,7 +64,8 @@ const text2 = t('module.hello')
   "hello": "hello world",
   "module": {
     "hello": "hello xxx",
-  }
+  },
+  "module.hello": "hello xxx",
 }
 
 // zh-CN.json
@@ -72,7 +73,8 @@ const text2 = t('module.hello')
   "hello": "你好世界",
   "module": {
     "hello": "你好xxx",
-  }
+  },
+  "module.hello": "你好xxx"
 }
 `}
       />
@@ -82,6 +84,9 @@ const text2 = t('module.hello')
         code={`
 const text1 = t('hello world')
 const text2 = t('hello xxx')
+// ${tr('或者')}
+const text3 = t.t('hello', 'hello world')
+const text4 = t.t('module.hello', 'hello xxx')
 `}
       />
       {tr('对应语言包的形式')}
@@ -91,11 +96,22 @@ const text2 = t('hello xxx')
 {
   "hello world": "你好世界",
   "hello xxx": "你好xxx",
+  "hello": "你好世界",
+  "module.hello": "你好xxx",
 }
 `}
       />
       {tr('相对于传统的写法，以{0}作为key，有如下不足', getTranslationText())}
-      <List items={['U', tr('对于一词多译不友好'), tr('生成的语言包较大')]} />
+      <List
+        items={[
+          'U',
+          [
+            tr('对于一词多译不友好'),
+            ['U', tr('但是现在可以通过{0}函数，手动定义key来解决', ' `t.t` ')],
+          ],
+          tr('生成的语言包较大'),
+        ]}
+      />
       {tr('当然也会有如下优点')}
       <List
         items={[

@@ -90,6 +90,11 @@ export function getTranslationText(normal = false) {
   return getText(text, normal)
 }
 
+export function getCustomKey(normal = false) {
+  const text = tr('自定义key')
+  return getText(text, normal)
+}
+
 export function getVariableInterpolation(normal = false) {
   const text = tr('变量插值')
   return getText(text, normal)
@@ -100,22 +105,28 @@ export function getInterpolationVariable(normal = false) {
   return getText(text, normal)
 }
 
-export function getTypeTagCode() {
+export function getTypeTagCode(isDot = false) {
+  let prefix = 't('
+
+  if (isDot) {
+    prefix = `t.t('custom-key', `
+  }
+
   const text = `
 // ${tr('数字类型')}
-t('${tr('用户数达到了{0}', '{n0}')}', 100000000)
+${prefix}'${tr('用户数达到了{0}', '{n0}')}', 100000000)
 
 // ${tr('货币类型')}
-t('${tr('售价为{0}', '{c0}')}', 14999)
+${prefix}'${tr('售价为{0}', '{c0}')}', 14999)
 
 // ${tr('日期类型')}
-t(\`${tr('今天的日期是{0}', '{d0}')}\`, new Date())
+${prefix}\`${tr('今天的日期是{0}', '{d0}')}\`, new Date())
 
 // ${tr('时间类型')}
-t('${tr('当前时间：{0}', '{t0}')}', new Date())
+${prefix}'${tr('当前时间：{0}', '{t0}')}', new Date())
 
 // ${tr('复数类型')}
-t('${tr(
+${prefix}'${tr(
     '我有{0}，{1}和{2}',
     `{${tr('p0个苹果')}}`,
     `{${tr('p1个香蕉')}}`,

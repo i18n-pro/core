@@ -8,6 +8,8 @@ import {
   Image,
   render,
   TableOfContents,
+  List,
+  BlockQuote,
 } from 'jsx-to-md'
 import { resolve } from 'path'
 import { imageObj } from '../constants'
@@ -50,7 +52,7 @@ const {
   withI18n,
 } = initI18n({
   // ${tr('命名空间属性是必须配置的')}
-  namespace: 'testI18N',
+  namespace: 'testI18n',
 })
 
 // ${tr(
@@ -98,8 +100,11 @@ return {
 // ${tr('如果是挂载 API 到全局对象，可以省略下行代码')}
 import { t } from './i18n.js'
 
-// ${tr('被翻译的文案')}
-const text = t('hello world')`}
+// ${tr('被翻译的文案，文案即key')}
+const text = t('hello world')
+// ${tr('被翻译的文案，自定义key')}
+const keyText = t.t('custom-key', 'hello key')
+`}
       />
     </>
   )
@@ -167,15 +172,17 @@ function ExecuteTranslateCommand() {
         ' `ja.json` ',
       )}
       <CodeBlock
-        langType="text"
+        langType="json"
         code={`// zh.json
 {
-  "hello world": "你好世界"
+  "hello world": "你好世界",
+  "custom-key": "你好key",
 }
 
 // ja.json
 {
-  "hello world": "こんにちは世界"
+  "hello world": "こんにちは世界",
+  "custom-key": "こんにちはkey",
 }
 `}
       />
@@ -186,16 +193,122 @@ function ExecuteTranslateCommand() {
         ' `langs.json` ',
       )}
       <CodeBlock
-        langType="text"
+        langType="json"
         code={`// langs.json
 {
   "zh": {
     "hello world": "你好世界"
+    "custom-key": "你好key",
   },
   "ja": {
-    "hello world": "こんにちは世界"
+    "hello world": "こんにちは世界",
+    "custom-key": "こんにちはkey",
   }
 }
+`}
+      />
+    </>
+  )
+}
+
+function InitStaticImport() {
+  return (
+    <>
+      <H3>{tr('初始化配置时静态导入')}</H3>
+      <BlockQuote>
+        {tr('该方式不适合纯前端项目，会导致首屏加载时间增长')}
+      </BlockQuote>
+      <Break />
+      <Break />
+      {tr(
+        '如果生成的语言包是每个语言单独文件形式{0}，操作如下：',
+        "（`output.langType == 'multiple'`）",
+      )}
+      <CodeBlock
+        code={`// i18n.js
+import { initI18n } from 'i18n-pro'
+import zh from './i18n/zh.json'
+import ja from './i18n/ja.json'
+// ... ${tr('其他更多语言')}
+
+initI18n({
+  namespace: 'testI18n',
+  locale: 'en',
+  langs:{
+    zh,
+    ja,
+    // ... ${tr('其他更多语言')}
+  },
+})`}
+      />
+      {tr(
+        '如果生成的语言包是聚合的形式{0}，操作如下：',
+        "（`output.langType == 'single'`）",
+      )}
+      <CodeBlock
+        code={`// i18n.js
+import { initI18n } from 'i18n-pro'
+import langs from './i18n/langs.json'
+
+initI18n({
+  namespace: 'testI18n',
+  locale: 'en',
+  langs,
+})
+`}
+      />
+    </>
+  )
+}
+
+function InitDynamicImport() {
+  return (
+    <>
+      <H3>{tr('初始化配置时指定异步加载回调')}</H3>
+      <BlockQuote>{tr('当前方式适合语言包是独立文件的形式')}</BlockQuote>
+      <CodeBlock
+        code={`// i18n.js
+import { initI18n } from 'i18n-pro'
+import ja from './i18n/ja.json'
+
+initI18n({
+  namespace: 'testI18n',
+  // ${tr(
+    '代码编写文案的语言是 en，如果初始 locale 设值为其他语言，那么其他语言的语言包不能设置为动态加载',
+  )}
+  locale: 'ja',
+  langs:{
+    // ${tr('这样配置后，切换到 zh 时，会动态加载对应语言包')}
+    zh: () => import('./i18n/zh.json'),
+    // ${tr(
+      '由于 ja 不是文案的默认语言，初始时设置的语言又是 ja，因此这里不能设置为动态加载',
+    )}
+    ja,
+  },
+})`}
+      />
+    </>
+  )
+}
+
+function RuntimeDynamicImport() {
+  return (
+    <>
+      <H3>{tr('运行时动态加载')}</H3>
+      <BlockQuote>{tr('当前方式适合语言包是独立文件的形式')}</BlockQuote>
+      <Break />
+      <Break />
+      <CodeBlock
+        code={`// ${tr('需要自己实现加载语言包的逻辑')}
+const zh = await fetch('/xxx/xxx/zh.json').then(res => res.json())
+
+// ${tr('同时设置语言和语言包')}
+setI18n({
+  locale: 'zh',
+  langs:{
+    zh,
+  },
+})
 `}
       />
     </>
@@ -210,38 +323,18 @@ function ImportLangs() {
       {tr('语言包已经有了，就需要应用到项目中了')}
       <Break />
       <Break />
-      {tr(
-        '如果生成的语言包是每个语言单独文件形式{0}，操作如下：',
-        "（`output.langType == 'multiple'`）",
-      )}
-      <CodeBlock
-        code={`import zh from './i18n/zh.json'
-import ja from './i18n/ja.json'
-// ... ${tr('其他更多语言')}
-
-setI18n({
-  locale: 'en',
-  langs:{
-    zh,
-    ja,
-    // ... ${tr('其他更多语言')}
-  },
-})
-// ${tr('后续才是应用的页面渲染逻辑')}`}
+      {tr('目前支持{0}中引入语言包的方式', ' `3` ')}
+      <List
+        items={[
+          'U',
+          tr('初始化配置时静态导入'),
+          tr('初始化配置时指定异步加载回调'),
+          tr('运行时动态加载'),
+        ]}
       />
-      {tr(
-        '如果生成的语言包是聚合的形式{0}，操作如下：',
-        "（`output.langType == 'single'`）",
-      )}
-      <CodeBlock
-        code={`import langs from './i18n/langs.json'
-
-setI18n({
-  locale: 'en',
-  langs,
-})
-// ${tr('后续才是应用的页面渲染逻辑')}`}
-      />
+      <InitStaticImport />
+      <InitDynamicImport />
+      <RuntimeDynamicImport />
       {tr(
         '至此，项目已经完全接入了国际化，上面{0}指定为目标语言中任意一个，在页面上就能看到翻译好的内容了。后续如果项目中有新增的{1}（需要用{2}函数包裹哟），就仅仅需要再次执行翻译命令{3}生成最新的语言包就可以了',
         ' `locale` ',
@@ -254,6 +347,14 @@ setI18n({
 }
 
 function SwitchLang() {
+  function getLibrary(lib: string, name?: string) {
+    return render(
+      <Link href={`https://github.com/i18n-pro/${lib.toLowerCase()}`}>
+        {name || lib}
+      </Link>,
+    )
+  }
+
   return (
     <>
       <Break />
@@ -268,10 +369,19 @@ function SwitchLang() {
 })`}
       />
       {tr(
-        '如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过{0}整个页面才能看到翻译后的效果，后续会推出{1}相关UI库的版本，结合对应库的特性可以做到不刷新页面切换语言，敬请期待',
+        '如果是直接在前端应用中使用该库，在页面上切换语言时，只能通过{0}整个页面才能看到翻译后的效果，现已推出如下UI库的版本，结合对应库的特性可以做到不刷新页面切换语言，敬请尝试',
         `**${tr('直接刷新')}**`,
-        ' `React`、`Vue`、`SolidJS`、`Svelte` ',
       )}
+
+      <List
+        items={[
+          'U',
+          getLibrary('React'),
+          ['Vue', ['U', getLibrary('Vue', 'Vue3'), getLibrary('Vue2', 'Vue2')]],
+          getLibrary('Solid'),
+          getLibrary('Svelte'),
+        ]}
+      />
     </>
   )
 }
@@ -282,13 +392,36 @@ function Demo() {
       <Break />
       <H2>8. Demo</H2>
       {tr(
-        '真实代码示例可参考{0}文档中的{1}，当前库{2}的控制台输出也接入了国际化',
-        ' `README` ',
-        ` ${render(
-          <Link href={getDocHref('README', 'Live Demo')}>Live Demo</Link>,
-        )} `,
-        ` \`${tr('命令行工具')}\` `,
+        '当前文档介绍的内容较为基础，对于复杂的需求时，还需结合后续文档了解更多知识',
       )}
+      <Break />
+      <Break />
+      {tr('真实的示例代码')}
+      <List
+        items={[
+          'U',
+          tr(
+            '当前库{0}文档中的{1}',
+            ' `README` ',
+            ` ${render(
+              <Link href={getDocHref('README', 'Live Demo')}>Live Demo</Link>,
+            )} `,
+          ),
+          tr(
+            '当前库文档的多语言支持，基于{0}和{1}实现',
+            ' `i18n-pro` ',
+            ` ${render(
+              <Link href="https://github.com/eyelly-wu/jsx-to-md">
+                jsx-to-md
+              </Link>,
+            )} `,
+          ),
+          tr(
+            '当前库{0}的控制台输出也接入了国际化',
+            ` \`${tr('命令行工具')}\` `,
+          ),
+        ]}
+      />
       <Break />
       <Break />
       {tr('通过命令{0}就能看中文版了', ' `npx i18n h -L zh` ')}

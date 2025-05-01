@@ -1,5 +1,6 @@
 import { H1, UnorderedList, ListItem, Link, Image } from 'jsx-to-md'
 
+// TODO 这里需要和2.0的链接做区分
 export default function LiveDemo() {
   const localeSuffixMap = {
     zh: 'zh-CN',

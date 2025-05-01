@@ -53,10 +53,26 @@ export default function Vision() {
               </>,
             ],
           ],
-          <>
-            <Bold>keyless</Bold>：
-            {tr('无需手动定义key，{0}即key', getTranslationText())}
-          </>,
+          [
+            render(
+              <>
+                <Bold>keyless</Bold>：{tr('减少人为手动定义{0}', ' `key` ')}
+              </>,
+            ),
+            [
+              'U',
+              tr(
+                '仅{0}的文案需要手动定义{1}',
+                ` \`${tr('一词多义')}\` `,
+                ' `key` ',
+              ),
+              tr(
+                '其他场景下的文案无需手动定义{0}，{1}即key',
+                ' `key` ',
+                getTranslationText(),
+              ),
+            ],
+          ],
         ]}
       />
     </>
