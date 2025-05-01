@@ -1,4 +1,4 @@
-import { state, getCurrentState, generateTranslate } from './utils'
+import { state, getCurrentState, generateTranslate, isObject } from './utils'
 import { Condition, I18nState, SetI18n, Translate, WithI18n } from './type'
 export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
 
@@ -8,39 +8,50 @@ export { Langs, I18nState, SetI18n, Translate, WithI18n, Config } from './type'
  * @param state Internationalization state
  * @returns Updated internationalization state
  */
-function setI18n(namespace: string, stateProp: Parameters<SetI18n>[0]) {
+async function setI18n(
+  namespace: string,
+  stateProp: Parameters<SetI18n>[0] = {},
+) {
   const currentState = getCurrentState(namespace)
+  const newState: Pick<I18nState, 'langs' | 'locale'> = {}
+  const { locale, langs } = stateProp
 
-  const newState = Object.entries(stateProp || {}).reduce(
-    (res, [key, value]) => {
-      switch (key) {
-        case 'langs':
-          {
-            const currentLangs = currentState['langs'] || {}
-            const mergeLangs = Object.entries(value).reduce(
-              (res, [langCode, lang]) => {
-                res[langCode] = {
-                  ...(currentLangs[langCode] || {}),
-                  ...lang,
-                }
-                return res
-              },
-              {},
-            )
-            res[key] = {
-              ...currentLangs,
-              ...mergeLangs,
-            }
-          }
-          break
-        default:
-          res[key] = value
-          break
+  if (typeof locale === 'string') {
+    newState.locale = locale
+    const currentLangs = currentState['langs']
+    let currentLang = currentLangs?.[locale]
+
+    if (typeof currentLang === 'function') {
+      currentLang = await currentLang()
+
+      if (isObject(currentLang)) {
+        newState.langs = {
+          ...(currentLangs || {}),
+          [locale]: currentLang,
+        }
+      } else {
+        console.warn(
+          `Failed to load language pack asynchronously for ${locale}`,
+          currentLang,
+        )
+      }
+    }
+  }
+
+  if (typeof langs !== 'undefined') {
+    const currentLangs = newState.langs || currentState.langs || {}
+    const mergeLangs = Object.entries(langs).reduce((res, [langCode, lang]) => {
+      res[langCode] = {
+        ...(currentLangs[langCode] || {}),
+        ...lang,
       }
       return res
-    },
-    {},
-  )
+    }, {})
+    newState.langs = {
+      ...currentLangs,
+      ...mergeLangs,
+    }
+  }
 
   const newCurrentState = {
     ...currentState,
@@ -49,7 +60,7 @@ function setI18n(namespace: string, stateProp: Parameters<SetI18n>[0]) {
 
   state[namespace] = newCurrentState
 
-  return newCurrentState
+  return Object.freeze(newCurrentState)
 }
 
 /**

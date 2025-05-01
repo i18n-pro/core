@@ -25,7 +25,7 @@ describe('验证命令行响应命令', () => {
       expect(spy).toHaveBeenCalledTimes(1)
     })
 
-    it('是否正确匹配英文参数', () => {
+    it('是否正确匹配英文参数', async () => {
       // 修改命令行参数
       changeProcessArgv('init', '', '', '-L', 'zh')
 
@@ -38,7 +38,7 @@ describe('验证命令行响应命令', () => {
       execCommand()
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { namespace, ...state } = setI18n({})
+      const { namespace, ...state } = await setI18n({})
 
       // 正确匹配语言状态
       expect(state).toEqual({

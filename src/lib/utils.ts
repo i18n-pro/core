@@ -215,3 +215,8 @@ export function translateImpl(
 
   return text
 }
+
+export function isObject(object?: object) {
+  if (typeof object === 'object' && object != null) return true
+  return false
+}

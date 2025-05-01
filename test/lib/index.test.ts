@@ -1,6 +1,6 @@
 import { lib } from '../utils'
 import { I18nState } from '../../src/lib'
-import { expect } from 'vitest'
+import { describe, expect } from 'vitest'
 
 const { initI18n } = lib
 
@@ -153,60 +153,124 @@ describe('基础功能验证', () => {
   })
 })
 
-it('setI18n', () => {
-  const namespace = 'setI18n'
-  const { setI18n } = initI18n({ namespace })
-  const langs1 = {
-    en: {
-      1: 'en_1',
-    },
-  }
-  const langs2 = {
-    en: {
-      2: 'en_2',
-    },
-  }
-  const langs3 = {
-    en: {
-      3: 'en_3',
-    },
-    jp: {
-      1: 'jp_1',
-    },
-  }
-
-  let state = setI18n({})
-  expect(state).toEqual({ namespace })
-
-  state = setI18n({ langs: langs1 })
-  expect(state).toEqual({ namespace, langs: langs1 })
-
-  state = setI18n({ langs: langs2, locale: 'en' })
-  expect(state).toEqual({
-    namespace,
-    langs: {
+describe('setI18n', () => {
+  it('没用异步加载的 setI18n', async () => {
+    const namespace = 'setI18n'
+    const { setI18n } = initI18n({ namespace })
+    const langs1 = {
       en: {
-        ...langs1.en,
-        ...langs2.en,
+        1: 'en_1',
       },
-    },
-    locale: 'en',
-  })
-
-  state = setI18n({ langs: langs3 })
-  expect(state).toEqual({
-    namespace,
-    locale: 'en',
-    langs: {
+    }
+    const langs2 = {
       en: {
-        ...langs1.en,
-        ...langs2.en,
-        ...langs3.en,
+        2: 'en_2',
+      },
+    }
+    const langs3 = {
+      en: {
+        3: 'en_3',
       },
       jp: {
-        ...langs3.jp,
+        1: 'jp_1',
       },
-    },
+    }
+
+    let state = await setI18n({})
+
+    expect(state).toEqual({ namespace })
+
+    state = await setI18n({ langs: langs1 })
+    expect(state).toEqual({ namespace, langs: langs1 })
+
+    state = await setI18n({ langs: langs2, locale: 'en' })
+    expect(state).toEqual({
+      namespace,
+      langs: {
+        en: {
+          ...langs1.en,
+          ...langs2.en,
+        },
+      },
+      locale: 'en',
+    })
+
+    state = await setI18n({ langs: langs3 })
+    expect(state).toEqual({
+      namespace,
+      locale: 'en',
+      langs: {
+        en: {
+          ...langs1.en,
+          ...langs2.en,
+          ...langs3.en,
+        },
+        jp: {
+          ...langs3.jp,
+        },
+      },
+    })
+  })
+
+  it('异步加载的 setI18n', async () => {
+    const namespace = 'async setI18n'
+    const zh = {
+      'hello world': '你好世界',
+    }
+    const en = {
+      'hello world': 'hello world',
+    }
+
+    const getEn = () =>
+      new Promise<Record<string, string>>((resolve) => {
+        setTimeout(() => {
+          resolve(en)
+        }, 1000)
+      })
+
+    const { setI18n } = initI18n({
+      namespace,
+      langs: {
+        en: getEn,
+        zh,
+      },
+    })
+    const langs = {
+      en: {
+        3: 'en_3',
+      },
+      jp: {
+        1: 'jp_1',
+      },
+    }
+
+    // 空状态
+    let state = await setI18n({})
+    expect(state).toEqual({ namespace, langs: { en: getEn, zh } })
+
+    // 异步加载语言包，并扩展语言包
+    state = await setI18n({ locale: 'en', langs })
+    expect(state).toEqual({
+      namespace,
+      locale: 'en',
+      langs: {
+        en: { ...en, ...langs.en },
+        zh,
+        jp: langs.jp,
+      },
+    })
+
+    // 切换至中文
+    state = await setI18n({ locale: 'zh' })
+    expect(state).toEqual({
+      namespace,
+      locale: 'zh',
+      langs: {
+        en: { ...en, ...langs.en },
+        zh,
+        jp: langs.jp,
+      },
+    })
   })
 })
 

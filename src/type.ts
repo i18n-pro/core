@@ -228,9 +228,14 @@ export type UnionTranslatorConfig =
 export type Config = BasicConfig & UnionTranslatorConfig
 
 /**
+ * 单个语言包
+ */
+export type LangPack = Record<string, string>
+
+/**
  * 语言包类型
  */
-export type Langs = Partial<Record<string, Record<string, string>>>
+export type Langs = Partial<Record<string, LangPack>>
 
 /**
  * 最大字符数限制类型

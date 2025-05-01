@@ -1,4 +1,4 @@
-import { Langs } from '../type'
+import { LangPack, Langs } from '../type'
 export { Langs, Config } from '../type'
 
 type BaseFormatProps<T> = {
@@ -38,7 +38,7 @@ export type I18nState = {
   /**
    * language packs
    */
-  langs?: Langs
+  langs?: Partial<Record<string, (() => Promise<LangPack>) | LangPack>>
   /**
    * the position of Interpolation Variable，default starting from 0
    */
@@ -107,9 +107,16 @@ export type I18nState = {
  * @param state Internationalization state
  * @returns Updated internationalization state
  */
-export type SetI18n = (
-  stateProp: Pick<I18nState, 'locale' | 'langs'>,
-) => I18nState
+export type SetI18n = (stateProp?: {
+  /**
+   * current locale
+   */
+  locale?: string
+  /**
+   * language packs
+   */
+  langs?: Partial<Record<string, LangPack>>
+}) => Promise<Readonly<I18nState>>
 
 /**
  * Get the internationalized text based on the Original text
