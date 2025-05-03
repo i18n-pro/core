@@ -38,7 +38,7 @@ export type I18nState = {
   /**
    * language packs
    */
-  langs?: Partial<Record<string, (() => Promise<LangPack>) | LangPack>>
+  langs?: Record<string, (() => Promise<LangPack>) | LangPack>
   /**
    * the position of Interpolation Variable，default starting from 0
    */
@@ -115,7 +115,7 @@ export type SetI18n = (stateProp?: {
   /**
    * language packs
    */
-  langs?: Partial<Langs>
+  langs?: Langs
 }) => Promise<Readonly<I18nState>>
 
 /**

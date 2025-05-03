@@ -235,7 +235,7 @@ export type LangPack = Record<string, string>
 /**
  * 语言包类型
  */
-export type Langs = Partial<Record<string, LangPack>>
+export type Langs = Record<string, LangPack>
 
 /**
  * 最大字符数限制类型

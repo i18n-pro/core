@@ -18,6 +18,7 @@ import {
   initI18n,
   getFileContent,
   getTranslationText,
+  getConfigName,
 } from '../utils'
 
 function Install() {
@@ -122,11 +123,11 @@ function InitConfig() {
       <CodeBlock langType="bash" code={`npx i18n init `} />
       {tr(
         '命令执行成功后会在当前目录下生成一个{0}的文件，默认配置如下：',
-        ' `i18nrc.ts` ',
+        getConfigName(),
       )}
       <CodeBlock
         code={getFileContent(
-          resolve(__dirname, '../../../template/i18nrc.ts'),
+          resolve(__dirname, `../../../template/${getConfigName(true)}`),
         ).replace('../src/type', 'i18n-pro')}
       />
     </>
@@ -137,14 +138,14 @@ function ModifyConfig() {
   return (
     <>
       <Break />
-      <H2>{`4. ${tr('调整{0}配置', ' `i18nrc.ts` ')}`}</H2>
+      <H2>{`4. ${tr('调整{0}配置', getConfigName())}`}</H2>
       {tr(
         '根据需求自行调整配置文件中的配置项，配置项的{0}',
         render(
           <Link
             href={getDocHref(
               'COMMAND_LINE',
-              `1. ${tr('{0}配置', ' `i18nrc.ts` ')}`,
+              `1. ${tr('{0}配置', getConfigName())}`,
             )}
           >
             {tr('说明')}

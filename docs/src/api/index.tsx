@@ -1,21 +1,16 @@
+import { Break, H1, H2, render, H3, TableOfContents } from 'jsx-to-md'
 import {
-  Break,
-  H1,
-  H2,
-  render,
-  H3,
-  TableOfContents,
-  getAnchor,
-} from 'jsx-to-md'
-import {
-  getDocHref,
+  getFormatterText,
   getInterpolationVariable,
-  getTranslationText,
+  getTitleToA,
   initI18n,
 } from '../utils'
 import FunctionTemplate from './FunctionTemplate'
+import T from './T'
 
-const langsTypeStr = `Record&lt;string, Record&lt;string, string&gt;&gt;`
+const langsTypeStr = `Record&lt;string, (() => Promise&lt;${getTitleToA(
+  'LangPack',
+)}&gt;) | ${getTitleToA('LangPack')}&gt;`
 
 function renderFormatDesc() {
   const formatTypes = [
@@ -28,9 +23,10 @@ function renderFormatDesc() {
 
   const getDesc = (name: string, lowTag: string, upperTag: string) => {
     return tr(
-      '格式化{0}类型{1}的回调，对应的类型标记是{2}{3}{4}',
+      '{0}类型{1}的{2}，对应的类型标记是{3}{4}{5}',
       render(<b> {name} </b>),
       ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
+      ` ${render(<code>{getFormatterText(true)}</code>)} `,
       render(<b> {lowTag} </b>),
       tr('或'),
       render(<b> {upperTag} </b>),
@@ -41,10 +37,6 @@ function renderFormatDesc() {
     res[type] = getDesc(name, lowTag, upperTag)
     return res
   }, {})
-}
-
-function getTitleToA(title: string) {
-  return render(<a href={getAnchor(title)}>{title}</a>)
 }
 
 function getFormatTypeString(prefix: '  ' | '    ') {
@@ -73,7 +65,6 @@ ${getFormatTypeString('    ')}
 ) => ({
   ${getTitleToA('t')},
   ${getTitleToA('setI18n')},
-  ${getTitleToA('withI18n')},
 })`}
         props={{
           namespace: tr('指定命名空间'),
@@ -100,44 +91,7 @@ ${getFormatTypeString('    ')}
         }}
       />
 
-      <FunctionTemplate
-        name="t"
-        description={
-          <>
-            {tr('获取国际化文案')}
-            <br />
-            {tr(
-              '内部会根据当前语言{0}从语言包{1}中获取{2}对应的{3}，未匹配到对应翻译内容会直接显示{4}本身内容',
-              ` ${render(<code>locale</code>)} `,
-              ` ${render(<code>langs</code>)} `,
-              ` ${render(<code>text</code>)} `,
-              getTranslationText(),
-              ` ${render(<code>text</code>)} `,
-            )}
-          </>
-        }
-        type={`(
-  text: string,
-  ...args: Array&lt;string|number|unknown&gt;
-) =&gt; string`}
-        props={{
-          text: tr(
-            '待翻译的文案，该文案需满足特定{0}',
-            ` ${render(
-              <a href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</a>,
-            )} `,
-          ),
-          args: tr(
-            '表示{0}，没有个数限制，{1}文案中需要以{2}的形式来接收，{3}表示{4}的位置，从 0 开始（可在{5}中自定义起始值），第 1 个参数对应 0，对 2 个参数对应 1，以此往复',
-            ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
-            ` ${render(<code>text</code>)} `,
-            ` ${render(<code>{'{index}'}</code>)} `,
-            ` ${render(<code>index</code>)} `,
-            ` ${render(<code>{getInterpolationVariable(true)}</code>)} `,
-            ` ${render(<code>initI18n</code>)} `,
-          ),
-        }}
-      />
+      <T />
 
       <FunctionTemplate
         name="setI18n"
@@ -147,28 +101,12 @@ ${getFormatTypeString('    ')}
     locale?: string,
     langs?: ${langsTypeStr},
   }
-) => ${getTitleToA('I18nState')}`}
+) => Promise&lt;${getTitleToA('I18nState')}&gt;`}
         props={{
           locale: tr('指定当前语言'),
           langs: tr(
             '设置当前语言包，支持增量添加，新增的会覆盖合并到原有的之中',
           ),
-        }}
-      />
-      <FunctionTemplate
-        name="withI18n"
-        description={
-          <>
-            {tr('获取独立于主程序的{0}函数', ` ${render(<code>t</code>)} `)}
-            <br />
-            {tr('适用于服务端，每个接口响应需要做国际化的处理')}
-          </>
-        }
-        type={`(
-  locale: string
-) => ({ ${getTitleToA('t')} })`}
-        props={{
-          locale: tr('指定当前语言'),
         }}
       />
     </>
@@ -197,6 +135,11 @@ function FunctionType() {
         '以下类型是为了方便文档说明，与代码中类型写法上会存在区别，需以实际代码为准',
       )}
       <TypeInfo
+        name="LangPack"
+        desc={tr('语言包')}
+        content={`type LangPack = Record&lt;string, string&gt;`}
+      />
+      <TypeInfo
         name="I18nState"
         desc={tr('命名空间下的状态')}
         content={`type I18nState = {
@@ -209,35 +152,66 @@ ${getFormatTypeString('  ')}
       />
       <TypeInfo
         name="FormatFunc"
-        desc={tr('通用的格式化回调类型')}
-        content={`type FormatFunc = <T>(props: {
-  locale: string, // ${tr('当前语言')}
-  payload: string | number | unknown | T, // ${getInterpolationVariable(true)}
-  t: ${getTitleToA('t')}, // ${tr('{0}函数', 't ')}
+        desc={tr('通用的{0}类型', ` ${getFormatterText()} `)}
+        content={`type FormatFunc = &lt;T&gt;(props: {
+  /**
+   * ${tr('当前语言')}
+   */
+  locale: string,
+  /**
+   * ${getInterpolationVariable(true)}
+   */
+  payload: string | number | unknown | T,
+  /**
+   * ${tr('{0}函数', 't ')}
+   */
+  t: ${getTitleToA('t')},
 }) => number | string`}
       />
       <TypeInfo
         name="FormatDateFunc"
-        desc={tr('日期（时间）的格式化回调函数类型')}
-        content={`type FormatDateFunc = <T>(props: {
-  locale: string, // ${tr('当前语言')}
-  payload: string | number | Date | unknown | T, // ${getInterpolationVariable(
-    true,
-  )}
-  t: ${getTitleToA('t')}, // ${tr('{0}函数', 't ')}
+        desc={tr('日期（时间）的{0}类型', ` ${getFormatterText()} `)}
+        content={`type FormatDateFunc = &lt;T&gt;(props: {
+  /**
+   * ${tr('当前语言')}
+   */
+  locale: string,
+  /**
+   * ${getInterpolationVariable(true)}
+   */
+  payload: string | number | Date | unknown | T,
+  /**
+   * ${tr('{0}函数', 't ')}
+   */
+  t: ${getTitleToA('t')},
 }) => string`}
       />
       <TypeInfo
         name="FormatPluralFunc"
-        desc={tr('复数的格式化回调函数类型')}
-        content={`type FormatPluralFunc = <T>(props: {
-  locale: string, // ${tr('当前语言')}
-  payload: string | number | unknown | T, // ${getInterpolationVariable(true)}
-  text: string // ${tr(
-    '默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性',
-  )}
-  keyword: string // ${tr('复数关键词')}
-  t: ${getTitleToA('t')}, // ${tr('{0}函数', 't ')}
+        desc={tr('复数的{0}类型', ` ${getFormatterText()} `)}
+        content={`type FormatPluralFunc = &lt;T&gt;(props: {
+  /**
+   * ${tr('当前语言')}
+   */
+  locale: string,
+  /**
+   * ${getInterpolationVariable(true)}
+   */
+  payload: string | number | unknown | T,
+  /**
+   * ${tr(
+     '默认将量词和名词组合起来的字符串，不需要复数处理的语言可以直接返回该属性',
+   )}
+   */
+  text: string
+  /**
+   * ${tr('复数关键词')}
+   */
+  keyword: string
+  /**
+   * ${tr('{0}函数', 't ')}
+   */
+  t: ${getTitleToA('t')},
  }) => string`}
       />
     </>

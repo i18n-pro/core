@@ -1,11 +1,14 @@
-import { Break, H3, H4 } from 'jsx-to-md'
+import { Break, H3, H4, H5, H6 } from 'jsx-to-md'
+import FunctionTemplateWrapper from './FunctionTemplateWrapper'
 
-export interface FunctionTemplate {
+export interface FunctionTemplateProps {
   name: string
   description: string | React.ReactNode
   type: string
   props: Record<string, string | JSX.Element>
   returns?: unknown
+  level?: number
+  property?: FunctionTemplateProps[]
 }
 
 function TypeCode(props: { content: string }) {
@@ -13,21 +16,44 @@ function TypeCode(props: { content: string }) {
   return <pre>{content}</pre>
 }
 
-export default function FunctionTemplate(props: FunctionTemplate) {
-  const { name, description, type, props: propsProp, returns } = props
+export default function FunctionTemplate(props: FunctionTemplateProps) {
+  const {
+    name,
+    description,
+    type,
+    props: propsProp,
+    returns,
+    level = 3,
+    property,
+  } = props
 
   const typeText = tr('类型')
   const propsText = tr('参数说明')
-  const getId = (title: string) => `${name}-${title}`
+
+  const levelHeaderMap = {
+    3: H3,
+    4: H4,
+    5: H5,
+    6: H6,
+  }
+
+  const titleLevel = level
+  const otherLevel = level + 1
+  const TitleHeader = levelHeaderMap[titleLevel]
+  const OtherHeader = levelHeaderMap[otherLevel]
+
+  const getId = (title: string) => `${level}-${name}-${title}`
 
   return (
     <>
-      <H3>{name}</H3>
+      <TitleHeader id={level === 3 ? undefined : getId(name)}>
+        {name}
+      </TitleHeader>
       {description}
-      <H4 id={getId(typeText)}>{typeText}</H4>
+      <OtherHeader id={getId(typeText)}>{typeText}</OtherHeader>
       <TypeCode content={type} />
       <Break />
-      <H4 id={getId(propsText)}>{propsText}</H4>
+      <OtherHeader id={getId(propsText)}>{propsText}</OtherHeader>
       <table>
         <tr>
           <th>{tr('参数名')}</th>
@@ -47,7 +73,18 @@ export default function FunctionTemplate(props: FunctionTemplate) {
       <Break />
       {returns && (
         <>
-          <H4>{tr('返回值')}</H4>
+          <OtherHeader>{tr('返回值')}</OtherHeader>
+        </>
+      )}
+      {Array.isArray(property) && property.length > 0 && (
+        <>
+          <OtherHeader>{tr('属性')}</OtherHeader>
+          {property?.map((item) => (
+            <>
+              {/** TODO 这里目前存在bug, 引用自身的话会导致渲染空内容 */}
+              <FunctionTemplateWrapper {...item} level={level + 2} />
+            </>
+          ))}
         </>
       )}
     </>

@@ -23,6 +23,7 @@ type RecordItem = Record<
   string | JSX.Element | number
 >
 
+// TODO 需要添加自定义key，text 冲突的日志
 export default function OutputLog(props) {
   initI18n(props)
 

@@ -12,7 +12,7 @@ import {
   Break,
   CodeBlock,
 } from 'jsx-to-md'
-import { getTranslationText, initI18n } from '../utils'
+import { getTranslationText, initI18n, getConfigName } from '../utils'
 
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
@@ -914,7 +914,7 @@ function AliyunConfig() {
 function Config() {
   return (
     <>
-      <H2>1. {tr('{0}配置', ' `i18nrc.ts` ')}</H2>
+      <H2>1. {tr('{0}配置', getConfigName())}</H2>
       <BasicConfig />
       <Output />
       <GooglexConfig />

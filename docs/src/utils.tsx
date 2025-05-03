@@ -1,4 +1,4 @@
-import { Break, getAnchor, Link } from 'jsx-to-md'
+import { Break, getAnchor, Link, render } from 'jsx-to-md'
 import { initI18n as originInitI18n } from '@lib'
 import { readFileSync } from 'fs'
 import en from './i18n/en.json'
@@ -162,4 +162,24 @@ export function renderLanguage(filename: string) {
       <Break />
     </>
   )
+}
+
+export function getConfigName(normal = false) {
+  const text = tr('i18nrc.ts')
+  return getText(text, normal)
+}
+
+export function getFormatterText(normal = false) {
+  const text = tr('格式化器')
+  return getText(text, normal)
+}
+
+export function getTitleToA(title: string) {
+  return render(<a href={getAnchor(title)}>{title}</a>)
+}
+
+export function getDemoDesc(isDot = false) {
+  return isDot
+    ? tr('{0}的示例', getCustomKey())
+    : tr('{0}即{1}的示例', getTranslationText(), ' `key` ')
 }

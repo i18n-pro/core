@@ -1,14 +1,16 @@
 import {
+  Bold,
   Break,
   CodeBlock,
   H1,
-  InlineCode,
   Link,
   render,
   TableOfContents,
 } from 'jsx-to-md'
 import {
+  getCustomKey,
   getDocHref,
+  getFormatterText,
   getInterpolationVariable,
   getIssueText,
   getTranslationText,
@@ -233,8 +235,9 @@ function V_1_3_0() {
           tr('添加{0}函数API用于支持服务端场景', ' `withI18N` '),
           [
             tr(
-              '添加{0}类型标记和类型格式化回调函数',
+              '添加{0}类型标记和类型{1}',
               getInterpolationVariable(),
+              getFormatterText(),
             ),
             [
               'U',
@@ -390,8 +393,9 @@ function V_2_0_0() {
               ),
               tr('新增{0}属性用于支持命名空间', ' `namespace` '),
               tr(
-                '{0}的格式化回调中添加{1}参数',
+                '{0}的{1}中添加{2}参数',
                 getVariableInterpolation(),
+                getFormatterText(),
                 ' `t` ',
               ),
             ],
@@ -487,22 +491,39 @@ function V_3_0_0() {
         ],
       }}
       api={{
+        removed: ['U', <>{tr('移除{0}', ' `withI18n` ')}</>],
+        added: [
+          'U',
+          tr(
+            '{0}的{1}参数支持以回调函数的形式动态加载语言包',
+            ' `initI18n` ',
+            ' `langs` ',
+          ),
+          [
+            tr('{0}新增属性', ' `t` '),
+            [
+              'U',
+              <>
+                <Bold>{render(<code>t</code>)}</Bold>：
+                {tr('支持{0}的场景', getCustomKey())}
+              </>,
+              <>
+                <Bold>{render(<code>withLocale</code>)}</Bold>：
+                {tr('替代{0}', ' `withI18n` ')}
+              </>,
+            ],
+          ],
+        ],
         changed: [
           'U',
-          <>
-            {tr('调整{0}参数结构', ' `withI18n` ')}
-            <Break />
-            <CodeBlock
-              langType="diff"
-              code={`
-- function withI18n(props:{
--   locale: string
-- }): { t }
-
-+ function withI18n(locale: string): { t }
-`}
-            />
-          </>,
+          [
+            ' `setI18n` ',
+            [
+              'U',
+              tr('支持切换语言时动态加载语言包'),
+              tr('由同步执行调整为异步执行'),
+            ],
+          ],
         ],
       }}
     />

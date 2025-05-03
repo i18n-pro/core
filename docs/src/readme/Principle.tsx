@@ -9,8 +9,9 @@ import {
   List,
 } from 'jsx-to-md'
 import {
-  getCustomKey,
+  getDemoDesc,
   getDocHref,
+  getFormatterText,
   getInterpolationVariable,
   getTranslationText,
   getTypeTagCode,
@@ -43,8 +44,9 @@ ${prefix}'${tr(
 
 
 /** ${tr(
-        '{0}类型标记，需配合对应的格式化回调',
+        '{0}类型标记，需配合对应的{1}',
         getInterpolationVariable(true),
+        getFormatterText(true),
       )} */
 ${getTypeTagCode(isDot)}`}
     />
@@ -80,10 +82,10 @@ export default function Principle() {
       )}
       <Break />
       <Break />
-      {tr('{0}即{1}的示例', getTranslationText(), ' `key` ')}
+      {getDemoDesc()}
       <CodeDemo />
       <Break />
-      {tr('{0}的示例', getCustomKey())}
+      {getDemoDesc(true)}
       <CodeDemo isDot />
       <Bold>{tr('函数API')}</Bold>：
       {tr(

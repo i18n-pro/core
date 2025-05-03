@@ -1,9 +1,85 @@
-import { H1, CodeBlock, TableOfContents, List } from 'jsx-to-md'
+import { H1, CodeBlock, TableOfContents, List, Break } from 'jsx-to-md'
 import {
+  getDemoDesc,
   getTranslationText,
   getVariableInterpolation,
   initI18n,
 } from '../utils'
+
+function MatchAble(props: { isDot?: boolean }) {
+  const { isDot } = props
+  const prefix = isDot ? `t.t('custom-key', ` : `t(`
+
+  return (
+    <>
+      <Break />
+      <Break />
+      {getDemoDesc(isDot)}
+      <CodeBlock
+        code={`${prefix}'xxx')
+${prefix}"xxx")
+${prefix}\`xxx\`)`}
+      />
+    </>
+  )
+}
+
+function NotMatchAble(props: { isDot?: boolean }) {
+  const { isDot } = props
+  const prefix = isDot ? `t.t('custom-key', ` : `t(`
+
+  return (
+    <>
+      <Break />
+      <Break />
+      {getDemoDesc(isDot)}
+      <CodeBlock
+        code={`const foo = 'foo'
+const fooFunc = (x:string) => x
+
+// ${tr('不满足纯字符串')}
+${prefix}foo)
+${prefix}'xxx' + foo)
+${prefix}\`${'${foo}'}\`)
+${prefix}fooFunc(foo))
+
+// ${tr('包含{0}或者{1}', ' \\n ', ' \\t')}
+${prefix}'x\\nx')
+${prefix}'x\\tx')
+
+// ${tr('前后包含空格')}
+${prefix}' xxx')
+${prefix}'xxx  ')
+${prefix}' xxx ')
+
+// ${tr('{0}语法中有换行', tr('模板字符串'))}
+${prefix}\`
+x
+x
+x
+\`)`}
+      />
+    </>
+  )
+}
+
+function VariableInterpolation(props: { isDot?: boolean }) {
+  const { isDot } = props
+  const prefix = isDot ? `t.t('custom-key', ` : `t(`
+
+  return (
+    <>
+      <Break />
+      <Break />
+      {getDemoDesc(isDot)}
+      <CodeBlock
+        code={`${prefix}'${tr(
+          '我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+        )}', '${tr('王尼玛')}', 35, '${tr('火星')}', '${tr('码农')}')`}
+      />
+    </>
+  )
+}
 
 export default function MatchRule(props) {
   initI18n(props)
@@ -12,7 +88,7 @@ export default function MatchRule(props) {
     <>
       <H1 skip>{tr('匹配规则')}</H1>
       <TableOfContents text={tr('目录')} open={false} />
-      {tr('{0}函数第一个参数的要求', ' `t` ')}：
+      {tr('{0}和{1}函数的{2}参数的要求', ' `t` ', ' `t.t` ', ' `text` ')}：
       <List
         items={[
           'U',
@@ -35,44 +111,14 @@ export default function MatchRule(props) {
         ]}
       />
       {tr('以下是可以匹配到的')}
-      <CodeBlock
-        code={`t('xxx')
-t("xxx")
-t(\`xxx\`)`}
-      />
+      <MatchAble />
+      <MatchAble isDot />
       {tr('以下是不会被匹配到的')}
-      <CodeBlock
-        code={`const foo = 'foo'
-const fooFunc = (x:string) => x
-
-// ${tr('不满足纯字符串')}
-t(foo)
-t('xxx' + foo)
-t(\`${'${foo}'}\`)
-t(fooFunc(foo))
-
-// ${tr('包含{0}或者{1}', ' \\n ', ' \\t')}
-t('x\\nx')
-t('x\\tx')
-
-// ${tr('前后包含空格')}
-t(' xxx')
-t('xxx  ')
-t(' xxx ')
-
-// ${tr('{0}语法中有换行', tr('模板字符串'))}
-t(\`
-x
-x
-x
-\`)`}
-      />
+      <NotMatchAble />
+      <NotMatchAble isDot />
       {tr('如果需要拼接字符串，可以用{0}', getVariableInterpolation())}
-      <CodeBlock
-        code={`t('${tr('我叫{0}，今年{1}岁，来自{2}，是一名{3}')}', '${tr(
-          '王尼玛',
-        )}', 35, '${tr('火星')}', '${tr('码农')}')`}
-      />
+      <VariableInterpolation />
+      <VariableInterpolation isDot />
     </>
   )
 }

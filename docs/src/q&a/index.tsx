@@ -8,12 +8,14 @@ import {
   List,
 } from 'jsx-to-md'
 import {
+  getDemoDesc,
   getInterpolationVariable,
   getTranslationText,
   getTypeTagCode,
   getVariableInterpolation,
   initI18n,
 } from '../utils'
+import AutoTranslate from './AutoTranslate'
 
 type Q = {
   order: string
@@ -25,106 +27,6 @@ function Title(props: { order: string; title: string }) {
     <H2>
       {order}. {title}
     </H2>
-  )
-}
-
-function BasePrinciple(props: Q) {
-  const { order } = props
-  const extraCopy = tr('自动提取文案')
-
-  return (
-    <>
-      <H2>
-        {order}. {tr('为什么要以{0}作为key呢？', getTranslationText())}
-      </H2>
-      <Bold>{tr('为了实现如下目标')}</Bold>
-      <List items={['U', extraCopy, tr('自动翻译'), tr('自动生成语言包')]} />
-      {tr(
-        '以{0}作为key才能通过脚本识别出所有需要翻译的文案，从而实现{1}的目标，当然{2}也为后续目标的实现打下了良好的基础',
-        getTranslationText(),
-        ` \`${extraCopy}\` `,
-        ` \`${extraCopy}\` `,
-      )}
-      <Break />
-      <Break />
-      {tr('通常国际化库都推荐如下形式的写法')}
-      <CodeBlock
-        code={`
-// ${tr('定义一个简单的key')}
-const text1 = t('hello')
-// ${tr('定义一个有分块的key')}
-const text2 = t('module.hello')
-`}
-      />
-      {tr('对应语言包的形式')}
-      <CodeBlock
-        code={`
-// en.json
-{
-  "hello": "hello world",
-  "module": {
-    "hello": "hello xxx",
-  },
-  "module.hello": "hello xxx",
-}
-
-// zh-CN.json
-{
-  "hello": "你好世界",
-  "module": {
-    "hello": "你好xxx",
-  },
-  "module.hello": "你好xxx"
-}
-`}
-      />
-      <Break />
-      {tr('当前库的写法')}
-      <CodeBlock
-        code={`
-const text1 = t('hello world')
-const text2 = t('hello xxx')
-// ${tr('或者')}
-const text3 = t.t('hello', 'hello world')
-const text4 = t.t('module.hello', 'hello xxx')
-`}
-      />
-      {tr('对应语言包的形式')}
-      <CodeBlock
-        code={`
-// zh-CN.json
-{
-  "hello world": "你好世界",
-  "hello xxx": "你好xxx",
-  "hello": "你好世界",
-  "module.hello": "你好xxx",
-}
-`}
-      />
-      {tr('相对于传统的写法，以{0}作为key，有如下不足', getTranslationText())}
-      <List
-        items={[
-          'U',
-          [
-            tr('对于一词多译不友好'),
-            ['U', tr('但是现在可以通过{0}函数，手动定义key来解决', ' `t.t` ')],
-          ],
-          tr('生成的语言包较大'),
-        ]}
-      />
-      {tr('当然也会有如下优点')}
-      <List
-        items={[
-          'U',
-          tr('源码可读性强'),
-          tr('{0}本身语言无需生成语言包', getTranslationText()),
-        ]}
-      />
-      {tr(
-        '如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信{0}会带给你非常不错的开发体验',
-        ' `i18n-pro` ',
-      )}
-    </>
   )
 }
 
@@ -187,7 +89,7 @@ function NonsupportObjectParamsResolve(props: Q) {
       {tr('示例代码')}
       <CodeBlock
         code={`// ${tr('对象属性解析')}
-i18n('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
+t('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
   name: '王尼玛',
   age: 22,
   base: '火星',
@@ -195,7 +97,7 @@ i18n('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
 })
 
 // ${tr('当前库的下标解析')}
-i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+t('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
   '王尼玛',
   '22',
   '火星',
@@ -312,7 +214,7 @@ export default function QAndA(props) {
     <>
       <H1 skip>Q&A</H1>
       <TableOfContents text={tr('目录')} open={false} />
-      <BasePrinciple order="1" />
+      <AutoTranslate order="1" />
       <VariableInterpolationAndInterpolationVariable order="2" />
       <NonsupportObjectParamsResolve order="3" />
       <DateAndTime order="4" />
