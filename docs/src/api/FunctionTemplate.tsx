@@ -9,6 +9,7 @@ export interface FunctionTemplateProps {
   returns?: unknown
   level?: number
   property?: FunctionTemplateProps[]
+  headerId?: string
 }
 
 function TypeCode(props: { content: string }) {
@@ -25,6 +26,7 @@ export default function FunctionTemplate(props: FunctionTemplateProps) {
     returns,
     level = 3,
     property,
+    headerId,
   } = props
 
   const typeText = tr('类型')
@@ -46,9 +48,7 @@ export default function FunctionTemplate(props: FunctionTemplateProps) {
 
   return (
     <>
-      <TitleHeader id={level === 3 ? undefined : getId(name)}>
-        {name}
-      </TitleHeader>
+      <TitleHeader id={headerId}>{name}</TitleHeader>
       {description}
       <OtherHeader id={getId(typeText)}>{typeText}</OtherHeader>
       <TypeCode content={type} />

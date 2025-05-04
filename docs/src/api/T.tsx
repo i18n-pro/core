@@ -74,6 +74,7 @@ export default function T() {
       props={getProps()}
       property={[
         {
+          headerId: 't.t',
           name: 't',
           description: <Description isDot />,
           type: `(
@@ -93,7 +94,7 @@ export default function T() {
             </>
           ),
           type: `(
-  locale?: string
+  locale?: string,
 ) => Translate`,
           props: {
             locale: (

@@ -11,6 +11,7 @@ import T from './T'
 const langsTypeStr = `Record&lt;string, (() => Promise&lt;${getTitleToA(
   'LangPack',
 )}&gt;) | ${getTitleToA('LangPack')}&gt;`
+const simpleLangsTypeStr = `Record&lt;string, ${getTitleToA('LangPack')}&gt;`
 
 function renderFormatDesc() {
   const formatTypes = [
@@ -99,7 +100,7 @@ ${getFormatTypeString('    ')}
         type={`(
   props: {
     locale?: string,
-    langs?: ${langsTypeStr},
+    langs?: ${simpleLangsTypeStr},
   }
 ) => Promise&lt;${getTitleToA('I18nState')}&gt;`}
         props={{
