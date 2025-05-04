@@ -7,17 +7,25 @@ const fs = require('fs')
  * 验证文案是否有效
  * @param label 包含 `'" 符号的完整整文本
  * @param content 符号内的文本内容
+ * @param isCustomKey 是否是自定义key
  * @returns
  */
-function validateLabelAndContent(label: string, content: string) {
+function validateLabelAndContent(
+  label: string,
+  content: string,
+  isCustomKey = false,
+) {
+  // 这里字符串模板中引用变量
+  if (label.match(/^`.*`$/) && label.includes('${')) return false
+
   if (
-    (label.match(/^`.*`$/) && label.includes('${')) ||
-    content.startsWith(' ') ||
-    content.endsWith(' ') ||
-    content.includes('\n') ||
-    content.includes('\\n') ||
-    content.includes('\t') ||
-    content.includes('\\t')
+    !isCustomKey &&
+    (content.startsWith(' ') ||
+      content.endsWith(' ') ||
+      content.includes('\n') ||
+      content.includes('\\n') ||
+      content.includes('\t') ||
+      content.includes('\\t'))
   )
     return false
 
@@ -94,7 +102,7 @@ export function extraTextFromTDotT(
     const textLabel = temp[4]
     const textContent = temp[6]
 
-    const keyValidate = validateLabelAndContent(keyLabel, keyContent)
+    const keyValidate = validateLabelAndContent(keyLabel, keyContent, true)
     const textValidate = validateLabelAndContent(textLabel, textContent)
 
     if (keyValidate) {
@@ -112,7 +120,7 @@ export function extraTextFromTDotT(
     if (keyValidate && textValidate) {
       const text = keyTextMap[keyContent]
       if (text && text != textContent) {
-        textError.push(
+        keyError.push(
           t(
             '当前自定义 key=`{0}`，配置了不一样的文案（`{1}` 和 `{2}`），应该满足 key 与文案一对一的关系',
             keyContent,

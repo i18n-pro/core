@@ -120,6 +120,26 @@ async function translateController({
   })
 
   writeFilesSync({
+    filepath: path.join(outputPath, logDirname, 'keys.json'),
+    fileContent: trTextRes.textSuccess,
+    showName: t(
+      '提取的自定义key({0})',
+      chalk.greenBright(trTextRes.keySuccess.length),
+    ),
+    indentSize,
+  })
+
+  writeFilesSync({
+    filepath: path.join(outputPath, logDirname, 'keys-error.json'),
+    fileContent: trTextRes.textError,
+    showName: t(
+      '提取的编写不规范的自定义key({0})',
+      chalk.redBright(trTextRes.keyError.length),
+    ),
+    indentSize,
+  })
+
+  writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'translate-success.json'),
     fileContent: success,
     showName: t(

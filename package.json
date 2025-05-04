@@ -19,8 +19,7 @@
     "docs": "jtm run",
     "docs-translate": "node ./dist/src/bin/index.js t -P docs/src",
     "test-init": "node ./dist/src/bin/index.js init",
-    "test-t": "node ./dist/src/bin/index.js t",
-    "test-translate": "node ./dist/src/bin/index.js translate",
+    "test-t": "tsx ./src/bin/index.ts t",
     "build-bin": "tsc",
     "build": "npm run build-bin && rimraf dist/src/lib && rollup -c",
     "publish": "npm run build && npm publish --access=public --registry https://registry.npmjs.org",
@@ -70,6 +69,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.33.0",
     "tslib": "^2.4.1",
+    "tsx": "^4.19.4",
     "typescript": "4.8.4",
     "vitest": "^0.22.1"
   },

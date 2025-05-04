@@ -68,6 +68,11 @@
     "翻译中...": "translating...",
     "指定配置文件路径（参数为相对路径）": "Specify the configuration file path (parameter is relative path)",
     "未正确配置{0},{1},{2}等属性": "Not correctly configure {0}, {1}, {2} and other attributes",
-    "开始解析 Glob 语法：": "Start parsing GLOB syntax:"
+    "开始解析 Glob 语法：": "Start parsing GLOB syntax:",
+    "当前自定义 key=`{0}`，配置了不一样的文案（`{1}` 和 `{2}`），应该满足 key 与文案一对一的关系": "Currently, custom key=`{0}` is configured with different copywriting (`{1}` and `{2}`), which should satisfy the one-to-one relationship between key and copywriting.",
+    "解析符合要求的自定义key数:": "Number of custom keys that meet the requirements:",
+    "解析不符合要求的自定义key数:": "Number of custom keys that do not meet the requirements:",
+    "提取的自定义key({0})": "Extracted custom key({0})",
+    "提取的编写不规范的自定义key({0})": "Extracted custom keys that are not standardized ({0})"
   }
 }

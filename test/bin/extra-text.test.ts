@@ -81,10 +81,13 @@ describe('验证 t.t 翻译文本提取功能', () => {
     '你好\\t啊',
     '  前面有空格',
     '后面空格 ',
-    '当前自定义 key=`test`，配置了不一样的文案（`普通文案` 和 `a`），应该满足 key 与文案一对一的关系',
   ]
 
   const successKeys = [
+    'key\\n中间', // NOTE 这里需要是\\n，不然匹配不正确
+    'key\\t中间',
+    '  key前面有空格',
+    'key后面空格 ',
     '中间 有空格的key',
     '普通文本key',
     '普通文本',
@@ -96,10 +99,7 @@ describe('验证 t.t 翻译文本提取功能', () => {
 
   const errorKeys = [
     '${key}',
-    'key\\n中间', // NOTE 这里需要是\\n，不然匹配不正确
-    'key\\t中间',
-    '  key前面有空格',
-    'key后面空格 ',
+    '当前自定义 key=`test`，配置了不一样的文案（`普通文案` 和 `a`），应该满足 key 与文案一对一的关系',
   ]
 
   const expectKeyTextMap = {
