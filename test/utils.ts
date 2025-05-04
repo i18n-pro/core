@@ -15,6 +15,7 @@ import * as BinI18n from '../src/bin/i18n'
 import * as BinAliyunTranslate from '../src/bin/translate/aliyun'
 import * as BinGoogleTranslate from '../src/bin/translate/google'
 import * as BinGooglexTranslate from '../src/bin/translate/googlex'
+import { Translator } from '../src/type'
 
 export function checkIsInPkg() {
   const isPkg = process.env.NODE_ENV === 'pkg'
@@ -129,9 +130,16 @@ export function mockRequest(props: {
     | 'onError' // 模拟整个请求错误
     | 'resolveError' // 模拟解析数据错误
   errorMsg?: string // 如果需要模拟请求错误，可以设置错误信息
-  getResData?: (requestData: any) => any // 根据请求参数动态返回响应数据，配置了该属性 data 将失效
+  getResData?: (requestData: string) => any // 根据请求参数动态返回响应数据，配置了该属性 data 将失效
+  translator?: Translator
 }) {
-  const { data, errorType, errorMsg = '错误信息', getResData } = props
+  const {
+    data,
+    errorType,
+    errorMsg = '错误信息',
+    getResData,
+    translator,
+  } = props
 
   return (_url, _option, outCallback) => {
     // 记录请求的参数
@@ -160,16 +168,29 @@ export function mockRequest(props: {
       },
     }
 
+    /**
+     * 这里需要结合 fetch 方法更好理解如何模拟实现的
+     */
     return {
       on: (type: string, callback: (arg0: string) => void) => {
         if (type === 'error' && errorType === 'onError') callback(errorMsg)
       },
       write: (data) => {
-        const temp = {}
-        new URLSearchParams(data).forEach((value, name) => {
-          temp[name] = value
-        })
-        requestData = temp
+        /**
+         * 这里需要根据参数类型做逻辑区分，
+         */
+        if (
+          translator &&
+          ['tencent', 'openai', 'microsoft'].includes(translator)
+        ) {
+          requestData = data
+        } else {
+          const temp = {}
+          new URLSearchParams(data).forEach((value, name) => {
+            temp[name] = value
+          })
+          requestData = temp
+        }
       },
       end: () => {
         // 这样可以方便模拟整个请求失败

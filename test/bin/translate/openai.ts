@@ -14,12 +14,13 @@ export function openaiMockRequestImpl(props: MockRequestProps) {
         // 这里需要模拟 request 实现
         spyRequest.mockImplementation(
           mockRequest({
+            translator: 'openai',
             data: {},
-            getResData(requestData: { [key: string]: '' }) {
+            getResData(requestData: string) {
               let texts = []
               let mockTranslateTexts
               try {
-                const body = JSON.parse(Object.keys(requestData)[0])
+                const body = JSON.parse(requestData)
                 texts = body.messages[0].content
                   .split('return the translated JSON array only: ')
                   .slice(1)

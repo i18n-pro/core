@@ -14,6 +14,7 @@ export function tencentMockRequestImpl(props: MockRequestProps) {
         // 这里需要模拟 request 实现
         spyRequest.mockImplementation(
           mockRequest({
+            translator: 'tencent',
             data: {
               Response: {
                 TargetTextList: Object.entries(langs[to] as object).reduce(
@@ -25,10 +26,10 @@ export function tencentMockRequestImpl(props: MockRequestProps) {
                 ),
               },
             },
-            getResData(requestData: { [key: string]: '' }) {
+            getResData(requestData: string) {
               let SourceTextList = []
               try {
-                const obj = JSON.parse(Object.keys(requestData)[0])
+                const obj = JSON.parse(requestData)
                 SourceTextList = obj.SourceTextList
               } catch (error) {
                 console.error(error)

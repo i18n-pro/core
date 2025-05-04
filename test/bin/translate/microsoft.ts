@@ -15,6 +15,7 @@ export function microsoftMockRequestImpl(props: MockRequestProps) {
         // 这里需要模拟 request 实现
         spyRequest.mockImplementation(
           mockRequest({
+            translator: 'microsoft',
             data: Object.entries(langs[to] as object).reduce(
               (res, [src, dst]) => {
                 res.push({
@@ -28,10 +29,10 @@ export function microsoftMockRequestImpl(props: MockRequestProps) {
               },
               [] as Array<{ translations: { text: string }[] }>,
             ),
-            getResData(requestData: { [key: string]: '' }) {
+            getResData(requestData: string) {
               let texts = []
               try {
-                texts = JSON.parse(Object.keys(requestData)[0])
+                texts = JSON.parse(requestData)
               } catch (error) {
                 console.error(error)
               }

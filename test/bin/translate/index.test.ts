@@ -24,7 +24,7 @@ import { openaiMockRequestImpl } from './openai'
 import { googlexMockRequestImpl } from './googlex'
 
 const { setTranslateConfig, translateTextsToLangsImpl } = binTranslate
-const { SEPARATOR_LENGTH } = binConstants
+const { SEPARATOR_STR } = binConstants
 
 const translatorMockRequestMap = {
   baidu: baiduMockRequestImpl,
@@ -791,7 +791,13 @@ describe('验证翻译实现', () => {
     ]
 
     it.each(matrix)('%s', async (desc, config) => {
-      const { maxLengthType, maxLength, maxArrayLength } = config
+      const {
+        maxLengthType,
+        maxLength,
+        maxArrayLength,
+        separator = SEPARATOR_STR,
+      } = config
+
       const langs = require(LANGS_PATH)
       const texts = Object.keys(langs['en'])
       const spyRequest = vi.spyOn(https, 'request')
@@ -804,11 +810,11 @@ describe('验证翻译实现', () => {
           {
             let strCount = 0
             for (let i = 0; i < texts.length; i++) {
-              strCount += (i == 0 ? 0 : SEPARATOR_LENGTH) + texts[i].length
+              strCount += (i == 0 ? 0 : separator.length) + texts[i].length
               if (
                 i == texts.length - 1 ||
                 (texts.length - 1 > i &&
-                  strCount + SEPARATOR_LENGTH + texts[i + 1].length > maxLength)
+                  strCount + separator.length + texts[i + 1].length > maxLength)
               ) {
                 count++
                 strCount = 0
@@ -878,7 +884,7 @@ describe('验证翻译实现', () => {
           data: {},
           getResData: (requestData) => {
             const { q } = requestData
-            const currentTexts = q.split(binConstants.SEPARATOR_STR)
+            const currentTexts = q.split(separator)
             const res = currentTexts.reduce((res, item) => {
               res.push({
                 src: item,
@@ -902,11 +908,11 @@ describe('验证翻译实现', () => {
             key: '',
             from: 'zh',
             to: ['en'],
-            delay: 1,
+            delay: 0,
           },
         },
         {
-          maxLengthConfig: config,
+          maxLengthConfig: { ...config, separator },
         },
       )
 
