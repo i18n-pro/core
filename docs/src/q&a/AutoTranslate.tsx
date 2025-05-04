@@ -1,5 +1,5 @@
 import { H2, Bold, List, Break, CodeBlock } from 'jsx-to-md'
-import { getTranslationText, getDemoDesc, getCustomKey } from '../utils'
+import { getTranslationText, getCodeDemoDesc, getCustomKey } from '../utils'
 
 function Demo(props: { isDot?: boolean }) {
   const { isDot = false } = props
@@ -10,7 +10,7 @@ function Demo(props: { isDot?: boolean }) {
     <>
       <Break />
       <Break />
-      {getDemoDesc(isDot)}
+      {getCodeDemoDesc(isDot)}
       <CodeBlock
         code={`
  const text = ${prefix}'hello world')`}

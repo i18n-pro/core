@@ -1,20 +1,21 @@
 import { H1, CodeBlock, TableOfContents, List, Break } from 'jsx-to-md'
 import {
-  getDemoDesc,
+  getCodeDemoDesc,
   getTranslationText,
   getVariableInterpolation,
   initI18n,
+  getCodeDemoPrefix,
 } from '../utils'
 
 function MatchAble(props: { isDot?: boolean }) {
   const { isDot } = props
-  const prefix = isDot ? `t.t('custom-key', ` : `t(`
+  const prefix = getCodeDemoPrefix(isDot)
 
   return (
     <>
       <Break />
       <Break />
-      {getDemoDesc(isDot)}
+      {getCodeDemoDesc(isDot)}
       <CodeBlock
         code={`${prefix}'xxx')
 ${prefix}"xxx")
@@ -26,13 +27,13 @@ ${prefix}\`xxx\`)`}
 
 function NotMatchAble(props: { isDot?: boolean }) {
   const { isDot } = props
-  const prefix = isDot ? `t.t('custom-key', ` : `t(`
+  const prefix = getCodeDemoPrefix(isDot)
 
   return (
     <>
       <Break />
       <Break />
-      {getDemoDesc(isDot)}
+      {getCodeDemoDesc(isDot)}
       <CodeBlock
         code={`const foo = 'foo'
 const fooFunc = (x:string) => x
@@ -65,13 +66,13 @@ x
 
 function VariableInterpolation(props: { isDot?: boolean }) {
   const { isDot } = props
-  const prefix = isDot ? `t.t('custom-key', ` : `t(`
+  const prefix = getCodeDemoPrefix(isDot)
 
   return (
     <>
       <Break />
       <Break />
-      {getDemoDesc(isDot)}
+      {getCodeDemoDesc(isDot)}
       <CodeBlock
         code={`${prefix}'${tr(
           '我叫{0}，今年{1}岁，来自{2}，是一名{3}',

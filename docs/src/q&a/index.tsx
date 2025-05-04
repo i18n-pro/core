@@ -8,7 +8,6 @@ import {
   List,
 } from 'jsx-to-md'
 import {
-  getDemoDesc,
   getInterpolationVariable,
   getTranslationText,
   getTypeTagCode,

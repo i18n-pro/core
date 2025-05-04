@@ -9,7 +9,8 @@ import {
   List,
 } from 'jsx-to-md'
 import {
-  getDemoDesc,
+  getCodeDemoDesc,
+  getCodeDemoPrefix,
   getDocHref,
   getFormatterText,
   getInterpolationVariable,
@@ -20,11 +21,7 @@ import {
 
 function CodeDemo(props: { isDot?: boolean }) {
   const { isDot } = props
-  let prefix = 't('
-
-  if (isDot) {
-    prefix = `t.t('custom-key', `
-  }
+  const prefix = getCodeDemoPrefix(isDot)
 
   return (
     <CodeBlock
@@ -82,10 +79,10 @@ export default function Principle() {
       )}
       <Break />
       <Break />
-      {getDemoDesc()}
+      {getCodeDemoDesc()}
       <CodeDemo />
       <Break />
-      {getDemoDesc(true)}
+      {getCodeDemoDesc(true)}
       <CodeDemo isDot />
       <Bold>{tr('函数API')}</Bold>：
       {tr(
