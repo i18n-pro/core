@@ -70,7 +70,14 @@ async function translateController({
     return
   }
 
-  const trTextRes = extraTexts(filepaths, funcName)
+  const {
+    allTextSuccess,
+    textSuccess,
+    textError,
+    keySuccess,
+    keyError,
+    keyTextMap,
+  } = extraTexts(filepaths, funcName)
 
   const translateConfig = getTranslateConfig()
 
@@ -81,11 +88,13 @@ async function translateController({
     codeLocaleMap: translateConfig.codeLocaleMap,
   })
 
-  const translateRes = await translateTextsToLangsImpl(
-    trTextRes.textSuccess,
-    sourceLangs,
+  const translateRes = await translateTextsToLangsImpl({
+    texts: textSuccess,
+    customKeys: keySuccess,
+    keyTextMap,
+    langsProp: sourceLangs,
     incrementalMode,
-  )
+  })
 
   const { success, error, langs, textErrorMsg } = translateRes
 
@@ -101,40 +110,37 @@ async function translateController({
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts.json'),
-    fileContent: trTextRes.textSuccess,
+    fileContent: allTextSuccess,
     showName: t(
       '提取的翻译文案({0})',
-      chalk.greenBright(trTextRes.textSuccess.length),
+      chalk.greenBright(allTextSuccess.length),
     ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'texts-error.json'),
-    fileContent: trTextRes.textError,
+    fileContent: textError,
     showName: t(
       '提取的编写不规范的翻译文案({0})',
-      chalk.redBright(trTextRes.textError.length),
+      chalk.redBright(textError.length),
     ),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'keys.json'),
-    fileContent: trTextRes.textSuccess,
-    showName: t(
-      '提取的自定义key({0})',
-      chalk.greenBright(trTextRes.keySuccess.length),
-    ),
+    fileContent: keySuccess,
+    showName: t('提取的自定义key({0})', chalk.greenBright(keySuccess.length)),
     indentSize,
   })
 
   writeFilesSync({
     filepath: path.join(outputPath, logDirname, 'keys-error.json'),
-    fileContent: trTextRes.textError,
+    fileContent: keyError,
     showName: t(
       '提取的编写不规范的自定义key({0})',
-      chalk.redBright(trTextRes.keyError.length),
+      chalk.redBright(keyError.length),
     ),
     indentSize,
   })

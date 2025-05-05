@@ -308,49 +308,133 @@ function mergeTranslateLog(
 
 /**
  * 翻译多个文本到多个语言
- * @param texts 需要翻译的文本内容
- * @param langsProp 已翻译的语言包
- * @param incrementalMode 是否增量模式
- * @returns
+ * @param props
  */
-export async function translateTextsToLangsImpl(
-  texts: string[],
-  langsProp: Langs,
-  incrementalMode: boolean,
-) {
+export async function translateTextsToLangsImpl(props: {
+  /** 普通的文案 */
+  texts: string[]
+  /**  自定义key与文案的映射(一对一) */
+  keyTextMap: Record<string, string>
+  /** 自定义key列表 */
+  customKeys: string[]
+  /** 已翻译的语言包 */
+  langsProp: Langs
+  /** 是否增量模式 */
+  incrementalMode: boolean
+}) {
+  const { texts, customKeys, keyTextMap, langsProp, incrementalMode } = props
   const { from, to: tos, codeLocaleMap = {} } = config
 
   const success = {}
   const error = {}
   const textErrorMsg = {}
   const langs = {}
-  const textsMap = incrementalMode
-    ? texts.reduce((res, item) => {
-        res[item] = true
-        return res
-      }, {})
-    : {}
+
+  // 标识文案即key的key是否存在
+  const textIsExist = texts.reduce((res, text) => {
+    res[text] = true
+    return res
+  }, {})
+
+  // 标识自定义key的key是否存在
+  const keyIsExist = customKeys.reduce((res, text) => {
+    res[text] = true
+    return res
+  }, {})
 
   try {
     for (const to of tos) {
       const locale = codeLocaleMap[to] || to
       const lang = langsProp[locale] || {}
-      // 过滤已翻译的字段
-      const filterTexts = incrementalMode
-        ? texts.filter((text) => !lang[text])
-        : texts
-      // 根据最新的文本，过滤已翻译中被移除的字段
-      const filterLang = incrementalMode
-        ? Object.entries(lang).reduce((res, [text, target]) => {
-            if (textsMap[text]) {
-              res[text] = target
+      // 自定义key待翻译的文案列表
+      const keyToTranslateText = []
+      // 自定义key，带翻译的文案和key的映射
+      const textKeysMap = {}
+      // 文案即key已翻译好的语言包
+      const translatedLang = {}
+      // 自定义key已翻译好的语言包
+      const keyTranslatedLang = {}
+      // 自定义key已翻译好的语言包基于文案即key的
+      const keyTranslatedLangCopy = {}
+      // 文案即key新翻译的语言包
+      const translateSuccess = {}
+      // 自定义key新翻译的语言包
+      const keyTranslateSuccess = {}
+
+      // 用于记录已翻译的语言包
+      Object.entries(lang).forEach(([key, translatedText]) => {
+        // 增量翻译模式
+        if (incrementalMode) {
+          // 文案即key的处理，没有内容的需要翻译
+          if (textIsExist[key]) {
+            // 记录已翻译的语言
+            translatedLang[key] = translatedText
+          }
+        }
+
+        // 自定义key的处理，如果本身存在，不管是不是增量模式都保留
+        if (keyIsExist[key]) {
+          // 记录已翻译的语言
+          keyTranslatedLang[key] = translatedText
+        }
+      })
+
+      // 文案即key待翻译的文案列表
+      // 增量时，翻译没有翻译过的，否则翻译所有的
+      const toTranslateText = incrementalMode
+        ? texts.reduce((res, key) => {
+            const translatedText = lang[key]
+            // 判断当前key是否有翻译内容
+            if (!translatedText) {
+              res.push(key)
             }
+
             return res
-          }, {})
-        : {}
+          }, [])
+        : [...texts]
+
+      // 增量翻译模式
+
+      // 自定义key的处理
+      customKeys.forEach((key) => {
+        const translatedText = lang[key]
+
+        // 增量模式下，key本身没有内容或者其文案没有翻译内容需要翻译
+        if (incrementalMode) {
+          // 判断当前key是否有翻译内容
+          if (!translatedText) {
+            // 当前自定义key对应的文案
+            const text = keyTextMap[key]
+            // 当前文案是否有翻译内容
+            const translatedText = lang[text]
+            if (!translatedText) {
+              keyToTranslateText.push(text)
+              const keys = textKeysMap[text] || []
+              keys.push(key)
+              textKeysMap[text] = keys
+            } else {
+              // 对于自定义key，文案本身有翻译内容，直接复用无需再翻译
+              keyTranslatedLangCopy[key] = translatedText
+            }
+          }
+        } else {
+          // 非增量模式下，自定义key没有翻译内容的，则需要翻译
+          if (!translatedText) {
+            // 当前自定义key对应的文案
+            const text = keyTextMap[key]
+            keyToTranslateText.push(text)
+            const keys = textKeysMap[text] || []
+            keys.push(key)
+            textKeysMap[text] = keys
+          }
+        }
+      })
+
+      // 所有待翻译的文案
+      const allToTranslateText = [...keyToTranslateText, ...toTranslateText]
 
       const res = await translateTextsToLang({
-        texts: filterTexts,
+        texts: allToTranslateText,
         from,
         to,
       })
@@ -360,6 +444,23 @@ export async function translateTextsToLangsImpl(
         error: _error,
         textErrorMsg: _textErrorMsg,
       } = res
+
+      Object.entries(_success).forEach(([text, target]) => {
+        // 文案即key的翻译结果
+        if (toTranslateText.includes(text)) {
+          translateSuccess[text] = target
+        }
+
+        // 自定义key的翻译结果
+        if (keyToTranslateText.includes(text)) {
+          // 当前文案对应的自定义key的列表
+          const keys = textKeysMap[text]
+          keys?.forEach((key) => {
+            // 记录自定义key的翻译结果
+            keyTranslateSuccess[key] = target
+          })
+        }
+      })
 
       // 记录翻译成功的信息
       mergeTranslateLog(locale, _success, success)
@@ -372,8 +473,11 @@ export async function translateTextsToLangsImpl(
 
       // 合并翻译成功的和原有已翻译的
       langs[locale] = {
-        ...filterLang,
-        ..._success,
+        ...keyTranslatedLang, // 自定义key已翻译的
+        ...keyTranslatedLangCopy, // 自定义key已翻译的，基于文案即key的
+        ...keyTranslateSuccess, // 自定义key新翻译的
+        ...translatedLang, // 文案即key已翻译的
+        ...translateSuccess, // 文案即key新翻译的
       }
     }
   } catch (error) {

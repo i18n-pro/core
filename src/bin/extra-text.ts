@@ -150,13 +150,19 @@ export default function extraTexts(
   filepaths: string[],
   funcName = 't',
 ): {
+  allTextSuccess: string[] // 所有文案正确的列表
   textSuccess: string[] // 正确的列表
   textError: string[] // 错误的列表
+  keyTextSuccess: string[] // 自定义key的文案
   keySuccess: string[] // 正确的列表
   keyError: string[] // 错误的列表
+  textKeyMap: Record<string, string[]> // 文案与自定义key的映射（可以是一对多）
+  keyTextMap: Record<string, string> // 自定义key与文案的映射(一对一)
 } {
-  let textSuccess: string[] = []
+  const textSuccess: string[] = []
   let textError: string[] = []
+  // 记录自定义key的文案
+  const keyTextSuccess = []
   let keySuccess: string[] = []
   let keyError: string[] = []
   const keyTextMap: Record<string, string> = {}
@@ -172,21 +178,23 @@ export default function extraTexts(
       funcName,
       keyTextMap,
       textKeyMap,
-      textSuccess,
+      keyTextSuccess,
       textError,
       keySuccess,
       keyError,
     )
   })
 
-  textSuccess = Array.from(new Set(textSuccess))
+  const allTextSuccess = Array.from(
+    new Set([...textSuccess, ...keyTextSuccess]),
+  )
   textError = Array.from(new Set(textError))
   keySuccess = Array.from(new Set(keySuccess))
   keyError = Array.from(new Set(keyError))
 
   logSuccess(
     chalk.greenBright(t('解析符合要求的翻译文案数:')),
-    textSuccess.length,
+    allTextSuccess.length,
   )
   logSuccess(
     chalk.greenBright(t('解析不符合要求的翻译文案数:')),
@@ -202,9 +210,13 @@ export default function extraTexts(
   )
 
   return {
-    textSuccess,
+    allTextSuccess,
+    textSuccess: Array.from(new Set(textSuccess)),
     textError,
+    keyTextSuccess: Array.from(new Set(keyTextSuccess)),
     keySuccess,
     keyError,
+    textKeyMap,
+    keyTextMap,
   }
 }
