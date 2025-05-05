@@ -1,3 +1,4 @@
+import { describe, it, vi, expect, beforeEach, afterEach } from 'vitest'
 import https from 'https'
 import {
   binTranslate,
@@ -126,7 +127,13 @@ describe('验证翻译实现', () => {
         } as UnionTranslatorConfig)
 
         // 执行翻译
-        const res = await translateTextsToLangsImpl(texts, langs, true)
+        const res = await translateTextsToLangsImpl({
+          texts,
+          langsProp: langs,
+          incrementalMode: true,
+          customKeys: [],
+          keyTextMap: {},
+        })
 
         // 未发起接口请求
         expect(spyRequest).toHaveBeenCalledTimes(0)
@@ -282,7 +289,13 @@ describe('验证翻译实现', () => {
         } as UnionTranslatorConfig)
 
         // 执行翻译
-        const res = await translateTextsToLangsImpl(texts, existLangs, true)
+        const res = await translateTextsToLangsImpl({
+          texts,
+          langsProp: existLangs,
+          incrementalMode: true,
+          customKeys: [],
+          keyTextMap: {},
+        })
 
         // 验证模拟请求
         expectCallback?.()
@@ -321,7 +334,13 @@ describe('验证翻译实现', () => {
       } as UnionTranslatorConfig)
 
       // 执行翻译
-      const res = await translateTextsToLangsImpl(texts, langs, false)
+      const res = await translateTextsToLangsImpl({
+        texts,
+        langsProp: langs,
+        incrementalMode: false,
+        customKeys: [],
+        keyTextMap: {},
+      })
       // 验证模拟请求
       expectCallback?.()
       // 语言包
@@ -466,7 +485,13 @@ describe('验证翻译实现', () => {
         } as UnionTranslatorConfig)
 
         // 执行翻译
-        const res = await translateTextsToLangsImpl(texts, {}, false)
+        const res = await translateTextsToLangsImpl({
+          texts,
+          langsProp: {},
+          incrementalMode: false,
+          customKeys: [],
+          keyTextMap: {},
+        })
 
         // 验证模拟请求
         expectCallback?.()
@@ -578,7 +603,13 @@ describe('验证翻译实现', () => {
         } as UnionTranslatorConfig)
 
         // 执行翻译
-        const res = await translateTextsToLangsImpl(texts, existLangs, true)
+        const res = await translateTextsToLangsImpl({
+          texts,
+          langsProp: existLangs,
+          incrementalMode: true,
+          customKeys: [],
+          keyTextMap: {},
+        })
 
         // 验证模拟请求
         expectCallback?.()
@@ -630,7 +661,13 @@ describe('验证翻译实现', () => {
         } as UnionTranslatorConfig)
 
         // 执行翻译
-        const res = await translateTextsToLangsImpl(texts, langs, false)
+        const res = await translateTextsToLangsImpl({
+          texts,
+          langsProp: langs,
+          incrementalMode: false,
+          customKeys: [],
+          keyTextMap: {},
+        })
 
         // 验证模拟请求
         expectCallback?.()
@@ -917,7 +954,13 @@ describe('验证翻译实现', () => {
       )
 
       // 执行翻译
-      const res = await translateTextsToLangsImpl(texts, langs, false)
+      const res = await translateTextsToLangsImpl({
+        texts,
+        langsProp: langs,
+        incrementalMode: false,
+        customKeys: [],
+        keyTextMap: {},
+      })
 
       // 正常发起一次接口请求，这里可能不止一次
       expect(spyRequest).toHaveBeenCalledTimes(count)

@@ -431,7 +431,9 @@ export async function translateTextsToLangsImpl(props: {
       })
 
       // 所有待翻译的文案
-      const allToTranslateText = [...keyToTranslateText, ...toTranslateText]
+      const allToTranslateText = Array.from(
+        new Set([...keyToTranslateText, ...toTranslateText]),
+      )
 
       const res = await translateTextsToLang({
         texts: allToTranslateText,
