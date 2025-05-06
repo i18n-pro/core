@@ -147,90 +147,6 @@ describe('验证翻译实现', () => {
     )
   })
 
-  describe.skip('错误配置', () => {
-    it('错误配置translator', () => {
-      const spyConsole = vi.spyOn(binUtils, 'logError')
-      const spyExit = vi.spyOn(process, 'exit')
-      spyExit.mockImplementation((number) => {
-        throw `over`
-      })
-      try {
-        setTranslateConfig({
-          translator: 'xxx',
-        })
-      } catch (error) {
-        expect(error).toBe('over')
-      }
-
-      expect(spyExit).toHaveBeenLastCalledWith(1)
-
-      expect(spyConsole).toHaveBeenLastCalledWith(
-        expect.stringContaining(`translator = xxx`),
-      )
-
-      expect(spyConsole).toHaveBeenLastCalledWith(
-        expect.stringMatching(/不存在.+的配置项/),
-      )
-    })
-
-    describe('错误配置translatorConfig', () => {
-      it('未配置对应配置项', () => {
-        const spyConsole = vi.spyOn(binUtils, 'logError')
-        const spyExit = vi.spyOn(process, 'exit')
-        spyExit.mockImplementation(() => {
-          throw `over`
-        })
-        try {
-          setTranslateConfig({
-            translator: 'googlex',
-          })
-        } catch (error) {
-          expect(error).toBe('over')
-        }
-
-        expect(spyExit).toHaveBeenLastCalledWith(1)
-
-        expect(spyConsole).toHaveBeenLastCalledWith(
-          expect.stringContaining(`没有配置对应配置内容`),
-        )
-        expect(spyConsole).toHaveBeenLastCalledWith(
-          expect.stringContaining(`translator = baidu`),
-        )
-        expect(spyConsole).toHaveBeenLastCalledWith(
-          expect.stringContaining(`baiduConfig`),
-        )
-      })
-
-      it('配置了空的配置项', () => {
-        const spyConsole = vi.spyOn(binUtils, 'logError')
-        const spyExit = vi.spyOn(process, 'exit')
-        spyExit.mockImplementation(() => {
-          throw `over`
-        })
-        try {
-          setTranslateConfig({
-            translator: 'baidu',
-            baiduConfig: {},
-          })
-        } catch (error) {
-          expect(error).toBe('over')
-        }
-
-        expect(spyExit).toHaveBeenLastCalledWith(1)
-
-        expect(spyConsole).toHaveBeenLastCalledWith(
-          expect.stringContaining(`没有配置对应配置内容`),
-        )
-        expect(spyConsole).toHaveBeenLastCalledWith(
-          expect.stringContaining(`translator = baidu`),
-        )
-        expect(spyConsole).toHaveBeenLastCalledWith(
-          expect.stringContaining(`baiduConfig`),
-        )
-      })
-    })
-  })
-
   describe('有内容需要翻译', () => {
     type Item = [Translator, object]
 
@@ -241,8 +157,8 @@ describe('验证翻译实现', () => {
       ['aliyun', { from: 'zh', to: ['en'] }],
       ['microsoft', { from: 'zh', to: ['en'] }],
       ['google', { from: 'zh', to: ['en'] }],
-      ['googlex', { from: 'zh', to: ['en'] }],
-      ['openai', { from: 'zh', to: ['en'] }],
+      ['googlex', { from: 'zh', to: ['en'], proxy: 'http://localhost:8080' }],
+      ['openai', { from: 'zh', to: ['en'], proxy: 'http://localhost:8080' }],
     ]
 
     it.each(matrix)(
@@ -945,7 +861,7 @@ describe('验证翻译实现', () => {
             key: '',
             from: 'zh',
             to: ['en'],
-            delay: 0,
+            delay: 0.1,
           },
         },
         {

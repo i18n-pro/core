@@ -1,22 +1,23 @@
+import { vi, expect } from 'vitest'
 import { binGooglexTranslate } from '../../utils'
 import { MockRequestProps } from './utils'
 
-const { proxyObject } = binGooglexTranslate
+const { proxyGoogleXTranslate } = binGooglexTranslate
 
 export function googlexMockRequestImpl(props: MockRequestProps) {
   const { type } = props
-  const translateImpl: any = vi.spyOn(proxyObject, 'translate')
+  const translateImpl: any = vi.spyOn(proxyGoogleXTranslate, 'translate')
 
   switch (type) {
     case 'normal':
       {
-        const { to, langs } = props
+        const { langs } = props
 
         // 这里需要模拟 request 实现
-        translateImpl.mockImplementation((object) => {
+        translateImpl.mockImplementation((texts, { to }) => {
           const currentLang = langs[to]
 
-          return object.texts.map((text) => {
+          return texts.map((text) => {
             return { text: currentLang?.[text] }
           }, [] as Array<{ text: string }>)
         })

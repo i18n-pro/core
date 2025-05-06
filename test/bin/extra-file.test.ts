@@ -2,7 +2,7 @@ import { describe, it, vi, expect } from 'vitest'
 import path from 'path'
 import { binExtraFile, binUtils } from '../utils'
 
-const matchTestTsFileCount = 11
+const matchTestTsFileCount = 12
 
 describe('验证提取语提取文件', () => {
   describe('验证配置 entry 和 fileRegExp 的形式', () => {
@@ -60,7 +60,7 @@ describe('验证提取语提取文件', () => {
         input: ['**/*.test.ts', '!**/bin/*.test.ts'],
       })
 
-      expect(filepaths.length).toEqual(3)
+      expect(filepaths.length).toEqual(4)
     })
   })
 })

@@ -1,7 +1,13 @@
-import translate, { googleTranslateApi } from 'google-translate-api-x'
+import * as GoogleXTranslate from 'google-translate-api-x'
+import { type googleTranslateApi } from 'google-translate-api-x'
 import { BasicGooglexConfig } from '../../type'
 import { collectRes, getTranslatorName, handleTranslateFail } from './utils'
 import fetch from 'node-fetch'
+
+// 该对象用于测试时可以代理mock
+export const proxyGoogleXTranslate: typeof GoogleXTranslate = {
+  ...GoogleXTranslate,
+}
 
 const config: BasicGooglexConfig = {
   from: '',
@@ -38,17 +44,13 @@ export async function translateImpl(
     agent = createHttpsProxyAgent(proxy)
   }
 
-  return translate(texts, {
+  return proxyGoogleXTranslate.translate(texts, {
     from,
     to,
     requestOptions: {
       agent,
     },
   })
-}
-
-export const proxyObject = {
-  translate: translateImpl,
 }
 
 /**
@@ -70,7 +72,7 @@ export async function translateByGooglex(props: {
 
   try {
     console.log(t('翻译中...'))
-    const res = await proxyObject.translate({
+    const res = await translateImpl({
       ...props,
       proxy: config.proxy,
     })

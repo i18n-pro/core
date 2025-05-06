@@ -130,7 +130,7 @@ export function mockRequest(props: {
     | 'onError' // 模拟整个请求错误
     | 'resolveError' // 模拟解析数据错误
   errorMsg?: string // 如果需要模拟请求错误，可以设置错误信息
-  getResData?: (requestData: string) => any // 根据请求参数动态返回响应数据，配置了该属性 data 将失效
+  getResData?: (requestData: any) => any // 根据请求参数动态返回响应数据，配置了该属性 data 将失效
   translator?: Translator
 }) {
   const {
