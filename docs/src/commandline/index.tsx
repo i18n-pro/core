@@ -13,6 +13,8 @@ import {
   CodeBlock,
 } from 'jsx-to-md'
 import { getTranslationText, initI18n, getConfigName } from '../utils'
+import { RecordItem } from './types'
+import { getProxyConfig } from './utils'
 
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
@@ -113,11 +115,6 @@ function getCommonConfig() {
     },
   ]
 }
-
-type RecordItem = Record<
-  'name' | 'type' | 'required' | 'default' | 'description',
-  string | JSX.Element | number
->
 
 function BasicConfig() {
   const data: RecordItem[] = [
@@ -337,27 +334,7 @@ function Output() {
 
 function GooglexConfig() {
   const data: RecordItem[] = [
-    {
-      name: 'proxy',
-      type: 'string',
-      required: tr('否'),
-      default: '-',
-      description: (
-        <>
-          {tr('配置代理服务')}
-          <br />
-          <br />
-          {tr(
-            '部分国家和地区不能正常访问{0}服务，需要配置代理才行',
-            ` \`${tr('谷歌')}\` `,
-          )}
-          <br />
-          {tr('格式')}：`protocol://hostname:port`
-          <br />
-          {tr('例如')}：`http://127.0.0.1:8087`
-        </>
-      ),
-    },
+    getProxyConfig(tr('谷歌')),
     {
       name: 'from',
       type: 'string',
@@ -436,27 +413,7 @@ function OpenAIConfig() {
         </>
       ),
     },
-    {
-      name: 'proxy',
-      type: 'string',
-      required: tr('否'),
-      default: '-',
-      description: (
-        <>
-          {tr('配置代理服务')}
-          <br />
-          <br />
-          {tr(
-            '部分国家和地区不能正常访问{0}服务，需要配置代理才行',
-            ' `OpenAI` ',
-          )}
-          <br />
-          格式：`protocol://hostname:port`
-          <br />
-          例如：`http://127.0.0.1:8087`
-        </>
-      ),
-    },
+    getProxyConfig('OpenAI'),
     {
       name: 'from',
       type: 'string',
