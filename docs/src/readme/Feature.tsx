@@ -65,7 +65,7 @@ export default function Vision() {
               <Bold>keyless</Bold>：
               {tr(
                 '{0}，仅{1}时才需{2}',
-                getTranslationTextKey(true),
+                render(<Bold>{getTranslationTextKey(true)}</Bold>),
                 getPolysemyText(true),
                 getCustomKey(true),
               )}

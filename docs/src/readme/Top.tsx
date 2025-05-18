@@ -2,7 +2,6 @@ import { Image, Link, Break } from 'jsx-to-md'
 import { linkObj, imageObj } from '../constants'
 import { renderLanguage } from '../utils'
 
-// TODO 更新示例图片
 export default function Top() {
   const props = {
     align: 'center',
@@ -11,7 +10,7 @@ export default function Top() {
   return (
     <div {...props}>
       <p style={{ fontSize: 18 }}>
-        {tr('适用于 JavaScript 的轻量、简单、灵活、自动翻译的国际化工具')}
+        {tr('开箱即用的轻量级 JavaScript 国际化自动翻译解决方案')}
       </p>
       <Break />
       {renderLanguage('README')}
@@ -42,10 +41,12 @@ export default function Top() {
       </Link>
       <Break />
       <Break />
-      <Image
-        alt="demo"
-        src="https://s3.bmp.ovh/imgs/2023/06/06/c3261b545825fc71.gif"
-      />
+      <a href="https://ibb.co/hxDQ1w69">
+        <img
+          src="https://i.ibb.co/JW56Fg1t/2025-05-18-175603.gif"
+          alt="2025-05-18-175603"
+        />
+      </a>
       <Break />
     </div>
   )
