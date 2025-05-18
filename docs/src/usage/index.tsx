@@ -40,7 +40,7 @@ pnpm i i18n-pro`}
 function LinkApi() {
   return (
     <>
-      <H2>{`2. ${tr('接入函数API')}`}</H2>
+      <H2>{`2. ${tr('接入函数 API')}`}</H2>
       <H3>{tr('初始化')}</H3>
       <CodeBlock
         code={`

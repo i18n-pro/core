@@ -13,8 +13,8 @@ import {
   getCodeDemoPrefix,
   getDocHref,
   getFormatterText,
-  getInterpolationVariable,
   getTranslationText,
+  getTypeTag,
   getTypeTagCode,
   getVariableInterpolation,
 } from '../utils'
@@ -27,24 +27,18 @@ function CodeDemo(props: { isDot?: boolean }) {
     <CodeBlock
       langType="js"
       code={`
-/** ${tr('普通字符串')} */
-${prefix}'hello world')
-${prefix}"hello world")
-${prefix}\`hello world\`)
+// ${tr('普通字符串')}
+${prefix}'${tr('你好世界')}')
+${prefix}"${tr('你好世界')}")
+${prefix}\`${tr('你好世界')}\`)
 
-
-/** ${tr('支持{0}', getVariableInterpolation(true))} */
-${prefix}'hello {0}', '${tr('开发者朋友们')}'),
+// ${getVariableInterpolation(true)}
+${prefix}'${tr('嗨，')}{0}', '${tr('开发者朋友们')}')
 ${prefix}'${tr(
         '这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持',
       )}', ' \`i18n-pro\` ', '${tr('使用')}', \`${tr('对你有帮助')}\`, ' ⭐️ ')
 
-
-/** ${tr(
-        '{0}类型标记，需配合对应的{1}',
-        getInterpolationVariable(true),
-        getFormatterText(true),
-      )} */
+// ${tr('{0}和{1}', getTypeTag(true), getFormatterText(true))}
 ${getTypeTagCode(isDot)}`}
     />
   )
@@ -56,15 +50,15 @@ export default function Principle() {
       <H1>{tr('原理')}</H1>
       <BlockQuote>
         {tr(
-          '{0}是当前库的核心特性之一，想了解更多，{1}',
+          '{0}是当前库的核心特性之一，{1}',
           ` \`${tr('自动翻译')}\` `,
-          render(<Link href={getDocHref('Q&A')}>{tr('请查看')}</Link>),
+          render(<Link href={getDocHref('Q&A')}>{tr('了解更多')}</Link>),
         )}
       </BlockQuote>
       <Break />
       <Break />
       {tr('该库主要由两部分构成')}
-      <List items={['U', tr('命令行工具'), tr('函数API')]} />
+      <List items={['U', tr('命令行工具'), tr('函数 API')]} />
       <Bold>{tr('命令行工具')}</Bold>：
       {tr(
         '根据指定规则（正则匹配）解析出需要翻译的文案，并通过翻译平台将文案翻译到指定目标语言，最后生成语言包文件',
@@ -84,9 +78,9 @@ export default function Principle() {
       <Break />
       {getCodeDemoDesc(true)}
       <CodeDemo isDot />
-      <Bold>{tr('函数API')}</Bold>：
+      <Bold>{tr('函数 API')}</Bold>：
       {tr(
-        '将国际化语言包接入到项目中，由{0}、{1}和{2}构成',
+        '通过 {0}、{1}、{2} 接入多语言支持',
         ' `initI18n` ',
         ' `t` ',
         ' `setI18n` ',
@@ -96,16 +90,14 @@ export default function Principle() {
           'U',
           render(
             <>
-              <Bold>initI18n</Bold>：
-              {tr('用于初始化固定配置，最后返回包含如下 {0} 个 API 的对象', 2)}
+              <Bold>initI18n</Bold>：{tr('初始化配置，返回 API 对象')}
             </>,
           ),
           render(
             <>
               <Bold>t</Bold>：
               {tr(
-                '用于包裹{0}实现国际化，也作为命令行匹配{1}规则的标识',
-                getTranslationText(),
+                '包裹{0}实现国际化，也是命令行匹配标识',
                 getTranslationText(),
               )}
             </>,
@@ -118,10 +110,9 @@ export default function Principle() {
         ]}
       />
       {tr(
-        '所以{0}和{1}这两者搭配使用效果更佳，也正是由于这样的结构设计，使得{2}库可以很方便集成到任何的{3}项目中',
+        '{0}与{1}搭配使用，轻松集成到任何{2}项目中',
         ` \`${tr(`命令行工具`)}\` `,
-        ` \`${tr(`函数API`)}\` `,
-        ' `i18n-pro` ',
+        ` \`${tr(`函数 API`)}\` `,
         ' `JavaScript` ',
       )}
     </>

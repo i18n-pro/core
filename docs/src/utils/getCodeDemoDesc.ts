@@ -1,7 +1,5 @@
-import { getCustomKey, getTranslationText } from './getTranslationConstants'
+import { getCustomKey, getTranslationTextKey } from './getTranslationConstants'
 
 export default function getCodeDemoDesc(isDot = false) {
-  return isDot
-    ? tr('{0}的示例', getCustomKey())
-    : tr('{0}即{1}的示例', getTranslationText(), ' `key` ')
+  return tr('以下为{0}的示例', isDot ? getCustomKey() : getTranslationTextKey())
 }

@@ -55,22 +55,22 @@ export default function AutoTranslate(props: { order: string }) {
       )}
       <Break />
       <Break />
-      {tr('但是仅以{0}作为{1}存在如下缺点：', getTranslationText(), ' `key` ')}
+      <Demo />
+      {tr('但是仅以{0}作为{1}存在显著缺点：', getTranslationText(), ' `key` ')}
       <Break />
       <Break />
       <Break />
-      <List items={['U', shortcoming1, tr('生成的语言包较大')]} />
+      <List items={['U', shortcoming1]} />
       <Break />
       <Break />
       {tr(
         '为了解决{0}新增了{1}属性{2}的解决方案',
         ` \`${shortcoming1}\` `,
-        ' `t.t` ',
+        ' `t` ',
         ` ${getCustomKey()} `,
       )}
       <Break />
       <Break />
-      <Demo />
       <Demo isDot />
       <Break />
       <Break />
@@ -78,21 +78,6 @@ export default function AutoTranslate(props: { order: string }) {
         '{0}的方式生成的语言包，就算是{1}调整了再次翻译也不会影响到已生成的语言包',
         ` ${getCustomKey()} `,
         getTranslationText(),
-      )}
-      <Break />
-      <Break />
-
-      {tr('当前设定下也会有如下优点')}
-      <List
-        items={[
-          'U',
-          tr('源码可读性强'),
-          tr('{0}本身语言无需生成语言包', getTranslationText()),
-        ]}
-      />
-      {tr(
-        '如果你不能接受上述的不足，那么其他国际化方案更适合你；如果你能接受上述的不足，那么我相信{0}会带给你非常不错的开发体验',
-        ' `i18n-pro` ',
       )}
     </>
   )

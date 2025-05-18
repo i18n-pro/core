@@ -6,8 +6,8 @@ export default function License() {
       <H1>License</H1>
       <Link href="./LICENSE">MIT</Link>
       <Break />
-      <Break />
-      Copyright (c) 2022-present Eyelly Wu
+      <Break />© 2022-present{' '}
+      <Link href="https://github.com/eyelly-wu">Eyelly Wu</Link>
     </>
   )
 }

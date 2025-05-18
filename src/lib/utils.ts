@@ -142,7 +142,7 @@ export function getTextFromFormatter(props: {
 }
 
 /**
- * translate 函数API的具体实现
+ * translate 函数 API的具体实现
  * @param i18nState 当前i18n所有状态
  * @param key key
  * @param text Original text

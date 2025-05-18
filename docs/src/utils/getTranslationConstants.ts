@@ -4,12 +4,17 @@ export function getText(text: string, normal = false) {
 }
 
 export function getTranslationText(normal = false) {
-  const text = tr('翻译文案')
+  const text = tr('文案')
+  return getText(text, normal)
+}
+
+export function getTranslationTextKey(normal = false) {
+  const text = tr('文案即 key')
   return getText(text, normal)
 }
 
 export function getCustomKey(normal = false) {
-  const text = tr('自定义key')
+  const text = tr('自定义 key')
   return getText(text, normal)
 }
 
@@ -35,5 +40,10 @@ export function getFormatterText(normal = false) {
 
 export function getTypeTag(normal = false) {
   const text = tr('类型标记')
+  return getText(text, normal)
+}
+
+export function getPolysemyText(normal = false) {
+  const text = tr('一词多义')
   return getText(text, normal)
 }

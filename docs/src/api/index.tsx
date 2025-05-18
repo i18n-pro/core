@@ -224,7 +224,7 @@ export default function API(props) {
 
   return (
     <>
-      <H1 skip>{tr('函数API')}</H1>
+      <H1 skip>{tr('函数 API')}</H1>
       <TableOfContents text={tr('目录')} open={false} />
       <APIList />
       <FunctionType />
