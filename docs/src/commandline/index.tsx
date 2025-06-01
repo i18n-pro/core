@@ -10,16 +10,15 @@ import {
   Link,
   render,
   Break,
-  CodeBlock,
 } from 'jsx-to-md'
-import { getTranslationText, initI18n, getConfigName } from '../utils'
+import { getTranslationText, initI18n, getConfigName, getText } from '../utils'
 import { RecordItem } from './types'
 import { getProxyConfig } from './utils'
 
 function getCommonTableColumns() {
   const commonTableColumns: Column[] = [
     {
-      title: tr('名称'),
+      title: tr('配置项'),
       fieldName: 'name',
       align: 'center',
     },
@@ -129,8 +128,8 @@ function BasicConfig() {
           <br />
           <br />
           {tr(
-            '如果在使用{0}函数没有重命名，这里不需要调整，否则这里配置为重命名后的函数名',
-            ' `t` ',
+            '若未重命名{0}函数，无需调整。若已重命名，请填写新函数名',
+            getText('t'),
           )}
         </>
       ),
@@ -147,14 +146,7 @@ function BasicConfig() {
       type: 'RegExp',
       required: tr('否'),
       default: ' `/.[jt]s$/` ',
-      description: (
-        <>
-          {tr('匹配文件名的正则表达式')}
-          <br />
-          <br />
-          {tr('用于筛选需要被翻译的文件')}
-        </>
-      ),
+      description: <>{tr('用于筛选需翻译文件的文件名正则表达式')}</>,
     },
     {
       name: 'input',
@@ -163,13 +155,13 @@ function BasicConfig() {
       default: '-',
       description: (
         <>
-          {tr('可以通过{0}语法来筛选需要被翻译的文件', ' `glob` ')}
+          {tr('支持{0}语法筛选文件', getText('glob'))}
           <br />
           <br />
           {tr(
-            '配置该属性后，{0}和{1}将会失效，可根据应用场景决定使用哪种方式',
-            ' `entry` ',
-            ' `fileRegExp` ',
+            '配置该属性后，{0}和{1}将会失效，请根据实际场景选择',
+            getText('entry'),
+            getText('fileRegExp'),
           )}
         </>
       ),

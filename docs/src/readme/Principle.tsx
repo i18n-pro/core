@@ -38,7 +38,7 @@ ${prefix}'${tr(
         '这是{0}，欢迎{1}，如果你觉得{2}，请给予{3}支持',
       )}', ' \`i18n-pro\` ', '${tr('使用')}', \`${tr('对你有帮助')}\`, ' ⭐️ ')
 
-// ${tr('{0}和{1}', getTypeTag(true), getFormatterText(true))}
+// ${getTypeTag(true)}
 ${getTypeTagCode(isDot)}`}
     />
   )
