@@ -2,7 +2,7 @@
   <p style="font-size: 18px;">An out-of-the-box, lightweight JavaScript i18n auto-translation solution</p>
 
 
-English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/README_zh-CN.md)
+English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/README_zh-CN.md)
 
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
@@ -47,13 +47,13 @@ Make international access easy and enjoyable 😄💪🏻
 
 # Live Demo
 
-* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/main?file=README.md)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo?file=README.md)
+* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/v3?file=README.md)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo/tree/v3?file=README.md)
 
 
 # Principle
 
-> `automatic-translation`  is one of the core features of the current library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/Q&A.md)
+> `automatic-translation`  is one of the core features of the current library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/Q&A.md)
 
 The library is mainly composed of two parts
 * Command Line Tool
@@ -61,7 +61,7 @@ The library is mainly composed of two parts
 
 **Command Line Tool**：Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate language pack files
 
-An example of parsing text using  [Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/MATCH_RULE.md)  is as follows:
+An example of parsing text using  [Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/MATCH_RULE.md)  is as follows:
 
 The following is an example of  `Copywriting is key` 
 ```js
@@ -108,14 +108,14 @@ t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Pl
  `Command Line Tool`  works with  `Function API`  and easily integrate into any  `JavaScript`  project
 # Help Document
 
-* [🚀 Quick Start](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/USAGE.md)
-* [💻 Command Line](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/COMMAND_LINE.md)
-* [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/API.md)
-* [📝 Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/MATCH_RULE.md)
-* [📊 Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/OUTPUT_LOG.md)
-* [❓ Frequently Asked Questions](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/Q&A.md)
+* [🚀 Quick Start](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/USAGE.md)
+* [💻 Command Line](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/COMMAND_LINE.md)
+* [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/API.md)
+* [📝 Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/MATCH_RULE.md)
+* [📊 Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/OUTPUT_LOG.md)
+* [❓ Frequently Asked Questions](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/Q&A.md)
 * [🤝 Contribution Guidelines](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES.md)
-* [📋 Changelog](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/CHANGELOG.md)
+* [📋 Changelog](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/CHANGELOG.md)
 
 
 # License

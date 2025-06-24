@@ -139,7 +139,7 @@ interface Translate {
     <tr>
       <td>text</td>
       <td>
-        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
+        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
       </td>
     </tr>
     <tr>
@@ -178,7 +178,7 @@ Get  <code>Custom key</code>  internationalized documentary<br />The internal wi
     <tr>
       <td>text</td>
       <td>
-        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
+        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
       </td>
     </tr>
     <tr>

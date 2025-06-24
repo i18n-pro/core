@@ -2,7 +2,7 @@
 # Changelog
 
 
-English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/CHANGELOG_zh-CN.md)
+English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/CHANGELOG_zh-CN.md)
 
 
 <details >
@@ -311,7 +311,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/do
 
 <h4 id="120-documentation-added">Added</h4>
 
-* Added documentation for [Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/OUTPUT_LOG.md)
+* Added documentation for [Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/OUTPUT_LOG.md)
 
 
 ## [1.1.1] - 2022-06-25

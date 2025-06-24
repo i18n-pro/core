@@ -80,14 +80,14 @@ const keyText = t.t('custom-key', 'hello key')
 
 
 ## 3. Initialize Command Line Configuration File
-Enter the following command at the command line terminal, [more commands](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/COMMAND_LINE.md#command-list)
+Enter the following command at the command line terminal, [more commands](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/COMMAND_LINE.md#command-list)
 ```bash
 npx i18n init 
 ```
 After the command execution is successful, a  `i18nrc.ts`  file will be generated in the current directory. The default configuration will be as follows:
 ```js
-import { fileURLToPath } from 'url'
-import { join, dirname } from 'path'
+import { fileURLToPath } from 'node:url'
+import { join, dirname } from 'node:path'
 import { Config } from 'i18n-pro'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -108,14 +108,14 @@ export default {
     codeLocaleMap: {
       'zh-CN': 'zh',
     },
-    // proxy: 'http://127.0.0.1:1087',
+    // proxy: 'http://127.0.0.1:7997',
   },
 } as Config
 ```
 
 
 ## 4. Adjust  `i18nrc.ts`  Configuration
-Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/COMMAND_LINE.md#1--i18nrcts--configuration) of configuration items
+Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/COMMAND_LINE.md#1--i18nrcts--configuration) of configuration items
 
 ## 5. Execute Translation Command
 
@@ -255,7 +255,7 @@ setI18n({
 
 ## 8. Demo
 This section only introduces basic usage. For more advanced usage, please refer to the subsequent documentation
-* Please refer to  [Live Demo](https://github.com/i18n-pro/core/tree/v3.0.0-alpha.0#live-demo)  for real examples
+* Please refer to  [Live Demo](https://github.com/i18n-pro/core/tree/v3.0.0-alpha.1#live-demo)  for real examples
 * This document supports multilingual implementations based on  `i18n-pro`  and  [jsx-to-md](https://github.com/eyelly-wu/jsx-to-md) 
 * The console output of  `Command Line Tool`  also supports multilingual
    * The command line interactive interface of the Chinese version can be viewed through the command  `npx i18n h -L zh` ![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")
