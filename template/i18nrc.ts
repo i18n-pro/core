@@ -1,5 +1,5 @@
-import { fileURLToPath } from 'url'
-import { join, dirname } from 'path'
+import { fileURLToPath } from 'node:url'
+import { join, dirname } from 'node:path'
 import { Config } from '../src/type'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -20,6 +20,6 @@ export default {
     codeLocaleMap: {
       'zh-CN': 'zh',
     },
-    // proxy: 'http://127.0.0.1:1087',
+    // proxy: 'http://127.0.0.1:7997',
   },
 } as Config
