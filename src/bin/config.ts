@@ -1,4 +1,4 @@
-import { join, resolve } from 'path'
+import { join, resolve, dirname } from 'path'
 import fs, { unlinkSync } from 'fs'
 import { build } from 'esbuild'
 import { pathToFileURL } from 'url'
@@ -27,7 +27,8 @@ const tsConfigPath = join(process.cwd(), TS_CONFIG_NAME)
 const dynamicImport = new Function('path', 'return import(path)')
 
 async function loadTsEsmConfig(tsPath: string) {
-  const outputPath = join(process.cwd(), `i18nrc.mjs`)
+  const outputDir = dirname(tsPath)
+  const outputPath = join(outputDir, `i18nrc.mjs`)
   const url = pathToFileURL(resolve(outputPath)).href
   const isTest = checkIsInTest()
   const isPkg = checkIsInPkg()
