@@ -16,14 +16,14 @@ export default function LiveDemo() {
       <UnorderedList>
         <ListItem>
           <Link
-            href={`https://codesandbox.io/p/github/i18n-pro/core-demo/main?file=${filename}`}
+            href={`https://codesandbox.io/p/github/i18n-pro/core-demo/v3?file=${filename}`}
           >
             Open in CodeSandbox
           </Link>
         </ListItem>
         <ListItem>
           <Link
-            href={`https://stackblitz.com/github/i18n-pro/core-demo?file=${filename}`}
+            href={`https://stackblitz.com/github/i18n-pro/core-demo/tree/v3?file=${filename}`}
           >
             <Image
               alt="Open in StackBlitz"
