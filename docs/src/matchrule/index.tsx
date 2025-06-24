@@ -1,10 +1,12 @@
-import { H1, CodeBlock, TableOfContents, List, Break } from 'jsx-to-md'
+import { H1, CodeBlock, TableOfContents, List, Break, H2, H3 } from 'jsx-to-md'
 import {
   getCodeDemoDesc,
   getTranslationText,
   getVariableInterpolation,
   initI18n,
   getCodeDemoPrefix,
+  getText,
+  getCustomKey,
 } from '../utils'
 
 function MatchAble(props: { isDot?: boolean }) {
@@ -17,9 +19,9 @@ function MatchAble(props: { isDot?: boolean }) {
       <Break />
       {getCodeDemoDesc(isDot)}
       <CodeBlock
-        code={`${prefix}'xxx')
-${prefix}"xxx")
-${prefix}\`xxx\`)`}
+        code={`${prefix}'hello world')
+${prefix}"hello world")
+${prefix}\`hello world\`)`}
       />
     </>
   )
@@ -38,7 +40,7 @@ function NotMatchAble(props: { isDot?: boolean }) {
         code={`const foo = 'foo'
 const fooFunc = (x:string) => x
 
-// ${tr('不满足纯字符串')}
+// ${tr('非字符串字面量')}
 ${prefix}foo)
 ${prefix}'xxx' + foo)
 ${prefix}\`${'${foo}'}\`)
@@ -48,7 +50,7 @@ ${prefix}fooFunc(foo))
 ${prefix}'x\\nx')
 ${prefix}'x\\tx')
 
-// ${tr('前后包含空格')}
+// ${tr('包含首尾空白字符')}
 ${prefix}' xxx')
 ${prefix}'xxx  ')
 ${prefix}' xxx ')
@@ -85,39 +87,49 @@ function VariableInterpolation(props: { isDot?: boolean }) {
 export default function MatchRule(props) {
   initI18n(props)
 
+  const commonRequirement1 = tr('必须为字符串字面量')
+  const commonRequirement2 = tr(
+    '不得包含{0}表达式或变量',
+    getText('JavaScript'),
+  )
+
   return (
     <>
       <H1 skip>{tr('匹配规则')}</H1>
       <TableOfContents text={tr('目录')} open={false} />
-      {tr('{0}和{1}函数的{2}参数的要求', ' `t` ', ' `t.t` ', ' `text` ')}：
+      <H2>{tr('规则')}</H2>
+      <H3>{tr('参数{0}规则', getText('text'))}</H3>
+      {tr('适用于{0}和{1}函数：', getText('t'), getText('t.t'))}
       <List
         items={[
           'U',
-          tr(
-            '只能是纯字符串，不能包含变量，或者{1}语句',
-            ' `t` ',
-            ' `JavaScript` ',
-          ),
-          tr('不能包含{0}、{1}等特殊字符', ' `\\n`', '`\\t` '),
-          tr('开始和结尾不能包含空格'),
-          tr('如果用{0}语法不能换行', ` \`${tr('模板字符串')}\` `),
+          commonRequirement1,
+          commonRequirement2,
+          tr('不得包含特殊字符（如{0}、{1}）', getText('\\n'), getText('\\t')),
+          tr('不得包含首尾空白字符'),
+          tr('{0}必须为单行', getText(tr('模板字符串'))),
         ]}
       />
-      {tr('不满足上面条件，可能会导致')}
+      <H3>{tr('参数{0}规则', getText('key'))}</H3>
+      {tr('适用于{0}函数：', getText('t.t'))}
+      <List items={['U', commonRequirement1, commonRequirement2]} />
+      {tr('不符合上述规则可能导致：')}
       <List
         items={[
           'U',
-          tr('{0}提取不正确', getTranslationText()),
-          tr('翻译结果不正确'),
+          tr('{0}或{1}提取异常', getTranslationText(), getCustomKey()),
+          tr('自动翻译结果异常'),
         ]}
       />
-      {tr('以下是可以匹配到的')}
+      <H2>{tr('可被匹配示例')}</H2>
       <MatchAble />
       <MatchAble isDot />
-      {tr('以下是不会被匹配到的')}
+
+      <H2>{tr('不可匹配示例')}</H2>
       <NotMatchAble />
       <NotMatchAble isDot />
-      {tr('如果需要拼接字符串，可以用{0}', getVariableInterpolation())}
+      <H2>{tr('{0}示例', getVariableInterpolation())}</H2>
+      {tr('如需拼接字符串，请使用{0}', getVariableInterpolation())}
       <VariableInterpolation />
       <VariableInterpolation isDot />
     </>

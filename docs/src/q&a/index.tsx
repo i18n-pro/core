@@ -168,16 +168,13 @@ function SupportRichText(props: Q) {
     <>
       <Title order={order} title={tr('是否会支持富文本文案？')} />
       {tr(
-        '不会支持，因为自动翻译是该库的核心功能，实现该功能的基本原则就是{0}需要为普通的纯文本，支持富文本与现有这一套实现逻辑上会存在冲突',
+        '不支持富文本文案。自动翻译要求{0}为纯文本，富文本与现有实现逻辑冲突',
         getTranslationText(),
       )}
       <br />
       <br />
       <Bold>
-        {tr(
-          '某些场景下，可以利用{0}来实现富文本的效果',
-          getVariableInterpolation(),
-        )}
+        {tr('如需富文本效果，可通过{0}实现', getVariableInterpolation())}
       </Bold>
       <br />
       {tr(
@@ -201,7 +198,7 @@ t('Hello {0}', \`<b style="color:red;">${"${t('world')}"}</b>\`)
 
 // ${tr('{0}函数执行后返回结果：{1}', 't ', richText1)}`}
       />
-      {tr('针对上面两种方案，可以根据实际场景酌情考虑使用')}
+      {tr('可根据实际需求选择上述方案')}
     </>
   )
 }

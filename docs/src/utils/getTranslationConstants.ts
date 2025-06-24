@@ -47,3 +47,8 @@ export function getPolysemyText(normal = false) {
   const text = tr('一词多义')
   return getText(text, normal)
 }
+
+export function getAutoTranslateText(normal = false) {
+  const text = tr('自动翻译')
+  return getText(text, normal)
+}

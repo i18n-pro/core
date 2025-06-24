@@ -1,5 +1,12 @@
 import { H2, Bold, List, Break, CodeBlock } from 'jsx-to-md'
-import { getTranslationText, getCodeDemoDesc, getCustomKey } from '../utils'
+import {
+  getTranslationText,
+  getCodeDemoDesc,
+  getCustomKey,
+  getText,
+  getAutoTranslateText,
+  getTranslationTextKey,
+} from '../utils'
 
 function Demo(props: { isDot?: boolean }) {
   const { isDot = false } = props
@@ -13,9 +20,9 @@ function Demo(props: { isDot?: boolean }) {
       {getCodeDemoDesc(isDot)}
       <CodeBlock
         code={`
- const text = ${prefix}'hello world')`}
+const text = ${prefix}'hello world')`}
       />
-      {tr('{0}生成语言包的效果', ` \`${tr('自动翻译')}\` `)}
+      {tr('{0}生成语言包的效果', ` \`${getAutoTranslateText(true)}\` `)}
       <CodeBlock
         langType="json"
         code={`
@@ -36,27 +43,27 @@ function Demo(props: { isDot?: boolean }) {
 
 export default function AutoTranslate(props: { order: string }) {
   const { order } = props
-  const extraCopy = tr('自动提取文案')
-  const shortcoming1 = tr('对于一词多译不友好')
+  const extraCopy = tr('提取文案')
+  const shortcoming1 = tr('不适用于一词多译场景')
 
   return (
     <>
       <H2>
-        {order}. {tr('关于自动翻译的实现')}
+        {order}. {tr('{0}原理与流程', getAutoTranslateText(true))}
       </H2>
-      <Bold>{tr('实现关键步骤')}</Bold>
-      <List items={['O', extraCopy, tr('自动翻译'), tr('自动生成语言包')]} />
+      <Bold>{tr('流程：')}</Bold>
+      <List
+        items={['O', extraCopy, tr('调用翻译平台 API'), tr('生成语言包')]}
+      />
       {tr(
-        '以{0}作为{1}才能通过脚本识别出所有需要翻译的文案，从而实现{2}的目标，是{3}实现的基础',
-        getTranslationText(),
-        ' `key` ',
-        ` \`${extraCopy}\` `,
-        ` \`${tr('自动翻译')}\` `,
+        '在整个流程中，{0}是最关键的环节。采用{1}的方式，既直观又便于编写，也便于脚本自动识别和处理内容',
+        getText(extraCopy),
+        getTranslationTextKey(),
       )}
       <Break />
       <Break />
       <Demo />
-      {tr('但是仅以{0}作为{1}存在显著缺点：', getTranslationText(), ' `key` ')}
+      {tr('但仅采用{0}方式也存在一定局限性：', getTranslationTextKey())}
       <Break />
       <Break />
       <Break />
@@ -64,10 +71,11 @@ export default function AutoTranslate(props: { order: string }) {
       <Break />
       <Break />
       {tr(
-        '为了解决{0}新增了{1}属性{2}的解决方案',
-        ` \`${shortcoming1}\` `,
-        ' `t` ',
-        ` ${getCustomKey()} `,
+        '可通过{0}的{1}属性实现{2}来优化{3}',
+        getText('t.t'),
+        getText('key'),
+        getCustomKey(),
+        getText(shortcoming1),
       )}
       <Break />
       <Break />
@@ -75,10 +83,27 @@ export default function AutoTranslate(props: { order: string }) {
       <Break />
       <Break />
       {tr(
-        '{0}的方式生成的语言包，就算是{1}调整了再次翻译也不会影响到已生成的语言包',
-        ` ${getCustomKey()} `,
+        '使用{0}生成的语言包，即使{1}变化，已生成的语言包不受影响',
+        getCustomKey(),
         getTranslationText(),
       )}
+      <Break />
+      <Break />
+      <Bold>{tr('每次{0}生成语言包文案的顺序', getAutoTranslateText())}</Bold>
+      <List
+        items={[
+          'O',
+          tr('{0}已翻译的', getCustomKey()),
+          tr(
+            '{0}已翻译的，基于{1}生成',
+            getCustomKey(),
+            getTranslationTextKey(),
+          ),
+          tr('{0}新翻译的', getCustomKey()),
+          tr('{0}已翻译的', getTranslationTextKey()),
+          tr('{0}新翻译的', getTranslationTextKey()),
+        ]}
+      />
     </>
   )
 }

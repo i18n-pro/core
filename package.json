@@ -1,6 +1,6 @@
 {
   "name": "i18n-pro",
-  "version": "2.1.0",
+  "version": "3.0.0-alpha.0",
   "description": "An out-of-the-box, lightweight JavaScript i18n auto-translation solution",
   "files": [
     "dist/src",
@@ -17,7 +17,7 @@
     "prepare": "husky install",
     "dev": "npx tsc --watch",
     "docs": "jtm run",
-    "docs-translate": "node ./dist/src/bin/index.js t -P docs/src",
+    "docs-i18n": "node ./dist/src/bin/index.js t -P docs/src",
     "test-init": "node ./dist/src/bin/index.js init",
     "test-t": "tsx ./src/bin/index.ts t",
     "build-bin": "tsc",
