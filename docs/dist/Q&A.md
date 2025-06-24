@@ -4,7 +4,7 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[1. Why use  `Translation Text`  as key?](#1-why-use--translation-text--as-key)<br/>
+  &emsp;&emsp;[1. automatic-translationPrinciples and Process](#1-automatic-translationprinciples-and-process)<br/>
   &emsp;&emsp;[2. What is the difference between  `Variable Interpolation`  and  `Interpolation Variable` ?](#2-what-is-the-difference-between--variable-interpolation--and--interpolation-variable-)<br/>
   &emsp;&emsp;[3. Why doesn't  `Variable Interpolation`  support object property parsing?](#3-why-doesnt--variable-interpolation--support-object-property-parsing)<br/>
   &emsp;&emsp;[4. Is it necessary to separate **Date** and **Time** for  `Interpolation Variable`  type?](#4-is-it-necessary-to-separate-date-and-time-for--interpolation-variable--type)<br/>
@@ -12,79 +12,80 @@
 
 </details>
 
-## 1. Why use  `Translation Text`  as key?
-**To achieve the following goals**
-* Automatically extract texts
-* automatic-translation
-* Automatically generate language pack
+## 1. automatic-translationPrinciples and Process
+**process:**
+1. Extract the document
+2. Calling the translation platform API
+3. Generate language packs
 
-With  `Translation Text`  as key can we recognize all copywriting that requires translation through the script, so as to achieve the goal of  `Automatically extract texts` . Of course,  `Automatically extract texts`  also laid a good foundation for the realization of subsequent goals
+In the entire process,  `Extract the document`  is the most critical link. Adopting the  `Copywriting is key`  method is both intuitive and easy to write, and also facilitates the automatic identification and processing of the script.
 
-Usually, internationalization libraries recommend the following writing style
+
+
+The following is an example of  `Copywriting is key` 
 ```js
-// Define a simple key
-const text1 = t('hello')
-// Define a key with module
-const text2 = t('module.hello')
+const text = t('hello world')
 ```
-Format of corresponding language pack
-```js
-// en.json
+ `automatic-translation` The effect of generating language packs
+```json
+// zh.json
 {
-  "hello": "hello world",
-  "module": {
-    "hello": "hello xxx",
-  }
+  "hello world": "你好世界"
 }
 
-// zh-CN.json
+// jp.json
 {
-  "hello": "你好世界",
-  "module": {
-    "hello": "你好xxx",
-  }
+  "hello world": "こんにちは世界"
+}
+```
+However, there are certain limitations when using the  `Copywriting is key`  method only:
+
+
+
+* Not applicable to multiple translation scenarios of one word
+
+
+
+ `Not applicable to multiple translation scenarios of one word`  can be optimized by implementing  `Custom key`  of  `t.t` 
+
+
+
+The following is an example of  `Custom key` 
+```js
+const text = t.t('custom-key', 'hello world')
+```
+ `automatic-translation` The effect of generating language packs
+```json
+// zh.json
+{
+  "custom-key": "你好世界"
+}
+
+// jp.json
+{
+  "custom-key": "こんにちは世界"
 }
 ```
 
-Current writing style of the library
-```js
-const text1 = t('hello world')
-const text2 = t('hello xxx')
-```
-Format of corresponding language pack
-```js
-// zh-CN.json
-{
-  "hello world": "你好世界",
-  "hello xxx": "你好xxx",
-}
-```
-Compared to traditional writing,  `Translation Text`  as key, there are as follows
-* Not friendly to multiple translations of a single word
-* Generates larger language packages
 
-However, it also has the following advantages:
-* Strong readability of source code
-*  `Translation Text`  language itself does not need to generate language packs
+Using  `Custom key`  generated language packs, even if  `Case Study`  changes, the generated language packs are not affected.
 
-If you cannot accept the above shortcomings, then other internationalization solutions are more suitable for you; if you can accept the above shortcomings, then I believe  `i18n-pro`  will bring you a very good development experience
+**The order in which language pack copy is generated each time  `automatic-translation` **
+1.  `Custom key` Translated
+2.  `Custom key`  translated, generated based on  `Copywriting is key` 
+3.  `Custom key` Newly translated
+4.  `Copywriting is key` Translated
+5.  `Copywriting is key` Newly translated
+
+
 ## 2. What is the difference between  `Variable Interpolation`  and  `Interpolation Variable` ?
 
 ```js
-// Number Type
-t('The number of users has reached {n0}', 100000000)
-
-// Currency Type
-t('The selling price is {c0}', 14999)
-
-// Date Type
-t(`Today's date is {d0}`, new Date())
-
-// Time Type
-t('Current time: {t0}', new Date())
-
-// Plural Type
-t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) 
+t('i18n-pro users reached {n0}', 100000000) // Number
+t('The selling price is {c0}', 14999) // Currency
+t(`Today's date is {d0}`, new Date()) // Date
+t('Current time: {t0}', new Date()) // Time
+t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Plural 
 ```
 **Variable Interpolation**：Refers to the realization of  `t('hello {0}', 'world')` → `'hello world'`  this feature<br />**Interpolation Variable**：Refers to the variable inserted into the text<br />For example,  `100000000` ,  `14999` , and  `newDate()`  in the sample code above
 * Insertion position of  `Interpolation Variable` 
@@ -97,7 +98,7 @@ t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3)
 Sample code
 ```js
 // Object attribute resolution
-i18n('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
+t('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
   name: '王尼玛',
   age: 22,
   base: '火星',
@@ -105,7 +106,7 @@ i18n('我叫{name}，今年{age}岁，来自{base}，是一名{job}', {
 })
 
 // Resolution of subscripts in the current library
-i18n('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
+t('我叫{0}，今年{1}岁，来自{2}，是一名{3}',
   '王尼玛',
   '22',
   '火星',
@@ -116,7 +117,7 @@ The main reason is that the copy contains attribute names, which is not conduciv
 
 Example of object attribute resolution
 ```js
-// Translation Text as Chinese
+// Case Study as Chinese
 const zh = '我叫{name}，今年{age}岁，来自{base}，是一名{job}'
 
 // Translated into English through Baidu-Translation, it seems OK
@@ -127,7 +128,7 @@ const enToZh = '我的名字是｛name｝。我{age}岁。我来自{base}。我�
 ```
 Let's take a look at the example of subscript parsing
 ```js
-// Translation Text as Chinese
+// Case Study as Chinese
 const zh = '我叫{0}，今年{1}岁，来自{2}，是一名{3}'
 
 // Translated into English through Baidu-Translation
@@ -140,7 +141,7 @@ Although machine translation cannot achieve 100% accuracy, this method can avoid
 ## 4. Is it necessary to separate **Date** and **Time** for  `Interpolation Variable`  type?
 Personally, I don't think it is necessary, but it has been implemented in the design. You can choose to use it flexibly at your discretion. Of course, it is not ruled out that some business scenarios will be more convenient to deal with separately
 ## 5. Will rich text be supported?
-It will not be supported, because automatic translation is the core function of the library. The basic principle of achieving this function is  `Translation Text`  requires ordinary pure texts. Supporting rich texts and existing realizations will be logically conflict<br /><br />**In some scenarios,  `Variable Interpolation`  can be used to achieve rich text effects**<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
+Rich text copy is not supported. Automatic translation requirements  `Case Study`  are plain text, rich text conflicts with existing implementation logic<br /><br />**If you need rich text effects, you can achieve it through  `Variable Interpolation` **<br />For example, the text here is  `hello world` , and  `world`  needs to be displayed as red and bold on the page<br />**Option 1**
 ```js
 t('hello {0}world{1}', '<b style="color:red;">', '</b>')
 
@@ -152,4 +153,4 @@ t('Hello {0}', `<b style="color:red;">${t('world')}</b>`)
 
 // The result of executing the t  function is: hello <b style="color:red;">world</b>
 ```
-You can choose to use either of the above options based on the actual scenario
+The above solution can be selected according to actual needs

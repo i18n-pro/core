@@ -2,17 +2,22 @@
 # 更新日志
 
 
-[English](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/CHANGELOG.md) | 简体中文
+[English](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/CHANGELOG.md) | 简体中文
 
 
 <details >
   <summary>目录</summary>
 
-  &emsp;&emsp;[[3.0.0] - 2024-05-xx](#300---2024-05-xx)<br/>
+  &emsp;&emsp;[[3.0.0] - 2025-05-xx](#300---2025-05-xx)<br/>
   &emsp;&emsp;&emsp;&emsp;[命令行工具](#300-命令行工具)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#300-命令行工具-added)<br/>
   &emsp;&emsp;&emsp;&emsp;[API](#300-api)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Changed](#300-api-changed)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#300-api-added)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Removed](#300-api-removed)<br/>
+  &emsp;&emsp;[[2.1.1] - 2024-08-01](#211---2024-08-01)<br/>
+  &emsp;&emsp;&emsp;&emsp;[API](#211-api)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Fixed](#211-api-fixed)<br/>
   &emsp;&emsp;[[2.1.0] - 2023-10-12](#210---2023-10-12)<br/>
   &emsp;&emsp;&emsp;&emsp;[命令行工具](#210-命令行工具)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Added](#210-命令行工具-added)<br/>
@@ -73,27 +78,47 @@
 
 </details>
 
-## [3.0.0] - 2024-05-xx
+## [3.0.0] - 2025-05-xx
 
 <h3 id="300-命令行工具">命令行工具</h3>
 
 <h4 id="300-命令行工具-added">Added</h4>
 
-* 命令行配置文件支持用 `TypeScript` 来编写，从版本 `v2.2.0` 开始，初始化命令执行生成的配置文件默认是 `i18nrc.ts` ，但老版的 `i18nrc.js` 依旧是兼容的
+* 命令行配置文件支持用 `TypeScript` 来编写，从版本 `v3.0.0` 开始，初始化命令执行生成的配置文件默认是 `i18nrc.ts` ，但老版的 `i18nrc.js` 依旧是兼容的
 
 
 <h3 id="300-api">API</h3>
 
 <h4 id="300-api-changed">Changed</h4>
 
-* 调整 `withI18n` 参数结构
+*  `setI18n` 
+   * 支持切换语言时动态加载语言包
+   * 由同步执行调整为异步执行
 
-```diff
-- function withI18n(props:{
--   locale: string
-- }): { t }
 
-+ function withI18n(locale: string): { t }
+<h4 id="300-api-added">Added</h4>
+
+*  `initI18n` 的 `langs` 参数支持以回调函数的形式动态加载语言包
+*  `t` 新增属性
+   * **<code>t</code>**：支持 `自定义 key` 的场景
+   * **<code>withLocale</code>**：替代 `withI18n` 
+
+
+<h4 id="300-api-removed">Removed</h4>
+
+* 移除 `withI18n` 
+
+
+## [2.1.1] - 2024-08-01
+
+<h3 id="211-api">API</h3>
+
+<h4 id="211-api-fixed">Fixed</h4>
+
+* 修复 `复数` 类型中关键字存在空格时解析 `插值变量` 不正确
+```js
+ // 类似如下
+ t('there have {p0 Country or Region} in the list', 100)
 ```
 
 
@@ -134,7 +159,7 @@
 <h4 id="200-命令行工具-fixed">Fixed</h4>
 
 * 修复当 `语言代码` 和 `locale` 不同时，识别已翻译的语言包错误，最终导致重复翻译
-* 修复如下场景提取 `翻译文案` 异常
+* 修复如下场景提取 `文案` 异常
  
 ```js
     // 不能正常提取'b'
@@ -163,7 +188,7 @@
 * 添加对命名空间的支持
    * 新增 `initI18n` 函数用于获取原有的核心的 `t` 、 `setI18n` 、 `withI18n` 函数
    * 新增 `namespace` 属性用于支持命名空间
-   *  `变量插值` 的格式化回调中添加 `t` 参数
+   *  `变量插值` 的 `格式化器` 中添加 `t` 参数
 
 
 <h3 id="200-文档">文档</h3>
@@ -224,8 +249,8 @@
 
 <h4 id="130-api-added">Added</h4>
 
-* 添加 `withI18N` 函数API用于支持服务端场景
-* 添加 `插值变量` 类型标记和类型格式化回调函数
+* 添加 `withI18N` 函数 API用于支持服务端场景
+* 添加 `插值变量` 类型标记和类型 `格式化器` 
    * 支持 数字、货币、日期、时间、复数 等类型的 `插值变量` 标记
    * `setI18N` 添加了 `formatNumber`、`formatCurrency`、`formatDate`、`formatTime`、`formatPlural` 等属性
 
@@ -262,12 +287,12 @@
    * 支持智能移除语言包中已翻译却未再使用的文案
 * 新增 `output.indentSize` 配置属性，用于指定输出文件缩进空格数
 * 新增 `baiduConfig.delay` 配置属性，用于设置百度翻译的延迟时间
-* 新增匹配规则约束： `翻译文案` 中不能包含特殊字符 `\t`
+* 新增匹配规则约束： `文案` 中不能包含特殊字符 `\t`
 
 
 <h4 id="120-命令行工具-fixed">Fixed</h4>
 
-* 修复 `翻译文案` 包含 `\t` 特殊字符导致翻译异常
+* 修复 `文案` 包含 `\t` 特殊字符导致翻译异常
 
 
 <h3 id="120-api">API</h3>
@@ -286,7 +311,7 @@
 
 <h4 id="120-文档-added">Added</h4>
 
-* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v2.1.0/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
+* 新增[翻译日志](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.0/docs/dist/OUTPUT_LOG_zh-CN.md)文档说明
 
 
 ## [1.1.1] - 2022-06-25
@@ -345,5 +370,5 @@
 
 <h4 id="100-api-added">Added</h4>
 
-* 新增 `i18n` 和 `setI18N` 函数API
+* 新增 `i18n` 和 `setI18N` 函数 API
 
