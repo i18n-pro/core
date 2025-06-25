@@ -2,7 +2,7 @@
   <p style="font-size: 18px;">开箱即用的轻量级 JavaScript 国际化自动翻译解决方案</p>
 
 
-[English](https://github.com/i18n-pro/core/tree/v3.0.0-alpha.1#readme) | 简体中文
+[English](https://github.com/i18n-pro/core/tree/v3.0.0-alpha.2#readme) | 简体中文
 
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
@@ -53,7 +53,7 @@
 
 # 原理
 
-> `自动翻译` 是当前库的核心特性之一，[了解更多](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/Q&A_zh-CN.md)
+> `自动翻译` 是当前库的核心特性之一，[了解更多](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A_zh-CN.md)
 
 该库主要由两部分构成
 * 命令行工具
@@ -61,7 +61,7 @@
 
 **命令行工具**：根据指定规则（正则匹配）解析出需要翻译的文案，并通过翻译平台将文案翻译到指定目标语言，最后生成语言包文件
 
-解析文案的 [匹配规则](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/MATCH_RULE_zh-CN.md) 简易示例如下
+解析文案的 [匹配规则](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE_zh-CN.md) 简易示例如下
 
 以下为 `文案即 key` 的示例
 ```js
@@ -108,14 +108,14 @@ t.t('custom-key', '我有{p0个苹果}，{p1个香蕉}和{p2个梨}', 5, 4, 3) /
  `命令行工具` 与 `函数 API` 搭配使用，轻松集成到任何 `JavaScript` 项目中
 # 帮助文档
 
-* [🚀 快速上手](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/USAGE_zh-CN.md)
-* [💻 命令行](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/COMMAND_LINE_zh-CN.md)
-* [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/API_zh-CN.md)
-* [📝 匹配规则](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/MATCH_RULE_zh-CN.md)
-* [📊 翻译日志](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/OUTPUT_LOG_zh-CN.md)
-* [❓ 常见问题](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/Q&A_zh-CN.md)
+* [🚀 快速上手](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/USAGE_zh-CN.md)
+* [💻 命令行](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/COMMAND_LINE_zh-CN.md)
+* [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/API_zh-CN.md)
+* [📝 匹配规则](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE_zh-CN.md)
+* [📊 翻译日志](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/OUTPUT_LOG_zh-CN.md)
+* [❓ 常见问题](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A_zh-CN.md)
 * [🤝 贡献指南](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES_zh-CN.md)
-* [📋 更新日志](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.1/docs/dist/CHANGELOG_zh-CN.md)
+* [📋 更新日志](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/CHANGELOG_zh-CN.md)
 
 
 # License
