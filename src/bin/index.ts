@@ -46,6 +46,11 @@ async function translateController({
   incrementalMode: boolean // 是否是增量翻译模式
   configPath?: string // 配置文件路径
 }) {
+  // 配置文件绝对路径
+  const absoluteConfigPath = configPath
+    ? join(process.cwd(), configPath)
+    : undefined
+
   const {
     funcName = 't',
     entry,
@@ -54,7 +59,7 @@ async function translateController({
     output: { path: outputPath, langType = 'multiple', indentSize = 2 },
     ...restTranslatorConfig
   } = await readConfig({
-    path: configPath ? join(process.cwd(), configPath) : undefined,
+    path: absoluteConfigPath,
   })
 
   setTranslateConfig(restTranslatorConfig)
@@ -63,6 +68,7 @@ async function translateController({
     entry,
     fileRegExp,
     input,
+    configPath: absoluteConfigPath,
   })
 
   if (filepaths.length === 0) {

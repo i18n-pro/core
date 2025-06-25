@@ -55,13 +55,19 @@ function extraFileSyncLegacy(dirpath: string, fileRegExp: RegExp) {
 /**
  * extra files by Glob pattern
  * @param globPattern
+ * @param configPath
  * @returns
  */
-function extraFileByGlob(globPattern: string | string[]) {
+function extraFileByGlob(globPattern: string | string[], configPath?: string) {
+  console.log(
+    chalk.greenBright(t('开始解析路径：')),
+    configPath || process.cwd(),
+  )
   console.log(chalk.greenBright(t('开始解析 Glob 语法：')), globPattern)
   const filepaths = glob.sync(globPattern, {
     onlyFiles: true,
     absolute: true,
+    cwd: configPath,
   })
 
   filepaths.forEach((path) => logPath(path))
@@ -73,12 +79,13 @@ export default function extraFileSync(props: {
   entry?: string
   fileRegExp?: RegExp
   input?: string | string[]
+  configPath?: string
 }) {
   let filepaths = []
-  const { entry, fileRegExp, input } = props
+  const { entry, fileRegExp, input, configPath } = props
 
   if (typeof input !== 'undefined') {
-    filepaths = extraFileByGlob(input)
+    filepaths = extraFileByGlob(input, configPath)
   } else {
     filepaths = extraFileSyncLegacy(entry, fileRegExp)
   }
