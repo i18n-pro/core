@@ -79,7 +79,7 @@ import './i18n.js'
 `}
       />
       <H3>{tr('用{0}包裹{1}', ' `t` ', getTranslationText(true))}</H3>
-      {tr('使用 `t` 函数包裹需要翻译的文案：', ' `t` ')}
+      {tr('使用{0}函数包裹需要翻译的文案：', ' `t` ')}
       <CodeBlock
         langType="js"
         code={`

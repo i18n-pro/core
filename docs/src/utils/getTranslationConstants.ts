@@ -29,7 +29,7 @@ export function getInterpolationVariable(normal = false) {
 }
 
 export function getConfigName(normal = false) {
-  const text = tr('i18nrc.ts')
+  const text = 'i18nrc.ts'
   return getText(text, normal)
 }
 
