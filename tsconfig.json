@@ -22,5 +22,6 @@
     "global.d.ts",
     "docs/src",
     "node_modules/vitest/globals.d.ts"
-  ]
+  ],
+  "exclude": ["docs/src/i18nrc.ts"]
 }
