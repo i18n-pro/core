@@ -30,14 +30,14 @@ Applicable to  `t.t`  functions:
 * Do not contain  `JavaScript`  expressions or variables
 
 Failure to comply with the above rules may lead to:
-*  `Case Study`  or  `Custom key`  extraction exception
+*  `text`  or  `custom-key`  extraction exception
 * Automatic translation result is abnormal
 
 
 ## Can be matched examples
 
 
-The following is an example of  `Copywriting is key` 
+The following is an example of  `text-as-key` 
 ```js
 t('hello world')
 t("hello world")
@@ -45,7 +45,7 @@ t(`hello world`)
 ```
 
 
-The following is an example of  `Custom key` 
+The following is an example of  `custom-key` 
 ```js
 t.t('custom-key', 'hello world')
 t.t('custom-key', "hello world")
@@ -55,7 +55,7 @@ t.t('custom-key', `hello world`)
 ## Unmatchable example
 
 
-The following is an example of  `Copywriting is key` 
+The following is an example of  `text-as-key` 
 ```js
 const foo = 'foo'
 const fooFunc = (x:string) => x
@@ -84,7 +84,7 @@ x
 ```
 
 
-The following is an example of  `Custom key` 
+The following is an example of  `custom-key` 
 ```js
 const foo = 'foo'
 const fooFunc = (x:string) => x
@@ -115,13 +115,13 @@ x
 ##  `Variable Interpolation`  Example
 To splice strings, use  `Variable Interpolation` 
 
-The following is an example of  `Copywriting is key` 
+The following is an example of  `text-as-key` 
 ```js
 t('My name is {0}, I am {1} years old this year, from {2}, and I am a {3}', 'Wang Nima', 35, 'Mars', 'coder')
 ```
 
 
-The following is an example of  `Custom key` 
+The following is an example of  `custom-key` 
 ```js
 t.t('custom-key', 'My name is {0}, I am {1} years old this year, from {2}, and I am a {3}', 'Wang Nima', 35, 'Mars', 'coder')
 ```

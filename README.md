@@ -14,7 +14,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/RE
 [![codecov](https://codecov.io/gh/i18n-pro/core/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/i18n-pro/core "codecov")
 
 <a href="https://ibb.co/hxDQ1w69">
-    <img src="https://i.ibb.co/JW56Fg1t/2025-05-18-175603.gif"alt="2025-05-18-175603" />
+    <img src="https://s3.bmp.ovh/imgs/2025/07/10/7340b93a468f1ebe.gif"alt="demo" />
   </a>
 
 </div>
@@ -37,25 +37,25 @@ Make international access easy and enjoyable 😄💪🏻
 
 * **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
 * **simple**：Simple configuration, quick activation
-* **flexible**：Supports Variable Interpolation, and unique Type tags and Formatizer
-* **automatic-translation**：Extract copy and generate language packages in one click
-   * **incremental translation**：Only translate new copy and remove unused copy
+* **flexible**：Supports Variable Interpolation, and unique Type Tag and Formatter
+* **automatic-translation**：Extract text and generate language pack in one click
+   * **incremental translation**：Only translate new text and remove unused text
    * **Multi-platform support**：Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、BaiduFor translation platforms
    * **Translation Log**：Various log outputs are easy to track problems
-* **keyless**：**Copywriting is key**, only Custom key is required for A word with multiple meanings
+* **keyless**：**text-as-key**, some special scenarios require custom-key (for example: A word with multiple meanings)
 
 
 # Live Demo
 
-* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/v3?file=README.md)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo/tree/v3?file=README.md)
+* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/main?file=README.md)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo?file=README.md)
 
 
 # Principle
 
 > `automatic-translation`  is one of the core features of the current library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A.md)
 
-The library is mainly composed of two parts
+The library consists of two main parts
 * Command Line Tool
 * Function API
 
@@ -63,7 +63,7 @@ The library is mainly composed of two parts
 
 An example of parsing text using  [Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md)  is as follows:
 
-The following is an example of  `Copywriting is key` 
+The following is an example of  `text-as-key` 
 ```js
 // Normal string
 t('Hello World')
@@ -74,7 +74,7 @@ t(`Hello World`)
 t('Hi,{0}', 'developer friends')
 t('This is {0}, welcome to {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's helpful for you`, ' ⭐️ ')
 
-// Type tags
+// Type Tag
 t('i18n-pro users reached {n0}', 100000000) // Number
 t('The selling price is {c0}', 14999) // Currency
 t(`Today's date is {d0}`, new Date()) // Date
@@ -82,7 +82,7 @@ t('Current time: {t0}', new Date()) // Time
 t('I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Plural 
 ```
 
-The following is an example of  `Custom key` 
+The following is an example of  `custom-key` 
 ```js
 // Normal string
 t.t('custom-key', 'Hello World')
@@ -93,7 +93,7 @@ t.t('custom-key', `Hello World`)
 t.t('custom-key', 'Hi,{0}', 'developer friends')
 t.t('custom-key', 'This is {0}, welcome to {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's helpful for you`, ' ⭐️ ')
 
-// Type tags
+// Type Tag
 t.t('custom-key', 'i18n-pro users reached {n0}', 100000000) // Number
 t.t('custom-key', 'The selling price is {c0}', 14999) // Currency
 t.t('custom-key', `Today's date is {d0}`, new Date()) // Date
@@ -102,8 +102,8 @@ t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Pl
 ```
 **Function API**：Access to multilingual support through  `initI18n` ,  `t` ,  `setI18n` 
 * **initI18n**：Initialize the configuration and return the API object
-* **t**：The package  `Case Study`  is internationalized, and it is also a command line matching identifier.
-* **setI18n**：Set language and language package
+* **t**：The package  `text`  is internationalized, and it is also a command line matching identifier.
+* **setI18n**：Set language and language pack
 
  `Command Line Tool`  works with  `Function API`  and easily integrate into any  `JavaScript`  project
 # Help Document

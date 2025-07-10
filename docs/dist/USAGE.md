@@ -8,7 +8,7 @@
   &emsp;&emsp;[2. Access Function API](#2-access-function-api)<br/>
   &emsp;&emsp;&emsp;&emsp;[Initialization](#initialization)<br/>
   &emsp;&emsp;&emsp;&emsp;[Importing i18n.js in the Project Entry File](#importing-i18njs-in-the-project-entry-file)<br/>
-  &emsp;&emsp;&emsp;&emsp;[Wrap with  `t`  Case Study](#wrap-with--t--case-study)<br/>
+  &emsp;&emsp;&emsp;&emsp;[Wrap with  `t`  text](#wrap-with--t--text)<br/>
   &emsp;&emsp;[3. Initialize Command Line Configuration File](#3-initialize-command-line-configuration-file)<br/>
   &emsp;&emsp;[4. Adjust  `i18nrc.ts`  Configuration](#4-adjust--i18nrcts--configuration)<br/>
   &emsp;&emsp;[5. Execute Translation Command](#5-execute-translation-command)<br/>
@@ -65,16 +65,16 @@ import './i18n.js'
 // Subsequently, the application rendering logic
 ```
 
-### Wrap with  `t`  Case Study
-Use the `t` function to wrap the copy that needs to be translated:
+### Wrap with  `t`  text
+Use the  `t`  function to wrap the copy that needs to be translated:
 ```js
 // test.js
 // If it has been mounted globally, the downlink can be omitted
 import { t } from './i18n.js'
 
-// Copywriting is key
+// text-as-key
 const text = t('hello world')
-// Custom key
+// custom-key
 const keyText = t.t('custom-key', 'hello key')
 ```
 
@@ -155,7 +155,7 @@ If the generated language pack is a polymerization form （`output.langType == '
 ## 6. Importing Language Pack
 After the language package is generated, it needs to be integrated into the project
 
-Currently supports  `3`  ways to introduce language packs
+Currently supports  `3`  ways to introduce language pack
 * Static import
 * Asynchronous loading callbacks
 * Dynamic loading at runtime
@@ -218,7 +218,7 @@ initI18n({
 
 ### Dynamic loading at runtime
 
->Suitable for scenarios where language packs need to be dynamically obtained at runtime, such as pulling language pack data through remote interfaces, suitable for multi-terminal or dynamic locale environments
+>Suitable for scenarios where language pack need to be dynamically obtained at runtime, such as pulling language pack data through remote interfaces, suitable for multi-terminal or dynamic locale environments
 
 
 ```js
@@ -233,7 +233,7 @@ setI18n({
   },
 })
 ```
-At this point, the internationalization function has been integrated. Simply set  `locale`  as the target language to display the corresponding translated content on the page. If there is a new  `Case Study`  (requires a  `t`  function package), just re-execute the  `npx i18n t`  command to generate the latest language package to ensure that all new content is translated.
+At this point, the internationalization function has been integrated. Simply set  `locale`  as the target language to display the corresponding translated content on the page. If there is a new  `text`  (requires a  `t`  function package), just re-execute the  `npx i18n t`  command to generate the latest language package to ensure that all new content is translated.
 
 ## 7. Switch Language
 Switch the current language by:

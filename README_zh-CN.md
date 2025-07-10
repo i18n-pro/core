@@ -14,7 +14,7 @@
 [![codecov](https://codecov.io/gh/i18n-pro/core/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/i18n-pro/core "codecov")
 
 <a href="https://ibb.co/hxDQ1w69">
-    <img src="https://i.ibb.co/JW56Fg1t/2025-05-18-175603.gif"alt="2025-05-18-175603" />
+    <img src="https://s3.bmp.ovh/imgs/2025/07/10/7340b93a468f1ebe.gif"alt="demo" />
   </a>
 
 </div>
@@ -42,13 +42,13 @@
    * **增量翻译**：只翻译新增文案，移除未使用文案
    * **多平台支持**：谷歌X、OpenAI、谷歌、微软、腾讯、阿里云、有道、百度等翻译平台
    * **翻译日志**：多种日志输出，便于追踪问题
-* **keyless**：**文案即 key**，仅一词多义时才需自定义 key
+* **keyless**：**文案即 key**，部分特殊场景需要自定义 key（例如：一词多义）
 
 
 # Live Demo
 
-* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/v3?file=README_zh-CN.md)
-* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo/tree/v3?file=README_zh-CN.md)
+* [Open in CodeSandbox](https://codesandbox.io/p/github/i18n-pro/core-demo/main?file=README_zh-CN.md)
+* [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg "Open in StackBlitz")](https://stackblitz.com/github/i18n-pro/core-demo?file=README_zh-CN.md)
 
 
 # 原理

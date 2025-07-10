@@ -33,7 +33,7 @@
 ## Function List
 
 ### initI18n
-Initialize a fixed configuration to get the core API
+Initialize fixed config to get core API
 <h4 id="3-initi18n-type">Type</h4>
 <pre>
 (
@@ -84,38 +84,38 @@ Initialize a fixed configuration to get the core API
     <tr>
       <td>formatNumber</td>
       <td>
-         <code>Formatizer</code>  of <b> Number </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> n </b>or<b> N </b>
+         <code>Formatter</code>  of <b> Number </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> n </b>or<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-         <code>Formatizer</code>  of <b> Currency </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> c </b>or<b> C </b>
+         <code>Formatter</code>  of <b> Currency </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> c </b>or<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-         <code>Formatizer</code>  of <b> Date </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> d </b>or<b> D </b>
+         <code>Formatter</code>  of <b> Date </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> d </b>or<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-         <code>Formatizer</code>  of <b> Time </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> t </b>or<b> T </b>
+         <code>Formatter</code>  of <b> Time </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> t </b>or<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-         <code>Formatizer</code>  of <b> Plural </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> p </b>or<b> P </b>
+         <code>Formatter</code>  of <b> Plural </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> p </b>or<b> P </b>
       </td>
     </tr>
   </tr>
 </table>
 
 ### t
-Get Internationalization Text<br />The internal will obtain  <code>Case Study</code>  corresponding to  <code>text</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
+Get internationalized text<br />The internal will obtain  <code>text</code>  corresponding to  <code>text</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
 <h4 id="3-t-type">Type</h4>
 <pre>
 interface Translate {
@@ -154,7 +154,7 @@ interface Translate {
 #### property
 
 <h5 id="tt">t</h5>
-Get  <code>Custom key</code>  internationalized documentary<br />The internal will obtain  <code>Case Study</code>  corresponding to  <code>key</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
+Get  <code>custom-key</code>  internationalized text<br />The internal will obtain  <code>text</code>  corresponding to  <code>key</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
 <h6 id="5-t-type">Type</h6>
 <pre>
 (
@@ -191,7 +191,7 @@ Get  <code>Custom key</code>  internationalized documentary<br />The internal wi
 </table>
 
 ##### withLocale
-Generate a new  <a href="#t">t</a>  function<br />It is applicable to the server. Each interface response needs to be internationalized
+Generate a new  <a href="#t">t</a>  function<br />For server-side use, each interface response requires internationalization
 <h6 id="5-withlocale-type">Type</h6>
 <pre>
 (
@@ -216,7 +216,7 @@ Generate a new  <a href="#t">t</a>  function<br />It is applicable to the server
 </table>
 
 ### setI18n
-Set language and language package
+Set language and language pack
 <h4 id="3-seti18n-type">Type</h4>
 <pre>
 (
@@ -253,7 +253,7 @@ Language Pack
 <pre>type LangPack = Record&lt;string, string&gt;</pre>
 
 ### I18nState
-State under the namespace
+Namespace state
 <pre>
 type I18nState = {
   namespace: string
@@ -269,7 +269,7 @@ type I18nState = {
 </pre>
 
 ### FormatFunc
-Common   `Formatizer`   type
+Common   `Formatter`   type
 <pre>
 type FormatFunc = &lt;T&gt;(props: {
   /**
@@ -288,7 +288,7 @@ type FormatFunc = &lt;T&gt;(props: {
 </pre>
 
 ### FormatDateFunc
-  `Formatizer`   type of date (time)
+  `Formatter`   type of date (time)
 <pre>
 type FormatDateFunc = &lt;T&gt;(props: {
   /**
@@ -307,7 +307,7 @@ type FormatDateFunc = &lt;T&gt;(props: {
 </pre>
 
 ### FormatPluralFunc
-  `Formatizer`   type of plural
+  `Formatter`   type of plural
 <pre>
 type FormatPluralFunc = &lt;T&gt;(props: {
   /**

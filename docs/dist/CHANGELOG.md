@@ -100,7 +100,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 
 * The  `langs`  parameter of  `initI18n`  supports dynamic loading of language packages in the form of callback functions.
 *  `t` Add new attributes
-   * **<code>t</code>**：Support  `Custom key`  scenarios
+   * **<code>t</code>**：Support  `custom-key`  scenarios
    * **<code>withLocale</code>**：Alternative  `withI18n` 
 
 
@@ -159,7 +159,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 <h4 id="200-command-line-tool-fixed">Fixed</h4>
 
 * Fix when the difference between  `Language code`  and  `locale` , identify the error of the translated language package, and eventually lead to repeated translation
-* Fix as the following scene extraction  `Case Study`  abnormal
+* Fix as the following scene extraction  `text`  abnormal
  
 ```js
     // Can't extract 'b'
@@ -188,7 +188,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 * Added support for namespaces
    * New  `initI18n`  function is used to obtain the original core  `t` ,  `setI18n` ,  `withI18n`  function
    * New  `namespace`  attribute is used to support naming space
-   * Add  `t`  parameter to  `Formatizer`  of  `Variable Interpolation` 
+   * Add  `t`  parameter to  `Formatter`  of  `Variable Interpolation` 
 
 
 <h3 id="200-documentation">Documentation</h3>
@@ -250,8 +250,8 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 <h4 id="130-api-added">Added</h4>
 
 * Add  `withI18N`  function API to support server scenarios
-* Add  `Interpolation Variable`  type tag and type  `Formatizer` 
-   * Supports numeric, currency, date, time, plural, and other types of  `Interpolation Variable`  tags
+* Add  `Interpolation Variable`  type tag and type  `Formatter` 
+   * Supports number, currency, date, time, plural, and other types of  `Interpolation Variable`  tags
    * `setI18N`  added  `formatNumber`, `formatCurrency`, `formatDate`, `formatTime`, `formatPlural`  and other attributes
 
 
@@ -287,12 +287,12 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
    * Supports intelligently removing the translated text that has not been used in the language package
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
-* Newly added rules constraints:  `Case Study`  cannot include special characters  `\t`
+* Newly added rules constraints:  `text`  cannot include special characters  `\t`
 
 
 <h4 id="120-command-line-tool-fixed">Fixed</h4>
 
-* Fix  `Case Study`  contains  `\t`  special characters lead to abnormal translation
+* Fix  `text`  contains  `\t`  special characters lead to abnormal translation
 
 
 <h3 id="120-api">API</h3>

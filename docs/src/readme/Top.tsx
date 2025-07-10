@@ -43,8 +43,8 @@ export default function Top() {
       <Break />
       <a href="https://ibb.co/hxDQ1w69">
         <img
-          src="https://i.ibb.co/JW56Fg1t/2025-05-18-175603.gif"
-          alt="2025-05-18-175603"
+          src="https://s3.bmp.ovh/imgs/2025/07/10/7340b93a468f1ebe.gif"
+          alt="demo"
         />
       </a>
       <Break />
