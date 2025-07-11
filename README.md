@@ -13,9 +13,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/RE
 [![github-issues](https://img.shields.io/github/issues-raw/i18n-pro/core "github-issues")](https://github.com/i18n-pro/core/issues "github-issues")
 [![codecov](https://codecov.io/gh/i18n-pro/core/branch/main/graph/badge.svg?token=758C46SIE7 "codecov")](https://codecov.io/gh/i18n-pro/core "codecov")
 
-<a href="https://ibb.co/hxDQ1w69">
-    <img src="https://s3.bmp.ovh/imgs/2025/07/10/7340b93a468f1ebe.gif" alt="demo" />
-  </a>
+<img src="https://s3.bmp.ovh/imgs/2025/07/11/2218a41614fad2d4.gif" alt="demo" />
 
 </div>
 <details >

@@ -41,12 +41,10 @@ export default function Top() {
       </Link>
       <Break />
       <Break />
-      <a href="https://ibb.co/hxDQ1w69">
-        <img
-          src="https://s3.bmp.ovh/imgs/2025/07/10/7340b93a468f1ebe.gif"
-          alt="demo"
-        />
-      </a>
+      <img
+        src="https://s3.bmp.ovh/imgs/2025/07/11/2218a41614fad2d4.gif"
+        alt="demo"
+      />
       <Break />
     </div>
   )
