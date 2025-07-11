@@ -163,7 +163,7 @@ Currently supports  `3`  ways to introduce language pack
 
 ### Static import
 
->This method is not suitable for pure front-end projects, which will lead to an increase in the loading time of the first screen.
+> This method is not suitable for pure front-end projects, which will lead to an increase in the loading time of the first screen.<br/>
 
 If the generated language pack is a separate file form （`output.langType == 'multiple'`） for each language, the operation is as follows:
 ```js
@@ -198,7 +198,7 @@ initI18n({
 
 ### Asynchronous loading callbacks
 
->It is recommended to use this method when a separate file form per language, which can achieve asynchronous loading on demand, reduce the size of the first screen and improve the page performance.
+> It is recommended to use this method when a separate file form per language, which can achieve asynchronous loading on demand, reduce the size of the first screen and improve the page performance.<br/>
 ```js
 // i18n.js
 import { initI18n } from 'i18n-pro'
@@ -218,7 +218,7 @@ initI18n({
 
 ### Dynamic loading at runtime
 
->Suitable for scenarios where language pack need to be dynamically obtained at runtime, such as pulling language pack data through remote interfaces, suitable for multi-terminal or dynamic locale environments
+> Suitable for scenarios where language pack need to be dynamically obtained at runtime, such as pulling language pack data through remote interfaces, suitable for multi-terminal or dynamic locale environments<br/>
 
 
 ```js
@@ -243,7 +243,7 @@ setI18n({
 })
 ```
 
->Note: Only after  `setI18n`  is called to switch languages, the rendered content on the page will not be automatically updated. The text of the new language will be displayed only when the  `t`  function is re-executed.<br />If you need to achieve refresh-free switching, it is recommended to use it in combination with the integrated version of the following mainstream front-end frameworks:
+> Note: Only after  `setI18n`  is called to switch languages, the rendered content on the page will not be automatically updated. The text of the new language will be displayed only when the  `t`  function is re-executed.<br/>> <br /><br/>> If you need to achieve refresh-free switching, it is recommended to use it in combination with the integrated version of the following mainstream front-end frameworks:<br/>
 * [React](https://github.com/i18n-pro/react)
 * Vue
    * [Vue3](https://github.com/i18n-pro/vue)

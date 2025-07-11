@@ -52,7 +52,7 @@
 
 ### GooglexConfig
 谷歌X翻译的配置
->基于 [google-translate-api-x](https://github.com/AidanWelch/google-translate-api) 实现，无需注册，免费使用
+> 基于 [google-translate-api-x](https://github.com/AidanWelch/google-translate-api) 实现，无需注册，免费使用<br/>
 
 |配置项|类型|是否必设|默认值|说明|
 |:-:|:-:|:-:|:-:|:-|
@@ -76,7 +76,7 @@ OpenAI翻译的配置
 
 ### GoogleConfig
 谷歌翻译的配置
->注意：该平台比较特殊，需要在本地环境提供额外的密匙，具体请参考[文档](https://cloud.google.com/translate/docs/setup?hl=zh-cn#auth)
+> 注意：该平台比较特殊，需要在本地环境提供额外的密匙，具体请参考[文档](https://cloud.google.com/translate/docs/setup?hl=zh-cn#auth)<br/>
 
 |配置项|类型|是否必设|默认值|说明|
 |:-:|:-:|:-:|:-:|:-|

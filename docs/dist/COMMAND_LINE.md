@@ -52,7 +52,7 @@ Configuration of output files
 
 ### GooglexConfig
 Google X translation configuration
->Realization based on  [google-translate-api-x](https://github.com/AidanWelch/google-translate-api) , no registration, free use
+> Realization based on  [google-translate-api-x](https://github.com/AidanWelch/google-translate-api) , no registration, free use<br/>
 
 |Configuration Items|Type|Required|Default|Description|
 |:-:|:-:|:-:|:-:|:-|
@@ -76,7 +76,7 @@ OPENAI translation configuration
 
 ### GoogleConfig
 Google Configuration of Translation
->Note: The platform is relatively special, and additional key needs need to be provided in the local environment. For details, please refer to [Documentation](https://cloud.google.com/translate/docs/setup?hl=zh-cn#auth)
+> Note: The platform is relatively special, and additional key needs need to be provided in the local environment. For details, please refer to [Documentation](https://cloud.google.com/translate/docs/setup?hl=zh-cn#auth)<br/>
 
 |Configuration Items|Type|Required|Default|Description|
 |:-:|:-:|:-:|:-:|:-|
