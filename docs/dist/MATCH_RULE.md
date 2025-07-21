@@ -1,5 +1,5 @@
 
-# Matching Rules
+# Match Rules
 
 <details >
   <summary>Table of Contents</summary>
@@ -20,8 +20,8 @@ Applicable to  `t`  and  `t.t`  functions:
 * Must be a string literal
 * Do not contain  `JavaScript`  expressions or variables
 * Do not contain special characters (such as  `\n` ,  `\t` )
-* Do not include end-to-end whitespace characters
-*  `Template Strings`  Must be a single line
+* Do not include leading or trailing whitespace characters
+*  `Template Strings`  must be single-line
 
 
 ### Parameter  `key`  rule
@@ -30,7 +30,7 @@ Applicable to  `t.t`  functions:
 * Do not contain  `JavaScript`  expressions or variables
 
 Failure to comply with the above rules may lead to:
-*  `text`  or  `custom-key`  extraction exception
+*  `text`  or  `custom-key`  extraction error
 * Automatic translation result is abnormal
 
 

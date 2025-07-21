@@ -33,7 +33,7 @@
 ## Function List
 
 ### initI18n
-Initialize fixed config to get core API
+Initialize configuration to get core API
 <h4 id="3-initi18n-type">Type</h4>
 <pre>
 (
@@ -57,58 +57,58 @@ Initialize fixed config to get core API
 <h4 id="3-initi18n-parameter-description">Parameter Description</h4>
 <table>
   <tr>
-    <th>Parameter name</th>
+    <th>Parameter Name</th>
     <th>Description</th>
   </tr>
   <tr>
     <tr>
       <td>namespace</td>
-      <td>Specify the naming space</td>
+      <td>Specify the namespace</td>
     </tr>
     <tr>
       <td>locale</td>
       <td>
-        Specify the current language<br /><br />📢📢📢：The value of  <code>locale</code>  corresponds to the language code by default. If you need to customize, please refer to the usage of  <code>codeLocaleMap</code> 
+        Specify the current language<br /><br />📢📢📢：The value of  <code>locale</code>  is the same as the language code by default. If you need to customize, please refer to the usage of  <code>codeLocaleMap</code> 
       </td>
     </tr>
     <tr>
       <td>langs</td>
-      <td>Set Current Language Pack</td>
+      <td>Set the current language pack</td>
     </tr>
     <tr>
       <td>beginIndex</td>
       <td>
-        Set the starting index of  <code>Interpolation Variable</code>  in the  <code>t</code>  function, default is 0
+        Set the starting index for  <code>Interpolation Variable</code>  in the  <code>t</code>  function, default is 0
       </td>
     </tr>
     <tr>
       <td>formatNumber</td>
       <td>
-         <code>Formatter</code>  of <b> Number </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> n </b>or<b> N </b>
+         <code>Formatter</code>  for <b> Number </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> n </b>or<b> N </b>
       </td>
     </tr>
     <tr>
       <td>formatCurrency</td>
       <td>
-         <code>Formatter</code>  of <b> Currency </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> c </b>or<b> C </b>
+         <code>Formatter</code>  for <b> Currency </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> c </b>or<b> C </b>
       </td>
     </tr>
     <tr>
       <td>formatDate</td>
       <td>
-         <code>Formatter</code>  of <b> Date </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> d </b>or<b> D </b>
+         <code>Formatter</code>  for <b> Date </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> d </b>or<b> D </b>
       </td>
     </tr>
     <tr>
       <td>formatTime</td>
       <td>
-         <code>Formatter</code>  of <b> Time </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> t </b>or<b> T </b>
+         <code>Formatter</code>  for <b> Time </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> t </b>or<b> T </b>
       </td>
     </tr>
     <tr>
       <td>formatPlural</td>
       <td>
-         <code>Formatter</code>  of <b> Plural </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> p </b>or<b> P </b>
+         <code>Formatter</code>  for <b> Plural </b> type  <code>Interpolation Variable</code> , the corresponding type tag is <b> p </b>or<b> P </b>
       </td>
     </tr>
   </tr>
@@ -132,14 +132,14 @@ interface Translate {
 <h4 id="3-t-parameter-description">Parameter Description</h4>
 <table>
   <tr>
-    <th>Parameter name</th>
+    <th>Parameter Name</th>
     <th>Description</th>
   </tr>
   <tr>
     <tr>
       <td>text</td>
       <td>
-        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
+        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md">Match Rules</a>  requirements
       </td>
     </tr>
     <tr>
@@ -154,7 +154,7 @@ interface Translate {
 #### property
 
 <h5 id="tt">t</h5>
-Get  <code>custom-key</code>  internationalized text<br />The internal will obtain  <code>text</code>  corresponding to  <code>key</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
+Get internationalized text for  <code>custom-key</code> <br />The internal will obtain  <code>text</code>  corresponding to  <code>key</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
 <h6 id="5-t-type">Type</h6>
 <pre>
 (
@@ -167,7 +167,7 @@ Get  <code>custom-key</code>  internationalized text<br />The internal will obta
 <h6 id="5-t-parameter-description">Parameter Description</h6>
 <table>
   <tr>
-    <th>Parameter name</th>
+    <th>Parameter Name</th>
     <th>Description</th>
   </tr>
   <tr>
@@ -178,7 +178,7 @@ Get  <code>custom-key</code>  internationalized text<br />The internal will obta
     <tr>
       <td>text</td>
       <td>
-        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md">Matching Rules</a>  requirements
+        The text to be translated should meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md">Match Rules</a>  requirements
       </td>
     </tr>
     <tr>
@@ -191,7 +191,7 @@ Get  <code>custom-key</code>  internationalized text<br />The internal will obta
 </table>
 
 ##### withLocale
-Generate a new  <a href="#t">t</a>  function<br />For server-side use, each interface response requires internationalization
+Generate a new  <a href="#t">t</a>  function<br />For server-side scenarios where each API response requires internationalization
 <h6 id="5-withlocale-type">Type</h6>
 <pre>
 (
@@ -202,7 +202,7 @@ Generate a new  <a href="#t">t</a>  function<br />For server-side use, each inte
 <h6 id="5-withlocale-parameter-description">Parameter Description</h6>
 <table>
   <tr>
-    <th>Parameter name</th>
+    <th>Parameter Name</th>
     <th>Description</th>
   </tr>
   <tr>
@@ -216,7 +216,7 @@ Generate a new  <a href="#t">t</a>  function<br />For server-side use, each inte
 </table>
 
 ### setI18n
-Set language and language pack
+Set the language and language pack
 <h4 id="3-seti18n-type">Type</h4>
 <pre>
 (
@@ -230,7 +230,7 @@ Set language and language pack
 <h4 id="3-seti18n-parameter-description">Parameter Description</h4>
 <table>
   <tr>
-    <th>Parameter name</th>
+    <th>Parameter Name</th>
     <th>Description</th>
   </tr>
   <tr>
@@ -240,14 +240,14 @@ Set language and language pack
     </tr>
     <tr>
       <td>langs</td>
-      <td>Set the current language package to support incremental addition, and the new one will cover the merger to the original</td>
+      <td>Set the current language pack to support incremental addition, and the new one will be merged and overwrite the original</td>
     </tr>
   </tr>
 </table>
 
 
 ## Other Types
-The following types are for convenience in document description, and there may be differences in the type writing in the code. Please refer to the actual code for accuracy
+The following types are for convenience in document description, and there may be differences in the type definitions in the code. Please refer to the actual code for accuracy
 ### LangPack
 Language Pack
 <pre>type LangPack = Record&lt;string, string&gt;</pre>

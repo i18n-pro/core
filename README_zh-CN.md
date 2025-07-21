@@ -30,7 +30,7 @@
 
 
 # 愿景
-让国际化接入变得轻松愉快 😄💪🏻
+让国际化变得轻松且愉快😄💪🏻
 # 特性
 
 * **轻量**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
@@ -38,7 +38,7 @@
 * **灵活**：支持变量插值、以及独特的类型标记和格式化器
 * **自动翻译**：一键提取文案并生成语言包
    * **增量翻译**：只翻译新增文案，移除未使用文案
-   * **多平台支持**：谷歌X、OpenAI、谷歌、微软、腾讯、阿里云、有道、百度等翻译平台
+   * **多平台支持**：例如谷歌X、OpenAI、谷歌、微软、腾讯、阿里云、有道、百度等翻译平台
    * **翻译日志**：多种日志输出，便于追踪问题
 * **keyless**：**文案即 key**，部分特殊场景需要自定义 key（例如：一词多义）
 

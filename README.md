@@ -30,7 +30,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/RE
 
 
 # Vision
-Make international access easy and enjoyable 😄💪🏻
+Make internationalization easy and enjoyable 😄💪🏻
 # Features
 
 * **lightweight**：[![bundlesize](https://img.shields.io/bundlephobia/minzip/i18n-pro?color=brightgreen&style=plastic "bundlesize")](https://bundlephobia.com/package/i18n-pro "bundlesize")
@@ -38,9 +38,9 @@ Make international access easy and enjoyable 😄💪🏻
 * **flexible**：Supports Variable Interpolation, and unique Type Tag and Formatter
 * **automatic-translation**：Extract text and generate language pack in one click
    * **incremental translation**：Only translate new text and remove unused text
-   * **Multi-platform support**：Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、BaiduFor translation platforms
-   * **Translation Log**：Various log outputs are easy to track problems
-* **keyless**：**text-as-key**, some special scenarios require custom-key (for example: A word with multiple meanings)
+   * **Multi-platform support**：For example, translation platforms such as Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu
+   * **Translation Log**：Various log outputs make it easy to track issues
+* **keyless**：**text-as-key**, custom-key is required in specific scenarios (e.g., polysemy)
 
 
 # Live Demo
@@ -51,15 +51,15 @@ Make international access easy and enjoyable 😄💪🏻
 
 # Principle
 
->  `automatic-translation`  is one of the core features of the current library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A.md)<br/>
+>  `automatic-translation`  is one of the core features of this library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A.md)<br/>
 
 The library consists of two main parts
 * Command Line Tool
 * Function API
 
-**Command Line Tool**：Parse the text that needs to be translated based on specified rules (regular expressions), translate the text to the specified target language through a translation platform, and finally generate language pack files
+**Command Line Tool**：Parse texts requiring translation based on specified rules (regular expressions), translate them using supported platforms, and finally generate language pack files
 
-An example of parsing text using  [Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md)  is as follows:
+An example of parsing text using  [Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md)  is as follows:
 
 The following is an example of  `text-as-key` 
 ```js
@@ -98,10 +98,10 @@ t.t('custom-key', `Today's date is {d0}`, new Date()) // Date
 t.t('custom-key', 'Current time: {t0}', new Date()) // Time
 t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Plural 
 ```
-**Function API**：Access to multilingual support through  `initI18n` ,  `t` ,  `setI18n` 
+**Function API**：Provide multilingual support via  `initI18n` ,  `t` ,  `setI18n` 
 * **initI18n**：Initialize the configuration and return the API object
 * **t**：The package  `text`  is internationalized, and it is also a command line matching identifier.
-* **setI18n**：Set language and language pack
+* **setI18n**：Set the language and language pack
 
  `Command Line Tool`  works with  `Function API`  and easily integrate into any  `JavaScript`  project
 # Help Document
@@ -109,7 +109,7 @@ t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Pl
 * [🚀 Quick Start](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/USAGE.md)
 * [💻 Command Line](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/COMMAND_LINE.md)
 * [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/API.md)
-* [📝 Matching Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md)
+* [📝 Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md)
 * [📊 Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/OUTPUT_LOG.md)
 * [❓ Frequently Asked Questions](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A.md)
 * [🤝 Contribution Guidelines](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES.md)

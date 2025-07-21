@@ -92,13 +92,13 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 <h4 id="300-api-changed">Changed</h4>
 
 *  `setI18n` 
-   * Support dynamic loading of language packages when switching languages
+   * Support dynamic loading of language pack when switching languages
    * Adjusted from synchronous execution to asynchronous execution
 
 
 <h4 id="300-api-added">Added</h4>
 
-* The  `langs`  parameter of  `initI18n`  supports dynamic loading of language packages in the form of callback functions.
+* The  `langs`  parameter of  `initI18n`  supports dynamic loading of language pack in the form of callback functions.
 *  `t` Add new attributes
    * **<code>t</code>**：Support  `custom-key`  scenarios
    * **<code>withLocale</code>**：Alternative  `withI18n` 
@@ -158,7 +158,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 
 <h4 id="200-command-line-tool-fixed">Fixed</h4>
 
-* Fix when the difference between  `Language code`  and  `locale` , identify the error of the translated language package, and eventually lead to repeated translation
+* Fix when the difference between  `Language code`  and  `locale` , identify the error of the translated language pack, and eventually lead to repeated translation
 * Fix as the following scene extraction  `text`  abnormal
  
 ```js
@@ -187,7 +187,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 
 * Added support for namespaces
    * New  `initI18n`  function is used to obtain the original core  `t` ,  `setI18n` ,  `withI18n`  function
-   * New  `namespace`  attribute is used to support naming space
+   * New  `namespace`  attribute is used to support namespace
    * Add  `t`  parameter to  `Formatter`  of  `Variable Interpolation` 
 
 
@@ -284,7 +284,7 @@ English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/do
 * Add  `incremental translation`  mode
    * This mode is enabled by default and can be closed through the command parameter  `--non-incremental` 
    * Supports translating only the text that has not been translated in the target language
-   * Supports intelligently removing the translated text that has not been used in the language package
+   * Supports intelligently removing the translated text that has not been used in the language pack
 * Add  `output.indentSize`  configuration attribute to specify the number of indented spaces in the output file
 * Add  `baiduConfig.delay`  configuration attribute to set the delay time of Baidu-Translation
 * Newly added rules constraints:  `text`  cannot include special characters  `\t`

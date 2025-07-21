@@ -8,8 +8,8 @@ After the translation command is executed, the  `.log`  log directory will be ge
 |keys.json|Compliant  `custom-key`  list|
 |texts-error.json|Non-compliant  `text`  list<br />(Not containing variable references and  `JavaScript`  expressions)|
 |texts.json|Compliant  `text`  list|
-|translate-fail.json|Translation failed  `text`  list|
-|translate-error.json|Translation exception  `text`  list<br />(Exceptions such as  `Interpolation Variable`  loss)|
-|translate-success.json|Translation successfully  `text`  list<br />( Incremental mode, only this new translation is included)|
-|langCode.json|Single language package file<br />Generate only at  `output.langType == 'single'` |
-|langs.json|Multilingual Aggregation Package Files<br />Generate only at  `output.langType == 'multiple'` |
+|translate-fail.json|List of  `text`  that failed to translate|
+|translate-error.json|List of  `text`  with translation errors<br />(Exceptions such as  `Interpolation Variable`  loss)|
+|translate-success.json|List of successfully translated  `text` <br />( only newly translated items in incremental mode)|
+|langCode.json|Single language pack file<br />Generated only when  `output.langType == 'single'` |
+|langs.json|Multi-language aggregated pack file<br />Generated only when  `output.langType == 'multiple'` |
