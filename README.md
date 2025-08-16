@@ -38,8 +38,8 @@ Make internationalization easy and enjoyable 😄💪🏻
 * **flexible**：Supports Variable Interpolation, and unique Type Tag and Formatter
 * **automatic-translation**：Extract text and generate language pack in one click
    * **incremental translation**：Only translate new text and remove unused text
-   * **Multi-platform support**：For example, translation platforms such as Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu
-   * **Translation Log**：Various log outputs make it easy to track issues
+   * **multi-platform support**：For example, translation platforms such as Google x、OpenAI、Google、Microsoft、Tencent、Alibaba Cloud、Youdao、Baidu
+   * **translation log**：Various log outputs make it easy to track issues
 * **keyless**：**text-as-key**, custom-key is required in specific scenarios (e.g., polysemy)
 
 
@@ -69,11 +69,11 @@ t("Hello World")
 t(`Hello World`)
 
 // Variable Interpolation
-t('Hi,{0}', 'developer friends')
-t('This is {0}, welcome to {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's helpful for you`, ' ⭐️ ')
+t('Hi, {0}', 'developer friends')
+t('This is {0}, welcome to {1}. If you think {2}, please give your {3} support', ' `i18n-pro` ', 'use', `it's helpful for you`, ' ⭐️ ')
 
 // Type Tag
-t('i18n-pro users reached {n0}', 100000000) // Number
+t('i18n-pro has reached {n0} users', 100000000) // Number
 t('The selling price is {c0}', 14999) // Currency
 t(`Today's date is {d0}`, new Date()) // Date
 t('Current time: {t0}', new Date()) // Time
@@ -88,11 +88,11 @@ t.t('custom-key', "Hello World")
 t.t('custom-key', `Hello World`)
 
 // Variable Interpolation
-t.t('custom-key', 'Hi,{0}', 'developer friends')
-t.t('custom-key', 'This is {0}, welcome to {1}. If you think {2}, please give {3} your support', ' `i18n-pro` ', 'use', `it's helpful for you`, ' ⭐️ ')
+t.t('custom-key', 'Hi, {0}', 'developer friends')
+t.t('custom-key', 'This is {0}, welcome to {1}. If you think {2}, please give your {3} support', ' `i18n-pro` ', 'use', `it's helpful for you`, ' ⭐️ ')
 
 // Type Tag
-t.t('custom-key', 'i18n-pro users reached {n0}', 100000000) // Number
+t.t('custom-key', 'i18n-pro has reached {n0} users', 100000000) // Number
 t.t('custom-key', 'The selling price is {c0}', 14999) // Currency
 t.t('custom-key', `Today's date is {d0}`, new Date()) // Date
 t.t('custom-key', 'Current time: {t0}', new Date()) // Time
@@ -100,7 +100,7 @@ t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Pl
 ```
 **Function API**：Provide multilingual support via  `initI18n` ,  `t` ,  `setI18n` 
 * **initI18n**：Initialize the configuration and return the API object
-* **t**：The package  `text`  is internationalized, and it is also a command line matching identifier.
+* **t**：Wrap  `text`  to implement internationalization, also serves as command line matching identifier
 * **setI18n**：Set the language and language pack
 
  `Command Line Tool`  works with  `Function API`  and easily integrate into any  `JavaScript`  project
@@ -111,7 +111,7 @@ t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Pl
 * [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/API.md)
 * [📝 Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md)
 * [📊 Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/OUTPUT_LOG.md)
-* [❓ Frequently Asked Questions](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A.md)
+* [❓ Questions and Answers](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/Q&A.md)
 * [🤝 Contribution Guidelines](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES.md)
 * [📋 Changelog](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/CHANGELOG.md)
 

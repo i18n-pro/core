@@ -4,7 +4,7 @@
 <details >
   <summary>Table of Contents</summary>
 
-  &emsp;&emsp;[rule](#rule)<br/>
+  &emsp;&emsp;[Rule](#rule)<br/>
   &emsp;&emsp;&emsp;&emsp;[Parameter  `text`  rule](#parameter--text--rule)<br/>
   &emsp;&emsp;&emsp;&emsp;[Parameter  `key`  rule](#parameter--key--rule)<br/>
   &emsp;&emsp;[Can be matched examples](#can-be-matched-examples)<br/>
@@ -13,7 +13,7 @@
 
 </details>
 
-## rule
+## Rule
 
 ### Parameter  `text`  rule
 Applicable to  `t`  and  `t.t`  functions:

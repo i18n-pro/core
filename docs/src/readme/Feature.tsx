@@ -58,7 +58,7 @@ export default function Vision() {
                 )}`}
               </>,
               <>
-                <Bold>{tr('翻译日志')}</Bold>：
+                <Bold>{tr('翻译日志').toLowerCase()}</Bold>：
                 {tr('多种日志输出，便于追踪问题')}
               </>,
             ],

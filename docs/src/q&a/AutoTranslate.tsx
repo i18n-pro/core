@@ -44,7 +44,7 @@ const text = ${prefix}'hello world')`}
 export default function AutoTranslate(props: { order: string }) {
   const { order } = props
   const extraCopy = tr('提取文案')
-  const shortcoming1 = tr('不适用于一词多译场景')
+  const shortcoming1 = tr('不适用于一词多义场景')
 
   return (
     <>

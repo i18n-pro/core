@@ -35,7 +35,12 @@ function Description(props: { isDot?: boolean }) {
 function getProps(isDot = false) {
   const extra = isDot
     ? {
-        key: tr('自定义key'),
+        key: tr(
+          '自定义key，需要满足特定{0}',
+          ` ${render(
+            <a href={getDocHref('MATCH_RULE')}>{tr('匹配规则')}</a>,
+          )} `,
+        ),
       }
     : {}
 

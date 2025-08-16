@@ -13,7 +13,7 @@ export default function DocLink() {
           <Link href={getDocHref('API')}>📖 {tr('API')}</Link>,
           <Link href={getDocHref('MATCH_RULE')}>📝 {tr('匹配规则')}</Link>,
           <Link href={getDocHref('OUTPUT_LOG')}>📊 {tr('翻译日志')}</Link>,
-          <Link href={getDocHref('Q&A')}>❓ {tr('常见问题')}</Link>,
+          <Link href={getDocHref('Q&A')}>❓ {tr('问与答')}</Link>,
           <Link href={getDocHref('CONTRIBUTION_GUIDELINES')}>
             🤝 {tr('贡献指南')}
           </Link>,

@@ -11,7 +11,7 @@
   &emsp;&emsp;&emsp;&emsp;[t](#t)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Type](#3-t-type)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Parameter Description](#3-t-parameter-description)<br/>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[property](#property)<br/>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Property](#property)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[t](#tt)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Type](#5-t-type)<br/>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[Parameter Description](#5-t-parameter-description)<br/>
@@ -115,7 +115,7 @@ Initialize configuration to get core API
 </table>
 
 ### t
-Get internationalized text<br />The internal will obtain  <code>text</code>  corresponding to  <code>text</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
+Get internationalized text<br />Internally, it obtains the  <code>text</code>  corresponding to the  <code>text</code>  from the language packs ( <code>langs</code> ) based on the current language  <code>locale</code> . If no matching translation is found, the original content  <code>text</code>  will be displayed directly
 <h4 id="3-t-type">Type</h4>
 <pre>
 interface Translate {
@@ -151,10 +151,10 @@ interface Translate {
   </tr>
 </table>
 
-#### property
+#### Property
 
 <h5 id="tt">t</h5>
-Get internationalized text for  <code>custom-key</code> <br />The internal will obtain  <code>text</code>  corresponding to  <code>key</code>  from the current language  <code>locale</code>   <code>langs</code> , and the content of the corresponding translation will directly display  <code>text</code> 
+Get internationalized text for  <code>custom-key</code> <br />Internally, it obtains the  <code>text</code>  corresponding to the  <code>key</code>  from the language packs ( <code>langs</code> ) based on the current language  <code>locale</code> . If no matching translation is found, the original content  <code>text</code>  will be displayed directly
 <h6 id="5-t-type">Type</h6>
 <pre>
 (
@@ -173,7 +173,9 @@ Get internationalized text for  <code>custom-key</code> <br />The internal will 
   <tr>
     <tr>
       <td>key</td>
-      <td>Custom key</td>
+      <td>
+        Custom key, need to meet specific  <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE.md">Match Rules</a>  requirements
+      </td>
     </tr>
     <tr>
       <td>text</td>

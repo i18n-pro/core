@@ -11,7 +11,13 @@ import {
   render,
   Break,
 } from 'jsx-to-md'
-import { getTranslationText, initI18n, getConfigName, getText } from '../utils'
+import {
+  getTranslationText,
+  initI18n,
+  getConfigName,
+  getText,
+  getCustomKey,
+} from '../utils'
 import { RecordItem } from './types'
 import { getProxyConfig } from './utils'
 
@@ -516,7 +522,7 @@ function MicroConfig() {
       default: '-',
       description: tr(
         'Microsoft translator-key，需要{0}申请',
-        `[${tr('注册 Azure 账号')}](https://azure.microsoft.com/)`,
+        `[${tr('注册账号')}](https://azure.microsoft.com/)`,
       ),
     },
     {
@@ -1032,7 +1038,8 @@ function CommandProp() {
           <br />
           <br />
           {tr(
-            '⚠️⚠️⚠️：关闭增量翻译模式后，所有的文案会重新翻译，会导致{0}（非翻译平台翻译的）的文案丢失，需慎重考虑使用！！！',
+            '⚠️⚠️⚠️：关闭增量翻译模式后，除了{0}其他所有文案会重新翻译，会导致{1}（非翻译平台翻译的）的文案丢失，需慎重考虑使用！！！',
+            getCustomKey(true),
             `**${tr('手工翻译')}**`,
           )}
         </>

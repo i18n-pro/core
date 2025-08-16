@@ -91,7 +91,7 @@ OpenAI翻译的配置
 微软翻译的配置
 |配置项|类型|是否必设|默认值|说明|
 |:-:|:-:|:-:|:-:|:-|
-|key|string|是|-|Microsoft translator-key，需要[注册 Azure 账号](https://azure.microsoft.com/)申请|
+|key|string|是|-|Microsoft translator-key，需要[注册账号](https://azure.microsoft.com/)申请|
 |location|string|否|-|区域|
 |from|string|是|-| `文案` 的语言代码（例如中文的是 `zh-Hans`，英文的是 `en`）<br /><br />[更多语言](https://learn.microsoft.com/zh-cn/azure/cognitive-services/translator/language-support)|
 |to|string[]|是|-|翻译的目标语言代码，格式同上<br /><br />📢📢📢：如果目标语言配置为 `['en']`，那么生成的文件名(`output.langType=='multiple'`）就是 `en.json`，设置语言时的 `locale` 也必须是 `'en'`，如果需要 `locale` 设置为 `'en_US'` 这种，就需要配合 `codeLocaleMap` 来使用|
@@ -160,5 +160,5 @@ OpenAI翻译的配置
 |参数名|简写|参数值|适用命令|用法|说明|
 |:-:|:-:|:-:|:-|:-|:-|
 |--locale|-L|`en` \| `zh`|ALL|`npx i18n h -L en`<br />`npx i18n h --locale en`|指定命令行显示语言<br /><br />可选语言有中文（zh）/ 英文（en）， 默认为英文（en）|
-|--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|关闭增量翻译模式<br /><br />⚠️⚠️⚠️：关闭增量翻译模式后，所有的文案会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文案丢失，需慎重考虑使用！！！|
+|--non-incremental|-|-|`t`<br />`translate`|`npx i18n t --non-incremental`|关闭增量翻译模式<br /><br />⚠️⚠️⚠️：关闭增量翻译模式后，除了自定义 key其他所有文案会重新翻译，会导致**手工翻译**（非翻译平台翻译的）的文案丢失，需慎重考虑使用！！！|
 |--path|-P|-|`init`<br />`t`<br />`translate`|`npx i18n init -P /xxx/xxx/xxx`<br />`npx i18n t -P /xxx/xxx/xxx`|指定配置文件路径（参数为相对路径）<br /><br />只需要指定路径名，配置文件名默认为 `i18nrc.ts`|

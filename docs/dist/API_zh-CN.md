@@ -173,7 +173,9 @@ interface Translate {
   <tr>
     <tr>
       <td>key</td>
-      <td>自定义key</td>
+      <td>
+        自定义key，需要满足特定 <a href="https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/MATCH_RULE_zh-CN.md">匹配规则</a> 
+      </td>
     </tr>
     <tr>
       <td>text</td>
