@@ -80,7 +80,7 @@ const keyText = t.t('custom-key', 'hello key')
 
 
 ## 3. 初始化命令行配置文件
-在命令行终端输入如下命令，[更多命令](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/COMMAND_LINE_zh-CN.md#命令列表)
+在命令行终端输入如下命令，[更多命令](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/COMMAND_LINE_zh-CN.md#命令列表)
 ```bash
 npx i18n init 
 ```
@@ -115,7 +115,7 @@ export default {
 
 
 ## 4. 调整 `i18nrc.ts` 配置
-根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcts-配置)
+根据需求自行调整配置文件中的配置项，配置项的[说明](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/COMMAND_LINE_zh-CN.md#1--i18nrcts-配置)
 
 ## 5. 执行翻译命令
 
@@ -255,7 +255,7 @@ setI18n({
 
 ## 8. Demo
 本节仅介绍基础用法，更多高级用法请参考后续文档
-* 真实示例请参考  [Live Demo](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.2/README_zh-CN.md#live-demo) 
+* 真实示例请参考  [Live Demo](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/README_zh-CN.md#live-demo) 
 * 本文档多语言支持基于 `i18n-pro` 和 [jsx-to-md](https://github.com/eyelly-wu/jsx-to-md) 实现
 *  `命令行工具` 的控制台输出同样支持多语言
    * 通过命令  `npx i18n h -L zh`  可查看中文版的命令行交互界面![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")
