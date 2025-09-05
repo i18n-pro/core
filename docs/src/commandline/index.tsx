@@ -442,7 +442,7 @@ function OpenAIConfig() {
   return (
     <>
       <H3>OpenAIConfig</H3>
-      {tr('OpenAI翻译的配置')}
+      {tr('OpenAI 翻译的配置')}
       <Table columns={getCommonTableColumns()} data={data} />
     </>
   )

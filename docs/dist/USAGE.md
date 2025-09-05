@@ -80,7 +80,7 @@ const keyText = t.t('custom-key', 'hello key')
 
 
 ## 3. Initialize Command Line Configuration File
-Enter the following command at the command line terminal, [more commands](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/COMMAND_LINE.md#command-list)
+Enter the following command at the command line terminal, [more commands](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/COMMAND_LINE.md#command-list)
 ```bash
 npx i18n init 
 ```
@@ -115,7 +115,7 @@ export default {
 
 
 ## 4. Adjust  `i18nrc.ts`  Configuration
-Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/COMMAND_LINE.md#1--i18nrcts--configuration) of configuration items
+Adjust the configuration items in the configuration file according to the requirements, [Description](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/COMMAND_LINE.md#1--i18nrcts--configuration) of configuration items
 
 ## 5. Execute Translation Command
 
@@ -233,7 +233,7 @@ setI18n({
   },
 })
 ```
-At this point, the internationalization function has been integrated. Simply set  `locale`  as the target language to display the corresponding translated content on the page. If there is a new  `text`  (requires a  `t`  function package), just re-execute the  `npx i18n t`  command to generate the latest language pack to ensure that all new content is translated.
+At this point, the internationalization function has been integrated. Simply set  `locale`  as the target language to display the corresponding translated content on the page. If there is a new  `text`  (requires a  `t`  function wrap), just re-execute the  `npx i18n t`  command to generate the latest language pack to ensure that all new content is translated.
 
 ## 7. Switch Language
 Switch the current language by:
@@ -243,7 +243,9 @@ setI18n({
 })
 ```
 
-> Note: Rendered content does not update automatically after  `setI18n`  language switching. New translations appear only when  `t`  is re-invoked.<br/>> <br /><br/>> If you need to achieve refresh-free switching, it is recommended to use it in combination with official integrations for these frontend frameworks:<br/>
+> Note: Rendered content does not update automatically after  `setI18n`  language switching. New translations appear only when  `t`  is re-invoked.<br/>
+>
+> If you need to achieve refresh-free switching, it is recommended to use it in combination with official integrations for these frontend frameworks:<br/>
 * [React](https://github.com/i18n-pro/react)
 * Vue
    * [Vue3](https://github.com/i18n-pro/vue)
@@ -255,7 +257,7 @@ setI18n({
 
 ## 8. Demo
 This section only introduces basic usage. For more advanced usage, please refer to the subsequent documentation
-* For real examples, please see  [Live Demo](https://github.com/i18n-pro/core/tree/v3.0.0-alpha.3#live-demo) 
+* For real examples, please see  [Live Demo](https://github.com/i18n-pro/core/tree/v3.0.0-alpha.4#live-demo) 
 * This document supports multilingual implementations based on  `i18n-pro`  and  [jsx-to-md](https://github.com/eyelly-wu/jsx-to-md) 
 * The console output of the  `Command Line Tool`  also supports multilingual display
    * The command line interactive interface of the Chinese version can be viewed through the command  `npx i18n h -L zh` ![demo](https://s3.bmp.ovh/imgs/2023/05/02/cc60f507a8f76a81.gif "demo")

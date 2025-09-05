@@ -2,7 +2,7 @@
   <p style="font-size: 18px;">An out-of-the-box, lightweight JavaScript i18n auto-translation solution</p>
 
 
-English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/README_zh-CN.md)
+English | [简体中文](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/README_zh-CN.md)
 
 
 [![npm-version](https://img.shields.io/npm/v/i18n-pro.svg?style=flat-square "npm-version")](https://www.npmjs.com/package/i18n-pro "npm")
@@ -51,7 +51,7 @@ Make internationalization easy and enjoyable 😄💪🏻
 
 # Principle
 
->  `automatic-translation`  is one of the core features of this library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/Q&A.md)<br/>
+>  `automatic-translation`  is one of the core features of this library, [learn more](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/Q&A.md)<br/>
 
 The library consists of two main parts
 * Command Line Tool
@@ -59,7 +59,7 @@ The library consists of two main parts
 
 **Command Line Tool**：Parse texts requiring translation based on specified rules (regular expressions), translate them using supported platforms, and finally generate language pack files
 
-An example of parsing text using  [Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/MATCH_RULE.md)  is as follows:
+An example of parsing text using  [Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/MATCH_RULE.md)  is as follows:
 
 The following is an example of  `text-as-key` 
 ```js
@@ -106,14 +106,14 @@ t.t('custom-key', 'I have {p0 apple}, {p1 banana} and {p2 pear}', 5, 4, 3) // Pl
  `Command Line Tool`  works with  `Function API`  and easily integrate into any  `JavaScript`  project
 # Help Document
 
-* [🚀 Quick Start](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/USAGE.md)
-* [💻 Command Line](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/COMMAND_LINE.md)
-* [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/API.md)
-* [📝 Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/MATCH_RULE.md)
-* [📊 Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/OUTPUT_LOG.md)
-* [❓ Questions and Answers](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/Q&A.md)
+* [🚀 Quick Start](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/USAGE.md)
+* [💻 Command Line](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/COMMAND_LINE.md)
+* [📖 API](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/API.md)
+* [📝 Match Rules](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/MATCH_RULE.md)
+* [📊 Translation Log](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/OUTPUT_LOG.md)
+* [❓ Questions and Answers](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/Q&A.md)
 * [🤝 Contribution Guidelines](https://github.com/i18n-pro/core/blob/dev/docs/dist/CONTRIBUTION_GUIDELINES.md)
-* [📋 Changelog](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.3/docs/dist/CHANGELOG.md)
+* [📋 Changelog](https://github.com/i18n-pro/core/blob/v3.0.0-alpha.4/docs/dist/CHANGELOG.md)
 
 
 # License

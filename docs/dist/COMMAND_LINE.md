@@ -63,7 +63,7 @@ Google X translation configuration
 |delay|number|no|0|The time interval (in seconds) for subsequent interface requests when a single interface is requested in batches<br /><br />It is used to solve the QPS limit of the interface. If there is a related error, you can try to configure the attribute to solve|
 
 ### OpenAIConfig
-OPENAI translation configuration
+OpenAI translation configuration
 |Configuration Items|Type|Required|Default|Description|
 |:-:|:-:|:-:|:-:|:-|
 |key|string|yes|-|Openai API Key, need [Register account](https://chat.openai.com/auth/login) application|

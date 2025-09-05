@@ -477,7 +477,7 @@ function V_3_0_0() {
   return (
     <Template
       version="3.0.0"
-      date="2025-05-xx"
+      date="2025-09-xx"
       commandLine={{
         added: [
           'U',
@@ -487,6 +487,12 @@ function V_3_0_0() {
             ' `v3.0.0` ',
             ' `i18nrc.ts` ',
             ' `i18nrc.js` ',
+          ),
+          tr(
+            '支持{0}场景下{1}和{2}的提取',
+            getCustomKey(),
+            ' `key` ',
+            getTranslationText(),
           ),
         ],
       }}

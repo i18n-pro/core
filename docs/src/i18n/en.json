@@ -185,7 +185,7 @@
   "使用模型，默认为{0}，当前只兼容{1}模型": "Use the model, the default is {0}, currently only compatible {1} model",
   "特殊说明：": "Special Instructions:",
   "由于{0}目前没有推出纯文本的翻译API，因此只能通过自定义的{1}来执行翻译，这里要求提供的翻译语言必须是英文": "Since {0} currently does not launch a pure text translation API, it can only be executed by customized {1}. The translation language required here must be English",
-  "OpenAI翻译的配置": "OPENAI translation configuration",
+  "OpenAI 翻译的配置": "OpenAI translation configuration",
   "应用ID，需要{0}申请": "Application ID, requiring {0} application",
   "应用密钥，要求同上": "Application key, require the same as above",
   "有道翻译的配置": "Configuration of Youdao Translation",
@@ -392,7 +392,7 @@
   "设置当前语言及语言包，支持后续动态切换": "Set the current language and language pack, support subsequent dynamic switching",
   "语言包生成后，需要将其集成到项目中": "After the language pack is generated, it needs to be integrated into the project",
   "目前支持{0}种引入语言包的方式": "Currently supports {0} ways to import language pack",
-  "至此，国际化功能已集成完毕。只需将 {0} 设置为目标语言，即可在页面上展示对应的翻译内容。后续如有新增{1}（需用 {2} 函数包裹），只需重新执行 {3} 命令生成最新语言包，即可确保所有新增内容均被翻译": "At this point, the internationalization function has been integrated. Simply set {0} as the target language to display the corresponding translated content on the page. If there is a new {1} (requires a {2} function package), just re-execute the {3} command to generate the latest language pack to ensure that all new content is translated.",
+  "至此，国际化功能已集成完毕。只需将 {0} 设置为目标语言，即可在页面上展示对应的翻译内容。后续如有新增{1}（需用 {2} 函数包裹），只需重新执行 {3} 命令生成最新语言包，即可确保所有新增内容均被翻译": "At this point, the internationalization function has been integrated. Simply set {0} as the target language to display the corresponding translated content on the page. If there is a new {1} (requires a {2} function wrap), just re-execute the {3} command to generate the latest language pack to ensure that all new content is translated.",
   "通过如下方式切换当前语言：": "Switch the current language by:",
   "注意：仅调用 {0} 切换语言后，页面上已渲染的内容不会自动更新，只有重新执行 {1} 函数时才会显示新语言的文案": "Note: Rendered content does not update automatically after {0} language switching. New translations appear only when {1} is re-invoked.",
   "如需实现无刷新切换，建议结合以下主流前端框架的集成版本使用：": "If you need to achieve refresh-free switching, it is recommended to use it in combination with official integrations for these frontend frameworks:",
@@ -416,5 +416,6 @@
   "例如{0}等翻译平台": "For example, translation platforms such as {0}",
   "问与答": "Questions and Answers",
   "⚠️⚠️⚠️：关闭增量翻译模式后，除了{0}其他所有文案会重新翻译，会导致{1}（非翻译平台翻译的）的文案丢失，需慎重考虑使用！！！": "⚠️⚠️⚠️: After turning off the incremental translation mode, all other text except {0} will be retranslated, which will lead to the loss of text of {1} (translated by non-translation platforms). You need to consider carefully! ! !",
-  "自定义key，需要满足特定{0}": "Custom key, need to meet specific {0} requirements"
+  "自定义key，需要满足特定{0}": "Custom key, need to meet specific {0} requirements",
+  "支持{0}场景下{1}和{2}的提取": "Supports {1} and {2} extraction in {0} scenarios"
 }

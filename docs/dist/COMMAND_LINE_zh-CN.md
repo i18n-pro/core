@@ -63,7 +63,7 @@
 |delay|number|否|0|单个接口分批次请求时，后续接口请求时间间隔(单位：秒)<br /><br />用于解决接口有 QPS 限制，如果存在相关报错，可尝试配置该属性来解决|
 
 ### OpenAIConfig
-OpenAI翻译的配置
+OpenAI 翻译的配置
 |配置项|类型|是否必设|默认值|说明|
 |:-:|:-:|:-:|:-:|:-|
 |key|string|是|-|OpenAI API Key，需要[注册账号](https://chat.openai.com/auth/login)申请|
