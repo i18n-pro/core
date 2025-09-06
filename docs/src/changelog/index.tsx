@@ -477,7 +477,7 @@ function V_3_0_0() {
   return (
     <Template
       version="3.0.0"
-      date="2025-09-xx"
+      date="2025-09-06"
       commandLine={{
         added: [
           'U',

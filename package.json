@@ -1,6 +1,6 @@
 {
   "name": "i18n-pro",
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0",
   "description": "An out-of-the-box, lightweight JavaScript i18n auto-translation solution",
   "files": [
     "dist/src",
